@@ -22,8 +22,11 @@
 \maketitle
 
 \section{Cel projektu}
+
 Celem zadania jest zaimplementowanie algorytmu $k$-NN w technologii Java na potrzeby klasyfikacji tekstów 
-oraz zbadanie wpływu wybranych cech liczbowych i tekstowych na skuteczność powyższej metody. Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters.  \\
+oraz zbadanie wpływu wybranych cech liczbowych i tekstowych na skuteczność powyższej metody. 
+Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters.  \\
+
 
 
 \section{Klasyfikacja nadzorowana metodą $k$-NN}
@@ -41,14 +44,18 @@ Wyszukiwanie najmniejszej odległości pomiędzy obiektami można przedstawić z
 
 
 \subsection{Ekstrakcja cech, wektory cech}
-Pierwszym etapem, który należy wykonać w procesie rozpoznawania tekstów jest wyodrębnienie takich cech, aby jak najlepiej określały ich charakterystykę.Wszystkie artykuły są napisane w tym samym języku oraz w tej samej formie stylistycznej, dlatego w trakcie analizy skupiliśmy się na cechach liczbowych oraz tekstowych. Mając to na uwadzę, dokonaliśmy ekstrakcji poniższych cech:
+
+Pierwszym etapem, który należy wykonać w procesie rozpoznawania tekstów jest wyodrębnienie takich cech, 
+aby jak najlepiej określały ich charakterystykę.Wszystkie artykuły są napisane w tym samym języku oraz w tej samej formie stylistycznej, 
+dlatego w trakcie analizy skupiliśmy się na cechach liczbowych oraz tekstowych. Mając to na uwadzę, dokonaliśmy ekstrakcji poniższych cech:
 \begin{enumerate}
     \item Zapis cyfr - za pomocą ciągu cyfr otrzymamy informacje o np. numerach telefonu, które to są charakterystyczne w zależności od kraju.
     \item Waluty - wyciągnięcie z tekstów nazw najczęsciej używanych walut. Kraje, z których pochodzą porównywane teksty używają różnych walut.
     \item Częstość występowania dat - zliczenie, jak często w podanych tekstach występują daty. Zakładamy, że w zależności od tego, z którego kraju dotyczy tekst, częstość wystąpień zapisów datowych będzie się różnić.
     \item Format zapisu dat - w zależności od kraju format zapisu dat różni się.
     \item Ogólna liczba słów - zliczenie wszystkich słów występujących w tekście. Uważamy, że w zależności od tego, jakiego kraju tekst dotyczy, ich długość może być różna
-    \item Częstość słów rozpoczynających się wielką literą - słowa takie będą oznaczały najczęściej  nazwy własne np. imiona, nazwiska, nazwy budynków. Pisząc o jednym kraju może być używane więcej takich słów, a o innych mniej. Z tej grupy wykluczymy jednak wyrazy składające się wyłącznie z wielkich liter, o których mowa będzie w punkcie następnym.
+    \item Częstość słów rozpoczynających się wielką literą - słowa takie będą oznaczały najczęściej  nazwy własne np. imiona, nazwiska, nazwy budynków. Pisząc o jednym kraju może być używane więcej takich słów, 
+	a o innych mniej. Z tej grupy wykluczymy jednak wyrazy składające się wyłącznie z wielkich liter, o których mowa będzie w punkcie następnym.
     \item Częstość słów pisanych wielką literą - najczęściej będą to skróty. Uważamy, że w zależności od opisywanego kraju, ilość wykorzystywanych skrótów może się różnić.
     \item Układ SI/imperialny - zdecydowanie w krajach anglojęzycznych częściej w tekstach stosowany będzie układ imperialny, natomiast w pozostałych - układ SI.
     \item Częstość występowania cytatów - uważamy, że występuje wyraźna różnica w liczbie wykorzystanych cytatów, w zależności od opisywanego kraju.
@@ -60,6 +67,7 @@ Wektor wyekstrahowanych cech będzie się prezentował następująco:
 \begin{gather}
 v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}, c_{11}]
 \end{gather}
+
 \subsection{Miary jakości klasyfikacji} 
 Miary jakości klasyfikacji (Accuracy, Precision,
 Recall, F1). We wprowadzeniu zaprezentować minimum teorii potrzebnej do realizacji
