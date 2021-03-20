@@ -23,9 +23,9 @@
 
 \section{Cel projektu}
 
-Celem zadania jest zaimplementowanie algorytmu $k$-NN w technologii Java na potrzeby klasyfikacji tekstów 
-oraz zbadanie wpływu wybranych cech liczbowych i tekstowych na skuteczność powyższej metody. 
-Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters.  \\
+Celem zadania jest zaimplementowanie algorytmu $k$-NN w technologii Java na potrzeby klasyfikacji tekstów
+oraz zbadanie wpływu wybranych cech liczbowych i tekstowych na skuteczność powyższej metody. W wyniku działania algorytmu teksy zostaną przyporządkowane do krajów, z jakich pochodzą.
+Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters, które to pochodzą z 1987 roku, wszystkie teksty napisane są w języku angielskim, a przy klasyfikacji pod uwagę będą brane artykuły, które pochodzą z następujących krajów: Republika Federalna Niemiec, USA, Francja, Wielka Brytania, Kanada, Japonia  \\
 
 
 \section{Klasyfikacja nadzorowana metodą $k$-NN}
@@ -57,6 +57,10 @@ dlatego w trakcie analizy skupiliśmy się na cechach liczbowych oraz tekstowych
 	a o innych mniej. Z tej grupy wykluczymy jednak wyrazy składające się wyłącznie z wielkich liter, o których mowa będzie w punkcie następnym.
     \item Częstość słów pisanych wielką literą - najczęściej będą to skróty. Uważamy, że w zależności od opisywanego kraju, ilość wykorzystywanych skrótów może się różnić.
     \item Układ SI/imperialny - zdecydowanie w krajach anglojęzycznych częściej w tekstach stosowany będzie układ imperialny, natomiast w pozostałych - układ SI.
+    Przykładowo mamy dany fragment:
+    "[...]flowed 660 barrels of
+oil and 581,000 cubic feet of natural gas per day through a
+13/64 inch choke from depths of 13,188 to 13,204 feet." Mamy tu do czynienia z calami (inch) oraz stopami (feet), zatem układem imperialnym, a więc możemy przypuszczać, że tekst ten pochodzi z jednego z krajów anglojęzycznych. 
     \item Częstość występowania cytatów - uważamy, że występuje wyraźna różnica w liczbie wykorzystanych cytatów, w zależności od opisywanego kraju.
     \item Słowa kluczowe - sporządzona zostanie lista słów kluczowych (np. elementy lokalizacyjne) dla krajów, które bierzemy pod uwagę w procesie klasyfikacji. 
     \item Najczęściej występujące słowa - znalezienie słów, które najczęściej występują w tekstach o danym kraju.
