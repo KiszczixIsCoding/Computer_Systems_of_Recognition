@@ -65,6 +65,12 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     in exchange for all of U.S. Design.[...]}. \\
     \end{exmp}
     W powyższym fragmencie została wymieniona waluta o nazwie dolar ("dlrs"). Mimo, że najbardziej popularnym dolarem jest dolar amerykański, natomiast na świecie jest jeszcze wiele innych walut, których pierwszym członem jest słowo "dolar", np. dolar kanadyjski, dolar australijski. Ten fakt należy również wziąć pod uwagę w momencie wyznaczania zbiorów rozmytych. Z podanego fragmentu wynika także, że aby w pełni skorzystać z tej cechy, należy uwzględnić nie tylko pełne nazwy walut, ale również ich skróty, które również się pojawiają w artykułach.
+    
+    \begin{equation}
+        c_2 = \frac{|{s: s \in W \land s \in A}|}{|A|}
+    \end{equation}
+    gdzie $W$ - zbiór słów oznaczających nazwy walut, $A$ - zbiór wszystkich słów z artykułu
+    
     \item Częstość występowania dat - zliczenie, jak często w podanych tekstach występują elementy określające czas. Wydaje się, że ich częstość będzie się różnić w zależności od pochodzenia tekstu. \\
     \begin{exmp} Fragment artykułu pt. "USDA comments on export sales"  \cite{reuters} \\
     \say{[...]  In comments on its Export Sales Report, the department said
@@ -77,12 +83,20 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     delivery in the current year, while sales to China decreased by
     30,000 tonnes for the current season, but increased by 90,000
     tonnes for the 1987/88 season, which begins June 1. [...]}. \\
-    \end{exmp}W przytoczonym fragmencie zapis daty został wykorzystany 3 razy ("October 1", "1987/88", "June 1"). Wobec tego, uważamy, że opisywana cecha będzie korzystnie wpływać na proces klasyfikacji tekstów. \\
+    \end{exmp}W przytoczonym fragmencie zapis daty został wykorzystany 3 razy ("October 1", "1987/88", "June 1"). Wobec tego, uważamy, że opisywana cecha będzie korzystnie wpływać na proces klasyfikacji tekstów. 
+    \begin{equation}
+        c_3 = \frac{|{s: s \in D \land s \in A}|}{|A|}
+    \end{equation}
+    gdzie $D$ - zbiór słów oznaczających daty, $A$ - zbiór wszystkich słów z artykułu \\
     \item Format zapisu dat - w zależności od kraju format zapisu dat różni się. \\ \begin{exmp} Fragment artykułu pt. "Software services extends warrants" \cite{reuters} \\ \say{Software Services of America
     Inc said its board has extended the expiration date of its
     warrants until August 31 from April 30.}.\\
     \end{exmp} Daty występujące w tym fragmencie ("August 31" i "April 30") są zapisane w formacie: miesiąc dzień. Uważamy, że w zależności od tego, z jakiego kraju pochodzi artykuł format zapisu dat może się różnić.
     \item Ogólna liczba słów - zliczenie wszystkich słów występujących w tekście. Uważamy, że w zależności od tego, jakiego kraju tekst dotyczy, ich długość może być różna.
+    \begin{equation}
+        c_5 = |A|
+    \end{equation}
+    gdzie $A$ - zbiór wszystkich słów z artykułu.
     \item Częstość słów rozpoczynających się wielką literą - słowa takie będą oznaczały najczęściej  nazwy własne np. imiona, nazwiska, nazwy budynków lub będą to rozwinięcia skrótów. Pisząc o jednym kraju może być używane więcej takich słów, 
 	a o innych mniej. Z tej grupy wykluczymy jednak wyrazy składające się wyłącznie z wielkich liter (o których mowa będzie w punkcie następnym) oraz słowa pisane z wielkiej litery z uwagi na początek zdania. \\
 	\begin{exmp}Fragment artykułu pt. "U.S. Auto Union will fight to stop job/wage cuts" \cite{reuters}\\
@@ -92,17 +106,38 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     Motors Corp and Ford Motor Co[...]}. \\
     \end{exmp}
     W tym krótkim fragmencie występuje aż 9 słów rozpoczynających się wielką literą, jednocześnie nie będących pierwszym słowem w zdaniu oraz nie będących słowem składających się tylko z wielkich liter. Słowa te są w tym fragmencie związane z nazwami własnymi oraz nazwą miesiąca. Uważamy, że przede wszystkim stosowanie nazw własnych może być związane z tym, z jakiego kraju pochodzi podany dokument.
+     \begin{equation}
+        c_6 = \frac{|{s: s \in Z}|}{|A|}
+    \end{equation}
+    gdzie $Z$ - zbiór słów, rozpoczynających się w arrtykule wielką literą, $A$ - zbiór wszystkich słów z artykułu
     \item Częstość słów pisanych wielką literą - najczęściej będą to skróty. Uważamy, że w zależności od opisywanego kraju, ilość wykorzystywanych skrótów może się różnić. \\
     \begin{exmp}Fragment artykułu pt."France approves large defence spending increase" \cite{reuters} \\
     \say {The budget represents a six pct annual increase, starting next year, well above the 3.5 pct NATO recommends for members of its military command. France is a member of NATO but does
     not belong to its integrated military command.} \\
     \end{exmp}
     W powyższym fragmencie skrót NATO(Organizacja Traktatu Północnoatlantyckiego) występuje 2 razy. Według nas, częstość występowania skrótów, w danym artykule może mieć związek z tym, jakiego kraju dotyczy tekst.
+    \begin{equation}
+        c_7 = \frac{|{s: s \in W}|}{|A|}
+    \end{equation}
+    gdzie $W$ - zbiór słów, pisanych w artykule wielkimi literami, $A$ - zbiór wszystkich słów z artykułu
     \item Układ SI/imperialny - zdecydowanie częściej w artykułach z krajów anglojęzycznych będzie stosowany układ imperialny, natomiast w pozostałych - układ SI. \\
     \begin{exmp}Fragment artykułu pt. "Sun in North Dakota oil find" \cite{reuters} \\
     \say{[...]flowed 660 barrels of oil and 581,000 cubic feet of natural gas per day through a 13/64 inch choke from depths of 13,188 to 13,204 feet.} \\
     \end{exmp}
     W powyższym tekście można zauważyć występowanie jednostkek z układu imperialnego, tj. cale(inch) i stopy(feet). Wobec tego, można przypuszczać, że tekst ten pochodzi z jednego z krajów anglojęzycznych. 
+     \begin{equation}
+        c_8' = \frac{|{s: s \in S \land s \in A}|}{|A|}
+    \end{equation}
+    gdzie $S$ - zbiór słów oznaczających jednostki układu SI, $A$ - zbiór wszystkich słów z artykułu
+    
+    \begin{equation}
+        c_8'' = \frac{|{s: s \in I \land s \in A}|}{|A|}
+    \end{equation}
+    gdzie $I$ - zbiór słów oznaczających jednostki układu imperialnego, $A$ - zbiór wszystkich słów z artykułu
+    
+    \begin{equation}
+        c_8 = \frac{c_8'}{c_8''}
+    \end{equation}
     \item Częstość występowania cytatów - 
      kolejna cecha, która wydaje się różnić w zależności od kraju, o którym mowa w artykule. Liczba cytatów zostanie uzyskana w wyniku obliczenia liczby występowania słów, gdzie przedostatni znak to ',' lub '.', a ostatni '"'. \\
     \begin{exmp}Fragment artykułu pt. "Hughes changes stance on merger after suit" \cite{reuters} \\
@@ -112,6 +147,10 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     that Baker sell off its Reed Tool Co operation.[...]}. \\
     \end{exmp}
     W podanym fragmencie cytat wystąpił 2 razy. Uważamy, że artykuły dotyczące różnych krajów będą też zawierały różną liczbę cytatów.
+    \begin{equation}
+        c_9 = \frac{|{s: s \in Y}|}{|A|}
+    \end{equation}
+    gdzie $Y$ - zbiór cytatów występujących w artykule, $A$ - zbiór wszystkich słów z artykułu
     \item Słowa kluczowe - sporządzone zostaną listy elementów identyfikujących każdy z krajów. Określenia te będą związane z elementami charakterystycznymi dla danego kraju. Możemy do nich zaliczyć nazwy geograficzne, znane osoby, nazwy firm itp..  \\
     \begin{exmp}Fragment artykułu pt. "Currency futures to key off G-5, G-7 meetings" \cite{reuters} \\
     \say{News of an agreement among G-5 and G-7
@@ -122,6 +161,10 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     analysts said.[...]}. \\
     \end{exmp}
     Powyższy tekst zawiera 2 słowa kluczowe - Washington i Paris. Washington związane jest z USA, natomiast Paris z Francją. Chcąc przyporządkować ten fragment biorąc pod uwagę tylko i wyłącznie cechę związaną ze słowami kluczowymi zostałby dopasowany z równym prawdopodobieństwem do Francji oraz USA. 
+    \begin{equation}
+        c_{10} = \frac{|{s: s \in K \land s \in A}|}{|A|}
+    \end{equation}
+    gdzie $K$ - zbiór słów kluczowych, $A$ - zbiór wszystkich słów z artykułu
     \item Najczęściej występujące słowa - wyodrębnienie z artykułów najczęściej występujących słów, z pominięciem słów znajdujących się na tzw. stopliście, tj. liście najczęściej używanych słów w języku angielskim \cite{coca_words}. Zabieg ten ma na celu podniesienie jakości klasyfikacji poprzez wyszukanie słów, które charakteryzują treść artykułu. Pominięcie tej operacji skutkowałoby niejednoznacznym zaklasyfikowaniem tekstów, co w konsekwencji obniżyłoby skuteczność algorytmu. 
 	Wyznaczenie opisywanej cechy można przedstawić w postaci operacji na zbiorach:
 	\begin{gather}
