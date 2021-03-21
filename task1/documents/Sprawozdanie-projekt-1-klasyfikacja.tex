@@ -2,7 +2,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage{amsmath}
+\usepackage{dirtytalk}
 
+\newtheorem{exmp}{Przykład}[section]
 \studycycle{Informatyka, studia STACJONARNE, I st.}
 \coursesemester{VI}
 
@@ -23,9 +25,9 @@
 
 \section{Cel projektu}
 
-Celem zadania jest zaimplementowanie algorytmu $k$-NN w technologii Java na potrzeby klasyfikacji tekstów 
-oraz zbadanie wpływu wybranych cech liczbowych i tekstowych na skuteczność powyższej metody. 
-Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters.  \\
+Celem zadania jest zaimplementowanie algorytmu $k$-NN w technologii Java na potrzeby klasyfikacji tekstów
+oraz zbadanie wpływu wybranych cech liczbowych i tekstowych na skuteczność powyższej metody. W wyniku działania algorytmu teksy zostaną przyporządkowane do krajów, z jakich pochodzą.
+Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters, które to pochodzą z 1987 roku, wszystkie teksty napisane są w języku angielskim, a przy klasyfikacji pod uwagę będą brane artykuły, które pochodzą z następujących krajów: Republika Federalna Niemiec, USA, Francja, Wielka Brytania, Kanada, Japonia  \\
 
 
 \section{Klasyfikacja nadzorowana metodą $k$-NN}
@@ -48,24 +50,104 @@ Pierwszym etapem, który należy wykonać w procesie rozpoznawania tekstów jest
 aby jak najlepiej określały ich charakterystykę.Wszystkie artykuły są napisane w tym samym języku oraz w tej samej formie stylistycznej, 
 dlatego w trakcie analizy skupiliśmy się na cechach liczbowych oraz tekstowych. Mając to na uwadzę, dokonaliśmy ekstrakcji poniższych cech:
 \begin{enumerate}
-    \item Zapis cyfr - za pomocą ciągu cyfr otrzymamy informacje o np. numerach telefonu, które to są charakterystyczne w zależności od kraju.
-    \item Waluty - wyciągnięcie z tekstów nazw najczęsciej używanych walut. Kraje, z których pochodzą porównywane teksty używają różnych walut.
-    \item Częstość występowania dat - zliczenie, jak często w podanych tekstach występują daty. Zakładamy, że w zależności od tego, z którego kraju pochodzi tekst, częstość wystąpień zapisów datowych będzie się różnić.
-    \item Format zapisu dat - w zależności od kraju format zapisu dat różni się.
+    \item Zapis cyfr - za pomocą analizy ciągu cyfr otrzymamy informacje o np. numerach telefonicznych, które to są charakterystyczne dla omawianego kraju. \\
+    \begin{exmp}Fragment artykułu pt. "Offers USA direct service in Denmark" \cite{reuters}\\
+		\say{[...]The service allows callers in Denmark to reach an ATT
+		operator in the United States by dialing a single telephone
+		number, 0430-0010, ATT said.[...]}. \\
+    \end{exmp}
+Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego podstawie sklasyfikować, do jakiej etykiety kraju możemy zaklasyfikować dany artykuł. Numery telefonów z różnych krajów mogą być rozpoznane na podstawie np. numeru kierunkowego, ich długości czy też formatu zapisu.
+    \item Waluty - wyciągnięcie z tekstów nazw najczęsciej używanych walut. Każdy z krajów posługuje się inną walutą \footnote{Omawiane artykuły pochodzą z lat 80, kiedy we Francji i w Niemczech obowiązywała inna waluta (odpowiednio frank francuski i marka niemiecka). Kraje te przyjęły wspólną walutę, tj. euro dopiero w 2002 roku}, dlatego jest to cecha, która jasno charakteryzuje nam wybrane kraje. \\
+    \begin{exmp}Fragment artykułu pt. "Maxtor agrees to acquire U.S. design" \cite{reuters}\\ 
+		\say{[...]They said the arrangement, which is subject to a number of
+		conditions including U.S. Design shareholder approval, calls
+		for Maxtor to issue 12 mln dlrs worth of its own common stock
+		in exchange for all of U.S. Design.[...]}. \\
+    \end{exmp}
+    W powyższym fragmencie została wymieniona waluta o nazwie dolar ("dlrs"). Mimo, że najbardziej popularnym dolarem jest dolar amerykański, natomiast na świecie jest jeszcze wiele innych walut, których pierwszym członem jest słowo "dolar", np. dolar kanadyjski, dolar australijski. Ten fakt należy również wziąć pod uwagę w momencie wyznaczania zbiorów rozmytych. Z podanego fragmentu wynika także, że aby w pełni skorzystać z tej cechy, należy uwzględnić nie tylko pełne nazwy walut, ale również ich skróty, które również się pojawiają w artykułach.
+    \item Częstość występowania dat - zliczenie, jak często w podanych tekstach występują daty. Zakładamy, że w zależności od tego, z którego kraju pochodzi tekst, częstość wystąpień zapisów datowych będzie się różnić. \\
+    \begin{exmp} Fragment artykułu pt. "USDA comments on export sales"  \cite{reuters} \\
+		\say{[...]  In comments on its Export Sales Report, the department said
+		sales of 1.0 mln tonnes to the USSR -- previously reported
+		under the daily reporting system -- were the first sales for
+		delivery to the USSR under the fourth year of the U.S.-USSR
+		Grains Supply Agreement, which began October 1.
+		[...]
+			Egypt, Japan and Iraq were the major wheat buyers for
+		delivery in the current year, while sales to China decreased by
+		30,000 tonnes for the current season, but increased by 90,000
+		tonnes for the 1987/88 season, which begins June 1. [...]}. \\
+    \end{exmp}W przytoczonym fragmencie artykułu data wystąpiła 3 razy ("October 1", "1987/88", "June 1"). Uważamy, że to jak często będą w artykułach daty może świadczyć o tym, z jakiego kraju te artykuły pochodzą. \\
+    \item Format zapisu dat - w zależności od kraju format zapisu dat różni się. \\
+	\begin{exmp} Fragment artykułu pt. "Software services extends warrants" \cite{reuters} \\ 
+		\say{Software Services of America
+		Inc said its board has extended the expiration date of its
+		warrants until August 31 from April 30.}.\\
+    \end{exmp} Daty występujące w tym fragmencie ("August 31" i "April 30") są zapisane w formacie: miesiąc dzień. Uważamy, że w zależności od tego, z jakiego kraju pochodzi artykuł format zapisu dat może się różnić.
+    
     \item Ogólna liczba słów - zliczenie wszystkich słów występujących w tekście. Uważamy, że w zależności od tego, jakiego kraju tekst dotyczy, ich długość może być różna.
-    \item Częstość słów rozpoczynających się wielką literą - słowa takie będą oznaczały najczęściej  nazwy własne np. imiona, nazwiska, nazwy budynków. Pisząc o jednym kraju może być używane więcej takich słów, 
-	a o innych mniej. Z tej grupy wykluczymy jednak wyrazy składające się wyłącznie z wielkich liter, o których mowa będzie w punkcie następnym.
-    \item Częstość słów pisanych wielką literą - najczęściej będą to skróty. Uważamy, że w zależności od opisywanego kraju, ilość wykorzystywanych skrótów może się różnić.
-    \item Układ SI/imperialny - zdecydowanie w krajach anglojęzycznych częściej w tekstach stosowany będzie układ imperialny, natomiast w pozostałych - układ SI.
-    \item Częstość występowania cytatów - uważamy, że występuje wyraźna różnica w liczbie wykorzystanych cytatów, w zależności od opisywanego kraju.
-    \item Słowa kluczowe - sporządzona zostanie lista słów kluczowych (np. elementy lokalizacyjne) dla krajów, które bierzemy pod uwagę w procesie klasyfikacji. 
-    \item Najczęściej występujące słowa - znalezienie słów, które najczęściej występują w tekstach o danym kraju.
+    \item Częstość słów rozpoczynających się wielką literą - słowa takie będą oznaczały najczęściej  nazwy własne np. imiona, nazwiska, nazwy budynków lub będą to rozwinięcia skrótów. Pisząc o jednym kraju może być używane więcej takich słów, 
+	a o innych mniej. Z tej grupy wykluczymy jednak wyrazy składające się wyłącznie z wielkich liter (o których mowa będzie w punkcie następnym) oraz słowa pisane z wielkiej litery z uwagi na początek zdania. \\
+	\begin{exmp}Fragment artykułu pt. "U.S. Auto Union will fight to stop job/wage cuts" \cite{reuters}\\
+		\say{The United Auto Workers union (UAW)
+		vowed to fight wage and job cuts in a round of labour talks
+		starting in July that cover nearly 500,000 workers at General
+		Motors Corp and Ford Motor Co[...]}. \\
+    \end{exmp}
+    W tym krótkim fragmencie występuje aż 9 słów rozpoczynających się wielką literą, jednocześnie nie będących pierwszym słowem w zdaniu oraz nie będących słowem składających się tylko z wielkich liter. Słowa te są w tym fragmencie związane z nazwami własnymi oraz nazwą miesiąca. Uważamy, że przede wszystkim stosowanie nazw własnych może być związane z tym, z jakiego kraju pochodzi podany dokument.
+    \item Częstość słów pisanych wielką literą - najczęściej będą to skróty. Uważamy, że w zależności od opisywanego kraju, ilość wykorzystywanych skrótów może się różnić. \\
+    \begin{exmp}Fragment artykułu pt."France approves large defence spending increase" \cite{reuters} \\
+		\say {The budget represents a six pct annual increase, starting next year, well above the 3.5 pct NATO recommends for members of its military command. France is a member of NATO but does
+		not belong to its integrated military command.} \\
+    \end{exmp}
+    Mamy tu 2 słowa NATO, co stanowi skrót od Organizacji Traktatu Północnoatlantyckiego. Według nas, to jak często będą używane takie słowa, w zadanym tekście może mieć związek z tym, jakiego kraju dotyczą.
+    \item Układ SI/imperialny - zdecydowanie w krajach anglojęzycznych częściej w tekstach stosowany będzie układ imperialny, natomiast w pozostałych - układ SI. \cite{reuters} \\
+    \begin{exmp}Fragment artykułu pt. "Sun in North Dakota oil find" \cite{reuters} \\
+		\say{[...]flowed 660 barrels of oil and 581,000 cubic feet of natural gas per day through a 13/64 inch choke from depths of 13,188 to 13,204 feet.} \\
+    \end{exmp}
+    Mamy tu do czynienia z calami (inch) oraz stopami (feet), zatem układem imperialnym, a więc możemy przypuszczać, że tekst ten pochodzi z jednego z krajów anglojęzycznych. 
+    \item Częstość występowania cytatów - uważamy, że występuje wyraźna różnica w liczbie wykorzystanych cytatów, w zależności od opisywanego kraju. \\
+    \begin{exmp}Fragment artykułu pt. "Hughes changes stance on merger after suit" \cite{reuters} \\
+		\say{[...]"I think the merger is not going through," said Phil Pace,
+		analyst at Kidder, Peabody and Co. He said the merger "lost a
+		lot of its appeal" when the U.S. Department of Justice required
+		that Baker sell off its Reed Tool Co operation.[...]}. \\
+    \end{exmp}
+    W podanym fragmencie cytat wystąpił 2 razy. Uważamy, że artykuły dotyczące niektórych krajów częściej będą zawierały cytaty.
+    \item Słowa kluczowe - sporządzona zostanie lista słów kluczowych (np. elementy lokalizacyjne) dla krajów, które bierzemy pod uwagę w procesie klasyfikacji. \cite{reuters} \\
+    \begin{exmp}Fragment artykułu pt. "Currency futures to key off G-5, G-7 meetings" \cite{reuters} \\
+		\say{News of an agreement among G-5 and G-7
+		finance ministers meeting in Washington this week will be key
+		to the direction of currency futures at the International
+		Monetary Market, but any such agreement will need to go beyond
+		the Paris accord to stem the recent rise in futures, financial
+		analysts said.[...]}. \\
+    \end{exmp}
+    Zawarte są w nim 2 słowa kluczowe - Washington i Paris. Washington związane jest z USA, natomiast Paris z Francją. Chcąc przyporządkować ten fragment biorąc pod uwagę tylko i wyłącznie cechę związaną ze słowami kluczowymi zostałby on z równym prawdopodobieństwem przyporządkowany do Francji lub USA. 
+    \item Najczęściej występujące słowa - wyodrębnienie z artykułów najczęściej występujących słów, z pominięciem słów znajdujących się na tzw. stopliście, tj. liście najczęściej używanych słów w języku angielskim \cite{reuters}. Zabieg ten ma na celu podniesienie jakości klasyfikacji poprzez wyszukanie słów, które charakteryzują treść artykułu. Pominięcie tej operacji skutkowałoby niejednoznacznym zaklasyfikowaniem tekstów, co w konsekwencji obniżyłoby skuteczność algorytmu. 
+	Wyznaczenie opisywanej cechy można przedstawić w postaci operacji na zbiorach:
+	\begin{gather}
+	C_{n, t}= d_{t}(U - S)
+	\end{gather} 
+	\indent gdzie $C_{n}$ to zbiór t najczęściej występujących słów w artykule o numerze n, 
+	$d_{t}$ jest funkcją wyznaczającą t najczęściej występujących słów w danym zbiorze, $A_{n}$ to zbiór słów w artykule o numerze n, 
+	a S jest zbiorem słów znajdujących się na stopliście \\
+	\begin{exmp}
+    Fragment artykułu pt. "Houston oil trust"  \cite{coca_words} \\
+		\say {[...] The most significant factor for the lack of a distribution
+		this month is the establishment of additional special cost
+		escrow accounts, the company said, adding, that there may be no
+		cash distribution in other months or during the remainder of
+		the year [...]} \\
+    \end{exmp} 
+    Dla powyższego przykładu załóżmy, że stoplista obejmuje 100 najczęściej używanych słów w języku angielskim. Stosując wzór (2) okazuje się, że najczęściej występującym charakterystycznym słowem jest distribution, które pojawiło się w tekście 3 razy. \\
 \end{enumerate}
-
-Wektor wyekstrahowanych cech będzie się prezentował następująco: 
+Ostatecznie, wektor wyekstrahowanych cech będzie się prezentował następująco: 
 \begin{gather}
-v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}, c_{11}]
+v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}, c_{11}] 
 \end{gather}
+gdzie s $\in$ $\langle$ 1, 11 $\rangle$, a $c_{s}$ oznacza cechę o odpowiednim numerze \cite{tadeusiewicz90}
+% \ident gdzie $n \in <1, 11>$, 
 
 \subsection{Miary jakości klasyfikacji} 
 Miary jakości klasyfikacji (Accuracy, Precision,
@@ -136,6 +218,9 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 
 \begin{thebibliography}{0}
 \bibitem{tadeusiewicz90} R. Tadeusiewicz: Rozpoznawanie obrazów, PWN, Warszawa, 1991.  
+\bibitem{coca_words} Corpus of Contemporary American English: Most frequent english words [przeglądany  20.03.2021], Dostępny w: https://www.english-corpora.org/
+\bibitem{reuters} Repozytorium Uniwersytety Kalifornijskiego w Irvine do nauki uczenia maszynowego: Artykuły agencji Reuters[przeglądany 20.03.2021], 
+Dostępny w: http://archive.ics.uci.edu/ml/machine-learning-databases/reuters21578-mld/
 \bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
 \end{thebibliography}
 
