@@ -28,7 +28,7 @@
 
 Celem zadania jest zaimplementowanie algorytmu $k$-NN w technologii Java na potrzeby klasyfikacji tekstów
 oraz zbadanie wpływu wybranych cech liczbowych i tekstowych na skuteczność powyższej metody. W wyniku działania algorytmu teksty zostaną przyporządkowane do krajów, z jakich pochodzą.
-Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters, które to pochodzą z 1987 roku, wszystkie teksty napisane są w języku angielskim, a przy klasyfikacji pod uwagę będą brane artykuły, które pochodzą z następujących krajów: Republika Federalna Niemiec, USA, Francja, Wielka Brytania, Kanada, Japonia  \\
+Badanie zostanie przeprowadzone na podstawie artykułów prasowych z agencji prasowej Reuters, które to pochodzą z 1987 roku, wszystkie teksty napisane są w języku angielskim, a przy klasyfikacji pod uwagę będą brane artykuły, które pochodzą z następujących krajów: Republika Federalna Niemiec, USA, Francja, Wielka Brytania, Kanada, Japonia.  \\
 
 
 \section{Klasyfikacja nadzorowana metodą $k$-NN}
@@ -70,7 +70,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_3 = \frac{|{s: s \in D \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $D$ - zbiór słów oznaczających daty, $A$ - zbiór wszystkich słów z artykułu \\
+    gdzie $D$ - zbiór słów oznaczających daty, $A$ - zbiór wszystkich słów z artykułu. \\
     \begin{exmp} Fragment artykułu pt. "USDA comments on export sales"  \cite{reuters} \\
     \say{[...]  In comments on its Export Sales Report, the department said
     sales of 1.0 mln tonnes to the USSR -- previously reported
@@ -115,7 +115,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_7 = \frac{|{s: s \in W}|}{|A|}
     \end{equation}
-    gdzie $W$ - zbiór słów, pisanych w artykule wielkimi literami, $A$ - zbiór wszystkich słów z artykułu 
+    gdzie $W$ - zbiór słów, pisanych w artykule wielkimi literami, $A$ - zbiór wszystkich słów z artykułu. \\ 
     \begin{exmp}Fragment artykułu pt."France approves large defence spending increase" \cite{reuters} \\
     \say {[...]The budget represents a six pct annual increase, starting next year, well above the 3.5 pct NATO recommends for members of its military command. France is a member of NATO but does
     not belong to its integrated military command.[...]} \\
@@ -137,7 +137,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
         c_8 = {c_8'}-{c_8''}
     \end{equation} \\
     \begin{exmp}Fragment artykułu pt. "Sun in North Dakota oil find" \cite{reuters} \\
-    \say{[...]flowed 660 barrels of oil and 581,000 cubic feet of natural gas per day through a 13/64 inch choke from depths of 13,188 to 13,204 feet.[...]} \\
+    \say{[...]flowed 660 barrels of oil and 581,000 cubic feet of natural gas per day through a 13/64 inch choke from depths of 13,188 to 13,204 feet.[...]}. \\
     \end{exmp}
     W powyższym tekście można zauważyć występowanie jednostkek z układu imperialnego, tj. cale(inch) i stopy(feet). Wobec tego, można przypuszczać, że tekst ten pochodzi z jednego z krajów anglojęzycznych. \\
     \item Częstość występowania cytatów - 
@@ -145,7 +145,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_9 = \frac{|{s: s \in Y}|}{|A|}
     \end{equation}
-    gdzie $Y$ - zbiór cytatów występujących w artykule, $A$ - zbiór wszystkich słów z artykułu 
+    gdzie $Y$ - zbiór cytatów występujących w artykule, $A$ - zbiór wszystkich słów z artykułu. 
     \begin{exmp}Fragment artykułu pt. "Hughes changes stance on merger after suit" \cite{reuters} \\
     \say{[...]"I think the merger is not going through," said Phil Pace,
     analyst at Kidder, Peabody and Co. He said the merger "lost a
@@ -158,7 +158,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_{10} = \frac{|{s: s \in K \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $K$ - zbiór słów kluczowych, $A$ - zbiór wszystkich słów z artykułu \\
+    gdzie $K$ - zbiór słów kluczowych, $A$ - zbiór wszystkich słów z artykułu. \\
     \begin{exmp}Fragment artykułu pt. "Currency futures to key off G-5, G-7 meetings" \cite{reuters} \\
     \say{[...]News of an agreement among G-5 and G-7
     finance ministers meeting in Washington this week will be key
@@ -174,7 +174,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
 	c_{11}= d_{t}(A - S)
 	\end{gather} 
 	\indent gdzie $d_{t}$ jest funkcją wyznaczającą t najczęściej występujących słów w danym zbiorze, A to zbiór słów w artykule, 
-	a S jest zbiorem słów znajdujących się na stopliście \\
+	a S jest zbiorem słów znajdujących się na stopliście. \\
 	\begin{exmp}
     Fragment artykułu pt. "Houston oil trust"  \cite{reuters} \\
     \say {[...] The most significant factor for the lack of a distribution
@@ -189,7 +189,7 @@ Ostatecznie, wektor wyekstrahowanych cech będzie się prezentował następując
 \begin{gather}
 v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}, c_{11}] 
 \end{gather}
-gdzie s $\in$ $\langle$ 1, 11 $\rangle$, a $c_{s}$ oznacza cechę o odpowiednim numerze 
+gdzie s $\in$ $\langle$ 1, 11 $\rangle$, a $c_{s}$ oznacza cechę o odpowiednim numerze. 
 
 \subsection{Miary jakości klasyfikacji} 
 Miary jakości klasyfikacji (Accuracy, Precision,
