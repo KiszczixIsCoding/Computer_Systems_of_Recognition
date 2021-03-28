@@ -51,14 +51,29 @@ Pierwszym etapem, który należy wykonać w procesie rozpoznawania tekstów jest
 aby jak najlepiej określały ich charakterystykę.Wszystkie artykuły są napisane w tym samym języku oraz w tej samej formie stylistycznej, 
 dlatego w trakcie analizy skupiliśmy się na cechach liczbowych oraz tekstowych. Mając to na uwadzę, dokonaliśmy ekstrakcji poniższych cech:
 \begin{enumerate}
-    \item Zapis cyfr - za pomocą analizy ciągu cyfr otrzymamy informacje o np. numerach telefonicznych, które to są charakterystyczne dla omawianego kraju. \\
+    \item Zapis cyfr - za pomocą analizy ciągu cyfr otrzymamy informacje o np. numerach telefonicznych, które to są charakterystyczne dla omawianego kraju. Z pomocą symboli matematycznych ceche tą możemy zapisać następująco:  
+    \begin{equation}
+        c_1 = \frac{|{s: s \in N \land s \in P_k}|}{w}
+    \end{equation}
+    gdzie $N$- zbiór ciągów cyfr znalezionych w dokumencie, $P$ - zbiór charakterystycznych ciągów cyfr dla danego kraju k, $w$ - waga przez jaką należy podzielić otrzymaną cechę.\\
+    Wzór ten zastosujemy dla każdego z rozpatrywanych krajów i dzięki porównaniu otrzymanych wyników uzyskamy informacje do której grupy, na podstawie tej cechy, sklasyfikować dany dokument. \\
     \begin{exmp}Fragment artykułu pt. "Offers USA direct service in Denmark" \cite{reuters}\\
     \say{[...]The service allows callers in Denmark to reach an ATT
 operator in the United States by dialing a single telephone
 number, 0430-0010, ATT said.[...]}. \\
     \end{exmp}
 Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego podstawie sklasyfikować, do jakiej etykiety kraju możemy zaklasyfikować dany artykuł. Numery telefonów z różnych krajów mogą być rozpoznane na podstawie np. numeru kierunkowego, ich długości czy też formatu zapisu. \\
-    \item Waluty - wyciągnięcie z tekstów nazw najczęsciej używanych walut. Każdy z krajów posługuje się inną walutą \footnote{Omawiane artykuły pochodzą z lat 80, kiedy we Francji i w Niemczech obowiązywała inna waluta (odpowiednio frank francuski i marka niemiecka). Kraje te przyjęły wspólną walutę, tj. euro dopiero w 2002 roku}, dlatego jest to cecha, która jasno charakteryzuje nam wybrane kraje. \\
+    \item Waluty - wyciągnięcie z tekstów nazw najczęsciej używanych walut. Każdy z krajów posługuje się inną walutą \footnote{Omawiane artykuły pochodzą z lat 80, kiedy we Francji i w Niemczech obowiązywała inna waluta (odpowiednio frank francuski i marka niemiecka). Kraje te przyjęły wspólną walutę, tj. euro dopiero w 2002 roku}, dlatego jest to cecha, która jasno charakteryzuje nam wybrane kraje. Wzory do tej cechy będą prezentowały się nasepująco:
+	\begin{gather}
+	    c_2' = d_{t}(M)
+	\end{gather} 
+    \indent gdzie $d_{t}$ jest funkcją wyznaczającą t najczęściej występujących słów w danym zbiorze, M to zbiór znalezionych w artykule słów oznaczających waluty.
+    \begin{gather}
+        c_2 = g_k(c_2')
+    \end{gather}
+    \indent gdzie $g_k$ jest funkcją przyporządkowującą wyznaczone słowa do poszczególnego kraju k.\\
+    W wyniku porównania otrzymanych dla każdego kraju wartości będziemy mogli stwierdzić do którego kraju, na podstawie tej cechy, można przyporządkować podany tekst.\\
+    
     \begin{exmp}Fragment artykułu pt. "Maxtor agrees to acquire U.S. design" \cite{reuters}\\ 
     \say{[...]They said the arrangement, which is subject to a number of
     conditions including U.S. Design shareholder approval, calls
@@ -84,7 +99,19 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     tonnes for the 1987/88 season, which begins June 1. [...]}. \\
     \end{exmp}W przytoczonym fragmencie zapis daty został wykorzystany 3 razy ("October 1", "1987/88", "June 1"). Wobec tego, uważamy, że opisywana cecha będzie korzystnie wpływać na proces klasyfikacji tekstów. \\
 
-    \item Format zapisu dat - w zależności od kraju format zapisu dat różni się. \\ \begin{exmp} Fragment artykułu pt. "Software services extends warrants" \cite{reuters} \\ \say{[...]Software Services of America
+    \item Format zapisu dat - w zależności od kraju format zapisu dat różni się. Cechę tą zapisać można za pomocą wzorów:
+    \begin{gather}
+        c_4' = f(B)
+    \end{gather}
+    \indent gdzie f - funkcja wyznaczająca zapis datowy z podanego zbioru, B - zbiór wszystkich wyrażeń znajdujących się w artykule (wyrażenie traktujemy jako połączenie minimum dwóch słów).
+    \begin{gather}
+        c_4 = t_k(c_4')
+    \end{gather}
+    \indent gdzie $t_k$ jest funkcją przyporządkowującą wyznaczone wyrażenia do poszczególnego kraju k.\\
+    Jako, że w kilku krajach stosowany jest ten sam zapis datowy, funkcja ta może (a wręcz jest to bardzo prawdopodobne) zwrócić taką samą wartość dla kilku krajów. W wyniku porównania otrzymanych dla każdego kraju wartości będziemy mogli stwierdzić do którego kraju (bądź kilku krajów z równym prawdopodobiństwem), na podstawie tej cechy, można przyporządkować podany tekst. 
+    \\
+    
+    \begin{exmp} Fragment artykułu pt. "Software services extends warrants" \cite{reuters} \\ \say{[...]Software Services of America
     Inc said its board has extended the expiration date of its
     warrants until August 31 from April 30.[...]}\\
     \end{exmp} Daty występujące w tym fragmencie ("August 31" i "April 30") są zapisane w formacie: miesiąc dzień. Uważamy, że w zależności od tego, z jakiego kraju pochodzi artykuł format zapisu dat może się różnić. \\
@@ -145,7 +172,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_9 = \frac{|{s: s \in Y}|}{|A|}
     \end{equation}
-    gdzie $Y$ - zbiór cytatów występujących w artykule, $A$ - zbiór wszystkich słów z artykułu. 
+    gdzie $Y$ - zbiór cytatów występujących w artykule, $A$ - zbiór wszystkich słów z artykułu. \\
     \begin{exmp}Fragment artykułu pt. "Hughes changes stance on merger after suit" \cite{reuters} \\
     \say{[...]"I think the merger is not going through," said Phil Pace,
     analyst at Kidder, Peabody and Co. He said the merger "lost a
@@ -189,7 +216,6 @@ Ostatecznie, wektor wyekstrahowanych cech będzie się prezentował następując
 \begin{gather}
 v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}, c_{11}] 
 \end{gather}
-gdzie s $\in$ $\langle$ 1, 11 $\rangle$, a $c_{s}$ oznacza cechę o odpowiednim numerze. 
 
 \subsection{Miary jakości klasyfikacji} 
 Miary jakości klasyfikacji (Accuracy, Precision,
