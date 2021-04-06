@@ -4,6 +4,8 @@
 \usepackage{amsmath}
 \usepackage{dirtytalk}
 \usepackage{latexsym}
+\usepackage{multirow}
+\usepackage{graphicx}
 
 \newtheorem{exmp}{Przykład}[section]
 \studycycle{Informatyka, studia STACJONARNE, I st.}
@@ -218,14 +220,69 @@ v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}, c_{1
 \end{gather}
 
 \subsection{Miary jakości klasyfikacji} 
-Miary jakości klasyfikacji (Accuracy, Precision,
-Recall, F1). We wprowadzeniu zaprezentować minimum teorii potrzebnej do realizacji
-zadania, tak by inżynier innej specjalności zrozumiał dalszy opis.\\
-\indent Stosowane wzory, oznaczenia z objaśnieniami znaczenia symboli użytych w
-doświadczeniu. Oznaczenia jednolite w obrębie całego sprawozdania.  Opis zawiera przypisy do bibliografii zgodnie z
-Polską Normą, (zob. materiały BG PŁ).\\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 03 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+Podczas procesu klasyfikacji niezbędne jest określenie jak skuteczna i jakościowa jest prowadzona klasyfikacja. W tym celu posłużyliśmy się tablicą(macierzą) pomyłek oraz miarami jakości klasyfikacji.\cite{tablica_pomylek} Macierz pomyłek zawiera ilość próbek przypisanej do poszczególnej grupy (prawdziwie pozytywna, fałszywie pozytywna, fałszywie negatywna, prawdziwie negatywna). Grupy te powstają poprzez zestawienie ze sobą klasy rzeczywistej oraz klasy predykowanej. Tablica pomyłek prezentuje się następująco: \\
+
+\begin{table}[h]
+    \centering
+        \begin{tabular}{cc|p{30mm}|p{30mm}|p{30mm}|p{30mm}|l}
+        \cline{3-4}
+        & & \multicolumn{2}{ c| }{Klasa rzeczywista} \\ \cline{3-4}
+        & & pozytywna & negatywna\\ \cline{1-4}
+        \multicolumn{1}{ |c  }{\multirow{2}{*}{Klasa predykowana} } &
+        \multicolumn{1}{ |c| }{pozytywna} & prawdziwie \newline pozytywna (TP) & fałszywie \newline pozytywna (FP) \\ \cline{2-4}
+        \multicolumn{1}{ |c  }{}                        &
+        \multicolumn{1}{ |c| }{negatywna} & fałszywie \newline negatywna (FN) & prawdziwie \newline negatywna (TN)     \\ \cline{1-4}
+        \end{tabular}
+    \caption{Tablica pomyłek}
+\end{table}
+ Zostały wykorzystane następujące miary jakości, które zostaną przedstawione wzorami, w których oznaczenia odnosić się będą do Tabeli 1:
+\begin{itemize}
+    \item Accuracy (dokładność) - miara, która oznacza dokładność całej klasyfikacji:
+    \begin{equation}
+        ACC = \frac{TP + TN}{L}
+    \end{equation}
+    \indent gdzie $L$ - liczba wszytskich sklasyfikowanych próbek
+    \item Precision (precyzja) - miara oznaczająca jak często określoną klasę udało się zakwalifikować poprawnie:
+    \begin{equation}
+        PPV = \frac{TP}{TP+FP}
+    \end{equation}
+    \item Recall (czułość) - określa jak dużo wystąpień obiektów danej klasy zakwalifikowaliśmy do tejże klasy:
+    \begin{equation}
+        TPR = \frac{TP}{TP+FN}
+    \end{equation}
+    \item F1 - miara stanowiąca średnią harmoniczną z miar Precision i Recall \cite{f1}:
+    \begin{equation}
+        F_1 = 2\cdot \frac{PPV \cdot TPR}{PPV+TPR}
+    \end{equation}
+\end{itemize}
+Dla przykładu obliczmy miary jakości dla poniższej tabeli:
+
+\begin{table}[h]
+    \centering
+        \begin{tabular}{cc|p{30mm}|p{30mm}|p{30mm}|p{30mm}|l}
+        \cline{3-4}
+        & & \multicolumn{2}{ c| }{Klasa rzeczywista} \\ \cline{3-4}
+        & & $Japonia$ & $\sim Japonia$\\ \cline{1-4}
+        \multicolumn{1}{ |c  }{\multirow{2}{*}{Klasa predykowana} } &
+        \multicolumn{1}{ |c| }{$Japonia$} & 56 & 12 \\ \cline{2-4}
+        \multicolumn{1}{ |c  }{}                        &
+        \multicolumn{1}{ |c| }{$\sim Japonia$} & 17 & 36    \\ \cline{1-4}
+        \end{tabular}
+    \caption{Tablica pomyłek z przykładowymi danymi}
+\end{table}
+\begin{equation}
+    ACC = \frac{56+36}{121} = 0,76
+\end{equation}
+\begin{equation}
+    PPV = \frac{56}{56+12} = 0,82
+\end{equation}
+\begin{equation}
+    TPR = \frac{56}{56+17} = 0,77
+\end{equation}
+\begin{equation}
+    F_1 = 2 \cdot \frac{0,82 \cdot 0,77}{0,82+0,77} = 0,79
+\end{equation}
+
 
 
 \section{Klasyfikacja z użyciem metryk i miar podobieństwa tekstów}
@@ -239,10 +296,24 @@ na WIKAMP KSR.}
 
 \section{Budowa aplikacji}
 \subsection{Diagramy UML}
-Diagramy UML i zwięzłe opisy: idei aplikacji, modułu ekstrakcji i modułu
-klasyfikatora.\\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 03 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+Nasza aplikacja będzie się składać z 4 modułów: moduł ekstrakcji, moduł klasyfikatora, moduł DAO (zarządzanie wczytywaniem danych z plików) oraz moduł interfejsu graficznego. 
+
+\indent Moduł ekstrakcji będzie odpowiedzialny za odwzorowanie tekstu na wektor cech. Wektor cech zaimplementowany zostanie z wykorzystaniem klasy FeaturesVector. W klasie FeaturesVector znajduje się 11 pól, każde oznaczające jedną z cech, które zostały przez nas wybrane i przedstawione w sekcji 2. Dla każdej cechy stworzona została odpowiadająca klasa. Każda z klas, która reprezentuje cechę, implementuje interfejs: dla cech liczbowych jest to interfejs NumericFeature, natomiast dla cech tekstowych jest n to interfejs TextFeature.
+Oba interfejsy mają metodę extract(Article article), różnica polega na zwracanej wartości. W pierwszym przypadku jest to liczba typu integer (oznaczająca obliczoną liczbę np. słów w tekście), zaś w drugim przypadku jest to lista ciągów znaków (oznaczająca wyznaczoną, znalezioną listę wyrazów, które spełniają warunki danej klasy).
+\\
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=15cm, height=10cm]{modul_ekstrakcji.png}
+    \caption{Diagram UML dla modułu ekstrakcji}
+\end{figure}
+
+
+\indent Moduł klasyfikatora będzie odpowiedzialny za klasyfikację artykułów do odpowiednich etykiet places przy pomocy algorytmu kNN. Z tego względu powstanie klasa KnnClassifier, której zadaniem będzie sklasyfikowanie artykułu z wykorzystaniem jednej z trzech metryk, tj. metryki Czebyszewa, metryki ulicznej (Manhattan) lub metryki euklidesowej. W tym celu powstały cztery klasy: klasa Metric jest to klasa abstrakcyjna, natomiast klasy EuclideanMetric, ChebyshevMetric oraz ManhattanMetric są klasami dziedziczącymi. Poza metryką, niezbędne do klasyfikacji są paramtery: liczba najbliższych sąsiadów (kNeighbours) oraz stosunek liczby artykułów w części treningowej do części testowej. Do wykorzystania klasy KnnClassifier niezbędny jest moduł ekstrakcji, ponieważ klasa KnnClassifier wykorzystuje klasę Artykuł oraz kategorie ClassifiedPlaces znajdujące się w typie enumerate. \\
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=15cm, height=10cm]{modul_klasyfikatora.png}
+    \caption{Diagram UML dla modułu klasyfikatora}
+\end{figure}
 
 \subsection{Prezentacja wyników, interfejs użytkownika} 
 Krótki ilustrowany opis jak użytkownik może korzystać z aplikacji, w~szczególności wprowadzać parametry klasyfikacji i odczytywać wyniki. Wersja JRE i inne wymogi
@@ -290,6 +361,8 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 \bibitem{reuters} Repozytorium Uniwersytety Kalifornijskiego w Irvine do nauki uczenia maszynowego: Artykuły agencji Reuters[przeglądany 20.03.2021], 
 Dostępny w: http://archive.ics.uci.edu/ml/machine-learning-databases/reuters21578-mld/
 \bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
+\bibitem{tablica_pomylek} Tablica pomyłek [przeglądany 28.03.2021], Dostępny w: https://pl.wikipedia.org/wiki/Tablica\_pomyłek
+\bibitem{f1} F-score [przeglądany 28.03.2021] Dostępny w: https://en.wikipedia.org/wiki/F-score
 \end{thebibliography}
 
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
