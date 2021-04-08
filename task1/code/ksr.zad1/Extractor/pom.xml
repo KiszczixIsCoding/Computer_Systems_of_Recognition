@@ -7,19 +7,11 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>pl</groupId>
-  <artifactId>GUI</artifactId>
+  <groupId>pl.ksr.pon.ext</groupId>
+  <artifactId>Extractor</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>GUI</name>
-
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.11</maven.compiler.source>
-    <maven.compiler.target>1.11</maven.compiler.target>
-  </properties>
-
+  <packaging>jar</packaging>
+  <name>Extractor</name>
 
 
   <build>

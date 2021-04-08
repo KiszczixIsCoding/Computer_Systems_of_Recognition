@@ -1,4 +1,4 @@
-module Classifier {
+module pl.ksr.pon.cla {
     exports pl.ksr.pon.cla;
 
     requires static lombok;
