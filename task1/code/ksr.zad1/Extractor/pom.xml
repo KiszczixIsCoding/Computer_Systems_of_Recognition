@@ -8,10 +8,10 @@
   </parent>
 
   <groupId>pl</groupId>
-  <artifactId>Extractor</artifactId>
+  <artifactId>GUI</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Extractor</name>
+  <name>GUI</name>
 
 
   <properties>
