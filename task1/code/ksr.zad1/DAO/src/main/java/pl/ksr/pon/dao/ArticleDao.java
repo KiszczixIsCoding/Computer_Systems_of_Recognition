@@ -34,8 +34,9 @@ public class ArticleDao implements Dao<Article>{
     @Override
     public List<Article> getAll() {
         List<Article> articles = new ArrayList<>();
+        SGMLParser parser = new SGMLParser();
         for (String fileName : fileNames) {
-            articles.addAll(SGMLParser.parse(fileName));
+            articles.addAll(parser.parse(fileName));
         }
         return null;
     }
