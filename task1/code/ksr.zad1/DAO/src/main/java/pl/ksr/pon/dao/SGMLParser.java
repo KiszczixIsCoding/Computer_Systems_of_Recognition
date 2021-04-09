@@ -16,7 +16,6 @@ public class SGMLParser {
 
     public List<Article> parse(String fileName) {
         List<Article> articlesInFile = new ArrayList<>();
-        ClassLoader classLoader = getClass().getClassLoader();
         fileName = "/reuters21578/" + fileName;
         URL resource = getClass().getResource(fileName);
         File inputFile = null;
@@ -27,6 +26,10 @@ public class SGMLParser {
         }
         try {
             Document document = Jsoup.parse(inputFile, "UTF-8");
+            document.select("REUTERS");
+            //dostanie się do body: (na razie dla jednego elementu w brzydki sposob
+            document.select("TEXT").get(0).textNodes().
+                    get(document.select("TEXT").get(0).textNodes().size()-1);
         } catch (IOException e) {
             e.printStackTrace();
         }
