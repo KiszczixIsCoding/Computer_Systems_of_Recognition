@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
    <children>
-      <Button fx:id="loadFiles" layoutX="80.0" layoutY="428.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Wczytaj pliki" />
+      <Button fx:id="loadFilesBtn" layoutX="80.0" layoutY="428.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Wczytaj pliki" />
       <ChoiceBox fx:id="metricChoiceBox" layoutX="126.0" layoutY="316.0" prefHeight="25.0" prefWidth="140.0" />
       <Slider fx:id="proportionSlider" layoutX="67.0" layoutY="142.0" majorTickUnit="20.0" minorTickCount="5" prefHeight="14.0" prefWidth="157.0" showTickLabels="true" showTickMarks="true" value="50.0" />
       <Label fx:id="proportionLabel" layoutX="66.0" layoutY="116.0" text="50 - treningowa / 50 - testowa" />
