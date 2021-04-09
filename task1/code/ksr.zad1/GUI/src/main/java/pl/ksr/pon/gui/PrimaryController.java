@@ -20,13 +20,14 @@ import pl.ksr.pon.cla.ChebyshevMetric;
 import pl.ksr.pon.cla.EuclideanMetric;
 import pl.ksr.pon.cla.ManhattanMetric;
 import pl.ksr.pon.cla.Metric;
+import pl.ksr.pon.dao.ArticleDao;
 
 
 public class PrimaryController implements Initializable {
     @FXML private ChoiceBox<String> metricChoiceBox;
     @FXML private Slider proportionSlider;
     @FXML private Label proportionLabel;
-    @FXML private Button markAllBtn, unmarkAllBtn;
+    @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn;
     @FXML private VBox tradesBox;
     private ArrayList<String> metricNames;
     private Metric selectedMetric;
@@ -72,6 +73,11 @@ public class PrimaryController implements Initializable {
             for (Node item : tradesBox.getChildren()) {
                 ((CheckBox)item).setSelected(false);
             }
+        });
+
+        loadFilesBtn.setOnAction(actionEvent -> {
+            ArticleDao dao = new ArticleDao();
+            dao.getAll();
         });
 
     }
