@@ -4,56 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="659d3ddb-5da5-4774-ba2f-a77c03d943b6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_win_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ArticlesClassification.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/Classifier.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ChebyshevMetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/EuclideanMetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/KnnClassifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ManhattanMetric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/Metric.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Classifier/src/test/java/pl/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/Extractor.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/AllCapitalLettersFeature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/AllWordsCountFeature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/Article.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ClassifiedPlaces.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/DatesCountFeature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/DatesFormatFeature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/FeaturesVector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/FirstCapitalLetterFeature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/test/java/pl/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/GUI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/SystemInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/target/classes/module-info.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/target/classes/pl/ksr/pon/gui/App.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/target/classes/pl/ksr/pon/gui/SystemInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

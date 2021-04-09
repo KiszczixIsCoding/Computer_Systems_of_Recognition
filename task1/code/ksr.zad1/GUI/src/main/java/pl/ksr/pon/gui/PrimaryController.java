@@ -1,8 +1,10 @@
 package pl.ksr.pon.gui;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
@@ -16,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import pl.ksr.pon.cla.ChebyshevMetric;
 import pl.ksr.pon.cla.EuclideanMetric;
 import pl.ksr.pon.cla.ManhattanMetric;
@@ -35,6 +38,7 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
+        FileChooser fileChooser = new FileChooser();
 
         metricNames = new ArrayList<>();
         metricNames.add(" ");
@@ -75,7 +79,9 @@ public class PrimaryController implements Initializable {
             }
         });
 
+
         loadFilesBtn.setOnAction(actionEvent -> {
+            List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             ArticleDao dao = new ArticleDao();
             dao.getAll();
         });
