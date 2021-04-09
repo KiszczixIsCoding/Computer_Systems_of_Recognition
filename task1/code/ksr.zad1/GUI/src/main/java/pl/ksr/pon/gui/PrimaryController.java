@@ -5,11 +5,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
+import javafx.event.WeakEventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -28,18 +26,19 @@ public class PrimaryController implements Initializable {
     @FXML private Label proportionLabel;
     @FXML private Button markAllBtn, unmarkAllBtn;
     @FXML private VBox tradesBox;
+    @FXML private Button loadFiles;
     private ArrayList<String> metricNames;
     private Metric selectedMetric;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
-
         metricNames = new ArrayList<>();
         metricNames.add(" ");
         metricNames.add("Czebyszewa");
         metricNames.add("Uliczna");
         metricNames.add("Euklidesowa");
+
 
         metricChoiceBox.getItems().addAll(metricNames);
         metricChoiceBox.setOnAction(actionEvent -> {
@@ -71,6 +70,13 @@ public class PrimaryController implements Initializable {
         unmarkAllBtn.setOnAction(actionEvent -> {
             for (Node item : tradesBox.getChildren()) {
                 ((CheckBox)item).setSelected(false);
+            }
+        });
+
+        loadFiles.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                directoryChooser.showDialog(App.getStage());
             }
         });
 
