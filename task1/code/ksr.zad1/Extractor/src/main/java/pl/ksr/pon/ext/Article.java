@@ -8,8 +8,17 @@ import java.util.List;
 public class Article {
     private String date;
     private String title;
-    private List<String> authors;
+    private String author;
     private String content;
     private ClassifiedPlaces place;
     private FeaturesVector featuresVector;
+
+    public Article(String date, String title, String author, String content, ClassifiedPlaces place) {
+        this.date = date;
+        this.title = title;
+        this.author = author;
+        this.content = content;
+        this.place = place;
+    }
 }
+
