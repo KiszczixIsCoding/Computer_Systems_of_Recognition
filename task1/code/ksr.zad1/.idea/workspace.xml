@@ -4,56 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/ArticleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-exchanges-strings.lc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-orgs-strings.lc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-people-strings.lc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-places-strings.lc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-topics-strings.lc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/cat-descriptions_120396.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/feldman-cia-worldfactbook-data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/lewis.dtd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-000.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-001.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-002.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-003.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-004.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-005.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-006.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-007.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-008.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-009.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-010.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-011.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-012.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-013.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-014.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-015.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-016.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-017.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-018.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-019.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-020.sgm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-021.sgm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/ArticleDaoFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/ArticleValidator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/FileArticleDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../documents/Sprawozdanie-projekt-1-klasyfikacja.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../documents/Sprawozdanie-projekt-1-klasyfikacja.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../documents/Sprawozdanie-projekt-1-klasyfikacja.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../documents/Sprawozdanie-projekt-1-klasyfikacja.tex" afterDir="false" />
-    </list>
+    <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
