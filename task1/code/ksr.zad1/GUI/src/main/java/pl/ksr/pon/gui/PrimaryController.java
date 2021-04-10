@@ -85,7 +85,7 @@ public class PrimaryController implements Initializable {
         loadFilesBtn.setOnAction(actionEvent -> {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             Dao<Article> dao = new ArticleDaoFactory().getArticleDao(filesList);
-            dao.getAll();
+            List<Article> articlesList = dao.getAll();
         });
 
     }
