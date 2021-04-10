@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,12 +22,21 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1qc9ZEyh40WRyZbM2cCAgmssCRm" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -37,6 +50,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/GUI" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -69,6 +83,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App (1)" />
@@ -86,7 +113,8 @@
       <updated>1617368065796</updated>
       <workItem from="1617368067275" duration="7574000" />
       <workItem from="1617448588264" duration="5713000" />
-      <workItem from="1618048096765" duration="6301000" />
+      <workItem from="1618048096765" duration="9911000" />
+      <workItem from="1618061473268" duration="14810000" />
     </task>
     <servers />
   </component>

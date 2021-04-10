@@ -1,4 +1,14 @@
 package pl.ksr.pon.ext;
 
-public class AllCapitalLettersFeature {
+import lombok.Getter;
+
+
+@Getter
+public class AllCapitalLettersFeature implements NumericalFeature {
+    private int allCapitalLettersCount;
+
+    @Override
+    public int extract(String content) {
+        return 0;
+    }
 }

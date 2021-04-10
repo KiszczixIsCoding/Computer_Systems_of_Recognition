@@ -6,37 +6,29 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import pl.ksr.pon.cla.ChebyshevMetric;
-import pl.ksr.pon.cla.EuclideanMetric;
-import pl.ksr.pon.cla.ManhattanMetric;
-import pl.ksr.pon.cla.Metric;
-import pl.ksr.pon.dao.ArticleDao;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
+import pl.ksr.pon.ext.AllCapitalLettersFeature;
 import pl.ksr.pon.ext.Article;
+import pl.ksr.pon.ext.CitesCountFeature;
 
 
 public class PrimaryController implements Initializable {
     @FXML private ChoiceBox<String> metricChoiceBox;
     @FXML private Slider proportionSlider;
     @FXML private Label proportionLabel;
-    @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn;
+    @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn, classifyBtn;
     @FXML private VBox tradesBox;
     private ArrayList<String> metricNames;
-    private Metric selectedMetric;
+    double trainPart, testPart;
+    private List<Article> articlesList;
+//    private Metric selectedMetric;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,19 +44,19 @@ public class PrimaryController implements Initializable {
         metricChoiceBox.setOnAction(actionEvent -> {
             String selectedItem = metricChoiceBox.getSelectionModel().getSelectedItem();
             if (selectedItem.equals(metricNames.get(0))) {
-                selectedMetric = null;
+//                selectedMetric = null;
             } else if (selectedItem.equals(metricNames.get(1))) {
-                selectedMetric = new ChebyshevMetric();
+//                selectedMetric = new ChebyshevMetric();
             } else if (selectedItem.equals(metricNames.get(2))) {
-                selectedMetric = new ManhattanMetric();
+//                selectedMetric = new ManhattanMetric();
             } else {
-                selectedMetric = new EuclideanMetric();
+//                selectedMetric = new EuclideanMetric();
             }
         });
 
         proportionSlider.valueProperty().addListener((observableValue, number, currentNumber) -> {
-            double trainPart = (double)currentNumber - (double)currentNumber % 5;
-            double testPart = 100 - trainPart;
+            trainPart = (double)currentNumber - (double)currentNumber % 5;
+            testPart = 100 - trainPart;
             proportionLabel.setText(Math.round(trainPart) + " - treningowa"
                     + " / " + Math.round(testPart) + " - testowa");
         });
@@ -85,7 +77,11 @@ public class PrimaryController implements Initializable {
         loadFilesBtn.setOnAction(actionEvent -> {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             Dao<Article> dao = new ArticleDaoFactory().getArticleDao(filesList);
-            List<Article> articlesList = dao.getAll();
+            articlesList = dao.getAll();
+        });
+
+        classifyBtn.setOnAction(actionEvent -> {
+
         });
 
     }
@@ -93,5 +89,17 @@ public class PrimaryController implements Initializable {
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
+    }
+
+    public List<Article> getTrainingArticlesList() {
+        int articlesListSize = articlesList.size();
+        int divisionIndex = (int) (articlesListSize * trainPart / 100) - 1;
+        return new ArrayList<>(articlesList.subList(0, divisionIndex));
+    }
+
+    public List<Article> getTestingArticlesList() {
+        int articlesListSize = articlesList.size();
+        int divisionIndex = (int) (articlesListSize * trainPart / 100) - 1;
+        return new ArrayList<>(articlesList.subList(divisionIndex, articlesListSize - 1));
     }
 }
