@@ -1,14 +1,11 @@
 package pl.ksr.pon.dao;
 
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.TextNode;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import pl.ksr.pon.ext.Article;
-
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,35 +17,25 @@ public class SGMLParser {
 
     public List<Article> parse(File inputFile) {
         List<Article> articlesInFile = new ArrayList<>();
+        Article currentArticle;
 
         try {
             Document document = Jsoup.parse(inputFile, "UTF-8");
-            Elements elements = document.select("REUTERS");
-            for (Element element : elements) {
-                String placeTmp = element.select("PLACES").select("D").text();
-                ClassifiedPlaces place;
-                if (placeTmp.equalsIgnoreCase(ClassifiedPlaces.west_germany.toString())) {
-                    place = ClassifiedPlaces.west_germany;
-                } else if (placeTmp.equalsIgnoreCase(ClassifiedPlaces.usa.toString())) {
-                    place = ClassifiedPlaces.usa;
-                } else if (placeTmp.equalsIgnoreCase(ClassifiedPlaces.france.toString())) {
-                    place = ClassifiedPlaces.france;
-                } else if (placeTmp.equalsIgnoreCase(ClassifiedPlaces.uk.toString())) {
-                    place = ClassifiedPlaces.uk;
-                } else if (placeTmp.equalsIgnoreCase(ClassifiedPlaces.canada.toString())) {
-                    place = ClassifiedPlaces.canada;
-                } else if (placeTmp.equalsIgnoreCase(ClassifiedPlaces.japan.toString())) {
-                    place = ClassifiedPlaces.japan;
-                } else {
-                    continue;
-                }
-                String date = element.select("DATE").text();
-                String title = element.select("TITLE").text();
-                String author = element.select("AUTHOR").text();
-                List<TextNode> textNodes = element.select("TEXT").get(0).textNodes();
-                String content = textNodes.get(textNodes.size() - 1).text();
+            Elements reutersList = document.select("REUTERS");
 
-                articlesInFile.add(new Article(date, title, author, content, place));
+
+            for (Element reutersArticle : reutersList) {
+                if (reutersArticle.select("PLACES").select("D").size() == 1
+                        && checkPlace(reutersArticle.select("PLACES").select("D").text())) {
+
+                    currentArticle = new Article();
+                    currentArticle.setTitle(reutersArticle.select("TITLE").text());
+                    currentArticle.setDate(reutersArticle.select("DATE").text());
+                    currentArticle.setContent(reutersArticle.select("TEXT").get(0).textNodes()
+                            .get(reutersArticle.select("TEXT").get(0).textNodes().size()-1).text());
+
+                    articlesInFile.add(currentArticle);
+                }
             }
 
         } catch (IOException e) {
@@ -56,5 +43,13 @@ public class SGMLParser {
         }
 
         return articlesInFile;
+    }
+
+    public boolean checkPlace(String country) {
+        ArrayList<String> countriesNames = new ArrayList<>();
+        for (ClassifiedPlaces place : ClassifiedPlaces.values()) {
+            countriesNames.add(place.name());
+        }
+        return countriesNames.contains(country);
     }
 }
