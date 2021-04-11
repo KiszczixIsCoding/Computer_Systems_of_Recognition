@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/MostOftenStringOfNumbersFeature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/CurrencyDictionary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/Dictionary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/KeyWordsDictionary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/NumberStringsDictionary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/MostFrequentCurrencyFeature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/CurrencyDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/CurrencyDictionary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +25,7 @@
       <list>
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -64,6 +63,11 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="pl.ksr.pon.dao" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.App (1)">
     <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

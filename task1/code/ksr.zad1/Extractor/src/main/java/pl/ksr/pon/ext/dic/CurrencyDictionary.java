@@ -11,31 +11,10 @@ public class CurrencyDictionary implements Dictionary{
     }
 
     List<String> dictionary = Arrays.asList(
-            "dollar",
-            "dollars",
-            "dlr",
-            "cent",
-            "cents",
-            "german mark",
-            "german marks",
-            "penny",
-            "pennies",
-            "deutschmark",
-            "deutschmarks",
-            "pfennig",
-            "french franc",
-            "franc",
-            "francs",
-            "canadian dollar",
-            "canadian dollars",
-            "yen",
-            "yens",
-            "sen",
-            "sens",
-            "rin",
-            "rins",
-            "pound",
-            "pounds"
+            "dollar", "dlr", "cent", "german mark", "penny",
+            "pennies", "deutschmark", "pfennig", "french franc", "franc",
+            "francs", "canadian dollar", "yen", "sen", "sens", "rin",
+            "rins", "pound"
     );
 
 }

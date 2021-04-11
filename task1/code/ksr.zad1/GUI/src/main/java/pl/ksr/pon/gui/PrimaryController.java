@@ -16,6 +16,7 @@ import pl.ksr.pon.cla.Metric;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
+import pl.ksr.pon.ext.MostFrequentCurrencyFeature;
 
 import java.io.File;
 import java.io.IOException;
@@ -97,6 +98,12 @@ public class PrimaryController implements Initializable {
             if (!kNeighboursField.getText().isEmpty()) {
                 kNeighbours = Integer.parseInt(kNeighboursField.getText());
             }
+
+            MostFrequentCurrencyFeature feature = new MostFrequentCurrencyFeature();
+            for (Article article : articlesList) {
+                feature.extract(article.getContent());
+            }
+
         });
 
         TableColumn<Benchmark, String> nameColumn = new TableColumn<>("Miara podobieństwa");

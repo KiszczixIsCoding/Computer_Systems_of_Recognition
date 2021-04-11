@@ -31,8 +31,12 @@ public class SGMLParser {
                     currentArticle = new Article();
                     currentArticle.setTitle(reutersArticle.select("TITLE").text());
                     currentArticle.setDate(reutersArticle.select("DATE").text());
-                    currentArticle.setContent(reutersArticle.select("TEXT").get(0).textNodes()
-                            .get(reutersArticle.select("TEXT").get(0).textNodes().size()-1).text());
+
+                    String content = reutersArticle.select("TEXT").get(0).textNodes()
+                            .get(reutersArticle.select("TEXT").get(0).textNodes().size()-1).text();
+
+                    String parsedContent = Stoplist.removeMostPopularWordsFromString(content);
+                    currentArticle.setContent(parsedContent);
 
                     articlesInFile.add(currentArticle);
                 }
@@ -52,4 +56,6 @@ public class SGMLParser {
         }
         return countriesNames.contains(country);
     }
+
+
 }
