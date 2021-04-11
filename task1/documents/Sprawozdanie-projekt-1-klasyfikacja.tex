@@ -287,20 +287,36 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
 \section{Klasyfikacja z użyciem metryk i miar podobieństwa tekstów}
  Jak już zostało wspomniane w rozdziale 2., algorytm k-NN należy do grupy algorytmów minimalnoodległościowych. Aby zaimplementować jego działanie niezbędna jest zatem metryka, która pozwoli w transparentny sposób wyznaczyć odległości pomiędzy wektorami cech. Z tego względu, w ramach badań zostaną wykorzystane trzy poniższe rodzaje metryk:
  \begin{itemize}
-    \item Euklidesowa - aby obliczyć odległość pomiędzy dwoma wektorami cech należy obliczyć pierwiastek z sumy kwadratów różnic wszystkich kolejnych cech obu wektorów:
+    \item Euklidesowa - aby obliczyć odległość pomiędzy dwoma wektorami cech należy obliczyć pierwiastek z sumy kwadratów różnic wszystkich kolejnych cech obu wektorów. Wzór opisujący metrykę Euklidesową wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
         \rho_{1}(c^\mu, c^\eta) = \sqrt{\sum_{\nu=1}^{n}(c_{\nu}^\mu - c_{\nu}^\eta)^2}
     \end{equation}
-    \indent ,gdzie $c^\mu$ oraz $c^\eta$ oznaczają wektory cech, natomiast n jest to liczba cech, a $\nu$ jest to numer cechy
-    \begin{exmp} Wykorzystanie metryki Euklidesa  \\
-
+    \indent ,gdzie $c^\mu$ oraz $c^\eta$ oznaczają wektory cech, natomiast n jest to liczba cech, a $\nu$ to numer cechy \\
+    \begin{exmp} Obliczanie metryki Euklidesowej  \\
+        Dajmy dwa wektory cech:
+        \begin{equation}
+            c^\mu = [1, 2, 3]
+        \end{equation}
+        \begin{equation}
+            c^\eta = [-2, -3, -4]
+        \end{equation}
+        Wynik obliczenia metryki euklidesowej przedstawia się następująco:
+        \begin{equation}
+            \rho_{1}(c^\mu, c^\eta) = \sqrt{(1 - (-2))^2 + (2 - (-3))^2 + (3 - (-4))^2}
+        \end{equation}
+        \begin{equation}
+            \rho_{1}(c^\mu, c^\eta) = \sqrt{3^2 + 5^2 + 7^2}
+        \end{equation} 
+        \begin{equation}
+            \rho_{1}(c^\mu, c^\eta) \approx 9.11
+        \end{equation} \\
     \end{exmp}
-    \item uliczna - w celu obliczenia metryki ulicznej należy obliczyć sumę wartości bezwzględnych z różnic pomiędzy kolejnymi cechami obu wektorów
+    \item uliczna - w celu obliczenia metryki ulicznej należy obliczyć sumę wartości bezwzględnych z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący metrykę uliczną wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
         \rho_{2}(c^\mu, c^\eta) = \sum_{\nu=1}^{n}|c_{\nu}^\mu - c_{\nu}^\eta|
     \end{equation}
-    \begin{exmp} Wykorzystanie metryki ulicznej  
-    \end{exmp}
+    \begin{exmp} Obliczanie metryki ulicznej  
+    
         Dajmy dwa wektory cech:
         \begin{equation}
             c^\mu = [3, 5, 8]
@@ -315,18 +331,29 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
         \begin{equation}
             \rho_{2}(c^\mu, c^\eta) = 12
         \end{equation} \\
-    
-    \item Czebyszewa - miara, która oznacza dokładność całej klasyfikacji:
+    \end{exmp}
+    \item Czebyszewa - aby obliczyć metrykę Czebyszewa należy wyznaczyć maksymalną wartość bezwzględną z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący tę metrykę wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
-        \rho_{3}(c^\mu, c^\eta) = \max\limits_{1 \leq \nu \leq \mu}
+        \rho_{3}(c^\mu, c^\eta) = \max\limits_{1 \leq \nu \leq n}
         |c_{\nu}^\mu - c_{\nu}^\eta| 
     \end{equation}
     \begin{exmp} Wykorzystanie metryki Czebyszewa  \\
-
+        Dajmy dwa wektory cech:
+        \begin{equation}
+            c^\mu = [6, 3, 5, -1]
+        \end{equation}
+        \begin{equation}
+            c^\eta = [3, 4, 1, 9]
+        \end{equation}
+        Wynik obliczenia metryki ulicznej przedstawia się następująco:
+        \begin{equation}
+            \rho_{3}(c^\mu, c^\eta) = max{|6 - 3|, |3 - 4|, |5 - 1|, |-1 - 9|}
+        \end{equation}
+        \begin{equation}
+            \rho_{3}(c^\mu, c^\eta) = 10
+        \end{equation} \\
     \end{exmp}
 \end{itemize}
- \\ 
-
 
 \section{Budowa aplikacji}
 \subsection{Diagramy UML}
