@@ -16,6 +16,7 @@ public class AllCapitalLettersFeature implements NumericalFeature {
                 char c = word.charAt(i);
                 if (c < 'A' || c > 'Z') {
                     allCapitalsFlag = false;
+                    break;
                 }
             }
             if (allCapitalsFlag) {
