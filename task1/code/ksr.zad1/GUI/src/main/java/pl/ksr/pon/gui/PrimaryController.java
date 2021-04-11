@@ -15,7 +15,7 @@ import pl.ksr.pon.cla.ManhattanMetric;
 import pl.ksr.pon.cla.Metric;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
-import pl.ksr.pon.ext.Article;
+import pl.ksr.pon.ext.*;
 
 import java.io.File;
 import java.io.IOException;
