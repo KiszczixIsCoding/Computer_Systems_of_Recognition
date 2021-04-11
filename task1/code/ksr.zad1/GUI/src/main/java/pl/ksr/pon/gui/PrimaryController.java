@@ -6,10 +6,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import pl.ksr.pon.dao.ArticleDaoFactory;
@@ -25,8 +28,13 @@ public class PrimaryController implements Initializable {
     @FXML private Label proportionLabel;
     @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn, classifyBtn;
     @FXML private VBox tradesBox;
+    @FXML private TextField kNeighboursField;
+    @FXML private Label filesCountLabel, articlesCountLabel;
+    @FXML private TableView<Benchmark> resultsTable;
+
     private ArrayList<String> metricNames;
     double trainPart, testPart;
+    int kNeighbours = 0;
     private List<Article> articlesList;
 //    private Metric selectedMetric;
 
@@ -78,11 +86,37 @@ public class PrimaryController implements Initializable {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             Dao<Article> dao = new ArticleDaoFactory().getArticleDao(filesList);
             articlesList = dao.getAll();
+            filesCountLabel.setText(String.valueOf(filesList.size()));
+            articlesCountLabel.setText(String.valueOf(articlesList.size()));
         });
 
         classifyBtn.setOnAction(actionEvent -> {
-
+            if (!kNeighboursField.getText().isEmpty()) {
+                kNeighbours = Integer.parseInt(kNeighboursField.getText());
+            }
         });
+
+        TableColumn<Benchmark, String> nameColumn = new TableColumn<>("Miara podobieństwa");
+        nameColumn.setMinWidth(150);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Benchmark, String> valueColumn = new TableColumn<>("Rezultat");
+        valueColumn.setMinWidth(50);
+        valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+
+        ObservableList<Benchmark> benchmarks = FXCollections.observableArrayList();
+        benchmarks.add(new Benchmark("Accuracy (dokładność)", 0d));
+        benchmarks.add(new Benchmark("Precision (precyzja)", 0d));
+        benchmarks.add(new Benchmark("Recall (czułość)", 0d));
+        benchmarks.add(new Benchmark("F1", 0d));
+
+        resultsTable.setItems(benchmarks);
+        resultsTable.setMinWidth(200);
+        resultsTable.getColumns().addAll(nameColumn, valueColumn);
+
+
+        kNeighboursField.setTextFormatter(new TextFormatter<>(change ->
+                        (change.getControlNewText().matches("([1-9][0-9]*)?")) ? change : null));
 
     }
 
