@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,7 @@
       <workItem from="1617368067275" duration="7574000" />
       <workItem from="1617448588264" duration="5713000" />
       <workItem from="1618048096765" duration="9911000" />
-      <workItem from="1618061473268" duration="14810000" />
+      <workItem from="1618061473268" duration="22993000" />
     </task>
     <servers />
   </component>
