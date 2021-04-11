@@ -17,7 +17,7 @@ public class SGMLParser {
 
     public List<Article> parse(File inputFile) {
         List<Article> articlesInFile = new ArrayList<>();
-        Article currentArticle = null;
+        Article currentArticle;
 
         try {
             Document document = Jsoup.parse(inputFile, "UTF-8");

@@ -5,39 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/MostOftenStringOfNumbersFeature.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/CurrencyDictionary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/Dictionary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/KeyWordsDictionary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/NumberStringsDictionary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-exchanges-strings.lc.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-orgs-strings.lc.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-people-strings.lc.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-places-strings.lc.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/all-topics-strings.lc.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/cat-descriptions_120396.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/feldman-cia-worldfactbook-data.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/lewis.dtd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-000.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-001.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-002.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-003.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-004.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-005.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-006.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-007.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-008.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-009.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-010.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-011.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-012.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-013.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-014.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-015.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-016.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-017.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-018.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-019.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-020.sgm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/resources/reuters21578/reut2-021.sgm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/AllCapitalLettersFeature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
     </list>
@@ -83,10 +59,11 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/GUI" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Application.App (1)">
     <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -115,6 +92,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App (1)" />
@@ -128,13 +118,15 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="659d3ddb-5da5-4774-ba2f-a77c03d943b6" name="Default Changelist" comment="" />
+      <changelist id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="" />
       <created>1617368065796</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617368065796</updated>
       <workItem from="1617368067275" duration="7574000" />
       <workItem from="1617448588264" duration="5713000" />
+      <workItem from="1618090758024" duration="1291000" />
+      <workItem from="1618127436291" duration="7976000" />
     </task>
     <servers />
   </component>
@@ -152,16 +144,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -13,12 +13,5 @@ public class Article {
     private ClassifiedPlaces place;
     private FeaturesVector featuresVector;
 
-    public Article(String date, String title, String author, String content, ClassifiedPlaces place) {
-        this.date = date;
-        this.title = title;
-        this.author = author;
-        this.content = content;
-        this.place = place;
-    }
 }
 
