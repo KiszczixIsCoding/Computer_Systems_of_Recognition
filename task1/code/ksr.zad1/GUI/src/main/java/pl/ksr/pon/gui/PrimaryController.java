@@ -18,6 +18,7 @@ import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
 import pl.ksr.pon.ext.MostFrequentCurrencyFeature;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
