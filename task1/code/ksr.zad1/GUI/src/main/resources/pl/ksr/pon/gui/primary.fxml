@@ -61,7 +61,7 @@
       <ChoiceBox fx:id="metricChoiceBox1" layoutX="126.0" layoutY="501.0" prefHeight="21.0" prefWidth="140.0" />
       <Separator layoutX="289.0" layoutY="67.0" orientation="VERTICAL" prefHeight="478.0" prefWidth="20.0" />
       <Separator layoutX="19.0" layoutY="536.0" prefHeight="18.0" prefWidth="580.0" />
-      <TableView fx:id="resultsTable" layoutX="642.0" layoutY="68.0" prefHeight="200.0" prefWidth="239.0" />
+      <TableView fx:id="resultsTable" layoutX="642.0" layoutY="68.0" prefHeight="200.0" prefWidth="239.0" style="-fx-min-width: 250;" />
       <Separator layoutX="577.0" layoutY="68.0" orientation="VERTICAL" prefHeight="468.0" prefWidth="20.0" />
       <Separator layoutX="581.0" layoutY="68.0" orientation="VERTICAL" prefHeight="468.0" prefWidth="26.0" />
       <Label layoutX="29.0" layoutY="251.0" prefHeight="21.0" prefWidth="161.0" text="Liczba wczytanych plików:" />

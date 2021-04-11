@@ -6,6 +6,7 @@
 \usepackage{latexsym}
 \usepackage{multirow}
 \usepackage{graphicx}
+
 \newtheorem{exmp}{Przykład}[section]
 \studycycle{Informatyka, studia STACJONARNE, I st.}
 \coursesemester{VI}
@@ -56,7 +57,7 @@ dlatego w trakcie analizy skupiliśmy się na cechach liczbowych oraz tekstowych
     \begin{equation}
         c_1 = \frac{|{s: s \in N \land s \in P_k}|}{w}
     \end{equation}
-    gdzie $N$- zbiór ciągów cyfr znalezionych w dokumencie, $P$ - zbiór charakterystycznych ciągów cyfr dla danego kraju k, $w$ - waga przez jaką należy podzielić otrzymaną cechę.\\
+    gdzie $N$- zbiór ciągów cyfr znalezionych w dokumencie, $P$ - zbiór charakterystycznych ciągów cyfr dla danego kraju k (Słowniki charakterystycznych ciągów cyfr znajdują się w Załączniku 1), $w$ - waga przez jaką należy podzielić otrzymaną cechę.\\
     Wzór ten zastosujemy dla każdego z rozpatrywanych krajów i dzięki porównaniu otrzymanych wyników uzyskamy informacje do której grupy, na podstawie tej cechy, sklasyfikować dany dokument. \\
     \begin{exmp}Fragment artykułu pt. "Offers USA direct service in Denmark" \cite{reuters}\\
     \say{[...]The service allows callers in Denmark to reach an ATT
@@ -68,7 +69,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
 	\begin{gather}
 	    c_2' = d_{t}(M)
 	\end{gather} 
-    \indent gdzie $d_{t}$ jest funkcją wyznaczającą t najczęściej występujących słów w danym zbiorze, M to zbiór znalezionych w artykule słów oznaczających waluty.
+    \indent gdzie $d_{t}$ jest funkcją wyznaczającą t najczęściej występujących słów w danym zbiorze, M to zbiór znalezionych w artykule słów oznaczających waluty. Zbiór walut charakterystycznych dla krajów znajduje się w Załączniku 1.
     \begin{gather}
         c_2 = g_k(c_2')
     \end{gather}
@@ -86,7 +87,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_3 = \frac{|{s: s \in D \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $D$ - zbiór słów oznaczających daty, $A$ - zbiór wszystkich słów z artykułu. \\
+    gdzie $D$ - zbiór słów oznaczających daty (zbiór formatów dat, według których słowo będzie klasyfikowane jako data znajduje się w Załączniku 1), $A$ - zbiór wszystkich słów z artykułu. \\
     \begin{exmp} Fragment artykułu pt. "USDA comments on export sales"  \cite{reuters} \\
     \say{[...]  In comments on its Export Sales Report, the department said
     sales of 1.0 mln tonnes to the USSR -- previously reported
@@ -104,7 +105,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{gather}
         c_4' = f(B)
     \end{gather}
-    \indent gdzie f - funkcja wyznaczająca zapis datowy z podanego zbioru, B - zbiór wszystkich wyrażeń znajdujących się w artykule (wyrażenie traktujemy jako połączenie minimum dwóch słów).
+    \indent gdzie f - funkcja wyznaczająca zapis datowy z podanego zbioru, B - zbiór wszystkich wyrażeń znajdujących się w artykule (wyrażenie traktujemy jako połączenie minimum dwóch słów). Formaty zapisu dat, jakie będą brane pod uwagę przy wyznaczaniu znajdują się w Załączniku 1.
     \begin{gather}
         c_4 = t_k(c_4')
     \end{gather}
@@ -159,7 +160,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_8'' = \frac{|{s: s \in I \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $I$ - zbiór słów oznaczających jednostki układu imperialnego, $A$ - zbiór wszystkich słów z artykułu
+    gdzie $I$ - zbiór słów oznaczających jednostki układu imperialnego, $A$ - zbiór wszystkich słów z artykułu. Zbiór słów oznaczających jednostki układu SI oraz układu imperialnego znajduje się w Załączniku 1.\\
     Jako opisywaną cechę zapisujemy różnicę wystąpień jednostek w układzie SI oraz imperialnym, czyli:
     \begin{equation}
         c_8 = {c_8'}-{c_8''}
@@ -186,7 +187,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_{10} = \frac{|{s: s \in K \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $K$ - zbiór słów kluczowych, $A$ - zbiór wszystkich słów z artykułu. \\
+    gdzie $K$ - zbiór słów kluczowych (zbiory słów kluczowych dla każdego kraju znajdują się w Załączniku 1), $A$ - zbiór wszystkich słów z artykułu. \\
     \begin{exmp}Fragment artykułu pt. "Currency futures to key off G-5, G-7 meetings" \cite{reuters} \\
     \say{[...]News of an agreement among G-5 and G-7
     finance ministers meeting in Washington this week will be key
@@ -353,6 +354,10 @@ na WIKAMP KSR.}
 Wymienić wg opisu Projektu 1. wszystkie niezrealizowane obowiązkowe elementy projektu, ewentualnie
 podać merytoryczne (ale nie czasowe) przyczyny tych braków. 
 
+\section*{Załączniki}
+\begin{enumerate}
+   \item Załącznik nr 1 - Zbiór słowników wykorzystywanych przy ekstrakcji cech.
+\end{enumerate}
 
 \begin{thebibliography}{0}
 \bibitem{tadeusiewicz90} R. Tadeusiewicz: Rozpoznawanie obrazów, PWN, Warszawa, 1991.  
@@ -366,4 +371,7 @@ Dostępny w: http://archive.ics.uci.edu/ml/machine-learning-databases/reuters215
 
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
 możliwe do weryfikacji i cytowane w sprawozdaniu. 
+
+
+
 \end{document}

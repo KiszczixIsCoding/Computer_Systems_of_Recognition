@@ -10,6 +10,11 @@ Zbiór jednostek układu SI (wraz ze skrótami):
 Zbiór numerów kierunkowych:
 [+1, +001, +44, +0044, +49, +0049, +33, +0033, +81, +0081]
 
+Zbiór formatów dat:
+Daty możemy zapisać w formie numerycznej (np. 1980-02-13) lub słownej (np. "ósmy sierpnia" lub "August 8"). Przy zapisie słownym należy pamiętać, że dzień może byż zapisany liczbą lub słownie. W poniższym zbiorze R oznacza cyfry w zapisie lat, M - cyfry w zapisie miesięcy, natomiast D - cyfry w zapisie dni. Zapis umieszczony w cudzysłowiu oznacza zapis słowny daty (czyli dla "Miesiąc Dzień Rok" jest to np. "July 5 1992"). Z tego wniosek, że zapis słowny odnosi się zarówno do dat zapisanych w całości słownie, jak i takich, w których tylko część daty jest zapisana słownie, a pozostała część za pomocą cyfr). 
+[RR-MM-DD, RRRR-MM-DD, DD-MM-RR, DD-MM-RRRR, MM-DD-RR, MM-DD-RRRR,  DD.MM.RRRR, "Miesiąc Dzień", "Dzień Miesiąc", "Dzień Miesiąc Rok", "Miesiąc Dzień Rok"]
+
+
 Zbiór słów kluczowych:
 -- USA --
 

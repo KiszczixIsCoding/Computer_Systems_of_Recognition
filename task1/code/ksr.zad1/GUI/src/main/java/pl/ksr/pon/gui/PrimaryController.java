@@ -1,11 +1,5 @@
 package pl.ksr.pon.gui;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,11 +9,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import pl.ksr.pon.cla.ChebyshevMetric;
+import pl.ksr.pon.cla.EuclideanMetric;
+import pl.ksr.pon.cla.ManhattanMetric;
+import pl.ksr.pon.cla.Metric;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
-import pl.ksr.pon.ext.AllCapitalLettersFeature;
 import pl.ksr.pon.ext.Article;
-import pl.ksr.pon.ext.CitesCountFeature;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 
 public class PrimaryController implements Initializable {
@@ -36,7 +39,7 @@ public class PrimaryController implements Initializable {
     double trainPart, testPart;
     int kNeighbours = 0;
     private List<Article> articlesList;
-//    private Metric selectedMetric;
+    private Metric selectedMetric;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,13 +55,13 @@ public class PrimaryController implements Initializable {
         metricChoiceBox.setOnAction(actionEvent -> {
             String selectedItem = metricChoiceBox.getSelectionModel().getSelectedItem();
             if (selectedItem.equals(metricNames.get(0))) {
-//                selectedMetric = null;
+                selectedMetric = null;
             } else if (selectedItem.equals(metricNames.get(1))) {
-//                selectedMetric = new ChebyshevMetric();
+                selectedMetric = new ChebyshevMetric();
             } else if (selectedItem.equals(metricNames.get(2))) {
-//                selectedMetric = new ManhattanMetric();
+                selectedMetric = new ManhattanMetric();
             } else {
-//                selectedMetric = new EuclideanMetric();
+                selectedMetric = new EuclideanMetric();
             }
         });
 
@@ -101,7 +104,7 @@ public class PrimaryController implements Initializable {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         TableColumn<Benchmark, String> valueColumn = new TableColumn<>("Rezultat");
-        valueColumn.setMinWidth(50);
+        valueColumn.setMinWidth(100);
         valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
 
         ObservableList<Benchmark> benchmarks = FXCollections.observableArrayList();
@@ -111,7 +114,6 @@ public class PrimaryController implements Initializable {
         benchmarks.add(new Benchmark("F1", 0d));
 
         resultsTable.setItems(benchmarks);
-        resultsTable.setMinWidth(200);
         resultsTable.getColumns().addAll(nameColumn, valueColumn);
 
 
@@ -123,17 +125,5 @@ public class PrimaryController implements Initializable {
     @FXML
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
-    }
-
-    public List<Article> getTrainingArticlesList() {
-        int articlesListSize = articlesList.size();
-        int divisionIndex = (int) (articlesListSize * trainPart / 100) - 1;
-        return new ArrayList<>(articlesList.subList(0, divisionIndex));
-    }
-
-    public List<Article> getTestingArticlesList() {
-        int articlesListSize = articlesList.size();
-        int divisionIndex = (int) (articlesListSize * trainPart / 100) - 1;
-        return new ArrayList<>(articlesList.subList(divisionIndex, articlesListSize - 1));
     }
 }
