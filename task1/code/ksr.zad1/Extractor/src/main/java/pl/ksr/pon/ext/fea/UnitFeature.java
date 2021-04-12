@@ -13,10 +13,6 @@ public class UnitFeature implements NumericalFeature {
 
         // si:
         for (String siUnit : UnitDictionary.getSiUnits()) {
-//            if (StringUtils.countMatches(content, siUnit) > 0) {
-//                System.out.println("hej");
-//                System.out.println(content);
-//            }
             siCounter += StringUtils.countMatches(content, siUnit);
         }
         //imperial:

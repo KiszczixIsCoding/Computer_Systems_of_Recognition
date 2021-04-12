@@ -3,4 +3,5 @@ module pl.ksr.pon.dao {
     exports pl.ksr.pon.dao;
     requires org.apache.commons.lang3;
     requires org.jsoup;
+    requires snowball.stemmer;
 }
