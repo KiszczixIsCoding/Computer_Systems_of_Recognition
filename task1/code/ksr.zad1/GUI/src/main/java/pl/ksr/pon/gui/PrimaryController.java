@@ -1,5 +1,25 @@
 package pl.ksr.pon.gui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import pl.ksr.pon.cla.ChebyshevMetric;
+import pl.ksr.pon.cla.EuclideanMetric;
+import pl.ksr.pon.cla.ManhattanMetric;
+import pl.ksr.pon.cla.Metric;
+import pl.ksr.pon.dao.ArticleDaoFactory;
+import pl.ksr.pon.dao.Dao;
+import pl.ksr.pon.ext.Article;
+import pl.ksr.pon.ext.MostFrequentCurrencyFeature;
+import pl.ksr.pon.ext.MostOftenWordFeature;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -7,35 +27,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
-import pl.ksr.pon.cla.ChebyshevMetric;
-import pl.ksr.pon.cla.EuclideanMetric;
-import pl.ksr.pon.cla.ManhattanMetric;
-import pl.ksr.pon.cla.Metric;
-import pl.ksr.pon.dao.ArticleDao;
-import pl.ksr.pon.dao.ArticleDaoFactory;
-import pl.ksr.pon.dao.Dao;
-import pl.ksr.pon.ext.Article;
-
 
 public class PrimaryController implements Initializable {
     @FXML private ChoiceBox<String> metricChoiceBox;
     @FXML private Slider proportionSlider;
     @FXML private Label proportionLabel;
-    @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn;
+    @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn, classifyBtn;
     @FXML private VBox tradesBox;
+    @FXML private TextField kNeighboursField;
+    @FXML private Label filesCountLabel, articlesCountLabel;
+    @FXML private TableView<Benchmark> resultsTable;
+
     private ArrayList<String> metricNames;
+    double trainPart, testPart;
+    int kNeighbours = 0;
+    private List<Article> articlesList;
     private Metric selectedMetric;
 
     @Override
@@ -63,8 +69,8 @@ public class PrimaryController implements Initializable {
         });
 
         proportionSlider.valueProperty().addListener((observableValue, number, currentNumber) -> {
-            double trainPart = (double)currentNumber - (double)currentNumber % 5;
-            double testPart = 100 - trainPart;
+            trainPart = (double)currentNumber - (double)currentNumber % 5;
+            testPart = 100 - trainPart;
             proportionLabel.setText(Math.round(trainPart) + " - treningowa"
                     + " / " + Math.round(testPart) + " - testowa");
         });
@@ -85,8 +91,47 @@ public class PrimaryController implements Initializable {
         loadFilesBtn.setOnAction(actionEvent -> {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             Dao<Article> dao = new ArticleDaoFactory().getArticleDao(filesList);
-            dao.getAll();
+            articlesList = dao.getAll();
+            MostOftenWordFeature mostOftenWordFeature = new MostOftenWordFeature();
+            for (Article article : articlesList) {
+                System.out.println(mostOftenWordFeature.extract(article.getContent()));
+            }
+            filesCountLabel.setText(String.valueOf(filesList.size()));
+            articlesCountLabel.setText(String.valueOf(articlesList.size()));
         });
+
+        classifyBtn.setOnAction(actionEvent -> {
+            if (!kNeighboursField.getText().isEmpty()) {
+                kNeighbours = Integer.parseInt(kNeighboursField.getText());
+            }
+
+            MostFrequentCurrencyFeature feature = new MostFrequentCurrencyFeature();
+            for (Article article : articlesList) {
+                feature.extract(article.getContent());
+            }
+
+        });
+
+        TableColumn<Benchmark, String> nameColumn = new TableColumn<>("Miara podobieństwa");
+        nameColumn.setMinWidth(150);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Benchmark, String> valueColumn = new TableColumn<>("Rezultat");
+        valueColumn.setMinWidth(100);
+        valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+
+        ObservableList<Benchmark> benchmarks = FXCollections.observableArrayList();
+        benchmarks.add(new Benchmark("Accuracy (dokładność)", 0d));
+        benchmarks.add(new Benchmark("Precision (precyzja)", 0d));
+        benchmarks.add(new Benchmark("Recall (czułość)", 0d));
+        benchmarks.add(new Benchmark("F1", 0d));
+
+        resultsTable.setItems(benchmarks);
+        resultsTable.getColumns().addAll(nameColumn, valueColumn);
+
+
+        kNeighboursField.setTextFormatter(new TextFormatter<>(change ->
+                        (change.getControlNewText().matches("([1-9][0-9]*)?")) ? change : null));
 
     }
 

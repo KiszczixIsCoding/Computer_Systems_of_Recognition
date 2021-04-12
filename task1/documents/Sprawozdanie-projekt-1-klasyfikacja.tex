@@ -6,6 +6,7 @@
 \usepackage{latexsym}
 \usepackage{multirow}
 \usepackage{graphicx}
+\usepackage{float}
 \newtheorem{exmp}{Przykład}[section]
 \studycycle{Informatyka, studia STACJONARNE, I st.}
 \coursesemester{VI}
@@ -56,7 +57,7 @@ dlatego w trakcie analizy skupiliśmy się na cechach liczbowych oraz tekstowych
     \begin{equation}
         c_1 = \frac{|{s: s \in N \land s \in P_k}|}{w}
     \end{equation}
-    gdzie $N$- zbiór ciągów cyfr znalezionych w dokumencie, $P$ - zbiór charakterystycznych ciągów cyfr dla danego kraju k, $w$ - waga przez jaką należy podzielić otrzymaną cechę.\\
+    gdzie $N$- zbiór ciągów cyfr znalezionych w dokumencie, $P$ - zbiór charakterystycznych ciągów cyfr dla danego kraju k (Słowniki charakterystycznych ciągów cyfr znajdują się w Załączniku 1), $w$ - waga przez jaką należy podzielić otrzymaną cechę.\\
     Wzór ten zastosujemy dla każdego z rozpatrywanych krajów i dzięki porównaniu otrzymanych wyników uzyskamy informacje do której grupy, na podstawie tej cechy, sklasyfikować dany dokument. \\
     \begin{exmp}Fragment artykułu pt. "Offers USA direct service in Denmark" \cite{reuters}\\
     \say{[...]The service allows callers in Denmark to reach an ATT
@@ -68,7 +69,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
 	\begin{gather}
 	    c_2' = d_{t}(M)
 	\end{gather} 
-    \indent gdzie $d_{t}$ jest funkcją wyznaczającą t najczęściej występujących słów w danym zbiorze, M to zbiór znalezionych w artykule słów oznaczających waluty.
+    \indent gdzie $d_{t}$ jest funkcją wyznaczającą t najczęściej występujących słów w danym zbiorze, M to zbiór znalezionych w artykule słów oznaczających waluty. Zbiór walut charakterystycznych dla krajów znajduje się w Załączniku 1.
     \begin{gather}
         c_2 = g_k(c_2')
     \end{gather}
@@ -86,7 +87,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_3 = \frac{|{s: s \in D \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $D$ - zbiór słów oznaczających daty, $A$ - zbiór wszystkich słów z artykułu. \\
+    gdzie $D$ - zbiór słów oznaczających daty (zbiór formatów dat, według których słowo będzie klasyfikowane jako data znajduje się w Załączniku 1), $A$ - zbiór wszystkich słów z artykułu. \\
     \begin{exmp} Fragment artykułu pt. "USDA comments on export sales"  \cite{reuters} \\
     \say{[...]  In comments on its Export Sales Report, the department said
     sales of 1.0 mln tonnes to the USSR -- previously reported
@@ -104,7 +105,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{gather}
         c_4' = f(B)
     \end{gather}
-    \indent gdzie f - funkcja wyznaczająca zapis datowy z podanego zbioru, B - zbiór wszystkich wyrażeń znajdujących się w artykule (wyrażenie traktujemy jako połączenie minimum dwóch słów).
+    \indent gdzie f - funkcja wyznaczająca zapis datowy z podanego zbioru, B - zbiór wszystkich wyrażeń znajdujących się w artykule (wyrażenie traktujemy jako połączenie minimum dwóch słów). Formaty zapisu dat, jakie będą brane pod uwagę przy wyznaczaniu znajdują się w Załączniku 1.
     \begin{gather}
         c_4 = t_k(c_4')
     \end{gather}
@@ -159,7 +160,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_8'' = \frac{|{s: s \in I \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $I$ - zbiór słów oznaczających jednostki układu imperialnego, $A$ - zbiór wszystkich słów z artykułu
+    gdzie $I$ - zbiór słów oznaczających jednostki układu imperialnego, $A$ - zbiór wszystkich słów z artykułu.\\ Zbiór słów oznaczających jednostki układu SI oraz układu imperialnego znajduje się w Załączniku 1.\\
     Jako opisywaną cechę zapisujemy różnicę wystąpień jednostek w układzie SI oraz imperialnym, czyli:
     \begin{equation}
         c_8 = {c_8'}-{c_8''}
@@ -186,7 +187,7 @@ Z powyższego fragmentu możemy wyodrębnić ciąg cyfr 0430-0010 i na jego pods
     \begin{equation}
         c_{10} = \frac{|{s: s \in K \land s \in A}|}{|A|}
     \end{equation}
-    gdzie $K$ - zbiór słów kluczowych, $A$ - zbiór wszystkich słów z artykułu. \\
+    gdzie $K$ - zbiór słów kluczowych (zbiory słów kluczowych dla każdego kraju znajdują się w Załączniku 1), $A$ - zbiór wszystkich słów z artykułu. \\
     \begin{exmp}Fragment artykułu pt. "Currency futures to key off G-5, G-7 meetings" \cite{reuters} \\
     \say{[...]News of an agreement among G-5 and G-7
     finance ministers meeting in Washington this week will be key
@@ -285,13 +286,87 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
 
 
 \section{Klasyfikacja z użyciem metryk i miar podobieństwa tekstów}
-Wzory, znaczenia i opisy symboli zastosowanych metryk z
-przykładami. Wzory, opisy i znaczenia miar
-podobieństwa tekstów zastosowanych w obliczaniu metryk dla wektorów cech z
-przykładami dla każdej miary \cite{niewiadomski08}.  Oznaczenia jednolite w obrębie całego sprawozdania.  Wstępne wyniki miary Accuracy dla próbnych klasyfikacji na ograniczonym zbiorze tekstów (podać parametry i kryteria
-wyboru wg punktów 3.-8. z opisu Projektu 1.). \\ 
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 04 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+ Jak już zostało wspomniane w rozdziale 2., algorytm k-NN należy do grupy algorytmów minimalnoodległościowych. Aby zaimplementować jego działanie niezbędna jest zatem metryka, która pozwoli w transparentny sposób wyznaczyć odległości pomiędzy wektorami cech. Z tego względu, w ramach badań zostaną wykorzystane trzy poniższe rodzaje metryk:
+ \begin{itemize}
+    \item Euklidesowa - aby obliczyć odległość pomiędzy dwoma wektorami cech należy obliczyć pierwiastek z sumy kwadratów różnic wszystkich kolejnych cech obu wektorów. Wzór opisujący metrykę Euklidesową wygląda następująco \cite{tadeusiewicz90}:
+    \begin{equation}
+        \rho_{1}(c^\mu, c^\eta) = \sqrt{\sum_{\nu=1}^{n}(c_{\nu}^\mu - c_{\nu}^\eta)^2}
+    \end{equation}
+    \indent ,gdzie $c^\mu$ oraz $c^\eta$ oznaczają wektory cech, natomiast n jest to liczba cech, a $\nu$ to numer cechy \\
+    \begin{exmp} Obliczanie metryki Euklidesowej  \\
+        Dajmy dwa wektory cech:
+        \begin{equation}
+            c^\mu = [1, 2, 3]
+        \end{equation}
+        \begin{equation}
+            c^\eta = [-2, -3, -4]
+        \end{equation}
+        Wynik obliczenia metryki euklidesowej przedstawia się następująco:
+        \begin{equation}
+            \rho_{1}(c^\mu, c^\eta) = \sqrt{(1 - (-2))^2 + (2 - (-3))^2 + (3 - (-4))^2}
+        \end{equation}
+        \begin{equation}
+            \rho_{1}(c^\mu, c^\eta) = \sqrt{3^2 + 5^2 + 7^2}
+        \end{equation} 
+        \begin{equation}
+            \rho_{1}(c^\mu, c^\eta) \approx 9.11
+        \end{equation} \\
+    \end{exmp}
+    \item uliczna - w celu obliczenia metryki ulicznej należy obliczyć sumę wartości bezwzględnych z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący metrykę uliczną wygląda następująco \cite{tadeusiewicz90}:
+    \begin{equation}
+        \rho_{2}(c^\mu, c^\eta) = \sum_{\nu=1}^{n}|c_{\nu}^\mu - c_{\nu}^\eta|
+    \end{equation}
+    \begin{exmp} Obliczanie metryki ulicznej  
+    
+        Dajmy dwa wektory cech:
+        \begin{equation}
+            c^\mu = [3, 5, 8]
+        \end{equation}
+        \begin{equation}
+            c^\eta = [-2, 0, 10]
+        \end{equation}
+        Wynik obliczenia metryki ulicznej przedstawia się następująco:
+        \begin{equation}
+            \rho_{2}(c^\mu, c^\eta) = |3 - (-2)| + |5 - 0| + |8 - 10| 
+        \end{equation}
+        \begin{equation}
+            \rho_{2}(c^\mu, c^\eta) = 12
+        \end{equation} \\
+    \end{exmp}
+    \item Czebyszewa - aby obliczyć metrykę Czebyszewa należy wyznaczyć maksymalną wartość bezwzględną z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący tę metrykę wygląda następująco \cite{tadeusiewicz90}:
+    \begin{equation}
+        \rho_{3}(c^\mu, c^\eta) = \max\limits_{1 \leq \nu \leq n}
+        |c_{\nu}^\mu - c_{\nu}^\eta| 
+    \end{equation}
+    \begin{exmp} Wykorzystanie metryki Czebyszewa  \\
+        Dajmy dwa wektory cech:
+        \begin{equation}
+            c^\mu = [6, 3, 5, -1]
+        \end{equation}
+        \begin{equation}
+            c^\eta = [3, 4, 1, 9]
+        \end{equation}
+        Wynik obliczenia metryki ulicznej przedstawia się następująco:
+        \begin{equation}
+            \rho_{3}(c^\mu, c^\eta) = max{|6 - 3|, |3 - 4|, |5 - 1|, |-1 - 9|}
+        \end{equation}
+        \begin{equation}
+            \rho_{3}(c^\mu, c^\eta) = 10
+        \end{equation} \\
+    \end{exmp}
+\end{itemize}
+
+Nie wszystkie wartości w wektorze cech są od razu zapisane w formie liczbowej, niektóre z nich są w postaci tekstowej. W tym celu należy zaimplemetować miarę podobieństwa tekstów, która zamieni elementy wektora cech z postaci tekstowej na postać liczbową. W naszej aplikacji w tym celu wykorzystaliśmy Uogólnioną miarę n-gramów.\cite{wyklad} Zwykła metoda n-gramów określa podobieństwo łańcuchów tekstowych s1, s2 w oparciu o ilość wspólnych podciągów n-elementowych, (np. dla n=3 badamy podobieństwo słów w oparciu o podciągi 3-literowe). Zastosowana przez nas miara jest dokładniejsza, jednak bardziej kosztowna obliczeniowo - sprawdza ona podciągi różnej długości, od jedno- do N-elementowych, gdzie N jest długością słowa. Wyraża się ona wzorem:\\
+\begin{equation}
+    \mu_N(s_1,s_2) = \frac{2}{N^2+N}\sum_{i=1}^{N(s_1)}\sum_{j=1}^{N(s_1)-i+1}h(i,j)\
+\end{equation}
+ gdzie 
+ \newline$h(i,j) = 1$ jeśli $i$-elementowy podciąg w słowie $s_1$ zaczynający się od $j$-tej pozycji w słowie $s_1$ pojawia się przynajmniej raz w słowie $s_2$ (inaczej $h(i,j)=0$);
+ \newline$N(s_1), N(s_2)$ - ilość liter w słowach $s_1$ i $s_2$;
+ \newline $N = max\{N(s_1), N(s_2)\}$
+ \newline $\frac{N^2+N}{2}$ - ilość możliwych podciągów od 1-elementowych do N-elementowych w słowie o długości N.
+
+
 
 \section{Budowa aplikacji}
 \subsection{Diagramy UML}
@@ -300,7 +375,7 @@ Nasza aplikacja będzie się składać z 4 modułów: moduł ekstrakcji, moduł 
 \indent Moduł ekstrakcji będzie odpowiedzialny za odwzorowanie tekstu na wektor cech. Wektor cech zaimplementowany zostanie z wykorzystaniem klasy FeaturesVector. W klasie FeaturesVector znajduje się 11 pól, każde oznaczające jedną z cech, które zostały przez nas wybrane i przedstawione w sekcji 2. Dla każdej cechy stworzona została odpowiadająca klasa. Każda z klas, która reprezentuje cechę, implementuje interfejs: dla cech liczbowych jest to interfejs NumericFeature, natomiast dla cech tekstowych jest n to interfejs TextFeature.
 Oba interfejsy mają metodę extract(Article article), różnica polega na zwracanej wartości. W pierwszym przypadku jest to liczba typu integer (oznaczająca obliczoną liczbę np. słów w tekście), zaś w drugim przypadku jest to lista ciągów znaków (oznaczająca wyznaczoną, znalezioną listę wyrazów, które spełniają warunki danej klasy).
 \\
-\begin{figure}[htp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=15cm, height=10cm]{modul_ekstrakcji.png}
     \caption{Diagram UML dla modułu ekstrakcji}
@@ -308,17 +383,20 @@ Oba interfejsy mają metodę extract(Article article), różnica polega na zwrac
 
 
 \indent Moduł klasyfikatora będzie odpowiedzialny za klasyfikację artykułów do odpowiednich etykiet places przy pomocy algorytmu kNN. Z tego względu powstanie klasa KnnClassifier, której zadaniem będzie sklasyfikowanie artykułu z wykorzystaniem jednej z trzech metryk, tj. metryki Czebyszewa, metryki ulicznej (Manhattan) lub metryki euklidesowej. W tym celu powstały cztery klasy: klasa Metric jest to klasa abstrakcyjna, natomiast klasy EuclideanMetric, ChebyshevMetric oraz ManhattanMetric są klasami dziedziczącymi. Poza metryką, niezbędne do klasyfikacji są paramtery: liczba najbliższych sąsiadów (kNeighbours) oraz stosunek liczby artykułów w części treningowej do części testowej. Do wykorzystania klasy KnnClassifier niezbędny jest moduł ekstrakcji, ponieważ klasa KnnClassifier wykorzystuje klasę Artykuł oraz kategorie ClassifiedPlaces znajdujące się w typie enumerate. \\
-\begin{figure}[htp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=15cm, height=10cm]{modul_klasyfikatora.png}
     \caption{Diagram UML dla modułu klasyfikatora}
 \end{figure}
 
 \subsection{Prezentacja wyników, interfejs użytkownika} 
-Krótki ilustrowany opis jak użytkownik może korzystać z aplikacji, w~szczególności wprowadzać parametry klasyfikacji i odczytywać wyniki. Wersja JRE i inne wymogi
-niezbędne do uruchomienia aplikacji przez użytkownika na własnym komputerze. \\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 04 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+Aplikacja została wykonana w technologii Java w wersji 11\cite{java_11} (najnowsza wersja LTS) przy wykorzystaniu Apache Maven w wersji 3.6.3\cite{maven}. Do stworzenia interfejsu graficznego posłużyliśmy biblioteką JavaFX w wersji 13\cite{javafx}. W celu uruchomienia aplikacji należy po zainstalowaniu Maven na własnym kpmputerze, z poziomu wiersza poleceń znajdując się w folderze głównym projektu wykonać polecenie: mvn install, a następnie z wiersza poleceń z poziomu modułu GUI wykonać polecenie: mvn clean javafx:run. Aplikacje można także uruchomić z poziomu IDE. Po uruchuomieniu aplikacji ukaże nam się interfejs użytkownika, w którym możemy wybrać jak ma zostać podzielony zbiór (w jakich proporcjach na część treningową i testową), wczytać pliki, w których znajdują się teksty do analizy, podać licbę k najbliższych sąsiadów dla klasyfiaktora $k$-NN, wybrać metrykę oraz zbiór cech wykorzystywanych w procesie klasyfikacji oraz wykonać klasyfikację. W efekcie ukażą nam się następujące informacje: liczba wczytanych plików, liczba artykułów podlegających klasyfikacji oraz rezultaty 4 miar podobieństwa - Accuracy, Precision, Recall i F1.
+\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{gui_ksr.PNG}
+    \caption{Interfejs użytkownika dla aplikacji.}
+\end{figure}
 
 \section{Wyniki klasyfikacji dla różnych parametrów wejściowych}
 Wyniki kolejnych eksperymentów wg punktów 2.-8. opisu projektu 1.  Wykresy i tabele
@@ -353,6 +431,10 @@ na WIKAMP KSR.}
 Wymienić wg opisu Projektu 1. wszystkie niezrealizowane obowiązkowe elementy projektu, ewentualnie
 podać merytoryczne (ale nie czasowe) przyczyny tych braków. 
 
+\section*{Załączniki}
+\begin{enumerate}
+   \item Załącznik nr 1 - Zbiór słowników wykorzystywanych przy ekstrakcji cech.
+\end{enumerate}
 
 \begin{thebibliography}{0}
 \bibitem{tadeusiewicz90} R. Tadeusiewicz: Rozpoznawanie obrazów, PWN, Warszawa, 1991.  
@@ -362,8 +444,13 @@ Dostępny w: http://archive.ics.uci.edu/ml/machine-learning-databases/reuters215
 \bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
 \bibitem{tablica_pomylek} Tablica pomyłek [przeglądany 28.03.2021], Dostępny w: https://pl.wikipedia.org/wiki/Tablica\_pomyłek
 \bibitem{f1} F-score [przeglądany 28.03.2021] Dostępny w: https://en.wikipedia.org/wiki/F-score
+\bibitem{wyklad} A. Niewiadomski, Materiały, przykłady i ćwiczenia do przedmiotu Komputerowe Systemy Rozpoznawania, 2020.
+\bibitem{java_11} Dokumetacja Java 11 [przeglądany 11.04.2021] Dostępny w : https://docs.oracle.com/en/java/javase/11/
+\bibitem{maven} Dokumentacja Maven 3.6.3 [przeglądany 11.04.2021] Dostępny w: https://maven.apache.org/docs/3.6.3/release-notes.html
+\bibitem{javafx} Dokumentacja JavaFx 13 [przeglądany 11.04.2021] Dostępny w: https://openjfx.io/javadoc/13/ 
 \end{thebibliography}
 
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
 możliwe do weryfikacji i cytowane w sprawozdaniu. 
+
 \end{document}
