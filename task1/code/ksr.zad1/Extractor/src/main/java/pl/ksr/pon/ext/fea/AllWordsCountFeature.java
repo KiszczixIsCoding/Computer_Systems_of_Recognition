@@ -1,4 +1,6 @@
-package pl.ksr.pon.ext;
+package pl.ksr.pon.ext.fea;
+
+import pl.ksr.pon.ext.NumericalFeature;
 
 public class AllWordsCountFeature  implements NumericalFeature {
 

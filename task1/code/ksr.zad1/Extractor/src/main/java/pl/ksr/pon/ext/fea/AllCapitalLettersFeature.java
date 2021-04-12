@@ -1,6 +1,7 @@
-package pl.ksr.pon.ext;
+package pl.ksr.pon.ext.fea;
 
 import lombok.Getter;
+import pl.ksr.pon.ext.NumericalFeature;
 
 
 @Getter

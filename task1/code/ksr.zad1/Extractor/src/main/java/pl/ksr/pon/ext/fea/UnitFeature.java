@@ -1,5 +1,6 @@
-package pl.ksr.pon.ext;
+package pl.ksr.pon.ext.fea;
 import org.apache.commons.lang3.StringUtils;
+import pl.ksr.pon.ext.NumericalFeature;
 import pl.ksr.pon.ext.dic.UnitDictionary;
 
 public class UnitFeature implements NumericalFeature {

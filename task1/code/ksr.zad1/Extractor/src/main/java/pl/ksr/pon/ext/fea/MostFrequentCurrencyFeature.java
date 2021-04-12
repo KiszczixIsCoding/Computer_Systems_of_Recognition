@@ -1,6 +1,7 @@
-package pl.ksr.pon.ext;
+package pl.ksr.pon.ext.fea;
 
 import org.apache.commons.lang3.StringUtils;
+import pl.ksr.pon.ext.TextFeature;
 import pl.ksr.pon.ext.dic.CurrencyDictionary;
 
 import java.util.*;

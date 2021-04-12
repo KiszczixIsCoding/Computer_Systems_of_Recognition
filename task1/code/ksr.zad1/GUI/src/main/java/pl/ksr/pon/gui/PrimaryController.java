@@ -16,7 +16,7 @@ import pl.ksr.pon.cla.Metric;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
-import pl.ksr.pon.ext.MostFrequentCurrencyFeature;
+import pl.ksr.pon.ext.fea.DatesFormatFeature;
 
 
 import java.io.File;
@@ -100,7 +100,7 @@ public class PrimaryController implements Initializable {
                 kNeighbours = Integer.parseInt(kNeighboursField.getText());
             }
 
-            MostFrequentCurrencyFeature feature = new MostFrequentCurrencyFeature();
+            DatesFormatFeature feature = new DatesFormatFeature();
             for (Article article : articlesList) {
                 feature.extract(article.getContent());
             }
