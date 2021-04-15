@@ -36,6 +36,7 @@ public class SGMLParser {
                             .get(reutersArticle.select("TEXT").get(0).textNodes().size()-1).text();
 
                     String parsedContent = Stoplist.removeMostPopularWordsFromString(content);
+                    parsedContent = Stemmer.stemm(parsedContent);
                     currentArticle.setContent(parsedContent);
 
                     articlesInFile.add(currentArticle);

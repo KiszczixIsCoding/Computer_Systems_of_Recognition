@@ -16,7 +16,9 @@ import pl.ksr.pon.cla.Metric;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
-import pl.ksr.pon.ext.MostFrequentCurrencyFeature;
+import pl.ksr.pon.ext.fea.DatesFormatFeature;
+import pl.ksr.pon.ext.fea.MostFrequentCurrencyFeature;
+import pl.ksr.pon.ext.fea.MostOftenWordFeature;
 
 
 import java.io.File;
@@ -91,6 +93,10 @@ public class PrimaryController implements Initializable {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             Dao<Article> dao = new ArticleDaoFactory().getArticleDao(filesList);
             articlesList = dao.getAll();
+            MostOftenWordFeature mostOftenWordFeature = new MostOftenWordFeature();
+            for (Article article : articlesList) {
+                System.out.println(mostOftenWordFeature.extract(article.getContent()));
+            }
             filesCountLabel.setText(String.valueOf(filesList.size()));
             articlesCountLabel.setText(String.valueOf(articlesList.size()));
         });
