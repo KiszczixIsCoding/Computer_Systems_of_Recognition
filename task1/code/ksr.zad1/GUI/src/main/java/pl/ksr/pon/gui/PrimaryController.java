@@ -16,8 +16,9 @@ import pl.ksr.pon.cla.Metric;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
-import pl.ksr.pon.ext.MostFrequentCurrencyFeature;
-import pl.ksr.pon.ext.MostOftenWordFeature;
+import pl.ksr.pon.ext.fea.DatesFormatFeature;
+import pl.ksr.pon.ext.fea.MostFrequentCurrencyFeature;
+import pl.ksr.pon.ext.fea.MostOftenWordFeature;
 
 
 import java.io.File;

@@ -1,4 +1,6 @@
-package pl.ksr.pon.ext;
+package pl.ksr.pon.ext.fea;
+
+import pl.ksr.pon.ext.FeatureUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
