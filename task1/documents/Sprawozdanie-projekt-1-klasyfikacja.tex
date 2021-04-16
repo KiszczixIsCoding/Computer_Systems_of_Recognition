@@ -290,6 +290,7 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
  \begin{itemize}
     \item Euklidesowa - aby obliczyć odległość pomiędzy dwoma wektorami cech należy obliczyć pierwiastek z sumy kwadratów różnic wszystkich kolejnych cech obu wektorów. Wzór opisujący metrykę Euklidesową wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
+    \label{eqn:euklides}
         \rho_{1}(c^\mu, c^\eta) = \sqrt{\sum_{\nu=1}^{n}(c_{\nu}^\mu - c_{\nu}^\eta)^2}
     \end{equation}
     \indent ,gdzie $c^\mu$ oraz $c^\eta$ oznaczają wektory cech, natomiast n jest to liczba cech, a $\nu$ to numer cechy \\
@@ -314,6 +315,7 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
     \end{exmp}
     \item uliczna - w celu obliczenia metryki ulicznej należy obliczyć sumę wartości bezwzględnych z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący metrykę uliczną wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
+    \label{eqn:uliczna}
         \rho_{2}(c^\mu, c^\eta) = \sum_{\nu=1}^{n}|c_{\nu}^\mu - c_{\nu}^\eta|
     \end{equation}
     \begin{exmp} Obliczanie metryki ulicznej  
@@ -335,6 +337,7 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
     \end{exmp}
     \item Czebyszewa - aby obliczyć metrykę Czebyszewa należy wyznaczyć maksymalną wartość bezwzględną z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący tę metrykę wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
+    \label{eqn:czebyszew}
         \rho_{3}(c^\mu, c^\eta) = \max\limits_{1 \leq \nu \leq n}
         |c_{\nu}^\mu - c_{\nu}^\eta| 
     \end{equation}
@@ -356,17 +359,34 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
     \end{exmp}
 \end{itemize}
 
-Nie wszystkie wartości w wektorze cech są od razu zapisane w formie liczbowej, niektóre z nich są w postaci tekstowej. W tym celu należy zaimplemetować miarę podobieństwa tekstów, która zamieni elementy wektora cech z postaci tekstowej na postać liczbową. W naszej aplikacji w tym celu wykorzystaliśmy Uogólnioną miarę n-gramów.\cite{wyklad} Zwykła metoda n-gramów określa podobieństwo łańcuchów tekstowych s1, s2 w oparciu o ilość wspólnych podciągów n-elementowych, (np. dla n=3 badamy podobieństwo słów w oparciu o podciągi 3-literowe). Zastosowana przez nas miara jest dokładniejsza, jednak bardziej kosztowna obliczeniowo - sprawdza ona podciągi różnej długości, od jedno- do N-elementowych, gdzie N jest długością słowa. Wyraża się ona wzorem:\\
+Nie wszystkie wartości w wektorze cech są od razu zapisane w formie liczbowej, niektóre z nich są w postaci tekstowej. W tym celu należy zaimplemetować miarę podobieństwa tekstów, która zamieni elementy wektora cech z postaci tekstowej na postać liczbową. W naszej aplikacji w tym celu wykorzystaliśmy metodę n-gramów.\cite{wyklad} Metoda ta określa podobieństwo łańcuchów tekstowych s1, s2 w oparciu o ilość wspólnych podciągów n-elementowych. W zastosowanym przez nas algorytmie jako n przyjęliśmy liczbę 3, zatem posługiwaliśmy się trigramami. Wzór ogólny opisujący metodę n-gramów prezentuje się następująco:\\
 \begin{equation}
-    \mu_N(s_1,s_2) = \frac{2}{N^2+N}\sum_{i=1}^{N(s_1)}\sum_{j=1}^{N(s_1)-i+1}h(i,j)\
+    sim_n(s_1, s_2) = \frac{1}{N - n + 1}\sum_{i=1}^{N - n + 1}h(i)\
 \end{equation}
  gdzie 
- \newline$h(i,j) = 1$ jeśli $i$-elementowy podciąg w słowie $s_1$ zaczynający się od $j$-tej pozycji w słowie $s_1$ pojawia się przynajmniej raz w słowie $s_2$ (inaczej $h(i,j)=0$);
+ \newline$h(i) = 1$ jeśli $n$-elementowy podciąg zaczynający się od $i$-tej pozycji w słowie $s_1$ pojawia się przynajmniej raz w słowie $s_2$ (inaczej $h(i)=0$);
  \newline$N(s_1), N(s_2)$ - ilość liter w słowach $s_1$ i $s_2$;
- \newline $N = max\{N(s_1), N(s_2)\}$
- \newline $\frac{N^2+N}{2}$ - ilość możliwych podciągów od 1-elementowych do N-elementowych w słowie o długości N.
+ \newline $N = max\{N(s_1), N(s_2)\}$;
+ \newline $N - n + 1$ - ilość możliwych $n$-elementowych podciągów w $s_1$.\\
 
 
+\noindent W naszym przypadku, dla trigramów wzór będzie wyglądał następująco:
+\begin{equation}
+\label{eqn:trigramy}
+    sim_2(s_1, s_2) = \frac{1}{N - 2}\sum_{i=1}^{N - 2}h(i)\
+\end{equation}
+
+\noindent Weźmy na przykład porównanie dwóch słów: $s_1$=$MISSISIPI$, $s_2$=$MISSOURI$.
+\\
+$N(s_1) = 9$, $N(s_2) = 8$, $N = max\{N(s_1), N(s_2)\} = 9$.
+
+\begin{equation}
+    sim_2(s_1, s_2) = \frac{1}{7}\sum_{i=1}^{7}h(i) = \frac{2}{7} \approx 0.29
+\end{equation}
+
+\noindent ponieważ 2 trigramy z $MISSISIPI$ występują w $MISSOURI$.\\
+
+Po wykonaniu metody $n$-gramów podobieństwo dwóch wzorców tekstowych zostaje wyrażone za pomocą liczby. Liczbę tą należy następnie zastosować w odpowiedniej metryce (wzory \ref{eqn:euklides}, \ref{eqn:uliczna}, \ref{eqn:czebyszew}). W tym celu, do jednego z wektora cech, które porównujemy, w miejsce cechy tekstowej wpisujemy obliczoną w metodzie n-gramów (wzór \ref{eqn:trigramy}) wartość, w drugim wektorze natomiast w to miejsce wstawiamy 0. Tym sposobem obliczona wartość w metodzie n-gramów będzie mogła być wykorzystana w metryce. Dlatego dla dwóch porównywanych tekstów najpierw należy zastosować miarę podobieństwa, potem podmienić wartości tekstowe w wektorze cech na wartości liczbowe, a następnie obliczyć metrykę.\\
 
 \section{Budowa aplikacji}
 \subsection{Diagramy UML}

@@ -5,24 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/EuclideanMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/EuclideanMetric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ManhattanMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ManhattanMetric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/FeaturesVector.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/FeaturesVector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllCapitalLettersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllCapitalLettersFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllWordsCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllWordsCountFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/CitesCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/CitesCountFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesFormatFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesFormatFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/FirstCapitalLetterFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/FirstCapitalLetterFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/KeyWordsFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/KeyWordsFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostFrequentCurrencyFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostFrequentCurrencyFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenStringOfNumbersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenStringOfNumbersFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenWordFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenWordFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/TrigramMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../documents/Sprawozdanie-projekt-1-klasyfikacja_att.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/code.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../documents/Sprawozdanie-projekt-1-klasyfikacja.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../documents/Sprawozdanie-projekt-1-klasyfikacja.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../documents/Załącznik 1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../documents/Zalacznik_1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../documents/Załącznik 1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../documents/Zalacznik_1.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../documents/ksr_merged.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../documents/~$łącznik 1.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +123,7 @@
       <workItem from="1618127436291" duration="7976000" />
       <workItem from="1618314300891" duration="10879000" />
       <workItem from="1618508467037" duration="3019000" />
-      <workItem from="1618565530057" duration="2428000" />
+      <workItem from="1618565530057" duration="3068000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>
