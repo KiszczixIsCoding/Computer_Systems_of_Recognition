@@ -9,13 +9,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import pl.ksr.pon.cla.*;
+import pl.ksr.pon.cla.Metric;
+import pl.ksr.pon.cla.ChebyshevMetric;
+import pl.ksr.pon.cla.TrigramMethod;
+import pl.ksr.pon.cla.ManhattanMetric;
+import pl.ksr.pon.cla.EuclideanMetric;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
 import pl.ksr.pon.ext.MostFrequentCurrencyFeature;
 import pl.ksr.pon.ext.MostOftenWordFeature;
-
 
 import java.io.File;
 import java.io.IOException;
