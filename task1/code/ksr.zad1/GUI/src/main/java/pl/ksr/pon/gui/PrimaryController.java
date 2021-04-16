@@ -9,10 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import pl.ksr.pon.cla.ChebyshevMetric;
-import pl.ksr.pon.cla.EuclideanMetric;
-import pl.ksr.pon.cla.ManhattanMetric;
-import pl.ksr.pon.cla.Metric;
+import pl.ksr.pon.cla.*;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
@@ -109,6 +106,10 @@ public class PrimaryController implements Initializable {
             for (Article article : articlesList) {
                 feature.extract(article.getContent());
             }
+
+            // Trigram test:
+            System.out.println("similarity = " +
+                    TrigramMethod.calculateSimilarity("Missisipi", "Missouri"));
 
         });
 
