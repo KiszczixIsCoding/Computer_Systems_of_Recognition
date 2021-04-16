@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -88,6 +89,8 @@ public class PrimaryController implements Initializable {
             }
         });
 
+        List<Boolean> featuresSelectionList = new ArrayList<>(Arrays.asList(new Boolean[11]));
+        
 
         loadFilesBtn.setOnAction(actionEvent -> {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
@@ -106,11 +109,11 @@ public class PrimaryController implements Initializable {
                 kNeighbours = Integer.parseInt(kNeighboursField.getText());
             }
 
-            DatesFormatFeature feature = new DatesFormatFeature();
-            for (Article article : articlesList) {
-                System.out.println(article.getTitle());
-                feature.extract(article.getContent());
-            }
+//            DatesFormatFeature feature = new DatesFormatFeature();
+//            for (Article article : articlesList) {
+//                System.out.println(article.getTitle());
+//                feature.extract(article.getContent());
+//            }
 
         });
 

@@ -9,6 +9,10 @@ import java.util.Map;
 
 public class MostOftenStringOfNumbersFeature extends Feature {
 
+    public MostOftenStringOfNumbersFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     public String extract(String content) {
         String[] wordsList = content.split("\\s+");
         List<String> numbersList = new ArrayList<>();

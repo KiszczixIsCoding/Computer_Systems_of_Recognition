@@ -11,6 +11,7 @@ public class Article {
     private String author;
     private String content;
     private ClassifiedPlaces place;
+    private ClassifiedPlaces predictedPlace = null;
     private FeaturesVector featuresVector;
 
 }

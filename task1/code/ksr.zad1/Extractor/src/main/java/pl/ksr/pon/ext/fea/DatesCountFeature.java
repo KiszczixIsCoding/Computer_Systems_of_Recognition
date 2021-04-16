@@ -6,6 +6,10 @@ import pl.ksr.pon.ext.dic.DateDictionary;
 public class DatesCountFeature extends Feature implements NumericalFeature {
 
 
+    public DatesCountFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     @Override
     public int extract(String content) {
         int datesCounter = 0;

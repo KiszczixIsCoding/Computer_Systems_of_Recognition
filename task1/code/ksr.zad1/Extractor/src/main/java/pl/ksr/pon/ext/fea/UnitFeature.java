@@ -6,6 +6,10 @@ import pl.ksr.pon.ext.dic.UnitDictionary;
 public class UnitFeature extends Feature implements NumericalFeature {
 
 
+    public UnitFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     @Override
     public int extract(String content) {
         int siCounter = 0;

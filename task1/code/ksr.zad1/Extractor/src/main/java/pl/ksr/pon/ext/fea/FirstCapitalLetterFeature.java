@@ -7,6 +7,10 @@ import pl.ksr.pon.ext.NumericalFeature;
 public class FirstCapitalLetterFeature extends Feature implements NumericalFeature {
     private int firstCapitalLetterCount;
 
+    public FirstCapitalLetterFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     @Override
     public int extract(String content) {
         int counter = 0;

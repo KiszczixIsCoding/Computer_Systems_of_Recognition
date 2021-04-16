@@ -9,6 +9,10 @@ import java.util.regex.Pattern;
 
 public class DatesFormatFeature extends Feature implements TextFeature {
 
+    public DatesFormatFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     @Override
     public List<String> extract(String content) {
 

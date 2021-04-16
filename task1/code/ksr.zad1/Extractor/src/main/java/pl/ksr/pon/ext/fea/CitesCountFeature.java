@@ -9,6 +9,10 @@ import java.util.regex.Pattern;
 public class CitesCountFeature extends Feature implements NumericalFeature {
     int citesCount;
 
+    public CitesCountFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     @Override
     public int extract(String content) {
         Pattern pattern = Pattern.compile(",\"");

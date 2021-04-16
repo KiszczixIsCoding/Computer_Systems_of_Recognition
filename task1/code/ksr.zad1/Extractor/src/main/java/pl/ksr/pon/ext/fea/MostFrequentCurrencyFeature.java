@@ -9,6 +9,10 @@ import java.util.*;
 public class MostFrequentCurrencyFeature extends Feature implements TextFeature {
     private List<String> mostFrequentCurrencies;
 
+    public MostFrequentCurrencyFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     @Override
     public List<String> extract(String content) {
         Map<String, Integer> currenciesMap = new HashMap<>();

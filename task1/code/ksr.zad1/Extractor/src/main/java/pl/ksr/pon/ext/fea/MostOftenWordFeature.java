@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 public class MostOftenWordFeature extends Feature {
 
+    public MostOftenWordFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
     public List<String> extract(String content) {
         String[] wordsArray = content.split("\\s+");
         List<String> wordsList = Arrays.asList(wordsArray);
