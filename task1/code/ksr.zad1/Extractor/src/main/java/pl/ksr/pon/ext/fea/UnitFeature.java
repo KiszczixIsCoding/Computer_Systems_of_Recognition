@@ -3,7 +3,7 @@ import org.apache.commons.lang3.StringUtils;
 import pl.ksr.pon.ext.NumericalFeature;
 import pl.ksr.pon.ext.dic.UnitDictionary;
 
-public class UnitFeature implements NumericalFeature {
+public class UnitFeature extends Feature implements NumericalFeature {
 
 
     @Override

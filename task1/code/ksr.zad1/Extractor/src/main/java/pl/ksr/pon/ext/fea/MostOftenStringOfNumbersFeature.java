@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MostOftenStringOfNumbersFeature {
+public class MostOftenStringOfNumbersFeature extends Feature {
 
     public String extract(String content) {
         String[] wordsList = content.split("\\s+");

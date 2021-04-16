@@ -5,8 +5,13 @@ import pl.ksr.pon.ext.NumericalFeature;
 
 
 @Getter
-public class AllCapitalLettersFeature implements NumericalFeature {
-    private int allCapitalLettersCount = 0;
+public class AllCapitalLettersFeature extends Feature implements NumericalFeature {
+    private int allCapitalLettersCount;
+
+    public AllCapitalLettersFeature(int allCapitalLettersCount, boolean isSelected) {
+        this.allCapitalLettersCount = allCapitalLettersCount;
+        this.isSelected = isSelected;
+    }
 
     @Override
     public int extract(String content) {

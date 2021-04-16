@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class KeyWordsFeature implements TextFeature {
+public class KeyWordsFeature extends Feature implements TextFeature {
     @Override
     public List<String> extract(String content) {
         Map<String, Integer> keyWordsMap = new HashMap<>();

@@ -3,7 +3,7 @@ package pl.ksr.pon.ext.fea;
 import pl.ksr.pon.ext.NumericalFeature;
 import pl.ksr.pon.ext.dic.DateDictionary;
 
-public class DatesCountFeature implements NumericalFeature {
+public class DatesCountFeature extends Feature implements NumericalFeature {
 
 
     @Override

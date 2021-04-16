@@ -6,7 +6,7 @@ import pl.ksr.pon.ext.NumericalFeature;
 import java.util.regex.Pattern;
 
 @Getter
-public class CitesCountFeature implements NumericalFeature {
+public class CitesCountFeature extends Feature implements NumericalFeature {
     int citesCount;
 
     @Override

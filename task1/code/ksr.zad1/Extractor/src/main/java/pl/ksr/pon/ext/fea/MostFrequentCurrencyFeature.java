@@ -6,7 +6,7 @@ import pl.ksr.pon.ext.dic.CurrencyDictionary;
 
 import java.util.*;
 
-public class MostFrequentCurrencyFeature implements TextFeature {
+public class MostFrequentCurrencyFeature extends Feature implements TextFeature {
     private List<String> mostFrequentCurrencies;
 
     @Override

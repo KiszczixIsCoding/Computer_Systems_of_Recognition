@@ -4,7 +4,7 @@ import lombok.Getter;
 import pl.ksr.pon.ext.NumericalFeature;
 
 @Getter
-public class FirstCapitalLetterFeature implements NumericalFeature {
+public class FirstCapitalLetterFeature extends Feature implements NumericalFeature {
     private int firstCapitalLetterCount;
 
     @Override

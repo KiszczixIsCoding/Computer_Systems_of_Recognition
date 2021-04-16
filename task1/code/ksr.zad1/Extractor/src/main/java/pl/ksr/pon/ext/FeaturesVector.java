@@ -6,62 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FeaturesVector {
-    private AllCapitalLettersFeature allCapitalLettersFeature;
-    private AllWordsCountFeature allWordsCountFeature;
-    private CitesCountFeature citesCountFeature;
-    private DatesCountFeature datesCountFeature;
-    private DatesFormatFeature datesFormatFeature;
-    private FirstCapitalLetterFeature firstCapitalLetterFeature;
-    private KeyWordsFeature keyWordsFeature;
-    private MostFrequentCurrencyFeature mostFrequentCurrencyFeature;
-    private MostOftenStringOfNumbersFeature mostOftenStringOfNumbersFeature;
-    private MostOftenWordFeature mostOftenWordFeature;
-    private UnitFeature unitFeature;
-
+    private final List<Feature> features;
 
     public FeaturesVector(List<Boolean> selectedFeatures) {
-        List<NumericalFeature> numericalFeatures = new ArrayList<>();
-        if (selectedFeatures.get(0)) {
-            numericalFeatures.add(new AllCapitalLettersFeature());
-        }
-        if (selectedFeatures.get(1)) {
-            numericalFeatures.add(new AllWordsCountFeature());
-        }
-        if (selectedFeatures.get(2)) {
-            numericalFeatures.add(new CitesCountFeature());
-        }
-        if (selectedFeatures.get(3)) {
-            numericalFeatures.add(new DatesCountFeature());
-        }
-        if (selectedFeatures.get(4)) {
-            numericalFeatures.add(new FirstCapitalLetterFeature());
-        }
-        if (selectedFeatures.get(5)) {
-            numericalFeatures.add(new AllCapitalLettersFeature());
-        }
-        if (selectedFeatures.get(6)) {
-            numericalFeatures.add(new AllWordsCountFeature());
-        }
-        if (selectedFeatures.get(7)) {
-            numericalFeatures.add(new CitesCountFeature());
-        }
-        if (selectedFeatures.get(8)) {
-            numericalFeatures.add(new DatesCountFeature());
-        }
-        if (selectedFeatures.get(9)) {
-            numericalFeatures.add(new FirstCapitalLetterFeature());
-        }
-        if (selectedFeatures.get(9)) {
-            numericalFeatures.add(new FirstCapitalLetterFeature());
-        }
-
+        features = new ArrayList<>();
+        features.add(new AllCapitalLettersFeature(selectedFeatures.get(0)));
+        features.add(new AllWordsCountFeature(selectedFeatures.get(1)));
+        features.add(new CitesCountFeature(selectedFeatures.get(2)));
+        features.add(new DatesCountFeature(selectedFeatures.get(3)));
+        features.add(new DatesFormatFeature(selectedFeatures.get(4)));
+        features.add(new FirstCapitalLetterFeature(selectedFeatures.get(5)));
+        features.add(new KeyWordsFeature(selectedFeatures.get(6)));
+        features.add(new MostFrequentCurrencyFeature(selectedFeatures.get(7)));
+        features.add(new MostOftenStringOfNumbersFeature(selectedFeatures.get(8)));
+        features.add(new MostOftenWordFeature(selectedFeatures.get(9)));
+        features.add(new UnitFeature(selectedFeatures.get(10)));
     }
 
-    public FeaturesVector getNumericalFeatures() {
-        return null;
-    }
-
-    public FeaturesVector getTextFeatures() {
-        return null;
+    public List<Feature> getFeatures() {
+        return features;
     }
 }

@@ -93,10 +93,10 @@ public class PrimaryController implements Initializable {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             Dao<Article> dao = new ArticleDaoFactory().getArticleDao(filesList);
             articlesList = dao.getAll();
-            MostOftenWordFeature mostOftenWordFeature = new MostOftenWordFeature();
-            for (Article article : articlesList) {
-                System.out.println(mostOftenWordFeature.extract(article.getContent()));
-            }
+//            MostOftenWordFeature mostOftenWordFeature = new MostOftenWordFeature();
+//            for (Article article : articlesList) {
+//                System.out.println(mostOftenWordFeature.extract(article.getContent()));
+//            }
             filesCountLabel.setText(String.valueOf(filesList.size()));
             articlesCountLabel.setText(String.valueOf(articlesList.size()));
         });
@@ -106,8 +106,9 @@ public class PrimaryController implements Initializable {
                 kNeighbours = Integer.parseInt(kNeighboursField.getText());
             }
 
-            MostFrequentCurrencyFeature feature = new MostFrequentCurrencyFeature();
+            DatesFormatFeature feature = new DatesFormatFeature();
             for (Article article : articlesList) {
+                System.out.println(article.getTitle());
                 feature.extract(article.getContent());
             }
 

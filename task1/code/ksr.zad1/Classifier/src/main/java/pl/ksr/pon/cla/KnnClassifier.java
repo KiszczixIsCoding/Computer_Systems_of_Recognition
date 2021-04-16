@@ -1,5 +1,8 @@
 package pl.ksr.pon.cla;
 
 public class KnnClassifier {
-    String a;
+    private int kNeighbours;
+    private Metric metric;
+
+
 }

@@ -5,7 +5,7 @@ import pl.ksr.pon.ext.FeatureUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MostOftenWordFeature {
+public class MostOftenWordFeature extends Feature {
 
     public List<String> extract(String content) {
         String[] wordsArray = content.split("\\s+");
