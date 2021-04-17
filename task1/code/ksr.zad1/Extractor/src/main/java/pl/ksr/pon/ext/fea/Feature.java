@@ -16,5 +16,4 @@ public abstract class Feature {
         return isSelected;
     }
 
-    public abstract void extract(String content);
 }

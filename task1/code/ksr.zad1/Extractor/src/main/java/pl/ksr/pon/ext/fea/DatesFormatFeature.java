@@ -10,7 +10,7 @@ public class DatesFormatFeature extends Feature implements TextFeature {
         super(isSelected);
     }
 
-    public void extract(String count) {
+    public void extract(String mainContent, String comparingContent) {
         featureValue = 0;
     }
 

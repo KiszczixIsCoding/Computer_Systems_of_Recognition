@@ -12,7 +12,7 @@ public class MostOftenStringOfNumbersFeature extends Feature implements TextFeat
     }
 
     @Override
-    public void extract(String content) {
+    public void extract(String content, String comparingContent) {
         featureValue = 0;
     }
 

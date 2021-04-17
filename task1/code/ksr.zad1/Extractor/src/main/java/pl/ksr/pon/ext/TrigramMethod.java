@@ -1,4 +1,4 @@
-package pl.ksr.pon.cla;
+package pl.ksr.pon.ext;
 
 import java.util.ArrayList;
 import java.util.List;

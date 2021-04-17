@@ -39,6 +39,7 @@ public class SGMLParser {
 
                     String parsedContent = Stoplist.removeMostPopularWordsFromString(content);
                     parsedContent = Stemmer.stemm(parsedContent);
+
                     currentArticle.setContent(parsedContent);
 
                     articlesInFile.add(currentArticle);

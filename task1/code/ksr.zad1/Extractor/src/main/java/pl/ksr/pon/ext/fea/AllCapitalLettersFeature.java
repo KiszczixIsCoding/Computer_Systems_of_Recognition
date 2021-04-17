@@ -14,7 +14,6 @@ public class AllCapitalLettersFeature extends Feature implements NumericalFeatur
 
     public void extract(String content) {
         featureValue = extractNumericalFeature(content);
-
     }
 
     @Override

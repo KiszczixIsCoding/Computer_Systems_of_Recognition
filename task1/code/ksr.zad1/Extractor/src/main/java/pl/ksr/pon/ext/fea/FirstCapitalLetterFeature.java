@@ -11,11 +11,13 @@ public class FirstCapitalLetterFeature extends Feature implements NumericalFeatu
     }
 
     public void extract(String content) {
-        featureValue = 2;
+        featureValue = extractNumericalFeature(content);
     }
 
     @Override
     public int extractNumericalFeature(String content) {
+        AllCapitalLettersFeature allCapitalLettersFeature = new AllCapitalLettersFeature(true);
+
         int counter = 0;
         String[] wordsList = content.split("\\s+");
         for (String word : wordsList) {
@@ -25,7 +27,8 @@ public class FirstCapitalLetterFeature extends Feature implements NumericalFeatu
             }
         }
 
-        //TODO Remove AllCapitalLettersFeature extraction result
+        System.out.println(counter + " P " + allCapitalLettersFeature.extractNumericalFeature(content));
+        counter = counter - allCapitalLettersFeature.extractNumericalFeature(content);
         return counter;
     }
 }

@@ -13,6 +13,9 @@ import pl.ksr.pon.cla.*;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
+import pl.ksr.pon.ext.TrigramMethod;
+import pl.ksr.pon.ext.fea.FirstCapitalLetterFeature;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -107,18 +110,15 @@ public class PrimaryController implements Initializable {
                 booleanList.add(((CheckBox)item).isSelected());
             }
 
-            for (Article article : articlesList) {
-                article.initFeaturesVector(booleanList);
-            }
-
-            for (Article testingArticle : testingList) {
-                KnnClassifier classifier = new KnnClassifier(kNeighbours, selectedMetric);
-                classifier.classify(trainingList, testingArticle);
-            }
-
-            // Trigram test:
             System.out.println("similarity = " +
                     TrigramMethod.calculateSimilarity("Missisipi", "Missouri"));
+
+
+            KnnClassifier classifier = new KnnClassifier(kNeighbours, selectedMetric);
+            for (Article testingArticle : testingList) {
+                classifier.classify(trainingList, testingArticle, booleanList);
+            }
+
 
         });
 

@@ -12,7 +12,7 @@ public class MostFrequentCurrencyFeature extends Feature implements TextFeature 
         super(isSelected);
     }
 
-    public void extract(String content) {
+    public void extract(String content, String comparingContent) {
         featureValue = 0;
     }
 

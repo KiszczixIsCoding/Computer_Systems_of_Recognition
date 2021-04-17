@@ -15,10 +15,15 @@ public class Article {
     private ClassifiedPlaces predictedPlace = null;
     private FeaturesVector featuresVector;
 
-    public void initFeaturesVector(List<Boolean> selectedFeatures) {
+    public void initFeaturesVector(List<Boolean> selectedFeatures, String comparedArticleContent) {
         this.featuresVector = new FeaturesVector(selectedFeatures);
         for (Feature feature : this.featuresVector.getFeatures()) {
-            feature.extract(content);
+            if (feature instanceof NumericalFeature) {
+                ((NumericalFeature) feature).extract(content);
+            }
+            if (feature instanceof  TextFeature) {
+                ((TextFeature) feature).extract(content, comparedArticleContent);
+            }
         }
     }
 }

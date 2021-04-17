@@ -26,9 +26,25 @@ public class Stoplist {
         List<String> wordsList = new ArrayList<>(Arrays.asList(wordsArray));
 
         for (String popularWord : dictionary) {
+            // small letters
+            wordsList.removeAll(Collections.singleton(popularWord));
+
+            char[] charArray = popularWord.toCharArray();
+            charArray[0] = Character.toUpperCase(charArray[0]);
+            popularWord = Arrays.toString(charArray);
+
+            // first capital letter
             wordsList.removeAll(Collections.singleton(popularWord));
         }
 
         return StringUtils.join(wordsList, " ");
+    }
+
+    public static void convertToFirstCapital() {
+        for (String word : dictionary) {
+            char[] charArray = word.toCharArray();
+            charArray[0] = Character.toUpperCase(charArray[0]);
+            word = Arrays.toString(charArray);
+        }
     }
 }

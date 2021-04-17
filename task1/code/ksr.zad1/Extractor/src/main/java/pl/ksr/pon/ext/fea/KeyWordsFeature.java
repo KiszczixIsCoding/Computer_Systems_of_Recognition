@@ -2,7 +2,7 @@ package pl.ksr.pon.ext.fea;
 
 import org.apache.commons.lang3.StringUtils;
 import pl.ksr.pon.ext.TextFeature;
-import pl.ksr.pon.ext.dic.CurrencyDictionary;
+import pl.ksr.pon.ext.TrigramMethod;
 import pl.ksr.pon.ext.dic.KeyWordsDictionary;
 
 import java.util.HashMap;
@@ -16,8 +16,11 @@ public class KeyWordsFeature extends Feature implements TextFeature {
         super(isSelected);
     }
 
-    public void extract(String content) {
-        featureValue = 0;
+    public void extract(String content, String comparingContent) {
+        List<String> mainContentList = extractTextFeature(content);
+        List<String> comparingContentList = extractTextFeature(comparingContent);
+        // featureValue = TrigramMethod.calculateSimilarity(mainContentList, comparingContentList);
+
     }
 
     @Override
@@ -35,7 +38,7 @@ public class KeyWordsFeature extends Feature implements TextFeature {
         }
 
         // Sorting HashMap
-        keyWordsMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+//        keyWordsMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
         return null;
     }
 }

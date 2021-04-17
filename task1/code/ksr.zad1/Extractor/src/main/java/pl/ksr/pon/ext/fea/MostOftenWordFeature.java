@@ -13,7 +13,7 @@ public class MostOftenWordFeature extends Feature implements TextFeature {
     }
 
 
-    public void extract(String content) {
+    public void extract(String mainContent, String comparingContent) {
         featureValue = 0;
     }
 
