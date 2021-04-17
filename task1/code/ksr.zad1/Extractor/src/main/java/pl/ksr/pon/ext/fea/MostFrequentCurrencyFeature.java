@@ -7,14 +7,17 @@ import pl.ksr.pon.ext.dic.CurrencyDictionary;
 import java.util.*;
 
 public class MostFrequentCurrencyFeature extends Feature implements TextFeature {
-    private List<String> mostFrequentCurrencies;
 
     public MostFrequentCurrencyFeature(boolean isSelected) {
         super(isSelected);
     }
 
+    public void extract(String content) {
+        featureValue = 0;
+    }
+
     @Override
-    public List<String> extract(String content) {
+    public List<String> extractTextFeature(String content) {
         Map<String, Integer> currenciesMap = new HashMap<>();
         List<String> currenciesDictionary = new CurrencyDictionary().getDictionary();
 

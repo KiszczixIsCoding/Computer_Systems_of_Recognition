@@ -1,9 +1,6 @@
 package pl.ksr.pon.ext.fea;
 
-import org.apache.commons.lang3.StringUtils;
 import pl.ksr.pon.ext.TextFeature;
-import pl.ksr.pon.ext.dic.DateDictionary;
-
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -13,9 +10,12 @@ public class DatesFormatFeature extends Feature implements TextFeature {
         super(isSelected);
     }
 
-    @Override
-    public List<String> extract(String content) {
+    public void extract(String count) {
+        featureValue = 0;
+    }
 
+    @Override
+    public List<String> extractTextFeature(String content) {
 
         String shortMonths = "(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)";
         String months = "(?:January|February|March|April|May|June|July|August|September|October|November|December)";

@@ -1,7 +1,7 @@
 package pl.ksr.pon.ext.fea;
 
-public class Feature {
-    private double featureValue;
+public abstract class Feature {
+    protected double featureValue;
     protected boolean isSelected;
 
     public Feature(boolean isSelected) {
@@ -15,4 +15,6 @@ public class Feature {
     public boolean isSelected() {
         return isSelected;
     }
+
+    public abstract void extract(String content);
 }

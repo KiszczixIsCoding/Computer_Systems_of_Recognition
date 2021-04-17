@@ -8,9 +8,12 @@ public class AllWordsCountFeature extends Feature implements NumericalFeature {
         super(isSelected);
     }
 
-    @Override
-    public int extract(String content) {
+    public void extract(String content) {
+        featureValue = extractNumericalFeature(content);
+    }
 
+    @Override
+    public int extractNumericalFeature(String content) {
         String[] wordsList = content.split("\\s+");
         return wordsList.length;
     }

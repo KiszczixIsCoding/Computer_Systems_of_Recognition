@@ -6,21 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c9a89900-78a4-40d1-8684-3cf7e58cdc9d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllCapitalLettersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllCapitalLettersFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllWordsCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllWordsCountFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/CitesCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/CitesCountFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesFormatFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesFormatFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/Feature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/Feature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/FirstCapitalLetterFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/FirstCapitalLetterFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/KeyWordsFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/KeyWordsFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostFrequentCurrencyFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostFrequentCurrencyFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenStringOfNumbersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenStringOfNumbersFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenWordFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenWordFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +115,7 @@
       <workItem from="1618314300891" duration="10879000" />
       <workItem from="1618508467037" duration="3019000" />
       <workItem from="1618565530057" duration="9047000" />
-      <workItem from="1618586500746" duration="6975000" />
+      <workItem from="1618586500746" duration="20396000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>
@@ -158,22 +145,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="stemmer implemented but dont change text" />
     <option name="LAST_COMMIT_MESSAGE" value="stemmer implemented but dont change text" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Stemmer.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Stemmer.java</url>
-          <line>7</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

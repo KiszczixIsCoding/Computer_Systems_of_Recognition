@@ -1,19 +1,23 @@
 package pl.ksr.pon.ext.fea;
 
 import pl.ksr.pon.ext.FeatureUtils;
+import pl.ksr.pon.ext.TextFeature;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class MostOftenStringOfNumbersFeature extends Feature {
+public class MostOftenStringOfNumbersFeature extends Feature implements TextFeature {
 
     public MostOftenStringOfNumbersFeature(boolean isSelected) {
         super(isSelected);
     }
 
-    public String extract(String content) {
+    @Override
+    public void extract(String content) {
+        featureValue = 0;
+    }
+
+    @Override
+    public List<String> extractTextFeature(String content) {
         String[] wordsList = content.split("\\s+");
         List<String> numbersList = new ArrayList<>();
         for (String word : wordsList) {
@@ -40,7 +44,8 @@ public class MostOftenStringOfNumbersFeature extends Feature {
             }
         }
         if (numbersList.size() > 0) {
-            return FeatureUtils.mostCommon(numbersList);
+            String mostCommon = FeatureUtils.mostCommon(numbersList);
+            return new ArrayList<>(Collections.singletonList(mostCommon));
         } else {
             return null;
         }

@@ -31,6 +31,8 @@ public class SGMLParser {
                     currentArticle = new Article();
                     currentArticle.setTitle(reutersArticle.select("TITLE").text());
                     currentArticle.setDate(reutersArticle.select("DATE").text());
+                    currentArticle.setPlace(ClassifiedPlaces.valueOf(
+                            reutersArticle.select("PLACES").select("D").text()));
 
                     String content = reutersArticle.select("TEXT").get(0).textNodes()
                             .get(reutersArticle.select("TEXT").get(0).textNodes().size()-1).text();

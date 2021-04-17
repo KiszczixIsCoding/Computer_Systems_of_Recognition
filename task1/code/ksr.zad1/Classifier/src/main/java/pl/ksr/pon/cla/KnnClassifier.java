@@ -10,11 +10,14 @@ import java.util.stream.Stream;
 public class KnnClassifier {
     private int kNeighbours;
     private Metric metric;
-    Map<ClassifiedPlaces, Integer> kNeighboursPlacesMap;
 
-    private void classify(List<Article> trainingList, Article testingArticle) {
+    public KnnClassifier(int kNeighbours, Metric metric) {
+        this.kNeighbours = kNeighbours;
+        this.metric = metric;
+    }
+
+    public void classify(List<Article> trainingList, Article testingArticle) {
         Map<Article, Double> trainingMapWithDistances = new HashMap<>();
-        Map<ClassifiedPlaces, Integer> kNeighboursPlacesMap;
 
         for (Article trainingArticle : trainingList) {
             double distance = metric.countDistance(trainingArticle.getFeaturesVector(),
@@ -23,10 +26,10 @@ public class KnnClassifier {
         }
 
         Map<Article, Double> sortedTrainingMap = sortMapWithDoubles(trainingMapWithDistances);
-        kNeighboursPlacesMap = initializeClassifiedPlacesMap();
 
+        Map<ClassifiedPlaces, Integer> kNeighboursPlacesMap = initializeClassifiedPlacesMap();
 
-        testingArticle.setPredictedPlace(predictPlace(sortedTrainingMap));
+        testingArticle.setPredictedPlace(predictPlace(sortedTrainingMap, kNeighboursPlacesMap));
     }
 
     public Map<Article, Double> sortMapWithDoubles(Map<Article, Double> mapToSort) {
@@ -39,7 +42,8 @@ public class KnnClassifier {
                         (oldValue, newValue) -> oldValue, LinkedHashMap::new));
     }
 
-    public ClassifiedPlaces predictPlace(Map<Article, Double> sortedTrainingMap) {
+    public ClassifiedPlaces predictPlace(Map<Article, Double> sortedTrainingMap,
+                                         Map<ClassifiedPlaces, Integer> kNeighboursPlacesMap) {
         // Limit map to k-nearest articles
         Map<Article, Double> kArticles = sortedTrainingMap.entrySet().stream().limit(kNeighbours)
                                                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -52,7 +56,7 @@ public class KnnClassifier {
         // Get map entry (place) with maximum occurrence
         Map.Entry<ClassifiedPlaces, Integer> maxEntry = Collections.max(kNeighboursPlacesMap.entrySet(),
                 Map.Entry.comparingByValue());
-
+        
         return maxEntry.getKey();
     }
 

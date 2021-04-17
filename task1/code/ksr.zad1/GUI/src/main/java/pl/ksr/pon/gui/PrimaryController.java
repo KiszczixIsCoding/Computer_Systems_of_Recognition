@@ -1,6 +1,12 @@
 package pl.ksr.pon.gui;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,14 +15,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import pl.ksr.pon.cla.ChebyshevMetric;
-import pl.ksr.pon.cla.EuclideanMetric;
-import pl.ksr.pon.cla.ManhattanMetric;
-import pl.ksr.pon.cla.Metric;
+import pl.ksr.pon.cla.*;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
 import pl.ksr.pon.ext.fea.DatesFormatFeature;
+import pl.ksr.pon.ext.fea.Feature;
 import pl.ksr.pon.ext.fea.MostFrequentCurrencyFeature;
 import pl.ksr.pon.ext.fea.MostOftenWordFeature;
 
@@ -24,10 +28,8 @@ import pl.ksr.pon.ext.fea.MostOftenWordFeature;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class PrimaryController implements Initializable {
@@ -35,7 +37,7 @@ public class PrimaryController implements Initializable {
     @FXML private Slider proportionSlider;
     @FXML private Label proportionLabel;
     @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn, classifyBtn;
-    @FXML private VBox tradesBox;
+    @FXML private VBox featuresBox;
     @FXML private TextField kNeighboursField;
     @FXML private Label filesCountLabel, articlesCountLabel;
     @FXML private TableView<Benchmark> resultsTable;
@@ -43,7 +45,7 @@ public class PrimaryController implements Initializable {
     private ArrayList<String> metricNames;
     double trainPart, testPart;
     int kNeighbours = 0;
-    private List<Article> articlesList;
+    private List<Article> articlesList, trainingList, testingList;
     private Metric selectedMetric;
 
     @Override
@@ -75,45 +77,57 @@ public class PrimaryController implements Initializable {
             testPart = 100 - trainPart;
             proportionLabel.setText(Math.round(trainPart) + " - treningowa"
                     + " / " + Math.round(testPart) + " - testowa");
+
         });
 
         markAllBtn.setOnAction(actionEvent -> {
-            for (Node item : tradesBox.getChildren()) {
+            for (Node item : featuresBox.getChildren()) {
                 ((CheckBox)item).setSelected(true);
             }
         });
 
         unmarkAllBtn.setOnAction(actionEvent -> {
-            for (Node item : tradesBox.getChildren()) {
+            for (Node item : featuresBox.getChildren()) {
                 ((CheckBox)item).setSelected(false);
             }
         });
 
-        List<Boolean> featuresSelectionList = new ArrayList<>(Arrays.asList(new Boolean[11]));
-        
 
         loadFilesBtn.setOnAction(actionEvent -> {
             List<File> filesList = fileChooser.showOpenMultipleDialog(App.getStage());
             Dao<Article> dao = new ArticleDaoFactory().getArticleDao(filesList);
             articlesList = dao.getAll();
-//            MostOftenWordFeature mostOftenWordFeature = new MostOftenWordFeature();
-//            for (Article article : articlesList) {
-//                System.out.println(mostOftenWordFeature.extract(article.getContent()));
-//            }
+
             filesCountLabel.setText(String.valueOf(filesList.size()));
             articlesCountLabel.setText(String.valueOf(articlesList.size()));
+
+
         });
 
         classifyBtn.setOnAction(actionEvent -> {
+            Collections.shuffle(articlesList);
+            int articlesListSize = articlesList.size();
+            int divisionIndex = (int)(trainPart / 100 * articlesListSize + 1);
+            trainingList = new ArrayList<>(articlesList.subList(0, divisionIndex));
+            testingList = new ArrayList<>(articlesList.subList(divisionIndex, articlesListSize));
+
             if (!kNeighboursField.getText().isEmpty()) {
                 kNeighbours = Integer.parseInt(kNeighboursField.getText());
             }
 
-//            DatesFormatFeature feature = new DatesFormatFeature();
-//            for (Article article : articlesList) {
-//                System.out.println(article.getTitle());
-//                feature.extract(article.getContent());
-//            }
+            List<Boolean> booleanList = new ArrayList<>();
+            for (Node item : featuresBox.getChildren()) {
+                booleanList.add(((CheckBox)item).isSelected());
+            }
+
+            for (Article article : articlesList) {
+                article.initFeaturesVector(booleanList);
+            }
+
+            for (Article testingArticle : testingList) {
+                KnnClassifier classifier = new KnnClassifier(kNeighbours, selectedMetric);
+                classifier.classify(trainingList, testingArticle);
+            }
 
         });
 
@@ -144,4 +158,5 @@ public class PrimaryController implements Initializable {
     private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }
+
 }

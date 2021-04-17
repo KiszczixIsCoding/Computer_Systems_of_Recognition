@@ -5,14 +5,17 @@ import pl.ksr.pon.ext.NumericalFeature;
 
 @Getter
 public class FirstCapitalLetterFeature extends Feature implements NumericalFeature {
-    private int firstCapitalLetterCount;
 
     public FirstCapitalLetterFeature(boolean isSelected) {
         super(isSelected);
     }
 
+    public void extract(String content) {
+        featureValue = 2;
+    }
+
     @Override
-    public int extract(String content) {
+    public int extractNumericalFeature(String content) {
         int counter = 0;
         String[] wordsList = content.split("\\s+");
         for (String word : wordsList) {

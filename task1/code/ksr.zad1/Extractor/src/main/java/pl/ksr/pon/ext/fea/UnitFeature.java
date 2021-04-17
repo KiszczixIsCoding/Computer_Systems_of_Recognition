@@ -5,13 +5,16 @@ import pl.ksr.pon.ext.dic.UnitDictionary;
 
 public class UnitFeature extends Feature implements NumericalFeature {
 
-
     public UnitFeature(boolean isSelected) {
         super(isSelected);
     }
 
+    public void extract(String content) {
+        featureValue = extractNumericalFeature(content);
+    }
+
     @Override
-    public int extract(String content) {
+    public int extractNumericalFeature(String content) {
         int siCounter = 0;
         int imperialCounter = 0;
 

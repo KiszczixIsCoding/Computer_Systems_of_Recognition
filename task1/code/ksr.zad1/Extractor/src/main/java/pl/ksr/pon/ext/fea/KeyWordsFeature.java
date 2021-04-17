@@ -11,12 +11,17 @@ import java.util.Locale;
 import java.util.Map;
 
 public class KeyWordsFeature extends Feature implements TextFeature {
+
     public KeyWordsFeature(boolean isSelected) {
         super(isSelected);
     }
 
+    public void extract(String content) {
+        featureValue = 0;
+    }
+
     @Override
-    public List<String> extract(String content) {
+    public List<String> extractTextFeature(String content) {
         Map<String, Integer> keyWordsMap = new HashMap<>();
         List<String> keyWordsDictionary = new KeyWordsDictionary().getDictionary();
 

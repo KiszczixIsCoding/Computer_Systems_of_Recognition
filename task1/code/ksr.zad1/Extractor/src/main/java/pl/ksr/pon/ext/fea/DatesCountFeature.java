@@ -10,8 +10,12 @@ public class DatesCountFeature extends Feature implements NumericalFeature {
         super(isSelected);
     }
 
+    public void extract(String content) {
+        featureValue = extractNumericalFeature(content);
+    }
+
     @Override
-    public int extract(String content) {
+    public int extractNumericalFeature(String content) {
         int datesCounter = 0;
         String[] wordsList = content.split("\\s+");
         for (String word : wordsList) {

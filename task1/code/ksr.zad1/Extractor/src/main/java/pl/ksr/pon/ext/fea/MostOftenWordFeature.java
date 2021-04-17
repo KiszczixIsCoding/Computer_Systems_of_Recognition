@@ -1,17 +1,24 @@
 package pl.ksr.pon.ext.fea;
 
 import pl.ksr.pon.ext.FeatureUtils;
+import pl.ksr.pon.ext.TextFeature;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MostOftenWordFeature extends Feature {
+public class MostOftenWordFeature extends Feature implements TextFeature {
 
     public MostOftenWordFeature(boolean isSelected) {
         super(isSelected);
     }
 
-    public List<String> extract(String content) {
+
+    public void extract(String content) {
+        featureValue = 0;
+    }
+
+    @Override
+    public List<String> extractTextFeature(String content) {
         String[] wordsArray = content.split("\\s+");
         List<String> wordsList = Arrays.asList(wordsArray);
 
