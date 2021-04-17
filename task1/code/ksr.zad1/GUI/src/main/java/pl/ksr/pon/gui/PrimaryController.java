@@ -1,12 +1,6 @@
 package pl.ksr.pon.gui;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,17 +13,10 @@ import pl.ksr.pon.cla.*;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
-import pl.ksr.pon.ext.fea.DatesFormatFeature;
-import pl.ksr.pon.ext.fea.Feature;
-import pl.ksr.pon.ext.fea.MostFrequentCurrencyFeature;
-import pl.ksr.pon.ext.fea.MostOftenWordFeature;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 public class PrimaryController implements Initializable {
@@ -128,6 +115,10 @@ public class PrimaryController implements Initializable {
                 KnnClassifier classifier = new KnnClassifier(kNeighbours, selectedMetric);
                 classifier.classify(trainingList, testingArticle);
             }
+
+            // Trigram test:
+            System.out.println("similarity = " +
+                    TrigramMethod.calculateSimilarity("Missisipi", "Missouri"));
 
         });
 
