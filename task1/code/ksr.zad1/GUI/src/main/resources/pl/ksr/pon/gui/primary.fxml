@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
    <children>
       <Button fx:id="loadFilesBtn" layoutX="88.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Wczytaj pliki" />
-      <ChoiceBox fx:id="metricChoiceBox" layoutX="126.0" layoutY="464.0" prefHeight="25.0" prefWidth="140.0" />
+      <ChoiceBox fx:id="metricChoiceBox" layoutX="76.0" layoutY="470.0" prefHeight="25.0" prefWidth="140.0" />
       <Slider fx:id="proportionSlider" layoutX="67.0" layoutY="160.0" majorTickUnit="20.0" minorTickCount="5" prefHeight="14.0" prefWidth="157.0" showTickLabels="true" showTickMarks="true" value="50.0" />
       <Label fx:id="proportionLabel" layoutX="65.0" layoutY="132.0" text="50 - treningowa / 50 - testowa" />
       <Label layoutX="23.0" layoutY="84.0" prefHeight="32.0" prefWidth="276.0" text="Podział wczytanego zbioru na dwie części: " textAlignment="CENTER" wrapText="true">
@@ -58,10 +48,7 @@
       <TextField fx:id="kNeighboursField" layoutX="67.0" layoutY="363.0" prefHeight="25.0" prefWidth="157.0" />
       <Separator layoutX="23.0" layoutY="301.0" prefHeight="11.0" prefWidth="276.0" />
       <Separator layoutX="23.0" layoutY="405.0" prefHeight="11.0" prefWidth="276.0" />
-      <Label layoutX="35.0" layoutY="423.0" prefHeight="21.0" prefWidth="236.0" text="Wybierz metrykę i/lub miarę podobieństwa:" />
-      <Label layoutX="24.0" layoutY="468.0" prefHeight="17.0" prefWidth="67.0" text="Metryka:" />
-      <Label layoutX="24.0" layoutY="484.0" prefHeight="48.0" prefWidth="87.0" text="Miara podobieństwa:" wrapText="true" />
-      <ChoiceBox fx:id="metricChoiceBox1" layoutX="126.0" layoutY="501.0" prefHeight="21.0" prefWidth="140.0" />
+      <Label layoutX="98.0" layoutY="440.0" prefHeight="21.0" prefWidth="96.0" text="Wybierz metrykę:" />
       <Separator layoutX="289.0" layoutY="67.0" orientation="VERTICAL" prefHeight="478.0" prefWidth="20.0" />
       <Separator layoutX="19.0" layoutY="536.0" prefHeight="18.0" prefWidth="580.0" />
       <TableView fx:id="resultsTable" layoutX="690.0" layoutY="79.0" prefHeight="200.0" prefWidth="239.0" style="-fx-min-width: 250;" />
