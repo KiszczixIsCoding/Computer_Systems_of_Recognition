@@ -21,7 +21,7 @@ public class Article {
             if (feature instanceof NumericalFeature) {
                 ((NumericalFeature) feature).extract(content);
             }
-            if (feature instanceof  TextFeature) {
+            if (feature instanceof TextFeature) {
                 ((TextFeature) feature).extract(content, comparedArticleContent);
             }
         }

@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" afterDir="false" />
+>>>>>>> hubert
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618738910560</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix stop list, parser excludes &quot;Blah blah blah.&quot;">
+      <created>1618743910319</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618743910319</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +191,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="stemmer implemented but dont change text" />
     <MESSAGE value="fix stemmer" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix stemmer" />
+    <MESSAGE value="fix stop list, parser excludes &quot;Blah blah blah.&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix stop list, parser excludes &quot;Blah blah blah.&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
