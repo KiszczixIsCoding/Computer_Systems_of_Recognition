@@ -9,12 +9,13 @@ public class AllWordsCountFeature extends Feature implements NumericalFeature {
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content);
+        featureValue = extractNumericalFeature(content) / 100.0;
     }
 
     @Override
     public int extractNumericalFeature(String content) {
         String[] wordsList = content.split("\\s+");
+//        System.out.println("liczba slow: " + wordsList.length);
         return wordsList.length;
     }
 }

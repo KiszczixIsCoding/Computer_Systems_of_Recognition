@@ -40,7 +40,7 @@ public class PrimaryController implements Initializable {
     @FXML private BarChart<String, Number> classificationBarChart;
 
     private ArrayList<String> metricNames;
-    double trainPart, testPart;
+    double trainPart = 50, testPart;
     int kNeighbours = 0;
     private List<Article> articlesList, trainingList, testingList;
     private Metric selectedMetric;
