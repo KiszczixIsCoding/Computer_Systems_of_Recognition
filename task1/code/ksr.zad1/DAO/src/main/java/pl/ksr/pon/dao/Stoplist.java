@@ -18,7 +18,8 @@ public class Stoplist {
             "know", "said", "did", "been", "people", "get", "him", "time", "them", "some",
             "how", "now", "which", "could", "think", "than", "our", "into", "other", "right",
             "here", "well", "new", "then", "because", "go", "see", "back", "only", "these",
-            "over", "going", "us", "also", "two", "first", "its", "even", "good", "way");
+            "over", "going", "us", "also", "two", "first", "its", "even", "good", "way",
+            "v", "ct");
 
 
     public static String removeMostPopularWordsFromString(String content) {
@@ -31,7 +32,7 @@ public class Stoplist {
 
             char[] charArray = popularWord.toCharArray();
             charArray[0] = Character.toUpperCase(charArray[0]);
-            popularWord = Arrays.toString(charArray);
+            popularWord = String.valueOf(charArray);
 
             // first capital letter
             wordsList.removeAll(Collections.singleton(popularWord));

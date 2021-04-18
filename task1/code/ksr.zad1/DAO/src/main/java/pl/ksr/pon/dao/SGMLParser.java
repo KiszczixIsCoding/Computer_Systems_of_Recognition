@@ -4,6 +4,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import pl.ksr.pon.ext.Article;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +27,11 @@ public class SGMLParser {
 
             for (Element reutersArticle : reutersList) {
                 if (reutersArticle.select("PLACES").select("D").size() == 1
-                        && checkPlace(reutersArticle.select("PLACES").select("D").text())) {
+                        && checkPlace(reutersArticle.select("PLACES").select("D").text())
+                        //sprawdzamy czy nie zawiera Blah blah blah.
+                        && !reutersArticle.select("TEXT").get(0).textNodes()
+                        .get(reutersArticle.select("TEXT").get(0).textNodes().size() - 1).text().
+                                contains("Blah blah blah.")) {
 
                     currentArticle = new Article();
                     currentArticle.setTitle(reutersArticle.select("TITLE").text());
@@ -39,7 +44,7 @@ public class SGMLParser {
                         currentArticle.setPlace(ClassifiedPlaces.valueOf("west_germany"));
                     }
                     String content = reutersArticle.select("TEXT").get(0).textNodes()
-                            .get(reutersArticle.select("TEXT").get(0).textNodes().size()-1).text();
+                            .get(reutersArticle.select("TEXT").get(0).textNodes().size() - 1).text();
 
                     String parsedContent = Stoplist.removeMostPopularWordsFromString(content);
                     parsedContent = Stemmer.stemm(parsedContent);

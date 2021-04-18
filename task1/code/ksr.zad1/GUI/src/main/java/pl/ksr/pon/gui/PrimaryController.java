@@ -19,6 +19,7 @@ import pl.ksr.pon.ext.ClassifiedPlaces;
 import pl.ksr.pon.ext.TrigramMethod;
 import pl.ksr.pon.ext.fea.CitesCountFeature;
 import pl.ksr.pon.ext.fea.FirstCapitalLetterFeature;
+import pl.ksr.pon.ext.fea.MostOftenWordFeature;
 import pl.ksr.pon.ext.fea.UnitFeature;
 
 import java.io.File;
