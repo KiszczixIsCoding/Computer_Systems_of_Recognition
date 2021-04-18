@@ -15,7 +15,7 @@ public class DatesFormatFeature extends Feature implements TextFeature {
     }
 
     @Override
-    public List<String> extractTextFeature(String content) {
+    public String extractTextFeature(String content) {
 
         String shortMonths = "(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)";
         String months = "(?:January|February|March|April|May|June|July|August|September|October|November|December)";
@@ -31,10 +31,10 @@ public class DatesFormatFeature extends Feature implements TextFeature {
             patterns.add(Pattern.compile(numericMonths + separator + shortDays + separator + shortYears));
         }
 
-        patterns.add(Pattern.compile(months + " " + shortDays + ", " + years + end)); //ok
-        patterns.add(Pattern.compile(months + " " + shortDays + end)); // ok
-        patterns.add(Pattern.compile(shortMonths + " " + shortDays + ", " + years + end)); //ok
-        patterns.add(Pattern.compile(months + " " + shortDays + end)); // ok
+        patterns.add(Pattern.compile(months + " " + shortDays + ", " + years + end));
+        patterns.add(Pattern.compile(months + " " + shortDays + end));
+        patterns.add(Pattern.compile(shortMonths + " " + shortDays + ", " + years + end));
+        patterns.add(Pattern.compile(months + " " + shortDays + end));
         patterns.add(Pattern.compile(months + " " + years + end));
         patterns.add(Pattern.compile(shortMonths + " " + shortDays + end));
         patterns.add(Pattern.compile(shortDays + " " + months + end));
@@ -56,7 +56,8 @@ public class DatesFormatFeature extends Feature implements TextFeature {
                 patternsMap.put(pattern.toString(), (int)pattern.matcher(content).results().count());
             }
         }
-        System.out.println("\n");
+
+
         return null;
     }
 }

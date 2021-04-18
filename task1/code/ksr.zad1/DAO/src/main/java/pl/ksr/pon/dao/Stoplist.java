@@ -40,12 +40,4 @@ public class Stoplist {
 
         return StringUtils.join(wordsList, " ");
     }
-
-    public static void convertToFirstCapital() {
-        for (String word : dictionary) {
-            char[] charArray = word.toCharArray();
-            charArray[0] = Character.toUpperCase(charArray[0]);
-            word = Arrays.toString(charArray);
-        }
-    }
 }

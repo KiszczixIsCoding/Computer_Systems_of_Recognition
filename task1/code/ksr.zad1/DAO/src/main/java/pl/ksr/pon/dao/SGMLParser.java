@@ -1,7 +1,6 @@
 package pl.ksr.pon.dao;
 
 import org.jsoup.nodes.Element;
-import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import pl.ksr.pon.ext.Article;
 
@@ -43,6 +42,7 @@ public class SGMLParser {
                     } else {
                         currentArticle.setPlace(ClassifiedPlaces.valueOf("west_germany"));
                     }
+
                     String content = reutersArticle.select("TEXT").get(0).textNodes()
                             .get(reutersArticle.select("TEXT").get(0).textNodes().size() - 1).text();
 

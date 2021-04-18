@@ -5,10 +5,8 @@ import pl.ksr.pon.ext.TextFeature;
 import pl.ksr.pon.ext.TrigramMethod;
 import pl.ksr.pon.ext.dic.KeyWordsDictionary;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class KeyWordsFeature extends Feature implements TextFeature {
 
@@ -17,20 +15,22 @@ public class KeyWordsFeature extends Feature implements TextFeature {
     }
 
     public void extract(String content, String comparingContent) {
-        List<String> mainContentList = extractTextFeature(content);
-        List<String> comparingContentList = extractTextFeature(comparingContent);
-        // featureValue = TrigramMethod.calculateSimilarity(mainContentList, comparingContentList);
+        String mainContent = extractTextFeature(content);
+        String compContent = extractTextFeature(comparingContent);
+        featureValue = TrigramMethod.calculateSimilarity(mainContent, compContent);
 
     }
 
     @Override
-    public List<String> extractTextFeature(String content) {
+    public String extractTextFeature(String content) {
         Map<String, Integer> keyWordsMap = new HashMap<>();
         List<String> keyWordsDictionary = new KeyWordsDictionary().getDictionary();
 
         for (String keyWord : keyWordsDictionary) {
-            String upperKeyWord = keyWord.replaceFirst(
-                    String.valueOf(keyWord.charAt(0)), keyWord.toUpperCase(Locale.ROOT));
+
+            char[] charArray = keyWord.toCharArray();
+            charArray[0] = Character.toUpperCase(charArray[0]);
+            String upperKeyWord = String.valueOf(charArray);
 
             int count = StringUtils.countMatches(content, keyWord) + StringUtils.countMatches(content, upperKeyWord);
             keyWordsMap.put(keyWord, count);
@@ -38,7 +38,10 @@ public class KeyWordsFeature extends Feature implements TextFeature {
         }
 
         // Sorting HashMap
-//        keyWordsMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
-        return null;
+        keyWordsMap = keyWordsMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(
+                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+        return keyWordsMap.keySet().iterator().next();
     }
 }

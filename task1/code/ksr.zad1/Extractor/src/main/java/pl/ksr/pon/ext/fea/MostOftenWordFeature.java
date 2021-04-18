@@ -18,7 +18,7 @@ public class MostOftenWordFeature extends Feature implements TextFeature {
     }
 
     @Override
-    public List<String> extractTextFeature(String content) {
+    public String extractTextFeature(String content) {
         String[] wordsArray = content.split("\\s+");
         List<String> wordsList = Arrays.asList(wordsArray);
 
@@ -28,7 +28,7 @@ public class MostOftenWordFeature extends Feature implements TextFeature {
         wordsList = FeatureUtils.removeAll(wordsList, secondMostCommonWord);
         String thirdMostCommonWord = FeatureUtils.mostCommon(wordsList);
 
-        return Arrays.asList(mostCommonWord, secondMostCommonWord, thirdMostCommonWord);
+        return mostCommonWord;
     }
 
 }

@@ -17,16 +17,25 @@ public class MostFrequentCurrencyFeature extends Feature implements TextFeature 
     }
 
     @Override
-    public List<String> extractTextFeature(String content) {
+    public String extractTextFeature(String content) {
         Map<String, Integer> currenciesMap = new HashMap<>();
         List<String> currenciesDictionary = new CurrencyDictionary().getDictionary();
 
         for (String currency : currenciesDictionary) {
-            String upperCurrency = currency.replaceFirst(
-                    String.valueOf(currency.charAt(0)), currency.toUpperCase(Locale.ROOT));
 
-            int count = StringUtils.countMatches(content, currency) + StringUtils.countMatches(content, upperCurrency);
+            char[] charArray = currency.toCharArray();
+            charArray[0] = Character.toUpperCase(charArray[0]);
+            String upperCurrency = String.valueOf(charArray);
 
+
+            int count = 0;
+            if (currency.equals("sin")) {
+                String[] wordsList = content.split("\\s+");
+                List<String> words = new ArrayList<>(Arrays.asList(wordsList));
+                count = Collections.frequency(words, "sin") + Collections.frequency(words, "Sin");
+            } else {
+                count = StringUtils.countMatches(content, currency) + StringUtils.countMatches(content, upperCurrency);
+            }
             if (currency.equals("dlr")) {
                 currenciesMap.put("dollar", currenciesMap.get("dollar"));
             } else {
@@ -37,7 +46,7 @@ public class MostFrequentCurrencyFeature extends Feature implements TextFeature 
 
         // Sorting HashMap
         currenciesMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
-
-        return Arrays.asList("1", "1");
+        Map.Entry<String, Integer> mostFrequentCurrency = currenciesMap.entrySet().iterator().next();
+        return mostFrequentCurrency.getKey();
     }
 }

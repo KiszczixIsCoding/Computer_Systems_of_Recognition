@@ -17,7 +17,7 @@ public class MostOftenStringOfNumbersFeature extends Feature implements TextFeat
     }
 
     @Override
-    public List<String> extractTextFeature(String content) {
+    public String extractTextFeature(String content) {
         String[] wordsList = content.split("\\s+");
         List<String> numbersList = new ArrayList<>();
         for (String word : wordsList) {
@@ -44,8 +44,7 @@ public class MostOftenStringOfNumbersFeature extends Feature implements TextFeat
             }
         }
         if (numbersList.size() > 0) {
-            String mostCommon = FeatureUtils.mostCommon(numbersList);
-            return new ArrayList<>(Collections.singletonList(mostCommon));
+            return FeatureUtils.mostCommon(numbersList);
         } else {
             return null;
         }
