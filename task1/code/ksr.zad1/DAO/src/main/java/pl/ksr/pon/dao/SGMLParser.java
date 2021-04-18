@@ -31,9 +31,13 @@ public class SGMLParser {
                     currentArticle = new Article();
                     currentArticle.setTitle(reutersArticle.select("TITLE").text());
                     currentArticle.setDate(reutersArticle.select("DATE").text());
-                    currentArticle.setPlace(ClassifiedPlaces.valueOf(
-                            reutersArticle.select("PLACES").select("D").text()));
 
+                    String place = reutersArticle.select("PLACES").select("D").text();
+                    if (!place.equals("west-germany")) {
+                        currentArticle.setPlace(ClassifiedPlaces.valueOf(place));
+                    } else {
+                        currentArticle.setPlace(ClassifiedPlaces.valueOf("west_germany"));
+                    }
                     String content = reutersArticle.select("TEXT").get(0).textNodes()
                             .get(reutersArticle.select("TEXT").get(0).textNodes().size()-1).text();
 
@@ -56,7 +60,12 @@ public class SGMLParser {
     public boolean checkPlace(String country) {
         ArrayList<String> countriesNames = new ArrayList<>();
         for (ClassifiedPlaces place : ClassifiedPlaces.values()) {
-            countriesNames.add(place.name());
+            if (place == ClassifiedPlaces.west_germany) {
+                countriesNames.add("west-germany");
+            } else {
+                countriesNames.add(place.name());
+            }
+
         }
         return countriesNames.contains(country);
     }

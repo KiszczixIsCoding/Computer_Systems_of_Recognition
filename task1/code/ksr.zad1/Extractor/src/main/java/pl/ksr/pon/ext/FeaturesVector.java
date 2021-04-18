@@ -12,7 +12,7 @@ public class FeaturesVector {
         features = new ArrayList<>();
         features.add(new AllCapitalLettersFeature(selectedFeatures.get(0))); //ok
         features.add(new AllWordsCountFeature(selectedFeatures.get(1))); //ok
-        features.add(new CitesCountFeature(selectedFeatures.get(2)));
+        features.add(new CitesCountFeature(selectedFeatures.get(2))); //ok
         features.add(new DatesCountFeature(selectedFeatures.get(3)));
         features.add(new DatesFormatFeature(selectedFeatures.get(4)));
         features.add(new FirstCapitalLetterFeature(selectedFeatures.get(5))); //ok

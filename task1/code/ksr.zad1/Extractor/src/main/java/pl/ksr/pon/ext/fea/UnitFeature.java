@@ -26,6 +26,8 @@ public class UnitFeature extends Feature implements NumericalFeature {
         for (String impUnit : UnitDictionary.getImperialUnits()) {
             imperialCounter += StringUtils.countMatches(content, impUnit);
         }
+
+        System.out.println(siCounter + " III " + imperialCounter);
         return siCounter - imperialCounter;
     }
 }

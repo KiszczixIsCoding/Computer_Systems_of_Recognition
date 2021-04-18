@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
@@ -13,8 +15,11 @@ import pl.ksr.pon.cla.*;
 import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
+import pl.ksr.pon.ext.ClassifiedPlaces;
 import pl.ksr.pon.ext.TrigramMethod;
+import pl.ksr.pon.ext.fea.CitesCountFeature;
 import pl.ksr.pon.ext.fea.FirstCapitalLetterFeature;
+import pl.ksr.pon.ext.fea.UnitFeature;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +36,7 @@ public class PrimaryController implements Initializable {
     @FXML private TextField kNeighboursField;
     @FXML private Label filesCountLabel, articlesCountLabel;
     @FXML private TableView<Benchmark> resultsTable;
+    @FXML private BarChart<String, Number> classificationBarChart;
 
     private ArrayList<String> metricNames;
     double trainPart, testPart;
@@ -110,16 +116,12 @@ public class PrimaryController implements Initializable {
                 booleanList.add(((CheckBox)item).isSelected());
             }
 
-            System.out.println("similarity = " +
-                    TrigramMethod.calculateSimilarity("Missisipi", "Missouri"));
-
-
             KnnClassifier classifier = new KnnClassifier(kNeighbours, selectedMetric);
             for (Article testingArticle : testingList) {
                 classifier.classify(trainingList, testingArticle, booleanList);
             }
 
-
+            generateBarChart();
         });
 
         TableColumn<Benchmark, String> nameColumn = new TableColumn<>("Miara podobieństwa");
@@ -145,9 +147,32 @@ public class PrimaryController implements Initializable {
 
     }
 
-    @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+    private void generateBarChart() {
+        classificationBarChart.getData().clear();
+
+        Map<ClassifiedPlaces, Integer> beforeStatisticsMap = new HashMap<>();
+        Map<ClassifiedPlaces, Integer> afterStatisticsMap = new HashMap<>();
+        XYChart.Series<String, Number> beforeSeries = new XYChart.Series<>();
+        XYChart.Series<String, Number> afterSeries = new XYChart.Series<>();
+
+        for (ClassifiedPlaces place : ClassifiedPlaces.values()) {
+            beforeStatisticsMap.put(place, 0);
+            afterStatisticsMap.put(place, 0);
+        }
+
+        for (Article article : testingList) {
+            beforeStatisticsMap.put(article.getPlace(), beforeStatisticsMap.get(article.getPlace()) + 1);
+            afterStatisticsMap.put(article.getPredictedPlace(),
+                                    afterStatisticsMap.get(article.getPredictedPlace()) + 1);
+        }
+
+        for (ClassifiedPlaces placeKey : ClassifiedPlaces.values()) {
+            beforeSeries.getData().add(new XYChart.Data<>(placeKey.name(), beforeStatisticsMap.get(placeKey)));
+            afterSeries.getData().add(new XYChart.Data<>(placeKey.name(), afterStatisticsMap.get(placeKey)));
+        }
+
+
+        classificationBarChart.getData().addAll(beforeSeries, afterSeries);
     }
 
 }

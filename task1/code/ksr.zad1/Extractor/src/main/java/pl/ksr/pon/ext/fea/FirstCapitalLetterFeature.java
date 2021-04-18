@@ -27,7 +27,6 @@ public class FirstCapitalLetterFeature extends Feature implements NumericalFeatu
             }
         }
 
-        System.out.println(counter + " P " + allCapitalLettersFeature.extractNumericalFeature(content));
         counter = counter - allCapitalLettersFeature.extractNumericalFeature(content);
         return counter;
     }
