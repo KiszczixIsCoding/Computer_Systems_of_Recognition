@@ -24,7 +24,6 @@ public class UnitDictionary implements Dictionary{
     static List<String> imperialUnits = Arrays.asList(
             " inch ",
             " inches ",
-            " \" ",
             " foot ",
             " feet ",
             " ft ",
