@@ -10,7 +10,7 @@ public class UnitFeature extends Feature implements NumericalFeature {
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content);
+        featureValue = extractNumericalFeature(content) / 10.0;
     }
 
     @Override
@@ -27,6 +27,8 @@ public class UnitFeature extends Feature implements NumericalFeature {
             imperialCounter += StringUtils.countMatches(content, impUnit);
         }
 
+//        System.out.println(siCounter + " III " + imperialCounter);
+//        System.out.println("uklad: " + (siCounter - imperialCounter));
         return siCounter - imperialCounter;
     }
 }

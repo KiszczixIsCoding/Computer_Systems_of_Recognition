@@ -11,7 +11,7 @@ public class FirstCapitalLetterFeature extends Feature implements NumericalFeatu
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content);
+        featureValue = extractNumericalFeature(content) / 30.0;
     }
 
     @Override
