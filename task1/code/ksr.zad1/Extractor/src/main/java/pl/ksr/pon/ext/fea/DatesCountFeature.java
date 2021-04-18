@@ -20,7 +20,8 @@ public class DatesCountFeature extends Feature implements NumericalFeature {
         String[] wordsList = content.split("\\s+");
         for (String word : wordsList) {
             // 1. jesli miesiac
-            if (DateDictionary.getMonthDictionary().contains(word)) {
+            if (DateDictionary.getMonthDictionary().contains(word)
+                    || DateDictionary.getShortMonthDictionary().contains(word)) {
                 datesCounter++;
             }
             // 2. dlugosc 4, pierwsze 2 znaki to 19 lub 20 - zakladamy, że rok

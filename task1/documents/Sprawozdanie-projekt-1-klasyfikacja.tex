@@ -283,6 +283,23 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
     F_1 = 2 \cdot \frac{0,82 \cdot 0,77}{0,82+0,77} = 0,79
 \end{equation}
 
+Jako, że Precission oraz Recall są miarami jakości dla określonej klasy, aby uzyskać wynik dla całego zbioru artykułów wprowadziliśmy średnią ważoną:
+\begin{itemize}
+    \item Dla Precission wzór wygląda wygląda następująco:
+    \begin{equation}
+        TPR_{waz} = \frac{\sum_{i=1}^{n}w_iTPR_i}{\sum_{i=1}^{n}w_i}    
+    \end{equation}
+    \indent gdzie $i$ - liczba klas w procesie klasyfikacji, $TPR_i$ - miara Precission obliczona dla i-tej klasy, $w_i$ - liczba dokumentów z i-tej klasy, zatem $\sum_{i=1}^{n}w_i$ oznacza liczbę wszystkich klasyfikowanych dokumentów.
+    \item Dla Recall wzór wygląda analogicznie, jak powyżej:
+    \begin{equation}
+        PPV_{waz} = \frac{\sum_{i=1}^{n}w_iPPV_i}{\sum_{i=1}^{n}w_i}
+    \end{equation}    
+    \indent gdzie $i$ -liczba klas w procesie klasyfikacji, $PPV_i$ - miara Recall obliczona dla i-tej klasy, $w_i$ - liczba dokumentów z i-tej klasy, zatem $\sum_{i=1}^{n}w_i$ oznacza liczbę wszystkich klasyfikowanych dokumentów.
+            
+
+    
+
+\end{itemize}
 
 
 \section{Klasyfikacja z użyciem metryk i miar podobieństwa tekstów}

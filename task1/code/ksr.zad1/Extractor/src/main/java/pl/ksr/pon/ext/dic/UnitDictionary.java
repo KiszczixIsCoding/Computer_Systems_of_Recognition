@@ -53,7 +53,6 @@ public class UnitDictionary implements Dictionary{
             " °F ",
             " inch,",
             " inches,",
-            " \" ",
             " foot, ",
             " feet,",
             " ft,",
@@ -83,7 +82,6 @@ public class UnitDictionary implements Dictionary{
             " °F,",
             " inch.",
             " inches.",
-            " \".",
             " foot.",
             " feet.",
             " ft.",
@@ -113,7 +111,6 @@ public class UnitDictionary implements Dictionary{
             " °F.",
             "-inch ",
             "-inches ",
-            "-\" ",
             "-foot ",
             "-feet ",
             "-ft ",
@@ -144,6 +141,8 @@ public class UnitDictionary implements Dictionary{
     );
 
     static List<String> siUnits = Arrays.asList(
+            "kilomet",
+            "centimet",
             " gram ",
             " grams ",
             " g ",
@@ -155,6 +154,7 @@ public class UnitDictionary implements Dictionary{
             " m ",
             " centimeter ",
             " centimeters ",
+            " kilometer ",
             " cm ",
             " Celsius ",
             " °C ",
@@ -183,6 +183,7 @@ public class UnitDictionary implements Dictionary{
             " m.",
             " centimeter.",
             " centimeters.",
+            " kilometer.",
             " cm.",
             " Celsius.",
             " °C.",
@@ -197,6 +198,7 @@ public class UnitDictionary implements Dictionary{
             "-m ",
             "-centimeter ",
             "-centimeters ",
+            "-kilometer",
             "-cm ",
             "-Celsius ",
             "-°C "
