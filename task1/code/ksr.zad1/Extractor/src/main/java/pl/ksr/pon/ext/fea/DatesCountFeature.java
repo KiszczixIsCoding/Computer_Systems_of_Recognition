@@ -11,7 +11,7 @@ public class DatesCountFeature extends Feature implements NumericalFeature {
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content);
+        featureValue = extractNumericalFeature(content) / 10.0;
     }
 
     @Override

@@ -13,7 +13,7 @@ public class AllCapitalLettersFeature extends Feature implements NumericalFeatur
 
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content);
+        featureValue = extractNumericalFeature(content) / 10.0;
     }
 
     @Override

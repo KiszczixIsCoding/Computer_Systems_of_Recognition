@@ -9,7 +9,7 @@ public class AllWordsCountFeature extends Feature implements NumericalFeature {
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content) / 100.0;
+        featureValue = extractNumericalFeature(content) / 250.0;
     }
 
     @Override

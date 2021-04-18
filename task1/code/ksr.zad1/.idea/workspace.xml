@@ -6,14 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/Article.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllCapitalLettersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllCapitalLettersFeature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllWordsCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/AllWordsCountFeature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesCountFeature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/FirstCapitalLetterFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/FirstCapitalLetterFeature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" afterDir="false" />
->>>>>>> hubert
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,17 +192,6 @@
     <MESSAGE value="fix stemmer" />
     <MESSAGE value="fix stop list, parser excludes &quot;Blah blah blah.&quot;" />
     <option name="LAST_COMMIT_MESSAGE" value="fix stop list, parser excludes &quot;Blah blah blah.&quot;" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Stoplist.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
