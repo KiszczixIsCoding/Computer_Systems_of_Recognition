@@ -50,7 +50,6 @@ public class PrimaryController implements Initializable {
         FileChooser fileChooser = new FileChooser();
 
         metricNames = new ArrayList<>();
-        metricNames.add(" ");
         metricNames.add("Czebyszewa");
         metricNames.add("Uliczna");
         metricNames.add("Euklidesowa");
@@ -115,6 +114,10 @@ public class PrimaryController implements Initializable {
             List<Boolean> booleanList = new ArrayList<>();
             for (Node item : featuresBox.getChildren()) {
                 booleanList.add(((CheckBox)item).isSelected());
+            }
+
+            for (Article trainingArticle : trainingList) {
+                trainingArticle.initFeaturesVector(booleanList, null);
             }
 
             KnnClassifier classifier = new KnnClassifier(kNeighbours, selectedMetric);

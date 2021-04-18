@@ -15,7 +15,7 @@ public class ManhattanMetric extends Metric {
                     differenceValue += Math.abs(trainingVector.getFeatures().get(index).getFeatureValue()
                             - testingVector.getFeatures().get(index).getFeatureValue());
                 } else {
-                    differenceValue += Math.abs(1 - trainingVector.getFeatures().get(index).getFeatureValue());
+                    differenceValue += Math.abs(1 - testingVector.getFeatures().get(index).getFeatureValue());
                 }
             }
         }

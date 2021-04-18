@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="U">
+    <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Markups.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Stoplist.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Stoplist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/TextFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/TextFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesFormatFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/DatesFormatFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/KeyWordsFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/KeyWordsFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostFrequentCurrencyFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostFrequentCurrencyFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenStringOfNumbersFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenStringOfNumbersFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenWordFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/MostOftenWordFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/fea/UnitFeature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/EuclideanMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/EuclideanMetric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/KnnClassifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ManhattanMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ManhattanMetric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/KeyWordsDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/KeyWordsDictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +197,6 @@
     <MESSAGE value="stemmer implemented but dont change text" />
     <MESSAGE value="fix stemmer" />
     <MESSAGE value="fix stop list, parser excludes &quot;Blah blah blah.&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix stop list, parser excludes &quot;Blah blah blah.&quot;" />
     <MESSAGE value="Test weights to features" />
     <option name="LAST_COMMIT_MESSAGE" value="Test weights to features" />
   </component>

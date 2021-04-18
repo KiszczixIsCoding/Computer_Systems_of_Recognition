@@ -20,8 +20,6 @@ public class KnnClassifier {
         Map<Article, Double> trainingMapWithDistances = new HashMap<>();
 
         for (Article trainingArticle : trainingList) {
-
-            trainingArticle.initFeaturesVector(booleanList, testingArticle.getContent());
             testingArticle.initFeaturesVector(booleanList, trainingArticle.getContent());
 
             double distance = metric.countDistance(trainingArticle.getFeaturesVector(),

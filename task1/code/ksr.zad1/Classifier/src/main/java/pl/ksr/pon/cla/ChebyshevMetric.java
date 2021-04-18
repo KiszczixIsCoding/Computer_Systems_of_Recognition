@@ -16,7 +16,7 @@ public class ChebyshevMetric extends Metric {
                     currentDistance = Math.abs(trainingVector.getFeatures().get(index).getFeatureValue()
                             - testingVector.getFeatures().get(index).getFeatureValue());
                 } else {
-                    currentDistance = Math.abs(1 - trainingVector.getFeatures().get(index).getFeatureValue());
+                    currentDistance = Math.abs(1 - testingVector.getFeatures().get(index).getFeatureValue());
                 }
                 if (currentDistance > distanceValue) {
                     distanceValue = currentDistance;

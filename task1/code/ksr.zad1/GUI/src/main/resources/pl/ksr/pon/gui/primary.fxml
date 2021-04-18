@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
    <children>
       <Button fx:id="loadFilesBtn" layoutX="88.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Wczytaj pliki" />
       <ChoiceBox fx:id="metricChoiceBox" layoutX="76.0" layoutY="470.0" prefHeight="25.0" prefWidth="140.0" />
@@ -18,17 +28,17 @@
       </Label>
       <VBox fx:id="featuresBox" layoutX="314.0" layoutY="124.0" prefHeight="264.0" prefWidth="268.0">
          <children>
+            <CheckBox mnemonicParsing="false" prefHeight="34.0" prefWidth="238.0" selected="true" text="Częstość słów pisanych wielkimi literami" wrapText="true" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Ogólna liczba słów" />
+            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="236.0" selected="true" text="Częstość występowania cytatów" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="175.0" selected="true" text="Częstość występowania dat" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="176.0" selected="true" text="Format zapisu dat" />
-            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Waluty" />
-            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Zapis cyfr" />
             <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="214.0" selected="true" text="Częstość słów rozpoczynających się wielką literą" wrapText="true" />
-            <CheckBox mnemonicParsing="false" prefHeight="34.0" prefWidth="238.0" selected="true" text="Częstość słów pisanych wielkimi literami" wrapText="true" />
-            <CheckBox mnemonicParsing="false" prefHeight="32.0" prefWidth="239.0" selected="true" text="Jednostki w układzie SI lub imperialnym" wrapText="true" />
-            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="236.0" selected="true" text="Częstość występowania cytatów" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="231.0" selected="true" text="Słowa kluczowe" />
+            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Waluty" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="243.0" selected="true" text="Najczęściej występujące słowa" />
+            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Zapis cyfr" />
+            <CheckBox mnemonicParsing="false" prefHeight="32.0" prefWidth="239.0" selected="true" text="Jednostki w układzie SI lub imperialnym" wrapText="true" />
          </children>
       </VBox>
       <Label layoutX="383.0" layoutY="90.0" prefHeight="20.0" prefWidth="131.0" text="Wybierz zbiór cech:" textAlignment="CENTER">

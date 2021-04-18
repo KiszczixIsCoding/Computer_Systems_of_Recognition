@@ -17,8 +17,8 @@ public class EuclideanMetric extends Metric {
                             * (trainingVector.getFeatures().get(index).getFeatureValue()
                             - testingVector.getFeatures().get(index).getFeatureValue()));
                 } else {
-                    differenceValue += ((1 - trainingVector.getFeatures().get(index).getFeatureValue())
-                                    * (1 - trainingVector.getFeatures().get(index).getFeatureValue()));
+                    differenceValue += ((1 - testingVector.getFeatures().get(index).getFeatureValue())
+                                    * (1 - testingVector.getFeatures().get(index).getFeatureValue()));
                 }
             }
 
