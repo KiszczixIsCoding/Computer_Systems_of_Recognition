@@ -6,13 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/EuclideanMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/EuclideanMetric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ManhattanMetric.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ManhattanMetric.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/SGMLParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Stoplist.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/src/main/java/pl/ksr/pon/dao/Stoplist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Extractor/src/main/java/pl/ksr/pon/ext/dic/UnitDictionary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
