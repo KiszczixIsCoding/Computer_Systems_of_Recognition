@@ -3,7 +3,7 @@ package pl.ksr.pon.ext.fea;
 import pl.ksr.pon.ext.NumericalFeature;
 import pl.ksr.pon.ext.dic.DateDictionary;
 
-public class DatesCountFeature extends Feature implements NumericalFeature {
+public class DatesCountFeature extends NumericalFeature {
 
 
     public DatesCountFeature(boolean isSelected) {
@@ -11,10 +11,9 @@ public class DatesCountFeature extends Feature implements NumericalFeature {
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content) / 10.0;
+        numericalFeatureValue = extractNumericalFeature(content) / 10.0;
     }
 
-    @Override
     public int extractNumericalFeature(String content) {
         int datesCounter = 0;
         String[] wordsList = content.split("\\s+");

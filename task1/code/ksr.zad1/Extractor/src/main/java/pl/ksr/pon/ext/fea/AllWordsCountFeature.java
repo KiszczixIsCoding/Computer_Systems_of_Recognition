@@ -2,17 +2,16 @@ package pl.ksr.pon.ext.fea;
 
 import pl.ksr.pon.ext.NumericalFeature;
 
-public class AllWordsCountFeature extends Feature implements NumericalFeature {
+public class AllWordsCountFeature extends NumericalFeature {
 
     public AllWordsCountFeature(boolean isSelected) {
         super(isSelected);
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content) / 250.0;
+        numericalFeatureValue = extractNumericalFeature(content) / 250.0;
     }
 
-    @Override
     public int extractNumericalFeature(String content) {
         String[] wordsList = content.split("\\s+");
 //        System.out.println("liczba slow: " + wordsList.length);

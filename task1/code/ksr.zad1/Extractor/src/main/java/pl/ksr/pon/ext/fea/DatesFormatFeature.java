@@ -1,25 +1,23 @@
 package pl.ksr.pon.ext.fea;
 
 import pl.ksr.pon.ext.FeatureUtils;
+import pl.ksr.pon.ext.NumericalFeature;
 import pl.ksr.pon.ext.TextFeature;
 import pl.ksr.pon.ext.TrigramMethod;
 
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class DatesFormatFeature extends Feature implements TextFeature {
+public class DatesFormatFeature extends TextFeature {
 
     public DatesFormatFeature(boolean isSelected) {
         super(isSelected);
     }
 
-    public void extract(String content, String comparingContent) {
-        String mainContent = extractTextFeature(content);
-        String compContent = extractTextFeature(comparingContent);
-        featureValue = TrigramMethod.calculateSimilarity(mainContent, compContent);
+    public void extract(String content) {
+        textFeatureValue = extractTextFeature(content);
     }
 
-    @Override
     public String extractTextFeature(String content) {
         if (content == null) {
             return null;

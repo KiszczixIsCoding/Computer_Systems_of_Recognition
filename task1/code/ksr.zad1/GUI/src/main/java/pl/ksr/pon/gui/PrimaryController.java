@@ -118,13 +118,20 @@ public class PrimaryController implements Initializable {
             }
 
             for (Article trainingArticle : trainingList) {
-                trainingArticle.initFeaturesVector(booleanList, null);
+                trainingArticle.initFeaturesVector(booleanList);
             }
 
+
             KnnClassifier classifier = new KnnClassifier(kNeighbours, selectedMetric);
+            int counter = 0;
             for (Article testingArticle : testingList) {
-                classifier.classify(trainingList, testingArticle, booleanList);
+                testingArticle.initFeaturesVector(booleanList);
+                classifier.classify(trainingList, testingArticle);
+
+                System.out.println(counter);
+                counter++;
             }
+
             StatisticsGenerator generator = new StatisticsGenerator();
             accuracyValue = generator.countAccuracy(testingList);
             System.out.println(accuracyValue);

@@ -3,17 +3,16 @@ import org.apache.commons.lang3.StringUtils;
 import pl.ksr.pon.ext.NumericalFeature;
 import pl.ksr.pon.ext.dic.UnitDictionary;
 
-public class UnitFeature extends Feature implements NumericalFeature {
+public class UnitFeature extends NumericalFeature {
 
     public UnitFeature(boolean isSelected) {
         super(isSelected);
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content) / 10.0;
+        numericalFeatureValue = extractNumericalFeature(content) / 10.0;
     }
 
-    @Override
     public int extractNumericalFeature(String content) {
         int siCounter = 0;
         int imperialCounter = 0;
@@ -27,8 +26,6 @@ public class UnitFeature extends Feature implements NumericalFeature {
             imperialCounter += StringUtils.countMatches(content, impUnit);
         }
 
-//        System.out.println(siCounter + " III " + imperialCounter);
-//        System.out.println("uklad: " + (siCounter - imperialCounter));
         return siCounter - imperialCounter;
     }
 }

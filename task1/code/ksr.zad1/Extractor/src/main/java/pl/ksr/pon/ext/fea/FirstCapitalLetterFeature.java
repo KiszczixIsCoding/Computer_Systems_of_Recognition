@@ -4,17 +4,16 @@ import lombok.Getter;
 import pl.ksr.pon.ext.NumericalFeature;
 
 @Getter
-public class FirstCapitalLetterFeature extends Feature implements NumericalFeature {
+public class FirstCapitalLetterFeature extends NumericalFeature {
 
     public FirstCapitalLetterFeature(boolean isSelected) {
         super(isSelected);
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content) / 30.0;
+        numericalFeatureValue = extractNumericalFeature(content) / 30.0;
     }
 
-    @Override
     public int extractNumericalFeature(String content) {
         AllCapitalLettersFeature allCapitalLettersFeature = new AllCapitalLettersFeature(true);
 
