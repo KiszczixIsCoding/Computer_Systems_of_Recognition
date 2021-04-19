@@ -295,11 +295,8 @@ Jako, że Precission oraz Recall są miarami jakości dla określonej klasy, aby
         PPV_{waz} = \frac{\sum_{i=1}^{n}w_iPPV_i}{\sum_{i=1}^{n}w_i}
     \end{equation}    
     \indent gdzie $i$ -liczba klas w procesie klasyfikacji, $PPV_i$ - miara Recall obliczona dla i-tej klasy, $w_i$ - liczba dokumentów z i-tej klasy, zatem $\sum_{i=1}^{n}w_i$ oznacza liczbę wszystkich klasyfikowanych dokumentów.
-            
-
-    
-
 \end{itemize}
+
 
 
 \section{Klasyfikacja z użyciem metryk i miar podobieństwa tekstów}
@@ -403,7 +400,46 @@ $N(s_1) = 9$, $N(s_2) = 8$, $N = max\{N(s_1), N(s_2)\} = 9$.
 
 \noindent ponieważ 2 trigramy z $MISSISIPI$ występują w $MISSOURI$.\\
 
-Po wykonaniu metody $n$-gramów podobieństwo dwóch wzorców tekstowych zostaje wyrażone za pomocą liczby. Liczbę tą należy następnie zastosować w odpowiedniej metryce (wzory \ref{eqn:euklides}, \ref{eqn:uliczna}, \ref{eqn:czebyszew}). W tym celu, do jednego z wektora cech, które porównujemy, w miejsce cechy tekstowej wpisujemy obliczoną w metodzie n-gramów (wzór \ref{eqn:trigramy}) wartość, w drugim wektorze natomiast w to miejsce wstawiamy 0. Tym sposobem obliczona wartość w metodzie n-gramów będzie mogła być wykorzystana w metryce. Dlatego dla dwóch porównywanych tekstów najpierw należy zastosować miarę podobieństwa, potem podmienić wartości tekstowe w wektorze cech na wartości liczbowe, a następnie obliczyć metrykę.\\
+Po wykonaniu metody $n$-gramów podobieństwo dwóch wzorców tekstowych zostaje wyrażone za pomocą liczby. Liczbę tą należy następnie zastosować w odpowiedniej metryce (wzory \ref{eqn:euklides}, \ref{eqn:uliczna}, \ref{eqn:czebyszew}). W tym celu, do jednego z wektora cech, które porównujemy, w miejsce cechy tekstowej wpisujemy wynik odejmowania liczby 1 od obliczonej w metodzie n-gramów (wzór \ref{eqn:trigramy}) wartości, w drugim wektorze natomiast w to miejsce wstawiamy 0. Tym sposobem obliczona wartość w metodzie n-gramów będzie mogła być wykorzystana w metryce. Dlatego dla dwóch porównywanych tekstów najpierw należy zastosować miarę podobieństwa, potem podmienić wartości tekstowe w wektorze cech na wartości liczbowe, a następnie obliczyć metrykę.\\
+
+Poniżej przedstawiamy wstępne wyniki miary Accuracy dla próbnych klasyfikacji na ograniczonym zbiorze tekstów (klasyfikacje przeprowadziliśmy na zbiorze 1291 tekstów z 13531 możliwych):
+\begin{itemize}
+    \item Pierwszą klasyfikację przeprowadziliśmy dla następujących parametrów:
+    \begin{itemize}
+        \item K najblższych sąsiadów: ???
+        \item Proporcja podziału zbioru: ???
+        \item Metryka: ???
+        \item Wybrane cechy: ???
+    \end{itemize}
+    Miara Accuracy w tym przypadku wyniosła:???
+    
+    \item Przy drugiej próbnej klasyfikacji użyliśmy poniższych parametrów:
+    \begin{itemize}
+        \item K najblższych sąsiadów: ???
+        \item Proporcja podziału zbioru: ???
+        \item Metryka: ???
+        \item Wybrane cechy: ???
+    \end{itemize}
+    Miara Accuracy w tym przypadku wyniosła:???
+    
+    \item Dla trzeciej klasyfikacji parametry były następujące:
+     \begin{itemize}
+        \item K najblższych sąsiadów: 4
+        \item Proporcja podziału zbioru: 70 - treningowy/30 - testowy
+        \item Metryka: Euklidesowa
+        \item Wybrane cechy: 1. Ogólna liczba słów, 2. Częstość występowania dat, 3. Częstość słów rozpoczynających się wielką literą, 4.  Częstość słów pisanych wielkimi literami, 5. Jednostki w układzie SI/ imperialnym
+    \end{itemize}
+    Miara Accuracy w tym przypadku wyniosła: 0,75
+    
+    \item Natomiast dla czwartej, ostatniej klasyfikacji użyliśmy poniższych parametrów:
+     \begin{itemize}
+        \item K najblższych sąsiadów: ???
+        \item Proporcja podziału zbioru: ???
+        \item Metryka: ???
+        \item Wybrane cechy: ???
+    \end{itemize}
+    Miara Accuracy w tym przypadku wyniosła:???
+\end{itemize}
 
 \section{Budowa aplikacji}
 \subsection{Diagramy UML}
