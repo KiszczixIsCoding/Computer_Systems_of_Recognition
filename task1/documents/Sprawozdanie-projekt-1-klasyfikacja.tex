@@ -444,7 +444,17 @@ Poniżej przedstawiamy wstępne wyniki miary Accuracy dla próbnych klasyfikacji
 \section{Budowa aplikacji}
 \subsection{Diagramy UML}
 Nasza aplikacja będzie się składać z 4 modułów: moduł ekstrakcji, moduł klasyfikatora, moduł DAO (zarządzanie wczytywaniem danych z plików) oraz moduł interfejsu graficznego. 
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm, height=10cm]{modul_gui.png}
+    \caption{Diagram UML dla modułu GUI}
+\end{figure}
+// Krótki opis 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm, height=10cm]{modul_dao.png}
+    \caption{Diagram UML dla modułu DAO}
+\end{figure}
 \indent Moduł ekstrakcji będzie odpowiedzialny za odwzorowanie tekstu na wektor cech. Wektor cech zaimplementowany zostanie z wykorzystaniem klasy FeaturesVector. W klasie FeaturesVector znajduje się 11 pól, każde oznaczające jedną z cech, które zostały przez nas wybrane i przedstawione w sekcji 2. Dla każdej cechy stworzona została odpowiadająca klasa. Każda z klas, która reprezentuje cechę, implementuje interfejs: dla cech liczbowych jest to interfejs NumericFeature, natomiast dla cech tekstowych jest n to interfejs TextFeature.
 Oba interfejsy mają metodę extract(Article article), różnica polega na zwracanej wartości. W pierwszym przypadku jest to liczba typu integer (oznaczająca obliczoną liczbę np. słów w tekście), zaś w drugim przypadku jest to lista ciągów znaków (oznaczająca wyznaczoną, znalezioną listę wyrazów, które spełniają warunki danej klasy).
 \\
