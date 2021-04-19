@@ -219,6 +219,18 @@ Ostatecznie, wektor wyekstrahowanych cech będzie się prezentował następując
 v = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}, c_{11}] 
 \end{gather}
 
+Zbiór numerów cech tekstowych możemy przedstawić w następujący sposób:
+\begin{gather}
+\label{tekstowe}
+    T = \{1, 2, 4, 10, 11\}
+\end{gather}
+
+Natomiast zbiór numerów cech liczbowych wygląda następująco:
+\begin{gather}
+\label{liczbowe}
+    L = \{3, 5, 6, 7, 8, 9\}
+\end{gather}
+
 \subsection{Miary jakości klasyfikacji} 
 Podczas procesu klasyfikacji niezbędne jest określenie jak skuteczna i jakościowa jest prowadzona klasyfikacja. W tym celu posłużyliśmy się tablicą(macierzą) pomyłek oraz miarami jakości klasyfikacji.\cite{tablica_pomylek} Macierz pomyłek zawiera ilość próbek przypisanej do poszczególnej grupy (prawdziwie pozytywna, fałszywie pozytywna, fałszywie negatywna, prawdziwie negatywna). Grupy te powstają poprzez zestawienie ze sobą klasy rzeczywistej oraz klasy predykowanej. Tablica pomyłek prezentuje się następująco: \\
 
@@ -289,25 +301,61 @@ Jako, że Precission oraz Recall są miarami jakości dla określonej klasy, aby
     \begin{equation}
         TPR_{waz} = \frac{\sum_{i=1}^{n}w_iTPR_i}{\sum_{i=1}^{n}w_i}    
     \end{equation}
-    \indent gdzie $i$ - liczba klas w procesie klasyfikacji, $TPR_i$ - miara Precission obliczona dla i-tej klasy, $w_i$ - liczba dokumentów z i-tej klasy, zatem $\sum_{i=1}^{n}w_i$ oznacza liczbę wszystkich klasyfikowanych dokumentów.
+    \indent gdzie $n$ - liczba klas w procesie klasyfikacji, $TPR_i$ - miara Precission obliczona dla i-tej klasy, $w_i$ - liczba dokumentów z i-tej klasy, zatem $\sum_{i=1}^{n}w_i$ oznacza liczbę wszystkich klasyfikowanych dokumentów.
     \item Dla Recall wzór wygląda analogicznie, jak powyżej:
     \begin{equation}
         PPV_{waz} = \frac{\sum_{i=1}^{n}w_iPPV_i}{\sum_{i=1}^{n}w_i}
     \end{equation}    
-    \indent gdzie $i$ -liczba klas w procesie klasyfikacji, $PPV_i$ - miara Recall obliczona dla i-tej klasy, $w_i$ - liczba dokumentów z i-tej klasy, zatem $\sum_{i=1}^{n}w_i$ oznacza liczbę wszystkich klasyfikowanych dokumentów.
+    \indent gdzie $n$ -liczba klas w procesie klasyfikacji, $PPV_i$ - miara Recall obliczona dla i-tej klasy, $w_i$ - liczba dokumentów z i-tej klasy, zatem $\sum_{i=1}^{n}w_i$ oznacza liczbę wszystkich klasyfikowanych dokumentów.
 \end{itemize}
 
 
 
 \section{Klasyfikacja z użyciem metryk i miar podobieństwa tekstów}
+ Nie wszystkie wartości w wektorze cech są od razu zapisane w formie liczbowej, niektóre z nich są w postaci tekstowej. Jak wspomniano w sekcji 1 numery cech dla cech tekstowych znajdują się w zbiorze oznaczonym w sprawozdaniu numerem (\ref{tekstowe}).Należy zatem zaimplemetować miarę podobieństwa tekstów, która porówna dwie cechy tekstowe ze sobą, a następnie zamienić elementy wektora cech z postaci tekstowej na postać liczbową. W naszej aplikacji celu porównania cech tekstowych wykorzystaliśmy metodę n-gramów.\cite{wyklad} Metoda ta określa podobieństwo łańcuchów tekstowych $s_1$, $s_2$ w oparciu o ilość wspólnych podciągów n-elementowych. W zastosowanym przez nas algorytmie jako n przyjęliśmy liczbę 3, zatem posługiwaliśmy się trigramami. Wzór ogólny opisujący metodę n-gramów prezentuje się następująco:\\
+\begin{equation}
+    sim_n(s_1, s_2) = \frac{1}{N - n + 1}\sum_{i=1}^{N - n + 1}h(i)\
+\end{equation}
+ gdzie 
+ \newline$h(i) = 1$ jeśli $n$-elementowy podciąg zaczynający się od $i$-tej pozycji w słowie $s_1$ pojawia się przynajmniej raz w słowie $s_2$ (inaczej $h(i)=0$);
+ \newline$N(s_1), N(s_2)$ - ilość liter w słowach $s_1$ i $s_2$;
+ \newline $N = max\{N(s_1), N(s_2)\}$;
+ \newline $N - n + 1$ - ilość możliwych $n$-elementowych podciągów w $s_1$.\\
+
+
+\noindent W naszym przypadku, dla trigramów wzór będzie wyglądał następująco:
+\begin{equation}
+\label{eqn:trigramy}
+    sim_3(s_1, s_2) = \frac{1}{N - 2}\sum_{i=1}^{N - 2}h(i)\
+\end{equation}
+
+\noindent Weźmy na przykład porównanie dwóch słów: $s_1$=$MISSISIPI$, $s_2$=$MISSOURI$.
+\\
+$N(s_1) = 9$, $N(s_2) = 8$, $N = max\{N(s_1), N(s_2)\} = 9$.
+
+\begin{equation}
+    sim_3(s_1, s_2) = \frac{1}{7}\sum_{i=1}^{7}h(i) = \frac{2}{7} \approx 0.29
+\end{equation}
+
+\noindent ponieważ 2 trigramy z $MISSISIPI$ występują w $MISSOURI$.\\
+
+Po wykonaniu metody $n$-gramów podobieństwo dwóch wzorców tekstowych zostaje wyrażone za pomocą liczby. Liczbę tą należy następnie zastosować w odpowiedniej metryce (wzory \ref{eqn:euklides}, \ref{eqn:uliczna}, \ref{eqn:czebyszew}). W tym celu, do jednego z wektora cech, które porównujemy, w miejsce cechy tekstowej wpisujemy wynik poniższego wzoru:
+\begin{equation}
+\label{tesktowa_na_numeryczna}
+    w_{\nu} = 1 - sim_3(c_{\nu}^\mu, c_{\nu}^\eta) \: dla \: \nu \in T
+\end{equation}
+gdzie $c^\mu$ oraz $c^\eta$ oznaczają wektory cech, a $\nu$ to numer cechy, $sim_3(c_{\nu}^\mu, c_{\nu}^\eta)$ oznacza podobieństwo między dwoma cechami tekstowymi, $T$ jest to zbiór numerów dla cech tekstowych (wzór nr \ref{tekstowe})\\
+W drugim wektorze natomiast w to miejsce wstawiamy 0. Tym sposobem obliczona wartość w metodzie n-gramów będzie mogła być wykorzystana w metryce. Dlatego dla dwóch porównywanych tekstów najpierw należy zastosować miarę podobieństwa, potem podmienić wartości tekstowe w wektorze cech na wartości liczbowe, a następnie obliczyć metrykę.\\
+
+ 
  Jak już zostało wspomniane w rozdziale 2., algorytm k-NN należy do grupy algorytmów minimalnoodległościowych. Aby zaimplementować jego działanie niezbędna jest zatem metryka, która pozwoli w transparentny sposób wyznaczyć odległości pomiędzy wektorami cech. Z tego względu, w ramach badań zostaną wykorzystane trzy poniższe rodzaje metryk:
  \begin{itemize}
     \item Euklidesowa - aby obliczyć odległość pomiędzy dwoma wektorami cech należy obliczyć pierwiastek z sumy kwadratów różnic wszystkich kolejnych cech obu wektorów. Wzór opisujący metrykę Euklidesową wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
     \label{eqn:euklides}
-        \rho_{1}(c^\mu, c^\eta) = \sqrt{\sum_{\nu=1}^{n}(c_{\nu}^\mu - c_{\nu}^\eta)^2}
+        \rho_1(c^\mu, c^\eta)= \left\{\begin{matrix} \sqrt{\sum_{\nu=1}^{n_L}(c_{\nu}^\mu - c_{\nu}^\eta)^2} \quad dla \: \nu \in L \\ \sqrt{\sum_{\nu=1}^{n_T}(w_{\nu})^2} \quad dla \: \nu \in T \end{matrix}\right.
     \end{equation}
-    \indent ,gdzie $c^\mu$ oraz $c^\eta$ oznaczają wektory cech, natomiast n jest to liczba cech, a $\nu$ to numer cechy \\
+    \indent gdzie $n_L$ to liczba cech liczbowych, $n_T$ - liczba cech tekstowych, $\nu$ - numer cechy, $w_{\nu}$ to obliczona zgodnie ze wzorem nr \ref{tesktowa_na_numeryczna} wartość dla $\nu$ - tej cechy tekstowej. L jest to zbiór cech liczbowych (wzór nr \ref{liczbowe}), a T jest to zbiór cech tekstowych (wzór nr \ref{tekstowe})  \\
     \begin{exmp} Obliczanie metryki Euklidesowej  \\
         Dajmy dwa wektory cech:
         \begin{equation}
@@ -330,7 +378,7 @@ Jako, że Precission oraz Recall są miarami jakości dla określonej klasy, aby
     \item uliczna - w celu obliczenia metryki ulicznej należy obliczyć sumę wartości bezwzględnych z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący metrykę uliczną wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
     \label{eqn:uliczna}
-        \rho_{2}(c^\mu, c^\eta) = \sum_{\nu=1}^{n}|c_{\nu}^\mu - c_{\nu}^\eta|
+        \rho_2(c^\mu, c^\eta)= \left\{\begin{matrix} \sqrt{\sum_{\nu=1}^{n_L}\left | c_{\nu}^\mu - c_{\nu}^\eta \right |} \quad dla \: \nu \in L \\ \sqrt{\sum_{\nu=1}^{n_T} \left | w_{\nu} \right |} \quad dla \: \nu \in T \end{matrix}\right.
     \end{equation}
     \begin{exmp} Obliczanie metryki ulicznej  
     
@@ -352,9 +400,9 @@ Jako, że Precission oraz Recall są miarami jakości dla określonej klasy, aby
     \item Czebyszewa - aby obliczyć metrykę Czebyszewa należy wyznaczyć maksymalną wartość bezwzględną z różnic pomiędzy kolejnymi cechami z obu wektorów. Wzór opisujący tę metrykę wygląda następująco \cite{tadeusiewicz90}:
     \begin{equation}
     \label{eqn:czebyszew}
-        \rho_{3}(c^\mu, c^\eta) = \max\limits_{1 \leq \nu \leq n}
-        |c_{\nu}^\mu - c_{\nu}^\eta| 
+       \rho_3(c^\mu, c^\eta)= \underset{1\leq \nu \leq n}{max}\left\{\begin{matrix} \left | c_{\nu}^\mu - c_{\nu}^\eta \right | \quad dla \: \nu \in L \\ \left | w_{\nu} \right | \quad dla \: \nu \in T \end{matrix}\right.
     \end{equation}
+    gdzie: n - liczba wszystkich cech
     \begin{exmp} Wykorzystanie metryki Czebyszewa  \\
         Dajmy dwa wektory cech:
         \begin{equation}
@@ -373,54 +421,26 @@ Jako, że Precission oraz Recall są miarami jakości dla określonej klasy, aby
     \end{exmp}
 \end{itemize}
 
-Nie wszystkie wartości w wektorze cech są od razu zapisane w formie liczbowej, niektóre z nich są w postaci tekstowej. W tym celu należy zaimplemetować miarę podobieństwa tekstów, która zamieni elementy wektora cech z postaci tekstowej na postać liczbową. W naszej aplikacji w tym celu wykorzystaliśmy metodę n-gramów.\cite{wyklad} Metoda ta określa podobieństwo łańcuchów tekstowych s1, s2 w oparciu o ilość wspólnych podciągów n-elementowych. W zastosowanym przez nas algorytmie jako n przyjęliśmy liczbę 3, zatem posługiwaliśmy się trigramami. Wzór ogólny opisujący metodę n-gramów prezentuje się następująco:\\
-\begin{equation}
-    sim_n(s_1, s_2) = \frac{1}{N - n + 1}\sum_{i=1}^{N - n + 1}h(i)\
-\end{equation}
- gdzie 
- \newline$h(i) = 1$ jeśli $n$-elementowy podciąg zaczynający się od $i$-tej pozycji w słowie $s_1$ pojawia się przynajmniej raz w słowie $s_2$ (inaczej $h(i)=0$);
- \newline$N(s_1), N(s_2)$ - ilość liter w słowach $s_1$ i $s_2$;
- \newline $N = max\{N(s_1), N(s_2)\}$;
- \newline $N - n + 1$ - ilość możliwych $n$-elementowych podciągów w $s_1$.\\
-
-
-\noindent W naszym przypadku, dla trigramów wzór będzie wyglądał następująco:
-\begin{equation}
-\label{eqn:trigramy}
-    sim_2(s_1, s_2) = \frac{1}{N - 2}\sum_{i=1}^{N - 2}h(i)\
-\end{equation}
-
-\noindent Weźmy na przykład porównanie dwóch słów: $s_1$=$MISSISIPI$, $s_2$=$MISSOURI$.
-\\
-$N(s_1) = 9$, $N(s_2) = 8$, $N = max\{N(s_1), N(s_2)\} = 9$.
-
-\begin{equation}
-    sim_2(s_1, s_2) = \frac{1}{7}\sum_{i=1}^{7}h(i) = \frac{2}{7} \approx 0.29
-\end{equation}
-
-\noindent ponieważ 2 trigramy z $MISSISIPI$ występują w $MISSOURI$.\\
-
-Po wykonaniu metody $n$-gramów podobieństwo dwóch wzorców tekstowych zostaje wyrażone za pomocą liczby. Liczbę tą należy następnie zastosować w odpowiedniej metryce (wzory \ref{eqn:euklides}, \ref{eqn:uliczna}, \ref{eqn:czebyszew}). W tym celu, do jednego z wektora cech, które porównujemy, w miejsce cechy tekstowej wpisujemy wynik odejmowania liczby 1 od obliczonej w metodzie n-gramów (wzór \ref{eqn:trigramy}) wartości, w drugim wektorze natomiast w to miejsce wstawiamy 0. Tym sposobem obliczona wartość w metodzie n-gramów będzie mogła być wykorzystana w metryce. Dlatego dla dwóch porównywanych tekstów najpierw należy zastosować miarę podobieństwa, potem podmienić wartości tekstowe w wektorze cech na wartości liczbowe, a następnie obliczyć metrykę.\\
 
 Poniżej przedstawiamy wstępne wyniki miary Accuracy dla próbnych klasyfikacji na ograniczonym zbiorze tekstów (klasyfikacje przeprowadziliśmy na zbiorze 1291 tekstów z 13531 możliwych):
 \begin{itemize}
     \item Pierwszą klasyfikację przeprowadziliśmy dla następujących parametrów:
     \begin{itemize}
-        \item K najblższych sąsiadów: ???
-        \item Proporcja podziału zbioru: ???
-        \item Metryka: ???
-        \item Wybrane cechy: ???
+        \item K najblższych sąsiadów: 5
+        \item Proporcja podziału zbioru: 80 - treningowy, 20 - testowy
+        \item Metryka: Uliczna
+        \item Wybrane cechy: Wszystkie
     \end{itemize}
-    Miara Accuracy w tym przypadku wyniosła:???
+    Miara Accuracy w tym przypadku wyniosła: 0,84
     
     \item Przy drugiej próbnej klasyfikacji użyliśmy poniższych parametrów:
     \begin{itemize}
-        \item K najblższych sąsiadów: ???
-        \item Proporcja podziału zbioru: ???
-        \item Metryka: ???
-        \item Wybrane cechy: ???
+        \item K najblższych sąsiadów: 6
+        \item Proporcja podziału zbioru: 75 - trenigowy/25 - testowy
+        \item Metryka: Czebyszewa
+        \item Wybrane cechy: 1. Częstość słów pisanych wielkimi literami, 2. Ogólna liczba słów, 3. Częstość występowania cytatów, 4. Częstość słów rozpoczynających się wielką literą, 5. Najczęściej występujące słowo, 6. Zapis cyfr, 7. Jednostki w układzie SI/imperialnym
     \end{itemize}
-    Miara Accuracy w tym przypadku wyniosła:???
+    Miara Accuracy w tym przypadku wyniosła: 0,83
     
     \item Dla trzeciej klasyfikacji parametry były następujące:
      \begin{itemize}
@@ -433,26 +453,30 @@ Poniżej przedstawiamy wstępne wyniki miary Accuracy dla próbnych klasyfikacji
     
     \item Natomiast dla czwartej, ostatniej klasyfikacji użyliśmy poniższych parametrów:
      \begin{itemize}
-        \item K najblższych sąsiadów: ???
-        \item Proporcja podziału zbioru: ???
-        \item Metryka: ???
-        \item Wybrane cechy: ???
+        \item K najblższych sąsiadów: 3
+        \item Proporcja podziału zbioru: 60 - treningowy/40 - testowy
+        \item Metryka: Euklidesowa
+        \item Wybrane cechy: 1. Format zapisu dat, 2. Słowa kluczowe, 3. Najczęściej występująca waluta, 4. Najczęściej występujące słowo.
     \end{itemize}
-    Miara Accuracy w tym przypadku wyniosła:???
+    Miara Accuracy w tym przypadku wyniosła: 0,82
 \end{itemize}
+Najwyższy wynik miary Accuracy spośród wstępnych klasyfikacji otrzymaliśmy dla pierwszej klasyfikacji, a zatem dla 5 najblższych sąsiadów, proporcji podziału zbioru 75/25, metryce Czebyszewa i dla wszystkich cech. Wyniki były jednak bardzo podobne, a zbiór artykułów na którym działaliśmy był mocno ograniczony. Poza tym 4 klasyfikacje to zdecydowanie za mało, aby wyciągnąć wnioski dotyczące wpływu określonych parametrów na wynik miary Accuracy. \\
 
 \section{Budowa aplikacji}
 \subsection{Diagramy UML}
-Nasza aplikacja będzie się składać z 4 modułów: moduł ekstrakcji, moduł klasyfikatora, moduł DAO (zarządzanie wczytywaniem danych z plików) oraz moduł interfejsu graficznego. 
+Nasza aplikacja będzie się składać z 4 modułów: moduł ekstrakcji, moduł klasyfikatora, moduł DAO (zarządzanie wczytywaniem danych z plików) oraz moduł interfejsu graficznego. \\
+\indent Moduł GUI został zaimplementowany zgodnie ze wzorcem projektowym MVC (Model-View-Controller) i odpowiada za prezentację danych w ramach interfejsu graficznego. Model stanowi najważniejszą warstwę aplikacji, ponieważ w tej części zaimplementowany został algorytm kNN. Z kolei zadaniem części View (plik z rozszerzeniem fxml) jest wyświetlenie informacji w oknie aplikacji, natomiast Controller odpowiada za połączenie modelu aplikacji z widokiem.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm, height=10cm]{modul_gui.png}
+    \includegraphics[width=15cm]{modul_gui.png}
     \caption{Diagram UML dla modułu GUI}
 \end{figure}
-// Krótki opis 
+
+\indent Zadaniem modułu DAO jest umożliwienie wczytania plików z artykułami, które zostaną poddane klasyfikacji. Implementacja tego modułu została przeprowadzona zgodnie ze wzorcem projektowym DAO, dzięki czemu dostarczony zostaje  jednolity interfejs do komunikacji między aplikacją, a źródłem danych. Poza wczytywaniem plików, w module DAO następuje także przygotowanie pliku do przetwarzania, tj. tekst zostaje poddany procesowi stematyzacji (klasa Stemm) oraz zostają usunięte najbardziej popularne słowa z języka angielskiego (klasa Stoplist), co ma na celu podniesienie jakości klasyfikacji.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm, height=10cm]{modul_dao.png}
+    \includegraphics[width=15cm]{modul_dao.png}
     \caption{Diagram UML dla modułu DAO}
 \end{figure}
 \indent Moduł ekstrakcji będzie odpowiedzialny za odwzorowanie tekstu na wektor cech. Wektor cech zaimplementowany zostanie z wykorzystaniem klasy FeaturesVector. W klasie FeaturesVector znajduje się 11 pól, każde oznaczające jedną z cech, które zostały przez nas wybrane i przedstawione w sekcji 2. Dla każdej cechy stworzona została odpowiadająca klasa. Każda z klas, która reprezentuje cechę, implementuje interfejs: dla cech liczbowych jest to interfejs NumericFeature, natomiast dla cech tekstowych jest n to interfejs TextFeature.
@@ -460,7 +484,7 @@ Oba interfejsy mają metodę extract(Article article), różnica polega na zwrac
 \\
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm, height=10cm]{modul_ekstrakcji.png}
+    \includegraphics[width=15cm]{modul_ekstrakcji.png}
     \caption{Diagram UML dla modułu ekstrakcji}
 \end{figure}
 
@@ -468,12 +492,12 @@ Oba interfejsy mają metodę extract(Article article), różnica polega na zwrac
 \indent Moduł klasyfikatora będzie odpowiedzialny za klasyfikację artykułów do odpowiednich etykiet places przy pomocy algorytmu kNN. Z tego względu powstanie klasa KnnClassifier, której zadaniem będzie sklasyfikowanie artykułu z wykorzystaniem jednej z trzech metryk, tj. metryki Czebyszewa, metryki ulicznej (Manhattan) lub metryki euklidesowej. W tym celu powstały cztery klasy: klasa Metric jest to klasa abstrakcyjna, natomiast klasy EuclideanMetric, ChebyshevMetric oraz ManhattanMetric są klasami dziedziczącymi. Poza metryką, niezbędne do klasyfikacji są paramtery: liczba najbliższych sąsiadów (kNeighbours) oraz stosunek liczby artykułów w części treningowej do części testowej. Do wykorzystania klasy KnnClassifier niezbędny jest moduł ekstrakcji, ponieważ klasa KnnClassifier wykorzystuje klasę Artykuł oraz kategorie ClassifiedPlaces znajdujące się w typie enumerate. \\
 \begin{figure}[H]
     \centering
-    \includegraphics[width=15cm, height=10cm]{modul_klasyfikatora.png}
+    \includegraphics[width=15cm]{modul_klasyfikatora.png}
     \caption{Diagram UML dla modułu klasyfikatora}
 \end{figure}
 
 \subsection{Prezentacja wyników, interfejs użytkownika} 
-Aplikacja została wykonana w technologii Java w wersji 11\cite{java_11} (najnowsza wersja LTS) przy wykorzystaniu Apache Maven w wersji 3.6.3\cite{maven}. Do stworzenia interfejsu graficznego posłużyliśmy biblioteką JavaFX w wersji 13\cite{javafx}. W celu uruchomienia aplikacji należy po zainstalowaniu Maven na własnym kpmputerze, z poziomu wiersza poleceń znajdując się w folderze głównym projektu wykonać polecenie: mvn install, a następnie z wiersza poleceń z poziomu modułu GUI wykonać polecenie: mvn clean javafx:run. Aplikacje można także uruchomić z poziomu IDE. Po uruchuomieniu aplikacji ukaże nam się interfejs użytkownika, w którym możemy wybrać jak ma zostać podzielony zbiór (w jakich proporcjach na część treningową i testową), wczytać pliki, w których znajdują się teksty do analizy, podać licbę k najbliższych sąsiadów dla klasyfiaktora $k$-NN, wybrać metrykę oraz zbiór cech wykorzystywanych w procesie klasyfikacji oraz wykonać klasyfikację. W efekcie ukażą nam się następujące informacje: liczba wczytanych plików, liczba artykułów podlegających klasyfikacji oraz rezultaty 4 miar podobieństwa - Accuracy, Precision, Recall i F1.
+Aplikacja została wykonana w technologii Java w wersji 11\cite{java_11} (najnowsza wersja LTS) przy wykorzystaniu Apache Maven w wersji 3.6.3\cite{maven}. Do stworzenia interfejsu graficznego posłużyliśmy biblioteką JavaFX w wersji 13\cite{javafx}. W celu uruchomienia aplikacji należy po zainstalowaniu Maven na własnym kpmputerze, z poziomu wiersza poleceń znajdując się w folderze głównym projektu wykonać polecenie: mvn install, a następnie z wiersza poleceń z poziomu modułu GUI wykonać polecenie: mvn clean javafx:run. Aplikacje można także uruchomić z poziomu IDE. Po uruchomieniu aplikacji ukaże nam się interfejs użytkownika, w którym możemy wybrać jak ma zostać podzielony zbiór (w jakich proporcjach na część treningową i testową), wczytać pliki, w których znajdują się teksty do analizy, podać licbę $k$ najbliższych sąsiadów dla klasyfiaktora $k$-NN, wybrać metrykę oraz zbiór cech wykorzystywanych w procesie klasyfikacji oraz wykonać klasyfikację. W efekcie ukażą nam się następujące informacje: liczba wczytanych plików, liczba artykułów podlegających klasyfikacji oraz rezultaty 4 miar podobieństwa - Accuracy, Precision, Recall i F1, a także wykres słupkowy pokazujący liczbę artykułów w każdej klasie oraz liczbę artykułów przyporządkowanej do danej klasy.
 \\
 \begin{figure}[H]
     \centering
