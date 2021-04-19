@@ -1,6 +1,7 @@
 package pl.ksr.pon.ext.fea;
 
 import org.apache.commons.lang3.StringUtils;
+import pl.ksr.pon.ext.FeatureUtils;
 import pl.ksr.pon.ext.TextFeature;
 import pl.ksr.pon.ext.TrigramMethod;
 import pl.ksr.pon.ext.dic.CurrencyDictionary;
@@ -49,9 +50,17 @@ public class MostFrequentCurrencyFeature extends Feature implements TextFeature 
 
         }
 
+
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
         // Sorting HashMap
-        currenciesMap.entrySet().stream().sorted(Map.Entry.comparingByValue());
-        Map.Entry<String, Integer> mostFrequentCurrency = currenciesMap.entrySet().iterator().next();
-        return mostFrequentCurrency.getKey();
+        sortedMap = FeatureUtils.sortByValue(currenciesMap);
+//        currenciesMap.entrySet().stream().sorted(Map.Entry.comparingByValue());
+//        Map.Entry<String, Integer> mostFrequentCurrency = currenciesMap.entrySet().iterator().next();
+//        return mostFrequentCurrency.getKey();
+        if (sortedMap.entrySet().iterator().next().getValue() == 0) {
+            return null;
+        } else {
+            return sortedMap.entrySet().iterator().next().getKey();
+        }
     }
 }

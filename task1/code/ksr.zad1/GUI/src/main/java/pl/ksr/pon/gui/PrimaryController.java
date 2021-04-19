@@ -59,11 +59,11 @@ public class PrimaryController implements Initializable {
         metricChoiceBox.setOnAction(actionEvent -> {
             String selectedItem = metricChoiceBox.getSelectionModel().getSelectedItem();
             if (selectedItem.equals(metricNames.get(0))) {
-                selectedMetric = null;
-            } else if (selectedItem.equals(metricNames.get(1))) {
                 selectedMetric = new ChebyshevMetric();
-            } else if (selectedItem.equals(metricNames.get(2))) {
+            } else if (selectedItem.equals(metricNames.get(1))) {
                 selectedMetric = new ManhattanMetric();
+            } else if (selectedItem.equals(metricNames.get(2))) {
+                selectedMetric = new EuclideanMetric();
             } else {
                 selectedMetric = new EuclideanMetric();
             }

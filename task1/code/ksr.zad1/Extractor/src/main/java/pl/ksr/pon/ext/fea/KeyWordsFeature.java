@@ -1,6 +1,7 @@
 package pl.ksr.pon.ext.fea;
 
 import org.apache.commons.lang3.StringUtils;
+import pl.ksr.pon.ext.FeatureUtils;
 import pl.ksr.pon.ext.TextFeature;
 import pl.ksr.pon.ext.TrigramMethod;
 import pl.ksr.pon.ext.dic.KeyWordsDictionary;
@@ -40,11 +41,20 @@ public class KeyWordsFeature extends Feature implements TextFeature {
 
         }
 
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
         // Sorting HashMap
-        keyWordsMap = keyWordsMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(
-                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        sortedMap = FeatureUtils.sortByValue(keyWordsMap);
 
-        return keyWordsMap.keySet().iterator().next();
+        if (sortedMap.entrySet().iterator().next().getValue() == 0) {
+            return null;
+        } else {
+            return sortedMap.entrySet().iterator().next().getKey();
+        }
+
+//        keyWordsMap = keyWordsMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(
+//                Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+//                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+//        return keyWordsMap.keySet().iterator().next();
     }
 }

@@ -1,5 +1,6 @@
 package pl.ksr.pon.ext.fea;
 
+import pl.ksr.pon.ext.FeatureUtils;
 import pl.ksr.pon.ext.TextFeature;
 import pl.ksr.pon.ext.TrigramMethod;
 
@@ -64,7 +65,15 @@ public class DatesFormatFeature extends Feature implements TextFeature {
             }
         }
 
+        Map<String, Integer> sortedMap = new LinkedHashMap<>();
+        // Sorting HashMap
+        sortedMap = FeatureUtils.sortByValue(patternsMap);
 
-        return null;
+        if (sortedMap.entrySet().iterator().next().getValue() == 0) {
+            return null;
+        } else {
+            return sortedMap.entrySet().iterator().next().getKey();
+        }
+
     }
 }
