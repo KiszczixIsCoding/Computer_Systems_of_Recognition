@@ -1,8 +1,15 @@
 package pl.ksr.pon.ext;
 
-import java.util.List;
+import pl.ksr.pon.ext.fea.Feature;
 
-public interface TextFeature {
-    String extractTextFeature(String content);
-    void extract(String mainContent, String comparingContent);
+public abstract class TextFeature extends Feature {
+    protected String textFeatureValue;
+
+    public TextFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
+    public String getTextFeatureValue() {
+        return textFeatureValue;
+    }
 }

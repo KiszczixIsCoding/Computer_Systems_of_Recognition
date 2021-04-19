@@ -5,7 +5,7 @@ import pl.ksr.pon.ext.NumericalFeature;
 
 
 @Getter
-public class AllCapitalLettersFeature extends Feature implements NumericalFeature {
+public class AllCapitalLettersFeature extends NumericalFeature {
 
     public AllCapitalLettersFeature(boolean isSelected) {
         super(isSelected);
@@ -13,10 +13,9 @@ public class AllCapitalLettersFeature extends Feature implements NumericalFeatur
 
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content) / 10.0;
+        numericalFeatureValue = extractNumericalFeature(content)/ 10.0;
     }
 
-    @Override
     public int extractNumericalFeature(String content) {
         int allCapitalLettersCount = 0;
         String[] wordsList = content.split("\\s+");

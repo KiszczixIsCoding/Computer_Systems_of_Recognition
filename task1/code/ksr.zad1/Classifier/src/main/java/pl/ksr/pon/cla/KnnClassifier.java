@@ -16,12 +16,10 @@ public class KnnClassifier {
         this.metric = metric;
     }
 
-    public void classify(List<Article> trainingList, Article testingArticle, List<Boolean> booleanList) {
+    public void classify(List<Article> trainingList, Article testingArticle) {
         Map<Article, Double> trainingMapWithDistances = new HashMap<>();
 
         for (Article trainingArticle : trainingList) {
-            testingArticle.initFeaturesVector(booleanList, trainingArticle.getContent());
-
             double distance = metric.countDistance(trainingArticle.getFeaturesVector(),
                                                     testingArticle.getFeaturesVector());
             trainingMapWithDistances.put(trainingArticle, distance);

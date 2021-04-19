@@ -3,26 +3,20 @@ package pl.ksr.pon.ext.fea;
 import org.apache.commons.lang3.StringUtils;
 import pl.ksr.pon.ext.FeatureUtils;
 import pl.ksr.pon.ext.TextFeature;
-import pl.ksr.pon.ext.TrigramMethod;
 import pl.ksr.pon.ext.dic.KeyWordsDictionary;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class KeyWordsFeature extends Feature implements TextFeature {
+public class KeyWordsFeature extends TextFeature {
 
     public KeyWordsFeature(boolean isSelected) {
         super(isSelected);
     }
 
-    public void extract(String content, String comparingContent) {
-        String mainContent = extractTextFeature(content);
-        String compContent = extractTextFeature(comparingContent);
-        featureValue = TrigramMethod.calculateSimilarity(mainContent, compContent);
-
+    public void extract(String content) {
+        textFeatureValue = extractTextFeature(content);
     }
 
-    @Override
     public String extractTextFeature(String content) {
         if (content == null) {
             return null;

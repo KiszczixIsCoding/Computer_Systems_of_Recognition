@@ -6,17 +6,16 @@ import pl.ksr.pon.ext.NumericalFeature;
 import java.util.regex.Pattern;
 
 @Getter
-public class CitesCountFeature extends Feature implements NumericalFeature {
+public class CitesCountFeature extends NumericalFeature {
 
     public CitesCountFeature(boolean isSelected) {
         super(isSelected);
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content) / 5.0;
+        numericalFeatureValue = extractNumericalFeature(content) / 5.0;
     }
 
-    @Override
     public int extractNumericalFeature(String content) {
         Pattern pattern = Pattern.compile(",\"");
         Pattern pattern1 = Pattern.compile("\\.\"\\s+");
