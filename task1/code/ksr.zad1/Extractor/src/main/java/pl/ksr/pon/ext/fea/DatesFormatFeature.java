@@ -1,6 +1,8 @@
 package pl.ksr.pon.ext.fea;
 
 import pl.ksr.pon.ext.TextFeature;
+import pl.ksr.pon.ext.TrigramMethod;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -10,12 +12,17 @@ public class DatesFormatFeature extends Feature implements TextFeature {
         super(isSelected);
     }
 
-    public void extract(String mainContent, String comparingContent) {
-        featureValue = 0;
+    public void extract(String content, String comparingContent) {
+        String mainContent = extractTextFeature(content);
+        String compContent = extractTextFeature(comparingContent);
+        featureValue = TrigramMethod.calculateSimilarity(mainContent, compContent);
     }
 
     @Override
     public String extractTextFeature(String content) {
+        if (content == null) {
+            return null;
+        }
 
         String shortMonths = "(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)";
         String months = "(?:January|February|March|April|May|June|July|August|September|October|November|December)";

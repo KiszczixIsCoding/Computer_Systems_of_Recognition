@@ -30,7 +30,10 @@ public class SGMLParser {
                         //sprawdzamy czy nie zawiera Blah blah blah.
                         && !reutersArticle.select("TEXT").get(0).textNodes()
                         .get(reutersArticle.select("TEXT").get(0).textNodes().size() - 1).text().
-                                contains("Blah blah blah.")) {
+                                contains("Blah blah blah.")
+                        //sprawdzamy czy content nie jest pusty
+                        && reutersArticle.select("TEXT").get(0).textNodes()
+                        .get(reutersArticle.select("TEXT").get(0).textNodes().size() - 1).text() != null) {
 
                     currentArticle = new Article();
                     currentArticle.setTitle(reutersArticle.select("TITLE").text());

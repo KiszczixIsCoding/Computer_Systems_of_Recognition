@@ -8,6 +8,9 @@ public class TrigramMethod {
     public static final int N = 3;
 
     public static double calculateSimilarity(String firstWord, String secondWord) {
+        if (firstWord == null || secondWord == null) {
+            return 0d;
+        }
         int maxLength = getMaxLength(firstWord.length(), secondWord.length());
 
         List<String> firstWordSubstrings = getSubstrings(firstWord);

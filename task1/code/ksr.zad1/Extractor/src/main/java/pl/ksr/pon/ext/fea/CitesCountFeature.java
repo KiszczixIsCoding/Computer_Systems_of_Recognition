@@ -13,7 +13,7 @@ public class CitesCountFeature extends Feature implements NumericalFeature {
     }
 
     public void extract(String content) {
-        featureValue = extractNumericalFeature(content);
+        featureValue = extractNumericalFeature(content) / 5.0;
     }
 
     @Override

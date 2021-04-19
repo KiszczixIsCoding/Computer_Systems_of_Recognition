@@ -47,7 +47,9 @@ public class KeyWordsDictionary implements Dictionary {
             "Alaska",
             "Arizona",
             "Arkansas",
+            "America",
             "California",
+            "York",
             "Colorado",
             "Connecticut",
             "Delaware",
@@ -197,7 +199,8 @@ public class KeyWordsDictionary implements Dictionary {
             "Nakamura",
             "Kobayashi",
             "Yamamoto",
-            "Kato"
+            "Kato",
+            "Japan"
     );
 
     List<String> UKKeyWordsDictionary = Arrays.asList(

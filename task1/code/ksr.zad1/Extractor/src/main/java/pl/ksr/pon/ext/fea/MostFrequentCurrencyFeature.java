@@ -2,6 +2,7 @@ package pl.ksr.pon.ext.fea;
 
 import org.apache.commons.lang3.StringUtils;
 import pl.ksr.pon.ext.TextFeature;
+import pl.ksr.pon.ext.TrigramMethod;
 import pl.ksr.pon.ext.dic.CurrencyDictionary;
 
 import java.util.*;
@@ -13,11 +14,15 @@ public class MostFrequentCurrencyFeature extends Feature implements TextFeature 
     }
 
     public void extract(String content, String comparingContent) {
-        featureValue = 0;
-    }
+        String mainContent = extractTextFeature(content);
+        String compContent = extractTextFeature(comparingContent);
+        featureValue = TrigramMethod.calculateSimilarity(mainContent, compContent);    }
 
     @Override
     public String extractTextFeature(String content) {
+        if (content == null) {
+            return null;
+        }
         Map<String, Integer> currenciesMap = new HashMap<>();
         List<String> currenciesDictionary = new CurrencyDictionary().getDictionary();
 
@@ -45,7 +50,7 @@ public class MostFrequentCurrencyFeature extends Feature implements TextFeature 
         }
 
         // Sorting HashMap
-        currenciesMap.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+        currenciesMap.entrySet().stream().sorted(Map.Entry.comparingByValue());
         Map.Entry<String, Integer> mostFrequentCurrency = currenciesMap.entrySet().iterator().next();
         return mostFrequentCurrency.getKey();
     }

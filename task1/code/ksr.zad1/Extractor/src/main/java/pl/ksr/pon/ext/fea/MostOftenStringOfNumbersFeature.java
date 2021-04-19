@@ -2,6 +2,7 @@ package pl.ksr.pon.ext.fea;
 
 import pl.ksr.pon.ext.FeatureUtils;
 import pl.ksr.pon.ext.TextFeature;
+import pl.ksr.pon.ext.TrigramMethod;
 
 import java.util.*;
 
@@ -13,11 +14,15 @@ public class MostOftenStringOfNumbersFeature extends Feature implements TextFeat
 
     @Override
     public void extract(String content, String comparingContent) {
-        featureValue = 0;
-    }
+        String mainContent = extractTextFeature(content);
+        String compContent = extractTextFeature(comparingContent);
+        featureValue = TrigramMethod.calculateSimilarity(mainContent, compContent);    }
 
     @Override
     public String extractTextFeature(String content) {
+        if (content == null) {
+            return null;
+        }
         String[] wordsList = content.split("\\s+");
         List<String> numbersList = new ArrayList<>();
         for (String word : wordsList) {

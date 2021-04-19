@@ -44,6 +44,7 @@ public class PrimaryController implements Initializable {
     int kNeighbours = 0;
     private List<Article> articlesList, trainingList, testingList;
     private Metric selectedMetric;
+    private double accuracyValue = 0d;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -125,7 +126,8 @@ public class PrimaryController implements Initializable {
                 classifier.classify(trainingList, testingArticle, booleanList);
             }
             StatisticsGenerator generator = new StatisticsGenerator();
-            System.out.println(generator.countAccuracy(testingList));
+            accuracyValue = generator.countAccuracy(testingList);
+            System.out.println(accuracyValue);
 
             generateBarChart();
         });
@@ -139,7 +141,7 @@ public class PrimaryController implements Initializable {
         valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
 
         ObservableList<Benchmark> benchmarks = FXCollections.observableArrayList();
-        benchmarks.add(new Benchmark("Accuracy (dokładność)", 0d));
+        benchmarks.add(new Benchmark("Accuracy (dokładność)", accuracyValue));
         benchmarks.add(new Benchmark("Precision (precyzja)", 0d));
         benchmarks.add(new Benchmark("Recall (czułość)", 0d));
         benchmarks.add(new Benchmark("F1", 0d));

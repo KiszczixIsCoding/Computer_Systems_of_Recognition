@@ -23,6 +23,9 @@ public class KeyWordsFeature extends Feature implements TextFeature {
 
     @Override
     public String extractTextFeature(String content) {
+        if (content == null) {
+            return null;
+        }
         Map<String, Integer> keyWordsMap = new HashMap<>();
         List<String> keyWordsDictionary = new KeyWordsDictionary().getDictionary();
 
