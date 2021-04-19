@@ -124,6 +124,8 @@ public class PrimaryController implements Initializable {
             for (Article testingArticle : testingList) {
                 classifier.classify(trainingList, testingArticle, booleanList);
             }
+            StatisticsGenerator generator = new StatisticsGenerator();
+            System.out.println(generator.countAccuracy(testingList));
 
             generateBarChart();
         });

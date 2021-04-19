@@ -35,13 +35,29 @@ public class StatisticsGenerator {
         return ratesMap;
     }
 
-    public double countAccuracy(ClassifiedPlaces place, List<Article> testingList) {
-        Map<String, Integer> ratesMap = generateRatesMap(place, testingList);
+    // bez argumentu place wygeneruje dla calego zbioru (true, false) -
+    // czyli ile artykulow zostalo sklasyfikowanych prawidłowo
+    public Map<String, Integer> generateRatesMap(List<Article> testingList) {
 
-        double truePositive = (double)ratesMap.get("truePositive");
-        double trueNegative = (double)ratesMap.get("trueNegative");
+        Map<String, Integer> ratesMap = new HashMap<>();
+        ratesMap.put("true", 0);
+        ratesMap.put("false", 0);
+        for (Article article : testingList) {
+            if (article.getPlace() == article.getPredictedPlace()) {
+                ratesMap.put("true", ratesMap.get("true") + 1);
+            } else {
+                ratesMap.put("false", ratesMap.get("false") + 1);
+            }
+        }
+        return ratesMap;
+    }
 
-        return (truePositive + trueNegative) / (double)testingList.size();
+    public double countAccuracy(List<Article> testingList) {
+        Map<String, Integer> ratesMap = generateRatesMap(testingList);
+
+        double trueClassified = (double)ratesMap.get("true");
+
+        return (trueClassified) / (double)testingList.size();
     }
 
     public double countPrecision(ClassifiedPlaces place, List<Article> testingList) {
