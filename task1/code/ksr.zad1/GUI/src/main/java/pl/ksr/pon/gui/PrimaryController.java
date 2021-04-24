@@ -16,14 +16,8 @@ import pl.ksr.pon.dao.ArticleDaoFactory;
 import pl.ksr.pon.dao.Dao;
 import pl.ksr.pon.ext.Article;
 import pl.ksr.pon.ext.ClassifiedPlaces;
-import pl.ksr.pon.ext.TrigramMethod;
-import pl.ksr.pon.ext.fea.CitesCountFeature;
-import pl.ksr.pon.ext.fea.FirstCapitalLetterFeature;
-import pl.ksr.pon.ext.fea.MostOftenWordFeature;
-import pl.ksr.pon.ext.fea.UnitFeature;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -45,6 +39,10 @@ public class PrimaryController implements Initializable {
     private List<Article> articlesList, trainingList, testingList;
     private Metric selectedMetric;
     private double accuracyValue = 0d;
+    private double recallValue = 0d;
+    private double precisionValue = 0d;
+    private double f1Value = 0d;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -101,6 +99,24 @@ public class PrimaryController implements Initializable {
 
         });
 
+        TableColumn<Benchmark, String> nameColumn = new TableColumn<>("Miara podobieństwa");
+        nameColumn.setMinWidth(150);
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Benchmark, String> valueColumn = new TableColumn<>("Rezultat");
+        valueColumn.setMinWidth(100);
+        valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
+
+        ObservableList<Benchmark> benchmarks = FXCollections.observableArrayList();
+        benchmarks.add(new Benchmark("Accuracy (dokładność)", 0d));
+        benchmarks.add(new Benchmark("Precision (precyzja)", 0d));
+        benchmarks.add(new Benchmark("Recall (czułość)", 0d));
+        benchmarks.add(new Benchmark("F1", 0d));
+
+        resultsTable.setItems(benchmarks);
+        resultsTable.getColumns().addAll(nameColumn, valueColumn);
+
+
         classifyBtn.setOnAction(actionEvent -> {
             Collections.shuffle(articlesList);
             int articlesListSize = articlesList.size();
@@ -132,33 +148,54 @@ public class PrimaryController implements Initializable {
                 counter++;
             }
 
-            StatisticsGenerator generator = new StatisticsGenerator();
-            accuracyValue = generator.countAccuracy(testingList);
-            System.out.println(accuracyValue);
+            generateStatistics(benchmarks);
 
             generateBarChart();
         });
 
-        TableColumn<Benchmark, String> nameColumn = new TableColumn<>("Miara podobieństwa");
-        nameColumn.setMinWidth(150);
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        TableColumn<Benchmark, String> valueColumn = new TableColumn<>("Rezultat");
-        valueColumn.setMinWidth(100);
-        valueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
-
-        ObservableList<Benchmark> benchmarks = FXCollections.observableArrayList();
-        benchmarks.add(new Benchmark("Accuracy (dokładność)", accuracyValue));
-        benchmarks.add(new Benchmark("Precision (precyzja)", 0d));
-        benchmarks.add(new Benchmark("Recall (czułość)", 0d));
-        benchmarks.add(new Benchmark("F1", 0d));
-
-        resultsTable.setItems(benchmarks);
-        resultsTable.getColumns().addAll(nameColumn, valueColumn);
-
-
         kNeighboursField.setTextFormatter(new TextFormatter<>(change ->
                         (change.getControlNewText().matches("([1-9][0-9]*)?")) ? change : null));
+
+    }
+
+    private void generateStatistics(ObservableList<Benchmark> benchmarks) {
+        StatisticsGenerator generator = new StatisticsGenerator();
+        accuracyValue = generator.countAccuracy(testingList);
+        System.out.println(accuracyValue);
+
+        for (ClassifiedPlaces place : ClassifiedPlaces.values()) {
+            Map<String, Integer> ratesMap = generator.generateRatesMap(place, testingList);
+            int allArticlesFromClass =
+                    ratesMap.get("truePositive") + ratesMap.get("falseNegative");
+
+            double singlePrecision = generator.countPrecision(place, testingList);
+            precisionValue += singlePrecision * allArticlesFromClass;
+            System.out.println("Precission " + place.name() + ": " +
+                    singlePrecision);
+
+            double singleRecall = generator.countRecall(place, testingList);
+            recallValue += singleRecall * allArticlesFromClass;
+            System.out.println("Recall " + place.name() + ": " +
+                   singleRecall);
+
+            System.out.println("F1 " + place.name() + ": " +
+                    generator.countF1(place, testingList));
+        }
+
+        precisionValue /= testingList.size();
+        recallValue /= testingList.size();
+        f1Value = 2 * precisionValue * recallValue
+                / (precisionValue + recallValue);
+
+        benchmarks.removeAll(benchmarks);
+        benchmarks.add(new Benchmark("Accuracy (dokładność)", accuracyValue));
+        benchmarks.add(new Benchmark("Precision (precyzja)", precisionValue));
+        benchmarks.add(new Benchmark("Recall (czułość)", recallValue));
+        benchmarks.add(new Benchmark("F1", f1Value));
+
+        System.out.println("Final precision: " + precisionValue);
+        System.out.println("Final recall: " + recallValue);
+        System.out.println("Final F1: " + f1Value);
 
     }
 

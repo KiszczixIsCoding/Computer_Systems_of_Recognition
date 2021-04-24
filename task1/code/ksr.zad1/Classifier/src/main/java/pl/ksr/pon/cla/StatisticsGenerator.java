@@ -21,10 +21,10 @@ public class StatisticsGenerator {
             if (article.getPlace() == place && article.getPredictedPlace() == place) {
                 ratesMap.put("truePositive", ratesMap.get("truePositive") + 1);
             }
-            if (article.getPlace() == place && article.getPredictedPlace() != place) {
+            if (article.getPlace() != place && article.getPredictedPlace() == place) {
                 ratesMap.put("falsePositive", ratesMap.get("falsePositive") + 1);
             }
-            if (article.getPlace() != place && article.getPredictedPlace() == place) {
+            if (article.getPlace() == place && article.getPredictedPlace() != place) {
                 ratesMap.put("falseNegative", ratesMap.get("falseNegative") + 1);
             }
             if (article.getPlace() != place && article.getPredictedPlace() != place) {
