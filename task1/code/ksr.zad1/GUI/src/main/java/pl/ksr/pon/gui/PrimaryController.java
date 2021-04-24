@@ -128,7 +128,7 @@ public class PrimaryController implements Initializable {
                 testingArticle.initFeaturesVector(booleanList);
                 classifier.classify(trainingList, testingArticle);
 
-                System.out.println(counter);
+//                System.out.println(counter);
                 counter++;
             }
 
