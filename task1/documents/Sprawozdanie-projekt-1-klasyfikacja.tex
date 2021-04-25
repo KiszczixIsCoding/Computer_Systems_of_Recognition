@@ -510,44 +510,53 @@ Kolejnym krokiem było przeprowadzenie dokładnych eksperymentów dla różnych 
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla różnych wartości parametru $k$}
 
+Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych wartości parametru k przyjęliśmy następujące paarmetry, które pozostawały stałe w trakcie badań:
+\begin{itemize}
+    \item ilość artykułów do klasyfikacji: 13531 (wszystkie)
+    \item podział zbioru: 80 - treningowy/ 20 - testowy
+    \item wybrana metryka: uliczna
+    \item wybrane cechy: wszystkie
+\end{itemize}
+
 %tabela wygenerowana z pomoca https://www.latex-tables.com/%
 
 % \usepackage{multirow}
 
-
+\clearpage
 \begin{table}
+\caption{Wyniki klasyfikacji w zależności od parametru $k$}
 \centering
 \begin{tabular}{llllllllllll}
-                                                                              & k          & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10  \\ 
+                                                                              & k          & 1    & 2    & 3    & 4    & 5    & 6    & 7    & 8    & 15   & 30    \\ 
 \hline
-\multirow{3}{*}{West-Germany}                                                 & Precision  &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}West-\\Germany\end{tabular}}                                                 & Precision  & 0,29 & 0,06 & 0,25 & 0,23 & 0,16 & 0,18 & 0,10 & 0,12 & 0,04 & 0,03  \\
+                                                                              & Recall     & 0,32 & 0,30 & 0,67 & 0,74 & 0,53 & 0,91 & 0,60 & 0,82 & 1,00 & 1,00  \\
+                                                                              & F1         & 0,30 & 0,10 & 0,36 & 0,35 & 0,24 & 0,30 & 0,16 & 0,21 & 0,08 & 0,06  \\ 
 \hline
-\multirow{3}{*}{Japan}                                                        & Precission &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\multirow{3}{*}{Japan}                                                        & Precission & 0,73 & 0,55 & 0,80 & 0,75 & 0,74 & 0,74 & 0,77 & 0,81 & 0,83 & 0,80  \\
+                                                                              & Recall     & 0,58 & 0,61 & 0,68 & 0,72 & 0,68 & 0,62 & 0,63 & 0,71 & 0,74 & 0,72  \\
+                                                                              & F1         & 0,65 & 0,58 & 0,73 & 0,73 & 0,71 & 0,67 & 0,69 & 0,75 & 0,78 & 0,76  \\ 
 \hline
-\multirow{3}{*}{France}                                                       & Precision  &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\multirow{3}{*}{France}                                                       & Precision  & 0,69 & 0,41 & 0,51 & 0,51 & 0,57 & 0,62 & 0,65 & 0,58 & 0,59 & 0,50  \\
+                                                                              & Recall     & 0,60 & 0,72 & 0,68 & 0,66 & 0,78 & 0,79 & 0,70 & 0,71 & 0,81 & 0,74  \\
+                                                                              & F1         & 0,64 & 0,52 & 0,58 & 0,58 & 0,66 & 0,70 & 0,67 & 0,64 & 0,68 & 0,60  \\ 
 \hline
-\multirow{3}{*}{UK}                                                           & Precision  &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\multirow{3}{*}{UK}                                                           & Precision  & 0,60 & 0,61 & 0,61 & 0,64 & 0,55 & 0,53 & 0,54 & 0,55 & 0,56 & 0,45  \\
+                                                                              & Recall     & 0,52 & 0,43 & 0,65 & 0,60 & 0,60 & 0,61 & 0,61 & 0,66 & 0,72 & 0,69  \\
+                                                                              & F1         & 0,56 & 0,51 & 0,63 & 0,62 & 0,57 & 0,57 & 0,58 & 0,60 & 0,63 & 0,55  \\ 
 \hline
-\multirow{3}{*}{USA}                                                          & Precision  &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\multirow{3}{*}{USA}                                                          & Precision  & 0,89 & 0,84 & 0,94 & 0,94 & 0,95 & 0,96 & 0,96 & 0,96 & 0,98 & 0,98  \\
+                                                                              & Recall     & 0,91 & 0,90 & 0,90 & 0,90 & 0,88 & 0,89 & 0,89 & 0,88 & 0,88 & 0,87  \\
+                                                                              & F1         & 0,90 & 0,87 & 0,92 & 0,92 & 0,92 & 0,92 & 0,92 & 0,92 & 0,93 & 0,92  \\ 
 \hline
-\multirow{3}{*}{Canada}                                                       & Precision  &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\multirow{3}{*}{Canada}                                                       & Precision  & 0,33 & 0,44 & 0,28 & 0,28 & 0,18 & 0,22 & 0,21 & 0,22 & 0,09 & 0,07  \\
+                                                                              & Recall     & 0,38 & 0,24 & 0,37 & 0,41 & 0,43 & 0,53 & 0,60 & 0,67 & 0,73 & 0,73  \\
+                                                                              & F1         & 0,35 & 0,31 & 0,32 & 0,33 & 0,26 & 0,31 & 0,31 & 0,33 & 0,16 & 0,12  \\ 
 \hline
-\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Wszystkie\\dokumenty\end{tabular}} & Accuracy   &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Precsision &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
-                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\
+\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Wszystkie\\dokumenty\end{tabular}} & Accuracy   & 0,81 & 0,77 & 0,84 & 0,85 & 0,84 & 0,85 & 0,85 & 0,85 & 0,86 & 0,85  \\
+                                                                              & Precsision & 0,82 & 0,76 & 0,87 & 0,88 & 0,88 & 0,90 & 0,90 & 0,91 & 0,94 & 0,94  \\
+                                                                              & Recall     & 0,81 & 0,77 & 0,84 & 0,85 & 0,84 & 0,85 & 0,85 & 0,85 & 0,86 & 0,85  \\
+                                                                              & F1         & 0,81 & 0,77 & 0,85 & 0,86 & 0,86 & 0,87 & 0,87 & 0,88 & 0,90 & 0,89  \\
 \hline
 \end{tabular}
 \end{table}
@@ -561,7 +570,7 @@ części obowiązkowej**.}\\
 \noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 05 wg Harmonogramu Zajęć
 na WIKAMP KSR.}
 
-
+\clearpage
 \section{Dyskusja, wnioski}
 Dokładne interpretacje uzyskanych wyników w zależności od parametrów klasyfikacji
 opisanych w punktach 3.-8 opisu Projektu 1. 
