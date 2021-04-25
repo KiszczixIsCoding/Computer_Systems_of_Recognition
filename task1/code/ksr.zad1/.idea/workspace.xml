@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/StatisticsGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +117,7 @@
       <workItem from="1618750647657" duration="5443000" />
       <workItem from="1618796266433" duration="1272000" />
       <workItem from="1618820778519" duration="4625000" />
-      <workItem from="1619297366130" duration="7978000" />
+      <workItem from="1619297366130" duration="9888000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>
@@ -177,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619297508931</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Calculate final measures and display in table">
+      <created>1619305816929</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619305816929</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +221,8 @@
     <MESSAGE value="fix null content, trigram with textfeatures connect&#10;todo: sorting in some text features, dynamically displaying accuracy" />
     <MESSAGE value="fix map sorting" />
     <MESSAGE value="changes in report" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes in report" />
+    <MESSAGE value="Calculate final measures and display in table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calculate final measures and display in table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

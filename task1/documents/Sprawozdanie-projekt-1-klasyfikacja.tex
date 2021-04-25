@@ -235,6 +235,7 @@ Natomiast zbiór numerów cech liczbowych wygląda następująco:
 Podczas procesu klasyfikacji niezbędne jest określenie jak skuteczna i jakościowa jest prowadzona klasyfikacja. W tym celu posłużyliśmy się tablicą(macierzą) pomyłek oraz miarami jakości klasyfikacji.\cite{tablica_pomylek} Macierz pomyłek zawiera ilość próbek przypisanej do poszczególnej grupy (prawdziwie pozytywna, fałszywie pozytywna, fałszywie negatywna, prawdziwie negatywna). Grupy te powstają poprzez zestawienie ze sobą klasy rzeczywistej oraz klasy predykowanej. Tablica pomyłek prezentuje się następująco: \\
 
 \begin{table}[h]
+    \caption{Tablica pomyłek}
     \centering
         \begin{tabular}{cc|p{30mm}|p{30mm}|p{30mm}|p{30mm}|l}
         \cline{3-4}
@@ -245,22 +246,21 @@ Podczas procesu klasyfikacji niezbędne jest określenie jak skuteczna i jakośc
         \multicolumn{1}{ |c  }{}                        &
         \multicolumn{1}{ |c| }{negatywna} & fałszywie \newline negatywna (FN) & prawdziwie \newline negatywna (TN)     \\ \cline{1-4}
         \end{tabular}
-    \caption{Tablica pomyłek}
 \end{table}
  Zostały wykorzystane następujące miary jakości, które zostaną przedstawione wzorami, w których oznaczenia odnosić się będą do Tabeli 1:
 \begin{itemize}
     \item Accuracy (dokładność) - miara, która oznacza dokładność całej klasyfikacji:
     \begin{equation}
-        ACC = \frac{TP + TN}{L}
+        ACC = \frac{|TP| + |TN|}{L}
     \end{equation}
     \indent gdzie $L$ - liczba wszytskich sklasyfikowanych próbek
     \item Precision (precyzja) - miara oznaczająca jak często określoną klasę udało się zakwalifikować poprawnie:
     \begin{equation}
-        PPV = \frac{TP}{TP+FP}
+        PPV = \frac{|TP|}{|TP|+|FP|}
     \end{equation}
     \item Recall (czułość) - określa jak dużo wystąpień obiektów danej klasy zakwalifikowaliśmy do tejże klasy:
     \begin{equation}
-        TPR = \frac{TP}{TP+FN}
+        TPR = \frac{|TP|}{|TP|+|FN|}
     \end{equation}
     \item F1 - miara stanowiąca średnią harmoniczną z miar Precision i Recall \cite{f1}:
     \begin{equation}
@@ -270,6 +270,7 @@ Podczas procesu klasyfikacji niezbędne jest określenie jak skuteczna i jakośc
 Dla przykładu obliczmy miary jakości dla poniższej tabeli:
 
 \begin{table}[h]
+    \caption{Tablica pomyłek z przykładowymi danymi}
     \centering
         \begin{tabular}{cc|p{30mm}|p{30mm}|p{30mm}|p{30mm}|l}
         \cline{3-4}
@@ -280,7 +281,6 @@ Dla przykładu obliczmy miary jakości dla poniższej tabeli:
         \multicolumn{1}{ |c  }{}                        &
         \multicolumn{1}{ |c| }{$\sim Japonia$} & 17 & 36    \\ \cline{1-4}
         \end{tabular}
-    \caption{Tablica pomyłek z przykładowymi danymi}
 \end{table}
 \begin{equation}
     ACC = \frac{56+36}{121} = 0,76
@@ -506,6 +506,51 @@ Aplikacja została wykonana w technologii Java w wersji 11\cite{java_11} (najnow
 \end{figure}
 
 \section{Wyniki klasyfikacji dla różnych parametrów wejściowych}
+Kolejnym krokiem było przeprowadzenie dokładnych eksperymentów dla różnych parametrów wejściowych, w celu wyciągnięcia wniosków odnośnie tego które parametry w jakim stopniu wpływają na skuteczność klasyfikacji. Eksperymenty podzieliliśmy na 4 rodzaje. Pierwszy rodzaj odnosi się do porównywania wyników klasyfikacji metody $k$-NN w zależności od różnych parametrów $k$ (przy stałych wartościach innych parametrów). Drugi rodzaj to badanie wpływu wartości podziału zbioru na wynik Accuracy. Trzecia część polegała na wyznaczeniu zależności Accuracy od wyboru metryki. Natomiast ostatni rodzaj eksperymentów odnosił się do badania wpływu cech na wynik klasyfikacji. Wyniki miar jakości w postaci tabel i wykresów dla wszystkich ekspermentów przedstawiono poniżej.
+
+\subsection{Porównanie wyników klasyfkacji metody $k$-NN dla różnych wartości parametru $k$}
+
+%tabela wygenerowana z pomoca https://www.latex-tables.com/%
+
+% \usepackage{multirow}
+
+
+\begin{table}
+\centering
+\begin{tabular}{llllllllllll}
+                                                                              & k          & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10  \\ 
+\hline
+\multirow{3}{*}{West-Germany}                                                 & Precision  &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\hline
+\multirow{3}{*}{Japan}                                                        & Precission &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\hline
+\multirow{3}{*}{France}                                                       & Precision  &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\hline
+\multirow{3}{*}{UK}                                                           & Precision  &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\hline
+\multirow{3}{*}{USA}                                                          & Precision  &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\hline
+\multirow{3}{*}{Canada}                                                       & Precision  &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\ 
+\hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Wszystkie\\dokumenty\end{tabular}} & Accuracy   &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Precsision &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & Recall     &   &   &   &   &   &   &   &   &   &     \\
+                                                                              & F1         &   &   &   &   &   &   &   &   &   &     \\
+\hline
+\end{tabular}
+\end{table}
 Wyniki kolejnych eksperymentów wg punktów 2.-8. opisu projektu 1.  Wykresy i tabele
 obowiązkowe, dokładnie opisane w ,,captions'' (tytułach), konieczny opis osi i
 jednostek wykresów oraz kolumn i wierszy tabel.\\ 
