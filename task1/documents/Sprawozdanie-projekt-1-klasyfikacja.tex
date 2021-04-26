@@ -691,11 +691,84 @@ Zatem, dla drugiego eksperymentu w tej sekcji przyjęliśmy następujące parame
 
 Gdy wzięliśmy pod uwagę tylko cechy liczbowe, wyeliminowane zostały wartośći NaN przy metryce Czebyszewa. Oznacza to, że dla każdej klasy został przyporządkowany min. 1 artykuł.
 \\
-\indent Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
 
-Wyniki kolejnych eksperymentów wg punktów 2.-8. opisu projektu 1.  Wykresy i tabele
-obowiązkowe, dokładnie opisane w ,,captions'' (tytułach), konieczny opis osi i
-jednostek wykresów oraz kolumn i wierszy tabel.\\ 
+\subsection{Porównanie wyników klasyfkacji metody $k$-NN dla 5 różnych proporcji podziału zbioru artykułów}
+Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych proporcji podziału zbioru artykułów jako stałe parametry zostały przyjęte:
+\begin{itemize}
+    \item liczba artykułów do klasyfikacji: 13531 (wszystkie)
+    \item liczba k-najbliższych sąsiadów: 11 
+    \item wybrana metryka: uliczna
+    \item wybrane cechy: wszystkie
+\end{itemize}
+\begin{table}[!htbp]
+\caption{Wyniki klasyfikacji w zależności od proporcji podziału zbioru artykułów}
+\centering
+\label{table:proporcja}
+\begin{tabular}{cl|c|c|c|c|c|}
+\cline{3-7}
+\multicolumn{1}{l}{}                                 &           & \multicolumn{5}{c|}{\begin{tabular}[c]{@{}c@{}}Proporcja podziału zbioru artykułów\\  (cz. treningowa / cz. testowa)\end{tabular}} \\ \cline{3-7} 
+\multicolumn{1}{l}{}                                 &           & 30/70                    & 45/55                    & 55/45                   & 70/30                   & 85/15                   \\ \hline
+\multicolumn{1}{|c|}{\multirow{4}{*}{Miary jakości}} & Accuracy  & 0,84                     & 0,85                     & 0,86                    & 0,84                    & 0,86                    \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Precision & 0,84                     & 0,84                     & 0,85                    & 0,83                    & 0,85                    \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Recall    & 0,84                     & 0,85                     & 0,86                    & 0,84                    & 0,86                    \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & F1        & 0,84                     & 0,85                     & 0,85                    & 0,84                    & 0,85                    \\ \hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{ranges_bar_chart.png}
+    \caption{Wyniki klasyfikacji w zależności od proporcji podziału zbioru}
+    \label{wykres:proporcja}
+\end{figure}
+
+
+\subsection{Porównanie wyników klasyfkacji metody $k$-NN dla 5 różnych podzbiorów wyekstrahowanych cech}
+Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla 5 różnych podzbiorów cech, jako stałe parametry zostały przyjęte:
+\begin{itemize}
+    \item liczba artykułów do klasyfikacji: 13531 (wszystkie)
+    \item podział zbioru: 60 - treningowy/ 40 - testowy    
+    \item liczba k-najbliższych sąsiadów: 9 
+    \item wybrana metryka: Euklidesowa
+\end{itemize}
+Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi zestawami, tj.:
+\begin{equation}
+   Zestaw1 = [c_{1}, c_{2}, c_{6}, c_{7}, c_{8}, c_{10}, c_{11}]
+\end{equation}
+\begin{equation}
+   Zestaw2 = [c_{1}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}]
+\end{equation}
+\begin{equation}
+   Zestaw3 = [c_{1}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{9}]
+\end{equation}
+\begin{equation}
+   Zestaw4 = [c_{7}, c_{8}, c_{10}]
+\end{equation}
+\begin{equation}
+   Zestaw5 = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}]
+\end{equation}
+
+\begin{table}[!htbp]
+\caption{Wyniki klasyfikacji metodą $k$-NN dla 5 podzbiorów cech}
+\centering
+\label{table:podzbiory}
+\begin{tabular}{cl|c|c|c|c|c|}
+\cline{3-7}
+\multicolumn{1}{l}{}                                 &           & \multicolumn{5}{c|}{Podzbiory wyekstrahowanych cech}                                                                                                          \\ \cline{3-7} 
+\multicolumn{1}{l}{}                                 &           & \multicolumn{1}{l|}{Zestaw 1} & \multicolumn{1}{l|}{Zestaw 2} & \multicolumn{1}{l|}{Zestaw 3} & \multicolumn{1}{l|}{Zestaw 4} & \multicolumn{1}{l|}{Zestaw 5} \\ \hline
+\multicolumn{1}{|c|}{\multirow{4}{*}{Miary jakości}} & Accuracy  & 0,84                          & 0,85                          & 0,80                          & 0,86                          & 0,82                          \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Precision & 0,82                          & 0,83                          & 0,75                          & 0,85                          & 0,76                          \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Recall    & 0,84                          & 0,85                          & 0,80                          & 0,86                          & 0,82                          \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & F1        & 0,83                          & 0,84                          & 0,78                          & 0,85                          & 0,80                          \\ \hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{features_sets_bar_chart.png}
+    \caption{Wyniki klasyfikacji metodą $k$-NN dla 5 podzbiorów cech}
+    \label{rysunek:podzbiory}
+\end{figure}
+
+\indent Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
 
 
 \clearpage
@@ -707,20 +780,48 @@ Analizując rysunek \ref{wykres:k} oraz tabelę \ref{tabela:k} dla wartości $k$
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wyboru metryki}
 W sekcji 5.2 zostały przeprowadzone 2 ekseprymenty. Jeden z nich miał miejsce na wszystkich cechach (tabela \ref{tabela:metryka_wszystkie}, rysunek \ref{wykres:metryka_wszystkie}), drugi jedynie na cechach liczbowych(tabela \ref{table:metryka_liczbowe}, rysunek \ref{wykres:metryka_liczbowe}). W pierwszym eksperymencie, dla metryki Czebyszewa artykuły były przyporządkowane jedynie do klasy USA (dla pozostałych klas pojawiły się wartości NaN, co oznacza dzielenie przez zero, czyli żaden tekst nie został przyporządkowany). Stało się tak dlatego, że metryka ta jako wynik zwraca maksymaną wartość bezwzględną różnic pomiędzy kolejnymi cechami z obu wektorów. Jako, że w celu porównania dwóch cech tekstowych korzystamy z metody trigramów, a cech tekstowych jest aż pięć, zawsze zdarzy się, że porównanie którychś z tych cech zwróci wartość 1, czyli maksymalną możliwą odległość pomiędzy dwoma słowami. W niemal każdym przypadku wartość ta będzie również wartością maksymalną biorąc pod uwagę także cechy liczbowe. Z tego powodu przy pomocy metryki Czebyszewa, biorąc pod uwagę cechy tekstowe wszystkie teksty klasyfikowane są do jednej klasy. Dlatego metryka Czebyszewa w formie w jakiej została zaimplementowana w naszym programie nie nadaje się do cech tekstowych. Jednak przy cechach numerycznych metryka ta daje porównywalne wyniki z metryką Uliczną i Euklidesową. Metryką, która w obu eksperymentach osiągnęła najlepsze wyniki klasyfikacji była metryka Euklidesowa, która jednak bardzo nieznacznie wyprzedziła metrykę Uliczną (jeśli chodzi o miarę Accuracy było to zaledwie o 0,01 więcej).
 
-Dokładne interpretacje uzyskanych wyników w zależności od parametrów klasyfikacji
-opisanych w punktach 3.-8 opisu Projektu 1. 
-Szczególnie istotne są wnioski o charakterze uniwersalnym, istotne dla podobnych zadań. 
-Omówić i wyjaśnić napotkane problemy (jeśli były). Każdy wniosek/problem powinien mieć poparcie
-w przeprowadzonych eksperymentach (odwołania do konkretnych wyników: wykresów,
-tabel). \\
-\underline{Dla końcowej oceny jest to najważniejsza sekcja} sprawozdania, gdyż prezentuje poziom
-zrozumienia rozwiązywanego problemu.\\
+\subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wybranej proporcji podziału zbioru artykułów}
+W sekcji 5.3 przeprowadzony został eksperyment mający na celu sprawdzenie jakości klasyfikacji metodą k-NN w zależności od dobranej proporcji podziału na zbioru artykułów na część treningową i testową. W tym celu została policzona każda z miar jakości dla wszystkich dokumentów (a nie dla poszczególnych krajów, jak to miało miejsce w poprzednich sekcjach).  Analizując wyniki, które zostały zawarte w (tabela \ref{tabela:proporcja}, rysunek \ref{wykres:metryka_wszystkie}) pierwszą rzeczą na którą należy zwrócić uwagę to fakt, iż wyniki dla wszystkich proporcji podziału są bardzo podobne i mieszczą się w zakresie od 0,83 do 0,86 (z dokładnością do dwóch miejsc po przecinku). Z tego względu należy uznać, że dobór proporcji podziału zbioru ma niewielki wpływ na jakość przeprowadzanej klasyfikacji. 
+Jeśli spojrzymy natomiast na niewielkie różnice pomiędzy kolejnymi proporcjami można zauważyć, że dla 3 pierwszych proporcji, z każdym kolejnym badaniem wyniki minimalnie się poprawiają. Odwrócenie tego trendu następuje dopiero w przypadku 4 proporcji (75/25), dla której otrzymane wyniki są najgorsze (miara recall na poziomie 0,83). Dla 5 proporcji wyniki znowu wzrosły do poziomu takiego, jak w przypadku 3 proporcji. 
 
-** Możliwości kontynuacji prac w obszarze systemów rozpoznawania, zwłaszcza w kontekście pracy inżynierskiej,
-magisterskiej, naukowej, itp. **\\
-
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 06 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+\subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wybranego podzbioru cech}
+W sekcji 5.4 przeprowadzony został eksperyment mający na celu sprawdzenie jakości klasyfikacji metodą k-NN w zależności od dobranego podzbioru cech artykułów. W tym celu również została policzona każda z miar jakości dla 5 różnych podzbiorów cech.  Analizując wyniki, które zostały zawarte w \ref{wykres:podzbiory} oraz tabelę \ref{tabela:podzbiory} widzimy, że wyniki miar jakości są bardziej zróżnicowane, niż w przypadku eksperymentów w ramach sekcji 5.3. Najlepsze wyniki zostały otrzymane dla miary accuracy oraz recall (identyczne), natomiast najgorsze w przypadku miary precision. Pondato, możemy zauważyć większe rozbieżności pomiędzy miarą precision, a pozostałymi miarami jakości (od 0.01 w przypadku zestawu 4 do nawet 0.06 w przypadku zestawu 5). Jeśli chodzi o dobór cech, to najlepsze wyniki zostały otrzymane w przypadku zestawu 2 i zestawu 4. Aby wykryć, które cechy mają najlepszy wpływ na klasyfikację, należy wyznaczyć część wspólną z obu zestawów o najlepszych wynikach: 
+\begin{equation}
+    ZestawNL = Zestaw2  \cap  Zestaw4
+\end{equation}
+\begin{equation}
+    ZestawNL = [c_{1}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}] \cap [c_{7}, c_{8}, c_{10}]
+\end{equation}
+\begin{equation}
+    ZestawNL = [c_{7}, c_{8}, c_{10}]
+\end{equation}
+	\indent gdzie ZestawNL oznacza wektor cech, które najbardziej pozytywnie wpływają na klasyfikację \\
+\\ Z kolei do wyznaczenia cech, które w negatywny sposób wpływają na klasyfikację należy skorzystać z poniższego wzoru:
+\begin{equation}
+ZestawNG = Zestaw3  \cap  Zestaw5
+\end{equation}
+\begin{equation}
+ZestawNG = [c_{1}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{9}] \cap [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}]
+\end{equation}
+\begin{equation}
+ZestawNG = [c_{1}, c_{3}, c_{4}, c_{5}, c_{6}]
+\end{equation} 
+	\indent gdzie ZestawNG oznacza wektor cech, które najmniej pozytywnie wpływają na klasyfikację \\ 
+\\ Wobec tego, można uznać, że najlepszy wpływ na klasyfikację mają cechy: 
+\begin{itemize}
+    \item częstość słów pisanych wielkymi literami
+    \item układ SI / imperialny
+    \item słowa kluczowe
+\end{itemize}
+Z koleji cechy o najmniejszym pozytywnym wpływie na klasyfikację prezentują się następująco:
+\begin{itemize}
+    \item zapis cyfr
+    \item częstość występowania dat
+    \item format zapisu dat
+    \item ogólna liczba słów
+    \item format zapisu dat
+    \item częstość słów rozpoczynających się wielką literą
+\end{itemize}
 
 
 \section{Braki w realizacji projektu 1.}
