@@ -23,15 +23,24 @@ import java.util.*;
 
 
 public class PrimaryController implements Initializable {
-    @FXML private ChoiceBox<String> metricChoiceBox;
-    @FXML private Slider proportionSlider;
-    @FXML private Label proportionLabel;
-    @FXML private Button markAllBtn, unmarkAllBtn, loadFilesBtn, classifyBtn;
-    @FXML private VBox featuresBox;
-    @FXML private TextField kNeighboursField;
-    @FXML private Label filesCountLabel, articlesCountLabel;
-    @FXML private TableView<Benchmark> resultsTable;
-    @FXML private BarChart<String, Number> classificationBarChart;
+    @FXML
+    private ChoiceBox<String> metricChoiceBox;
+    @FXML
+    private Slider proportionSlider;
+    @FXML
+    private Label proportionLabel;
+    @FXML
+    private Button markAllBtn, unmarkAllBtn, loadFilesBtn, classifyBtn;
+    @FXML
+    private VBox featuresBox;
+    @FXML
+    private TextField kNeighboursField;
+    @FXML
+    private Label filesCountLabel, articlesCountLabel;
+    @FXML
+    private TableView<Benchmark> resultsTable;
+    @FXML
+    private BarChart<String, Number> classificationBarChart;
 
     private ArrayList<String> metricNames;
     double trainPart = 50, testPart;
@@ -68,7 +77,7 @@ public class PrimaryController implements Initializable {
         });
 
         proportionSlider.valueProperty().addListener((observableValue, number, currentNumber) -> {
-            trainPart = (double)currentNumber - (double)currentNumber % 5;
+            trainPart = (double) currentNumber - (double) currentNumber % 5;
             testPart = 100 - trainPart;
             proportionLabel.setText(Math.round(trainPart) + " - treningowa"
                     + " / " + Math.round(testPart) + " - testowa");
@@ -77,13 +86,13 @@ public class PrimaryController implements Initializable {
 
         markAllBtn.setOnAction(actionEvent -> {
             for (Node item : featuresBox.getChildren()) {
-                ((CheckBox)item).setSelected(true);
+                ((CheckBox) item).setSelected(true);
             }
         });
 
         unmarkAllBtn.setOnAction(actionEvent -> {
             for (Node item : featuresBox.getChildren()) {
-                ((CheckBox)item).setSelected(false);
+                ((CheckBox) item).setSelected(false);
             }
         });
 
@@ -120,7 +129,7 @@ public class PrimaryController implements Initializable {
         classifyBtn.setOnAction(actionEvent -> {
             Collections.shuffle(articlesList);
             int articlesListSize = articlesList.size();
-            int divisionIndex = (int)(trainPart / 100 * articlesListSize + 1);
+            int divisionIndex = (int) (trainPart / 100 * articlesListSize + 1);
             trainingList = new ArrayList<>(articlesList.subList(0, divisionIndex));
             testingList = new ArrayList<>(articlesList.subList(divisionIndex, articlesListSize));
 
@@ -130,7 +139,7 @@ public class PrimaryController implements Initializable {
 
             List<Boolean> booleanList = new ArrayList<>();
             for (Node item : featuresBox.getChildren()) {
-                booleanList.add(((CheckBox)item).isSelected());
+                booleanList.add(((CheckBox) item).isSelected());
             }
 
             for (Article trainingArticle : trainingList) {
@@ -154,7 +163,7 @@ public class PrimaryController implements Initializable {
         });
 
         kNeighboursField.setTextFormatter(new TextFormatter<>(change ->
-                        (change.getControlNewText().matches("([1-9][0-9]*)?")) ? change : null));
+                (change.getControlNewText().matches("([1-9][0-9]*)?")) ? change : null));
 
     }
 
@@ -169,14 +178,21 @@ public class PrimaryController implements Initializable {
                     ratesMap.get("truePositive") + ratesMap.get("falseNegative");
 
             double singlePrecision = generator.countPrecision(place, testingList);
-            precisionValue += singlePrecision * allArticlesFromClass;
             System.out.println("Precission " + place.name() + ": " +
                     singlePrecision);
+            if (Double.isNaN(singlePrecision)) {
+                singlePrecision = 0;
+            }
+            precisionValue += singlePrecision * allArticlesFromClass;
+
 
             double singleRecall = generator.countRecall(place, testingList);
-            recallValue += singleRecall * allArticlesFromClass;
             System.out.println("Recall " + place.name() + ": " +
-                   singleRecall);
+                    singleRecall);
+            if (Double.isNaN(singleRecall)) {
+                singleRecall = 0;
+            }
+            recallValue += singleRecall * allArticlesFromClass;
 
             System.out.println("F1 " + place.name() + ": " +
                     generator.countF1(place, testingList));
@@ -215,7 +231,7 @@ public class PrimaryController implements Initializable {
         for (Article article : testingList) {
             beforeStatisticsMap.put(article.getPlace(), beforeStatisticsMap.get(article.getPlace()) + 1);
             afterStatisticsMap.put(article.getPredictedPlace(),
-                                    afterStatisticsMap.get(article.getPredictedPlace()) + 1);
+                    afterStatisticsMap.get(article.getPredictedPlace()) + 1);
         }
 
         for (ClassifiedPlaces placeKey : ClassifiedPlaces.values()) {

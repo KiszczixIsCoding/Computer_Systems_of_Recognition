@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +118,7 @@
       <workItem from="1618750647657" duration="5443000" />
       <workItem from="1618796266433" duration="1272000" />
       <workItem from="1618820778519" duration="4625000" />
-      <workItem from="1619297366130" duration="14019000" />
+      <workItem from="1619297366130" duration="19203000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>
@@ -223,6 +224,17 @@
     <MESSAGE value="changes in report" />
     <MESSAGE value="Calculate final measures and display in table" />
     <option name="LAST_COMMIT_MESSAGE" value="Calculate final measures and display in table" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

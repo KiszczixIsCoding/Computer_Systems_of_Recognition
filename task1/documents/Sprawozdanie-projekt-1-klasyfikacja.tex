@@ -510,7 +510,7 @@ Kolejnym krokiem było przeprowadzenie dokładnych eksperymentów dla różnych 
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla różnych wartości parametru $k$}
 
-Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych wartości parametru k przyjęliśmy następujące paarmetry, które pozostawały stałe w trakcie badań:
+Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych wartości parametru k przyjęliśmy następujące parametry, które pozostawały niezmienne w trakcie badań:
 \begin{itemize}
     \item ilość artykułów do klasyfikacji: 13531 (wszystkie)
     \item podział zbioru: 80 - treningowy/ 20 - testowy
@@ -560,6 +560,133 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 \hline
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_k.png}
+    \caption{Wykres zależności wyników miar podobieństwa od liczby $k$ najbliższych sąsiadów dla klasyfikacji $k$-NN}
+\end{figure}
+
+Miara Accuracy jest najmnniejsza dla k=2, od k=3 wartości tejże miary są bardzo podobne do siebie. Warto ptzy tym eksperymencie zwrócić uwagę na miarę Precission, która przy bardzo dużych k (15 i 30) przyjmuje największe wartości spośród porównywanych k. Jednak, aby mieć pełny ogląd na zaistniałą sytuację należy zwrócić uwagę także na miary dla poszczególnych klas. Przy k = 15 i k = 30 miara Precision dla USA wynosi 0,98, ale już dla West-Germany odpowiednio 0,03 oraz 0,04. Co ciekawe przy tak dużych k miara Recall dla West-Germany wyniosła 1,00, co oznacza, że wartość FN (False Negative) dla tej klasy wyniosła 0. To natomiast oznacza, że nie było przypadku, że klasa element klasy West-Germany został błędnie sklasyfikowany jako element innej klasy.
+
+\subsection{Porównanie wyników klasyfkacji metody $k$-NN w zależności od wyboru metryki}
+
+Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych metryk przyjęliśmy następujące parametry, które pozostawały niezmienne w trakcie badań:
+\begin{itemize}
+    \item ilość artykułów do klasyfikacji: 13531 (wszystkie)
+    \item podział zbioru: 75 - treningowy/ 25 - testowy
+    \item $k$ najbliższych sąsiadów: 7
+    \item wybrane cechy: wszystkie
+\end{itemize}
+
+% \usepackage{multirow}
+
+\clearpage
+\begin{table}
+\caption{Wyniki klasyfikacji w zależności od wybranej metryki dla wszystkich cech}
+\centering
+\begin{tabular}{lllll}
+                                                                              & metryka    & Czebyszewa & Uliczna & Euklidesowa  \\ 
+\hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}West-\\Germany\end{tabular}}       & Precision  & NaN        & 0,61    & 0,47         \\
+                                                                              & Recall     & 0,00       & 0,22    & 0,19         \\
+                                                                              & F1         & NaN        & 0,32    & 0,27         \\ 
+\hline
+\multirow{3}{*}{Japan}                                                        & Precission & NaN        & 0,60    & 0,71         \\
+                                                                              & Recall     & 0,00       & 0,90    & 0,88         \\
+                                                                              & F1         & NaN        & 0,72    & 0,79         \\ 
+\hline
+\multirow{3}{*}{France}                                                       & Precision  & NaN        & 0,76    & 0,70         \\
+                                                                              & Recall     & 0,00       & 0,46    & 0,51         \\
+                                                                              & F1         & NaN        & 0,57    & 0,59         \\ 
+\hline
+\multirow{3}{*}{UK}                                                           & Precision  & NaN        & 0,68    & 0,68         \\
+                                                                              & Recall     & 0,00       & 0,51    & 0,53         \\
+                                                                              & F1         & NaN        & 0,58    & 0,59         \\ 
+\hline
+\multirow{3}{*}{USA}                                                          & Precision  & 0,80       & 0,89    & 0,89         \\
+                                                                              & Recall     & 1,00       & 0,96    & 0,97         \\
+                                                                              & F1         & 0,89       & 0,92    & 0,93         \\ 
+\hline
+\multirow{3}{*}{Canada}                                                       & Precision  & NaN        & 0,67    & 0,65         \\
+                                                                              & Recall     & 0,00       & 0,16    & 0,15         \\
+                                                                              & F1         & NaN        & 0,26    & 0,24         \\ 
+\hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Wszystkie\\dokumenty\end{tabular}} & Accuracy   & 0,80       & 0,85    & 0,86         \\
+                                                                              & Precsision & 0,65       & 0,84    & 0,84         \\
+                                                                              & Recall     & 0,81       & 0,85    & 0,86         \\
+                                                                              & F1         & 0,72       & 0,85    & 0,85         \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_metryki1.png}
+    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla wzystkich cech.}
+\end{figure}
+
+W powyższej tabeli oraz na wykresie można zauważyć, że zdecydowanie najniższe wyniki miar podobieństwa ma metryka Czebyszewa. Również dla metryki Czebyszewa dla wszystkich krajów poza USA w mierze Precision i F1 występuje NaN, co oznacza dzielenie przez 0, co z kolei oznacza, że do tych klas nie został przydzielony żaden artykuł. Przy obliczaniu ostatecznego wyniku miary liczonego z średniej ważonej wartość NaN traktowaliśmy jako 0. Z powodu tak częśtego występowania wartości NaN zdecydowaliśmy się na powtórzenie eksperymentu, tym razem stosując tylko cechy liczbowe.
+Zatem, dla drugiego eksperymentu w tej sekcji przyjęliśmy następujące parametry:
+\begin{itemize}
+    \item ilość artykułów do klasyfikacji: 13531 (wszystkie)
+    \item podział zbioru: 75 - treningowy/ 25 - testowy
+    \item $k$ najbliższych sąsiadów: 7
+    \item wybrane cechy: $c_3$, $c_5$, $c_6$, $c_7$, $c_8$, $c_9$.
+\end{itemize}
+
+% \usepackage{multirow}
+
+\clearpage
+\begin{table}
+\caption{Wyniki klasyfikacji w zależności od wybranej metryki dla cech liczbowych}
+\centering
+\begin{tabular}{lllll}
+                                                                              & metryka    & Czebyszewa & Uliczna & Euklidesowa  \\ 
+\hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}West-\\Germany\end{tabular}}       & Precision  & 0,21       & 0,28    & 0,21         \\
+                                                                              & Recall     & 0,06       & 0,10    & 0,12         \\
+                                                                              & F1         & 0,10       & 0,14    & 0,15         \\ 
+\hline
+\multirow{3}{*}{Japan}                                                        & Precission & 0,25       & 0,25    & 0,25         \\
+                                                                              & Recall     & 0,19       & 0,21    & 0,15         \\
+                                                                              & F1         & 0,22       & 0,22    & 0,19         \\ 
+\hline
+\multirow{3}{*}{France}                                                       & Precision  & 0,20       & 0,29    & 0,11         \\
+                                                                              & Recall     & 0,01       & 0,03    & 0,01         \\
+                                                                              & F1         & 0,03       & 0,06    & 0,03         \\ 
+\hline
+\multirow{3}{*}{UK}                                                           & Precision  & 0,46       & 0,43    & 0,43         \\
+                                                                              & Recall     & 0,23       & 0,26    & 0,25         \\
+                                                                              & F1         & 0,31       & 0,32    & 0,32         \\ 
+\hline
+\multirow{3}{*}{USA}                                                          & Precision  & 0,83       & 0,83    & 0,84         \\
+                                                                              & Recall     & 0,97       & 0,97    & 0,97         \\
+                                                                              & F1         & 0,89       & 0,90    & 0,90         \\ 
+\hline
+\multirow{3}{*}{Canada}                                                       & Precision  & 0,36       & 0,17    & 0,27         \\
+                                                                              & Recall     & 0,02       & 0,01    & 0,02         \\
+                                                                              & F1         & 0,04       & 0,02    & 0,03         \\ 
+\hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Wszystkie\\dokumenty\end{tabular}} & Accuracy   & 0,79       & 0,79    & 0,80         \\
+                                                                              & Precsision & 0,72       & 0,72    & 0,74         \\
+                                                                              & Recall     & 0,79       & 0,79    & 0,81         \\
+                                                                              & F1         & 0,76       & 0,75    & 0,77         \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_metryki2.png}
+    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla cech liczbowych.}
+\end{figure}
+
+
+Gdy wzięliśmy pod uwagę tylko cechy liczbowe, wyeliminowane zostały wartośći NaN przy metryce Czebyszewa. Oznacza to, że dla każdej klasy został przyporządkowany min. 1 artykuł.
+\\
+Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
+
 Wyniki kolejnych eksperymentów wg punktów 2.-8. opisu projektu 1.  Wykresy i tabele
 obowiązkowe, dokładnie opisane w ,,captions'' (tytułach), konieczny opis osi i
 jednostek wykresów oraz kolumn i wierszy tabel.\\ 
