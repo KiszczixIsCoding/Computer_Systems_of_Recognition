@@ -506,7 +506,7 @@ Aplikacja została wykonana w technologii Java w wersji 11\cite{java_11} (najnow
 \end{figure}
 
 \section{Wyniki klasyfikacji dla różnych parametrów wejściowych}
-Kolejnym krokiem było przeprowadzenie dokładnych eksperymentów dla różnych parametrów wejściowych, w celu wyciągnięcia wniosków odnośnie tego które parametry w jakim stopniu wpływają na skuteczność klasyfikacji. Eksperymenty podzieliliśmy na 4 rodzaje. Pierwszy rodzaj odnosi się do porównywania wyników klasyfikacji metody $k$-NN w zależności od różnych parametrów $k$ (przy stałych wartościach innych parametrów). Drugi rodzaj to badanie wpływu wartości podziału zbioru na wynik Accuracy. Trzecia część polegała na wyznaczeniu zależności Accuracy od wyboru metryki. Natomiast ostatni rodzaj eksperymentów odnosił się do badania wpływu cech na wynik klasyfikacji. Wyniki miar jakości w postaci tabel i wykresów dla wszystkich ekspermentów przedstawiono poniżej.
+Kolejnym krokiem było przeprowadzenie dokładnych eksperymentów dla różnych parametrów wejściowych, w celu wyciągnięcia wniosków odnośnie tego które parametry w jakim stopniu wpływają na skuteczność klasyfikacji. Eksperymenty podzieliliśmy na 4 rodzaje. Pierwszy rodzaj odnosi się do porównywania wyników klasyfikacji metody $k$-NN w zależności od różnych parametrów $k$ (przy stałych wartościach innych parametrów). Drugi rodzaj to badanie wpływu wartości podziału zbioru na wynik miar podobieństwa (Accuracy, Precision, Recall, F1). Trzecia część polegała na wyznaczeniu zależności wyników miar podobieństwa od wyboru metryki. Natomiast ostatni rodzaj eksperymentów odnosił się do badania wpływu cech na wynik klasyfikacji. Wyniki miar jakości w postaci tabel i wykresów dla wszystkich ekspermentów przedstawiono poniżej.
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla różnych wartości parametru $k$}
 
@@ -524,7 +524,7 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 
 \clearpage
 \begin{table}
-\caption{Wyniki klasyfikacji w zależności od parametru $k$}
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od parametru $k$}
 \centering
 \label{tabela:k}
 \begin{tabular}{llllllllllll}
@@ -585,7 +585,7 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 
 \clearpage
 \begin{table}
-\caption{Wyniki klasyfikacji w zależności od wybranej metryki dla wszystkich cech}
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla wszystkich cech}
 \centering
 \label{tabela:metryka_wszystkie}
 \begin{tabular}{lllll}
@@ -623,14 +623,14 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 \end{tabular}
 \end{table}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{wykres_metryki1.png}
     \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla wzystkich cech.}
         \label{wykres:metryka_wszystkie}
 \end{figure}
 
-W powyższej tabeli oraz na wykresie można zauważyć, że zdecydowanie najniższe wyniki miar podobieństwa ma metryka Czebyszewa. Również dla metryki Czebyszewa dla wszystkich krajów poza USA w mierze Precision i F1 występuje NaN, co oznacza dzielenie przez 0, co z kolei oznacza, że do tych klas nie został przydzielony żaden artykuł. Przy obliczaniu ostatecznego wyniku miary liczonego z średniej ważonej wartość NaN traktowaliśmy jako 0. Z powodu tak częśtego występowania wartości NaN zdecydowaliśmy się na powtórzenie eksperymentu, tym razem stosując tylko cechy liczbowe.
+W powyższej tabeli oraz na wykresie można zauważyć, że zdecydowanie najniższe wyniki miar podobieństwa ma metryka Czebyszewa. Również dla metryki Czebyszewa dla wszystkich krajów poza USA w mierze Precision i F1 występuje NaN, co oznacza dzielenie przez 0, co z kolei oznacza, że do tych klas nie został przydzielony żaden artykuł. Przy obliczaniu ostatecznego wyniku miary liczonego z średniej ważonej wartość NaN traktowaliśmy jako 0. Z powodu tak częstego występowania wartości NaN zdecydowaliśmy się na powtórzenie eksperymentu, tym razem stosując tylko cechy liczbowe.
 Zatem, dla drugiego eksperymentu w tej sekcji przyjęliśmy następujące parametry:
 \begin{itemize}
     \item ilość artykułów do klasyfikacji: 13531 (wszystkie)
@@ -643,7 +643,7 @@ Zatem, dla drugiego eksperymentu w tej sekcji przyjęliśmy następujące parame
 
 \clearpage
 \begin{table}
-\caption{Wyniki klasyfikacji w zależności od wybranej metryki dla cech liczbowych}
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla cech liczbowych}
 \centering
 \label{table:metryka_liczbowe}
 \begin{tabular}{lllll}
@@ -691,7 +691,7 @@ Zatem, dla drugiego eksperymentu w tej sekcji przyjęliśmy następujące parame
 
 Gdy wzięliśmy pod uwagę tylko cechy liczbowe, wyeliminowane zostały wartośći NaN przy metryce Czebyszewa. Oznacza to, że dla każdej klasy został przyporządkowany min. 1 artykuł.
 \\
-Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
+\indent Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
 
 Wyniki kolejnych eksperymentów wg punktów 2.-8. opisu projektu 1.  Wykresy i tabele
 obowiązkowe, dokładnie opisane w ,,captions'' (tytułach), konieczny opis osi i
@@ -702,7 +702,7 @@ jednostek wykresów oraz kolumn i wierszy tabel.\\
 \section{Dyskusja, wnioski}
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN dla różnych wartości parametru $k$}
 
-Analizując rysunek \ref{wykres:k} oraz tabelę \ref{tabela:k} dla wartości $k$ mniejszych niż 3 wyniki wszystkich miar są zdecydowanie niższe porównując z wartościami $k$ większymi, bądź równymi 3. Najmniejsze wartości spośród wszytskich porównywanych wystąpiły dla $k$=2. Od $k$=3 miara Accuracy zmienia się w bardzo małym zakresie ($\pm 0,02$), możemy zatem założyć, że klasyfikator $k$-NN działa optymalnie od k=3. Ciekawie prezentuje się miara Precission, która dla większych k (15 i 30) przyjmuje zdecydowanie największą wartość (0,94). Jednak patrząc jedynie na miarę Precision dla ogółu artykułów mielibyśmy niepełne dane, które nie pozwoliłyby nam odpowiednio zinterpretować wyników. Tak duża wartość Precision występuje bowiem tylko dlatego, że dla klasy USA, która jest zdecydowanie najbardziej liczna, a co za tym idzie - ma największy wpływ na ogólny wynik, miara ta przyjmuje tak duże wartości. Patrząc na klasy odpowiadające za inne kraje wartości te są dużo mniejsze, bądź nawet bliskie zeru (West-Germany: 0,03, Canada: 0,07).
+Analizując rysunek \ref{wykres:k} oraz tabelę \ref{tabela:k} dla wartości $k$ mniejszych niż 3 wyniki wszystkich miar są zdecydowanie niższe porównując z wartościami $k$ większymi, bądź równymi 3. Najmniejsze wartości spośród wszystkich porównywanych wystąpiły dla $k$=2. Od $k$=3 miara Accuracy zmienia się w bardzo małym zakresie ($\pm 0,02$), możemy zatem założyć, że klasyfikator $k$-NN działa optymalnie od k=3. Ciekawie prezentuje się miara Precission, która dla większych k (15 i 30) przyjmuje zdecydowanie największą wartość (0,94). Jednak patrząc jedynie na miarę Precision dla ogółu artykułów mielibyśmy niepełne dane, które nie pozwoliłyby nam odpowiednio zinterpretować wyników. Tak duża wartość Precision występuje bowiem tylko dlatego, że dla klasy USA, która jest zdecydowanie najbardziej liczna, a co za tym idzie - ma największy wpływ na ogólny wynik, miara ta przyjmuje tak duże wartości. Patrząc na klasy odpowiadające za inne kraje wartości te są dużo mniejsze, bądź nawet bliskie zeru (West-Germany: 0,03, Canada: 0,07).
 
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wyboru metryki}
 W sekcji 5.2 zostały przeprowadzone 2 ekseprymenty. Jeden z nich miał miejsce na wszystkich cechach (tabela \ref{tabela:metryka_wszystkie}, rysunek \ref{wykres:metryka_wszystkie}), drugi jedynie na cechach liczbowych(tabela \ref{table:metryka_liczbowe}, rysunek \ref{wykres:metryka_liczbowe}). W pierwszym eksperymencie, dla metryki Czebyszewa artykuły były przyporządkowane jedynie do klasy USA (dla pozostałych klas pojawiły się wartości NaN, co oznacza dzielenie przez zero, czyli żaden tekst nie został przyporządkowany). Stało się tak dlatego, że metryka ta jako wynik zwraca maksymaną wartość bezwzględną różnic pomiędzy kolejnymi cechami z obu wektorów. Jako, że w celu porównania dwóch cech tekstowych korzystamy z metody trigramów, a cech tekstowych jest aż pięć, zawsze zdarzy się, że porównanie którychś z tych cech zwróci wartość 1, czyli maksymalną możliwą odległość pomiędzy dwoma słowami. W niemal każdym przypadku wartość ta będzie również wartością maksymalną biorąc pod uwagę także cechy liczbowe. Z tego powodu przy pomocy metryki Czebyszewa, biorąc pod uwagę cechy tekstowe wszystkie teksty klasyfikowane są do jednej klasy. Dlatego metryka Czebyszewa w formie w jakiej została zaimplementowana w naszym programie nie nadaje się do cech tekstowych. Jednak przy cechach numerycznych metryka ta daje porównywalne wyniki z metryką Uliczną i Euklidesową. Metryką, która w obu eksperymentach osiągnęła najlepsze wyniki klasyfikacji była metryka Euklidesowa, która jednak bardzo nieznacznie wyprzedziła metrykę Uliczną (jeśli chodzi o miarę Accuracy było to zaledwie o 0,01 więcej).
