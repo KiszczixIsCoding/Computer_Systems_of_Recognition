@@ -127,7 +127,7 @@ public class PrimaryController implements Initializable {
 
 
         classifyBtn.setOnAction(actionEvent -> {
-            Collections.shuffle(articlesList);
+//            Collections.shuffle(articlesList);
             int articlesListSize = articlesList.size();
             int divisionIndex = (int) (trainPart / 100 * articlesListSize + 1);
             trainingList = new ArrayList<>(articlesList.subList(0, divisionIndex));

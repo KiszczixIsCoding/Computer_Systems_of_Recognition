@@ -231,6 +231,18 @@ Natomiast zbiór numerów cech liczbowych wygląda następująco:
     L = \{3, 5, 6, 7, 8, 9\}
 \end{gather}
 
+Wartości wektora cech zostaną znormalizowane poprzez podzielenie cechy przez odpowiednią wagę, aby dla każdej cechy operować w podobnych przedziałach wartości. Wagi przez jakie dzielimy cechy liczbowe prezentują się następująco:
+\begin{itemize}
+    \item Częstość występowania dat: 10
+    \item Ogólna liczba słów: 250
+    \item Częstość słów rozpoczynających się wielka literą: 30
+    \item Częstość słów pisanych wielkimi literami: 10
+    \item Układ SI/imperialny: 10
+    \item Częstość wystepowania cytatów: 5
+\end{itemize}
+
+\indent Z uwagi na wykorzastaną miarę podobieństwa tekstów opisaną w sekcji 3, cechy tekstowe będą przyjmowały wartości ze zbioru $<$0,1$>$
+
 \subsection{Miary jakości klasyfikacji} 
 Podczas procesu klasyfikacji niezbędne jest określenie jak skuteczna i jakościowa jest prowadzona klasyfikacja. W tym celu posłużyliśmy się tablicą(macierzą) pomyłek oraz miarami jakości klasyfikacji.\cite{tablica_pomylek} Macierz pomyłek zawiera ilość próbek przypisanej do poszczególnej grupy (prawdziwie pozytywna, fałszywie pozytywna, fałszywie negatywna, prawdziwie negatywna). Grupy te powstają poprzez zestawienie ze sobą klasy rzeczywistej oraz klasy predykowanej. Tablica pomyłek prezentuje się następująco: \\
 
@@ -506,7 +518,7 @@ Aplikacja została wykonana w technologii Java w wersji 11\cite{java_11} (najnow
 \end{figure}
 
 \section{Wyniki klasyfikacji dla różnych parametrów wejściowych}
-Kolejnym krokiem było przeprowadzenie dokładnych eksperymentów dla różnych parametrów wejściowych, w celu wyciągnięcia wniosków odnośnie tego które parametry w jakim stopniu wpływają na skuteczność klasyfikacji. Eksperymenty podzieliliśmy na 4 rodzaje. Pierwszy rodzaj odnosi się do porównywania wyników klasyfikacji metody $k$-NN w zależności od różnych parametrów $k$ (przy stałych wartościach innych parametrów). Drugi rodzaj to badanie wpływu wartości podziału zbioru na wynik miar podobieństwa (Accuracy, Precision, Recall, F1). Trzecia część polegała na wyznaczeniu zależności wyników miar podobieństwa od wyboru metryki. Natomiast ostatni rodzaj eksperymentów odnosił się do badania wpływu cech na wynik klasyfikacji. Wyniki miar jakości w postaci tabel i wykresów dla wszystkich ekspermentów przedstawiono poniżej.
+Kolejnym krokiem było przeprowadzenie dokładnych eksperymentów dla różnych parametrów wejściowych, w celu wyciągnięcia wniosków odnośnie tego które parametry w jakim stopniu wpływają na skuteczność klasyfikacji. Eksperymenty podzieliliśmy na 4 rodzaje. Pierwszy rodzaj odnosi się do porównywania wyników klasyfikacji metody $k$-NN w zależności od różnych parametrów $k$ (przy stałych wartościach innych parametrów). Drugi rodzaj to badanie wpływu wartości podziału zbioru na wynik miar podobieństwa (Accuracy, Precision, Recall, F1). Trzecia część polegała na wyznaczeniu zależności wyników miar podobieństwa od wyboru metryki. Natomiast ostatni rodzaj eksperymentów odnosił się do badania wpływu cech na wynik klasyfikacji. Wyniki miar jakości w postaci tabel i wykresów dla wszystkich ekspermentów przedstawiono poniżej. Przeprowadzając pierwszą pulę eksperymentów dla każdego procesu klasyfikacji artykuły ze zbioru treningowego i testowego były dobierane losowo. Miało to na pewno negatywny wpływ na wyniki klasyfikacji, zatem po poprawieniu tego błędu przeprowadziliśmy drugą pulę eksperymentów.
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla różnych wartości parametru $k$}
 
@@ -693,6 +705,7 @@ Gdy wzięliśmy pod uwagę tylko cechy liczbowe, wyeliminowane zostały wartoś�
 \\
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla 5 różnych proporcji podziału zbioru artykułów}
+\subsubsection{Eksperymenty dla losowego doboru artykułów do zbiorów treningowych i testowych przy każdym procesie klasyfikacji}
 Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych proporcji podziału zbioru artykułów jako stałe parametry zostały przyjęte:
 \begin{itemize}
     \item liczba artykułów do klasyfikacji: 13531 (wszystkie)
@@ -701,7 +714,7 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
     \item wybrane cechy: wszystkie
 \end{itemize}
 \begin{table}[!htbp]
-\caption{Wyniki klasyfikacji w zależności od proporcji podziału zbioru artykułów}
+\caption{Wyniki klasyfikacji w zależności od proporcji podziału zbioru artykułów, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
 \centering
 \label{table:proporcja}
 \begin{tabular}{cl|c|c|c|c|c|}
@@ -714,13 +727,49 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 \multicolumn{1}{|c|}{}                               & F1        & 0,84                     & 0,85                     & 0,85                    & 0,84                    & 0,85                    \\ \hline
 \end{tabular}
 \end{table}
+
+\clearpage
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{ranges_bar_chart.png}
-    \caption{Wyniki klasyfikacji w zależności od proporcji podziału zbioru}
+    \caption{Wykres zależności wyników klasyfikacji od proporcji podziału zbioru artykułów, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
     \label{wykres:proporcja}
 \end{figure}
 
+\subsubsection{Eksperymenty dla artykułów do zbiorów treningowych i testowych dobranych na stałe przy każdym procesie klasyfikacji}
+W kontekście badania proporcji podziału zbioru artykułow określenie "dobrane na stałe" oznacza, że przy zwiększaniu ilości artykułów w zbiorze treningowym, artykuły które były w tym zbiorze przed zmianą w nim pozostają, natomiast "dokładane" są do nich kolejne artykuły. 
+\\
+Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych proporcji podziału zbioru artykułów jako stałe parametry zostały przyjęte:
+\begin{itemize}
+    \item liczba artykułów do klasyfikacji: 13531 (wszystkie)
+    \item liczba k-najbliższych sąsiadów: 11 
+    \item wybrana metryka: uliczna
+    \item wybrane cechy: wszystkie
+\end{itemize}
+\begin{table}[!htbp]
+\caption{Wyniki klasyfikacji w zależności od proporcji podziału zbioru artykułów, gdy artykuły były przydzielane na stałe w procesie klasyfikacji.}
+\centering
+\label{table:proporcja_stale}
+\begin{tabular}{cl|c|c|c|c|c|}
+\cline{3-7}
+\multicolumn{1}{l}{}                                 &           & \multicolumn{5}{c|}{\begin{tabular}[c]{@{}c@{}}Proporcja podziału zbioru artykułów\\  (cz. treningowa / cz. testowa)\end{tabular}} \\ \cline{3-7} 
+\multicolumn{1}{l}{}                                 &           & 30/70                    & 45/55                    & 55/45                   & 70/30                   & 85/15                   \\ \hline
+\multicolumn{1}{|c|}{\multirow{4}{*}{Miary jakości}} & Accuracy  & 0,84                     & 0,84                     & 0,84                    & 0,85                    & 0,88                    \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Precision & 0,81                     & 0,81                     & 0,82                    & 0,82                    & 0,85                    \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Recall    & 0,84                     & 0,84                     & 0,84                    & 0,85                    & 0,88                    \\ \cline{2-7}
+\multicolumn{1}{|c|}{}                               & F1        & 0,82                     & 0,82                    & 0,83                    & 0,83                    & 0,86                    \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{ranges_const_bar_chart.png}
+    \caption{Wykres zależności wyników klasyfikacji w zależności od proporcji podziału zbioru artykułów, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji.}
+    \label{wykres:proporcja_stale}
+\end{figure}
+
+
+Gdy artykuły nie były przydzielane do zbiorów losowo, wyniki miar podobieństwa były bardziej przewidywalne i sensowne. Im większa część zbioru była częścią testową tym wyniki były dokładniejsze (bądź równe wynikom z poprzedniego podziału pomiędzy podziałem 30/70, a 45/55).
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla 5 różnych podzbiorów wyekstrahowanych cech}
 Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla 5 różnych podzbiorów cech, jako stałe parametry zostały przyjęte:
