@@ -953,6 +953,7 @@ Gdy artykuły nie były przydzielane do zbiorów losowo, wyniki miar podobieńst
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla 5 różnych podzbiorów wyekstrahowanych cech}
 Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla 5 różnych podzbiorów cech, jako stałe parametry zostały przyjęte:
+\subsubsection {Eksperymenty dla losowego doboru artykułów do zbiorówtreningowych i testowych przy każdym procesie klasyfikacji}
 \begin{itemize}
     \item liczba artykułów do klasyfikacji: 13531 (wszystkie)
     \item podział zbioru: 60 - treningowy/ 40 - testowy    
@@ -977,7 +978,7 @@ Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi
 \end{equation}
 
 \begin{table}[!htbp]
-\caption{Wyniki klasyfikacji metodą $k$-NN dla 5 podzbiorów cech}
+\caption{Wyniki klasyfikacji w zależności od wybranego podzbioru cech, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
 \centering
 \label{table:podzbiory}
 \begin{tabular}{cl|c|c|c|c|c|}
@@ -993,10 +994,52 @@ Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{features_sets_bar_chart.png}
-    \caption{Wyniki klasyfikacji metodą $k$-NN dla 5 podzbiorów cech}
+    \caption{Wykres zależności wyników klasyfikacji od podzbioru, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
     \label{rysunek:podzbiory}
 \end{figure}
-
+\subsubsection{Eksperymenty dla artykułów do zbiorów treningowych itestowych dobranych na stałe przy każdym procesieklasyfikacji}
+\begin{itemize}
+    \item liczba artykułów do klasyfikacji: 13531 (wszystkie)
+    \item podział zbioru: 60 - treningowy/ 40 - testowy    
+    \item liczba k-najbliższych sąsiadów: 9 
+    \item wybrana metryka: Euklidesowa
+\end{itemize}
+Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi zestawami, tj.:
+\begin{equation}
+   Zestaw1 = [c_{1}, c_{2}, c_{6}, c_{7}, c_{8}, c_{10}, c_{11}]
+\end{equation}
+\begin{equation}
+   Zestaw2 = [c_{1}, c_{5}, c_{6}, c_{7}, c_{8}, c_{9}, c_{10}]
+\end{equation}
+\begin{equation}
+   Zestaw3 = [c_{1}, c_{3}, c_{4}, c_{5}, c_{6}, c_{7}, c_{9}]
+\end{equation}
+\begin{equation}
+   Zestaw4 = [c_{7}, c_{8}, c_{10}]
+\end{equation}
+\begin{equation}
+   Zestaw5 = [c_{1}, c_{2}, c_{3}, c_{4}, c_{5}, c_{6}]
+\end{equation}
+\begin{table}[!htbp]
+\caption{Wyniki klasyfikacji w zależności od wybranego podzbioru cech, gdy artykuły były przydzielane na stałe w procesie klasyfikacji}
+\centering
+\label{table:podzbiory}
+\begin{tabular}{cl|c|c|c|c|c|}
+\cline{3-7}
+\multicolumn{1}{l}{}                                 &           & \multicolumn{5}{c|}{Podzbiory wyekstrahowanych cech}                                                                                                          \\ \cline{3-7} 
+\multicolumn{1}{l}{}                                 &           & \multicolumn{1}{l|}{Zestaw 1} & \multicolumn{1}{l|}{Zestaw 2} & \multicolumn{1}{l|}{Zestaw 3} & \multicolumn{1}{l|}{Zestaw 4} & \multicolumn{1}{l|}{Zestaw 5} \\ \hline
+\multicolumn{1}{|c|}{\multirow{4}{*}{Miary jakości}} & Accuracy  & 0,84                          & 0,84                          & 0,80                          & 0,85                          & 0,81                          \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Precision & 0,81                          & 0,82                          & 0,74                          & 0,84                          & 0,75                          \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & Recall    & 0,84                          & 0,84                          & 0,80                          & 0,85                          & 0,81                          \\ \cline{2-7} 
+\multicolumn{1}{|c|}{}                               & F1        & 0,82                          & 0,83                          & 0,77                          & 0,85                          & 0,78                          \\ \hline
+\end{tabular}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{features_const_bar_chart.png}
+    \caption{Wykres zależności wyników klasyfikacji w zależności od wybranego podzbioru cech, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji}
+    \label{rysunek:podzbiory}
+\end{figure}
 \indent Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
 
 
@@ -1019,7 +1062,8 @@ Jeśli spojrzymy natomiast na niewielkie różnice pomiędzy kolejnymi proporcja
 \indent W sekcji 5.3.2 wyniki są bardziej przewidywalne i sensowne. Nie następuje w tym wypadku odwrócenie trendu (jak to miało miejsce powyżej). W miarę zwiększania ilości artykułów dla części treningowej wzrasta (bądź pozostaje stała) skuteczność klasyfikacji. Zdecydowanie największy skok możemy zaobserwować przy zmianie proporcji podziału z 70/30 do 85/15. Płynie z tego wniosek, że im więcej artykułów w części treningowej w stosunku do części testowej tym skuteczniejsza jest klasyfikacja metodą $k$-NN.
 
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wybranego podzbioru cech}
-W sekcji 5.4 przeprowadzony został eksperyment mający na celu sprawdzenie jakości klasyfikacji metodą k-NN w zależności od dobranego podzbioru cech artykułów. W tym celu również została policzona każda z miar jakości dla 5 różnych podzbiorów cech.  Analizując wyniki, które zostały zawarte w \ref{wykres:podzbiory} oraz tabelę \ref{tabela:podzbiory} widzimy, że wyniki miar jakości są bardziej zróżnicowane, niż w przypadku eksperymentów w ramach sekcji 5.3. Najlepsze wyniki zostały otrzymane dla miary accuracy oraz recall (identyczne), natomiast najgorsze w przypadku miary precision. Pondato, możemy zauważyć większe rozbieżności pomiędzy miarą precision, a pozostałymi miarami jakości (od 0.01 w przypadku zestawu 4 do nawet 0.06 w przypadku zestawu 5). Jeśli chodzi o dobór cech, to najlepsze wyniki zostały otrzymane w przypadku zestawu 2 i zestawu 4. Aby wykryć, które cechy mają najlepszy wpływ na klasyfikację, należy wyznaczyć część wspólną z obu zestawów o najlepszych wynikach: 
+W sekcji 5.4 przeprowadzone zostały dwa eksperymenty mające na celu sprawdzenie jakości klasyfikacji metodą k-NN w zależności od dobranego podzbioru cech artykułów. W tym celu również została policzona każda z miar jakości dla 5 różnych podzbiorów cech.  Analizując wyniki dla losowych danych, które zostały zawarte w \ref{wykres:podzbiory} oraz tabelę \ref{tabela:podzbiory} widzimy, że wyniki miar jakości są bardziej zróżnicowane, niż w przypadku eksperymentów w ramach sekcji 5.3. Najlepsze wyniki zostały otrzymane dla miary accuracy oraz recall (identyczne), natomiast najgorsze w przypadku miary precision. Pondato, możemy zauważyć większe rozbieżności pomiędzy miarą precision, a pozostałymi miarami jakości (od 0.01 w przypadku zestawu 4 do nawet 0.06 w przypadku zestawu 5). Jeśli chodzi o dobór cech, to najlepsze wyniki zostały otrzymane w przypadku zestawu 2 i zestawu 4. Wyniki dla stałego podziału artykułów na zbiory treningowy oraz testowy są bardzo podobe (minimalnie mniejsze) do tych, które zostały otrzymane dla losowych zbiorów. Różnice występujące w ramach drugiego eksperymentu wynoszą maksymalnie 0,01, więc to czy zbiory są losowe nie wpływa znacząco na jakość klasyfikacji.
+Aby wykryć, które cechy mają najlepszy wpływ na klasyfikację, należy wyznaczyć część wspólną z obu zestawów o najlepszych wynikach: 
 \begin{equation}
     ZestawNL = Zestaw2  \cap  Zestaw4
 \end{equation}
