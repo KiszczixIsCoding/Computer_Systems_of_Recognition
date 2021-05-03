@@ -539,7 +539,7 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 
 \begin{table}
 \begin{footnotesize}
-\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od parametru $k$, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfi-kacji.}
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od parametru $k$, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
 \centering
 \label{tabela:k}
 \begin{tabular}{llllllllllll}
@@ -588,7 +588,7 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 
 Miara Accuracy jest najmnniejsza dla k=2, od k=3 wartości tejże miary są bardzo podobne do siebie. Warto przy tym eksperymencie zwrócić uwagę na miarę Precission, która przy bardzo dużych k (15 i 30) przyjmuje największe wartości spośród porównywanych k. Jednak, aby mieć pełny ogląd na zaistniałą sytuację należy zwrócić uwagę także na miary dla poszczególnych klas. Przy k = 15 i k = 30 miara Precision dla USA wynosi 0,98, ale już dla West-Germany odpowiednio 0,03 oraz 0,04. Co ciekawe przy tak dużych k miara Recall dla West-Germany wyniosła 1,00, co oznacza, że wartość FN (False Negative) dla tej klasy wyniosła 0. To natomiast oznacza, że nie było przypadku, że klasa element klasy West-Germany został błędnie sklasyfikowany jako element innej klasy.
 
-\subsubsection{ Eksperymenty dla artykułów do zbiorów treningowych i testowych dobranych na stałe przy każdym procesieklasyfikacji}
+\subsubsection{ Eksperymenty dla artykułów do zbiorów treningowych i testowych dobranych na stałe przy każdym procesie klasyfikacji}
 
 Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych wartości parametru k przyjęliśmy następujące parametry, które pozostawały niezmienne w trakcie badań:
 \begin{itemize}
@@ -643,13 +643,16 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{wykres_k_const.png}
-    \caption{Wykres zależności wyników miar podobieństwa od liczby $k$ najbliższych sąsiadów dla klasyfikacji $k$-NN, gdy artykuły były przydzielane na stałe do zbiorów wprocesie klasyfikacji.}
+    \caption{Wykres zależności wyników miar podobieństwa od liczby $k$ najbliższych sąsiadów dla klasyfikacji $k$-NN, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji.}
     \label{wykres:k_stale}
 \end{figure}
 
-Gdy eksperymenty przeprowadziliśmy eliminując losowe przydzielanie artykułów wyniki były bardziej "przewidywalne". Wszystkie z miar rosły, bądź pozostawały stałe podczas zwiększania liczby $k$ (poza przypadkiem zwiększenia $k$ z 15 do 30, gdzie wartości miar Precision i F1 spadły). Największt wzrost wartości miar nastąpił przy zwiększeniu $k$ z 1 do 2. Warto zwrócić także uwagę, że w tym wypadku dla coraz to większych $k$ wartość Recall zmniejszała się dla klas posiadających małą liczbę artykułów (West-Germany, Canada). Przy przydzielaniu artykułów losowo wartość ta generalnie zwiększała się (choć nie za każdym razem z uwagi właśnie na losowość), a wartość miary Precision oscylowała w bardzo małych wartościach.
+Gdy eksperymenty przeprowadziliśmy eliminując losowe przydzielanie artykułów wyniki były bardziej "przewidywalne". Wszystkie z miar rosły, bądź pozostawały stałe podczas zwiększania liczby $k$ (poza przypadkiem zwiększenia $k$ z 15 do 30, gdzie wartości miar Precision i F1 spadły). Największt wzrost wartości miar nastąpił przy zwiększeniu $k$ z 1 do 2. Warto zwrócić także uwagę, że w tym wypadku dla coraz to większych $k$ wartość Recall zmniejszała się dla klas posiadających małą liczbę artykułów (West-Germany, Canada). Przy przydzielaniu artykułów losowo wartość ta generalnie zwiększała się (choć nie za każdym razem z uwagi właśnie na losowość), a wartość miary Precision przyjmowała bardzo małe wartościach.
+
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN w zależności od wyboru metryki}
+
+\subsubsection{Eksperymenty dla losowego doboru artykułów do zbiorów treningowych i testowych przy każdym procesie klasyfikacji}
 
 Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla różnych metryk przyjęliśmy następujące parametry, które pozostawały niezmienne w trakcie badań:
 \begin{itemize}
@@ -663,7 +666,7 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 
 \clearpage
 \begin{table}
-\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla wszystkich cech}
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla wszystkich cech, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
 \centering
 \label{tabela:metryka_wszystkie}
 \begin{tabular}{lllll}
@@ -704,7 +707,7 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{wykres_metryki1.png}
-    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla wzystkich cech.}
+    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla wzystkich cech, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
         \label{wykres:metryka_wszystkie}
 \end{figure}
 
@@ -721,7 +724,7 @@ Zatem, dla drugiego eksperymentu w tej sekcji przyjęliśmy następujące parame
 
 \clearpage
 \begin{table}
-\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla cech liczbowych}
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla cech liczbowych, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
 \centering
 \label{table:metryka_liczbowe}
 \begin{tabular}{lllll}
@@ -762,13 +765,124 @@ Zatem, dla drugiego eksperymentu w tej sekcji przyjęliśmy następujące parame
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm]{wykres_metryki2.png}
-    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla cech liczbowych.}
+    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla cech liczbowych, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
         \label{wykres:metryka_liczbowe}
 \end{figure}
 
 
 Gdy wzięliśmy pod uwagę tylko cechy liczbowe, wyeliminowane zostały wartośći NaN przy metryce Czebyszewa. Oznacza to, że dla każdej klasy został przyporządkowany min. 1 artykuł.
 \\
+\subsubsection{Eksperymenty dla artykułów do zbiorów treningowych i testowych dobranych na stałe przy każdym procesie klasyfikacji}
+Jako, że już wiemy, że metryka Czebyszewa nie sprawdza się dla cech tekstowych, w tej podsekcji, aby dokładniej zbadać wyniki miar w zależności od metryki, wykonamy dwa rodzaje eksperymentów - w pierwszym do badań wykorzystamy tylko cechy tekstowe, a w drugim - tylko liczbowe.\\
+\indent Dla pierwszego eksperymentu w tej podsekcji przyjęliśmy następujące parametry:
+\begin{itemize}
+    \item ilość artykułów do klasyfikacji: 13531 (wszystkie)
+    \item podział zbioru: 75 - treningowy/ 25 - testowy
+    \item $k$ najbliższych sąsiadów: 7
+    \item wybrane cechy: $c_1$, $c_2$, $c_4$, $c_{10}$, $c_{11}$.
+\end{itemize}
+
+\begin{table}[!htbp]
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla cech tekstowych, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji.}
+\centering
+\label{tabela:metryka_tesktowe_const}
+\begin{tabular}{lllll}
+                                                                              & metryka    & Czebyszewa & Uliczna & Euklidesowa  \\ 
+\hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}West-\\Germany\end{tabular}}       & Precision  & NaN        & 0,58    & 0,50         \\
+                                                                              & Recall     & 0,00       & 0,09    & 0,16         \\
+                                                                              & F1         & NaN        & 0,16    & 0,24         \\ 
+\hline
+\multirow{3}{*}{Japan}                                                        & Precission & NaN        & 0,65    & 0,68         \\
+                                                                              & Recall     & 0,00       & 0,73    & 0,59         \\
+                                                                              & F1         & NaN        & 0,69    & 0,63         \\ 
+\hline
+\multirow{3}{*}{France}                                                       & Precision  & NaN        & 0,52    & 0,55         \\
+                                                                              & Recall     & 0,00       & 0,40    & 0,55         \\
+                                                                              & F1         & NaN        & 0,45    & 0,55         \\ 
+\hline
+\multirow{3}{*}{UK}                                                           & Precision  & NaN        & 0,32    & 0,28         \\
+                                                                              & Recall     & 0,00       & 0,27    & 0,28         \\
+                                                                              & F1         & NaN        & 0,29    & 0,28         \\ 
+\hline
+\multirow{3}{*}{USA}                                                          & Precision  & 0,83       & 0,89    & 0,89         \\
+                                                                              & Recall     & 1,00       & 0,96    & 0,96         \\
+                                                                              & F1         & 0,90       & 0,92    & 0,92         \\ 
+\hline
+\multirow{3}{*}{Canada}                                                       & Precision  & NaN        & 0,76    & 0,74         \\
+                                                                              & Recall     & 0,00       & 0,18    & 0,16         \\
+                                                                              & F1         & NaN        & 0,29    & 0,26         \\ 
+\hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Wszystkie\\dokumenty\end{tabular}} & Accuracy   & 0,83       & 0,85    & 0,85         \\
+                                                                              & Precsision & 0,68       & 0,84    & 0,83         \\
+                                                                              & Recall     & 0,83       & 0,85    & 0,85         \\
+                                                                              & F1         & 0,75       & 0,84    & 0,84         \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_metryki1_const.png}
+    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla cech tekstowych, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji.}
+        \label{wykres:metryka_tekstowe_const}
+\end{figure}
+Potwierdziło się to, co zostało zobserwowane już, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji, czyli metryka Czebyszewa nie sprawdza się dla cech tesktowych.\\
+\indent Następny eksperyment polegał na zbadaniu skuteczności metryk dla cech liczbowych. Przyjęliśmy do niego następujące parametry:
+\begin{itemize}
+    \item ilość artykułów do klasyfikacji: 13531 (wszystkie)
+    \item podział zbioru: 75 - treningowy/ 25 - testowy
+    \item $k$ najbliższych sąsiadów: 7
+    \item wybrane cechy: $c_3$, $c_5$, $c_6$, $c_7$, $c_8$, $c_9$.
+\end{itemize}
+
+\begin{table}[!htbp]
+\caption{Wyniki miar podobieństwa dla klasyfikacji $k$-NN w zależności od wybranej metryki dla cech liczbowych, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji.}
+\centering
+\label{tabela:metryka_liczbowe_const}
+\begin{tabular}{lllll}
+                                                                              & metryka    & Czebyszewa & Uliczna & Euklidesowa  \\ 
+\hline
+\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}West-\\Germany\end{tabular}}       & Precision  & 0,08       & 0,10    & 0,16         \\
+                                                                              & Recall     & 0,01       & 0,03    & 0,04         \\
+                                                                              & F1         & 0,02       & 0,04    & 0,06         \\ 
+\hline
+\multirow{3}{*}{Japan}                                                        & Precission & 0,38       & 0,36    & 0,44         \\
+                                                                              & Recall     & 0,09       & 0,08    & 0,12         \\
+                                                                              & F1         & 0,15       & 0,14    & 0,19         \\ 
+\hline
+\multirow{3}{*}{France}                                                       & Precision  & 0,11       & 0,20    & 0,20         \\
+                                                                              & Recall     & 0,02       & 0,02    & 0,02         \\
+                                                                              & F1         & 0,04       & 0,04    & 0,04         \\ 
+\hline
+\multirow{3}{*}{UK}                                                           & Precision  & 0,28       & 0,25    & 0,30         \\
+                                                                              & Recall     & 0,18       & 0,16    & 0,18         \\
+                                                                              & F1         & 0,22       & 0,20    & 0,23         \\ 
+\hline
+\multirow{3}{*}{USA}                                                          & Precision  & 0,84       & 0,85    & 0,85         \\
+                                                                              & Recall     & 0,97       & 0,98    & 0,98         \\
+                                                                              & F1         & 0,90       & 0,91    & 0,91         \\ 
+\hline
+\multirow{3}{*}{Canada}                                                       & Precision  & 0,22       & 0,30    & 0,25         \\
+                                                                              & Recall     & 0,03       & 0,02    & 0,02         \\
+                                                                              & F1         & 0,05       & 0,03    & 0,03         \\ 
+\hline
+\multirow{4}{*}{\begin{tabular}[c]{@{}l@{}}Wszystkie\\dokumenty\end{tabular}} & Accuracy   & 0,82       & 0,82    & 0,82         \\
+                                                                              & Precsision & 0,74       & 0,75    & 0,75         \\
+                                                                              & Recall     & 0,82       & 0,82    & 0,82         \\
+                                                                              & F1         & 0,78       & 0,78    & 0,78         \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_metryki2_const.png}
+    \caption{Wykres zależności wyników miar podobieństwa od wybranej metryki dla cech liczbowych, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji.}
+        \label{wykres:metryka_liczbowe_const}
+\end{figure}
+
+Jak widać w tabeli \ref{tabela:metryka_liczbowe_const} zostały wyeliminowany wartości NaN, a więc rozważając cechy liczbowe do każdej klasy przyporządkowany został co najmnniej 1 artykuł. Wyniki dla wszystkich miar są bardzo podobne (jedyną różnicą jest wartość miary Precision, która jest o 0,1 mniejsza dla metryki Czebyszewa w porównaniu z dwoma pozostałymi metrykami).
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla 5 różnych proporcji podziału zbioru artykułów}
 \subsubsection{Eksperymenty dla losowego doboru artykułów do zbiorów treningowych i testowych przy każdym procesie klasyfikacji}
@@ -890,14 +1004,19 @@ Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi
 \section{Dyskusja, wnioski}
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN dla różnych wartości parametru $k$}
 
-Analizując rysunek \ref{wykres:k} oraz tabelę \ref{tabela:k} dla wartości $k$ mniejszych niż 3 wyniki wszystkich miar są zdecydowanie niższe porównując z wartościami $k$ większymi, bądź równymi 3. Najmniejsze wartości spośród wszystkich porównywanych wystąpiły dla $k$=2. Od $k$=3 miara Accuracy zmienia się w bardzo małym zakresie ($\pm 0,02$), możemy zatem założyć, że klasyfikator $k$-NN działa optymalnie od k=3. Ciekawie prezentuje się miara Precission, która dla większych k (15 i 30) przyjmuje zdecydowanie największą wartość (0,94). Jednak patrząc jedynie na miarę Precision dla ogółu artykułów mielibyśmy niepełne dane, które nie pozwoliłyby nam odpowiednio zinterpretować wyników. Tak duża wartość Precision występuje bowiem tylko dlatego, że dla klasy USA, która jest zdecydowanie najbardziej liczna, a co za tym idzie - ma największy wpływ na ogólny wynik, miara ta przyjmuje tak duże wartości. Patrząc na klasy odpowiadające za inne kraje wartości te są dużo mniejsze, bądź nawet bliskie zeru (West-Germany: 0,03, Canada: 0,07).
+Analizując rysunek \ref{wykres:k} oraz tabelę \ref{tabela:k} (czyli wyniki dla artykułów przydzielanych losowo do zbiorów treningowych i testowych) - dla wartości $k$ mniejszych niż 3 wyniki wszystkich miar są zdecydowanie niższe porównując z wartościami $k$ większymi, bądź równymi 3. Najmniejsze wartości spośród wszystkich porównywanych wystąpiły dla $k$=2. Od $k$=3 miara Accuracy zmienia się w bardzo małym zakresie ($\pm 0,02$), możemy zatem założyć, że klasyfikator $k$-NN działa optymalnie od k=3. Ciekawie prezentuje się miara Precission, która dla większych k (15 i 30) przyjmuje zdecydowanie największą wartość (0,94). Jednak patrząc jedynie na miarę Precision dla ogółu artykułów mielibyśmy niepełne dane, które nie pozwoliłyby nam odpowiednio zinterpretować wyników. Tak duża wartość Precision występuje bowiem tylko dlatego, że dla klasy USA, która jest zdecydowanie najbardziej liczna, a co za tym idzie - ma największy wpływ na ogólny wynik, miara ta przyjmuje tak duże wartości. Patrząc na klasy odpowiadające za inne kraje wartości te są dużo mniejsze, bądź nawet bliskie zeru (West-Germany: 0,03, Canada: 0,07).\\
+\indent Patrząc na rysunek \ref{wykres:k_stale} oraz tabelę \ref{tabela:k_stale}, czyli wyniki dla artykułów przydzielanych na stałe do zbiorów treningowych i testowych otrzymujemy wnioski analogiczne to tych uzyskanych powyżej, jednak z pewnymi małymi różnicami. Otóż, gdy przydzieliśmy artykuły na stałę, wyniki miar jakości rosły bądź pozostawały stałe w miarę zwiększania liczby $k$ (jedynym wyjątkiem była miara Precision oraz F1 przy zwiększeniu $k$ z 15 do 30). W tym wypadku, proporcjonalnie do zwiększania liczby $k$ zmniejszała się miara Recall dla klas, które składały się z mniejszej liczby artykułów w porówaniu z pozostałymi (West-Germany, Canada). Oznacza to, że w miarę zwiększania $k$, do klas tych było przyporządkowywane mniej artykułów. Z badania wyników klasyfikacji metody $k$-NN dla różnych wartości parametru $k$ płynie ważny wniosek - nie zawsze tylko ostateczny wynik miar podobieństwa daje nam pełny ogląd na sytuację. Należy także przeanalizować wyniki dla poszczególnych klas, aby wyciągnąć ostateczne wnioski. Ostatecznie uważamy, że najbardziej optymalną liczbą sąsiadów dla klasyfikacji metodą $k$-NN w naszym programie są liczby z przedziału $<3;7>$ 
 
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wyboru metryki}
-W sekcji 5.2 zostały przeprowadzone 2 ekseprymenty. Jeden z nich miał miejsce na wszystkich cechach (tabela \ref{tabela:metryka_wszystkie}, rysunek \ref{wykres:metryka_wszystkie}), drugi jedynie na cechach liczbowych(tabela \ref{table:metryka_liczbowe}, rysunek \ref{wykres:metryka_liczbowe}). W pierwszym eksperymencie, dla metryki Czebyszewa artykuły były przyporządkowane jedynie do klasy USA (dla pozostałych klas pojawiły się wartości NaN, co oznacza dzielenie przez zero, czyli żaden tekst nie został przyporządkowany). Stało się tak dlatego, że metryka ta jako wynik zwraca maksymaną wartość bezwzględną różnic pomiędzy kolejnymi cechami z obu wektorów. Jako, że w celu porównania dwóch cech tekstowych korzystamy z metody trigramów, a cech tekstowych jest aż pięć, zawsze zdarzy się, że porównanie którychś z tych cech zwróci wartość 1, czyli maksymalną możliwą odległość pomiędzy dwoma słowami. W niemal każdym przypadku wartość ta będzie również wartością maksymalną biorąc pod uwagę także cechy liczbowe. Z tego powodu przy pomocy metryki Czebyszewa, biorąc pod uwagę cechy tekstowe wszystkie teksty klasyfikowane są do jednej klasy. Dlatego metryka Czebyszewa w formie w jakiej została zaimplementowana w naszym programie nie nadaje się do cech tekstowych. Jednak przy cechach numerycznych metryka ta daje porównywalne wyniki z metryką Uliczną i Euklidesową. Metryką, która w obu eksperymentach osiągnęła najlepsze wyniki klasyfikacji była metryka Euklidesowa, która jednak bardzo nieznacznie wyprzedziła metrykę Uliczną (jeśli chodzi o miarę Accuracy było to zaledwie o 0,01 więcej).
+W sekcji 5.2 zostały przeprowadzone 4 eksperymenty, które zostały podzielone na dwie podsekcje. Podsekcja 5.2.1 zawiera wyniki eksperymentów, gdy artykuły były przydzielane losowo do zbiorów testowych i treningowych, natomiast podsekcja 5.2.2 - wyniki, gdy artykuły były przydzielane na stałe.\\
+\indent W sekcji 5.2.1 przeprowadzono dwa eksperymenty. Jeden z nich miał miejsce na wszystkich cechach (tabela \ref{tabela:metryka_wszystkie}, rysunek \ref{wykres:metryka_wszystkie}), drugi jedynie na cechach liczbowych(tabela \ref{table:metryka_liczbowe}, rysunek \ref{wykres:metryka_liczbowe}). W pierwszym eksperymencie, dla metryki Czebyszewa artykuły były przyporządkowane jedynie do klasy USA (dla pozostałych klas pojawiły się wartości NaN, co oznacza dzielenie przez zero, czyli żaden tekst nie został przyporządkowany). Stało się tak dlatego, że metryka ta jako wynik zwraca maksymaną wartość bezwzględną różnic pomiędzy kolejnymi cechami z obu wektorów. Jako, że w celu porównania dwóch cech tekstowych korzystamy z metody trigramów, a cech tekstowych jest aż pięć, zawsze zdarzy się, że porównanie którychś z tych cech zwróci wartość 1, czyli maksymalną możliwą odległość pomiędzy dwoma słowami. W niemal każdym przypadku wartość ta będzie również wartością maksymalną biorąc pod uwagę także cechy liczbowe (ponieważ cechy zostały znormalizowane, co opisano w sekcji 1). Z tego powodu przy pomocy metryki Czebyszewa, biorąc pod uwagę cechy tekstowe wszystkie teksty klasyfikowane są do jednej klasy. Dlatego metryka Czebyszewa w formie w jakiej została zaimplementowana w naszym programie nie nadaje się do cech tekstowych. Jednak przy cechach numerycznych metryka ta daje porównywalne wyniki z metryką Uliczną i Euklidesową. Metryką, która w obu eksperymentach osiągnęła najlepsze wyniki klasyfikacji była metryka Euklidesowa, która jednak bardzo nieznacznie wyprzedziła metrykę Uliczną (jeśli chodzi o miarę Accuracy było to zaledwie o 0,01 więcej).\\
+\indent Eksperymenty z sekcji 5.2.2(rysunek \ref{wykres:metryka_tekstowe_const}, rysunek \ref{wykres:metryka_liczbowe_const} oraz tabele \ref{tabela:metryka_tesktowe_const} i \ref{tabela:metryka_liczbowe_const}) potwierdziły wniosek, że metryka Czebyszewa nie nadaje się do badania cech tekstowych. Dla cech tekstowych wyniki niemalże takie same (różnica była jedynie w mierze Precision i wynosiła 0,01 na korzyść metryki Ulicznej) osiągnęły metryki Uliczna i Euklidesowa. Z tego powodu uważamy, że metryki te są tak samo efektywne przy badaniu cech tekstowych. Dla cech numerycznych potwierdziły się wnioski przedstawione powyżej - wszystkie metryki osiągają niemalże identyczne wyniki miar podobieństwa. W tym wypadku jedyną różnicą jest miara Precision, która dla metryki Czebyszewa uzyskuje wartość o 0,01 mniejszą niż dla pozostałych metryk. Uważamy jednak, że dla cech numerycznych wszystkie te 3 miary mogą być używane zamiennie. Podsumowując - uważamy, że metryka Uliczna, jak i Euklidesowa jest tak samo dobrym wyborem dla klasyfikacji zbioru artykułów biorąc pod uwagę wszystkie cechy, bądź cechy tylko tekstowe. Natomiast jeśli weźmiemy pod uwagę tylko cechy liczbowe - wtedy wszytskie 3 metryki mogą być używany zamiennie.
 
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wybranej proporcji podziału zbioru artykułów}
-W sekcji 5.3 przeprowadzony został eksperyment mający na celu sprawdzenie jakości klasyfikacji metodą k-NN w zależności od dobranej proporcji podziału na zbioru artykułów na część treningową i testową. W tym celu została policzona każda z miar jakości dla wszystkich dokumentów (a nie dla poszczególnych krajów, jak to miało miejsce w poprzednich sekcjach).  Analizując wyniki, które zostały zawarte w (tabela \ref{tabela:proporcja}, rysunek \ref{wykres:metryka_wszystkie}) pierwszą rzeczą na którą należy zwrócić uwagę to fakt, iż wyniki dla wszystkich proporcji podziału są bardzo podobne i mieszczą się w zakresie od 0,83 do 0,86 (z dokładnością do dwóch miejsc po przecinku). Z tego względu należy uznać, że dobór proporcji podziału zbioru ma niewielki wpływ na jakość przeprowadzanej klasyfikacji. 
+W sekcji 5.3 przeprowadzone zostały dwa eksperymenty mające na celu sprawdzenie jakości klasyfikacji metodą k-NN w zależności od dobranej proporcji podziału na zbioru artykułów na część treningową i testową. W tym celu została policzona każda z miar jakości dla wszystkich dokumentów (a nie dla poszczególnych krajów, jak to miało miejsce w poprzednich sekcjach). Sekcja 5.3.1 zawiera wyniki dla losowego przydziału artykułów do zbiorów treningowych i testowych przy każdym procesie klasyfikacji, natomiast sekcja 5.3.2 - wyniki dla przydziału artykułów na stałe przy każdym procesie klasyfikacji.\\
+\indent Dla sekcji 5.3.1: analizując wyniki, które zostały zawarte w (tabela \ref{tabela:proporcja}, rysunek \ref{wykres:metryka_wszystkie}) pierwszą rzeczą na którą należy zwrócić uwagę to fakt, iż wyniki dla wszystkich proporcji podziału są bardzo podobne i mieszczą się w zakresie od 0,83 do 0,86 (z dokładnością do dwóch miejsc po przecinku). Z tego względu należy uznać, że dobór proporcji podziału zbioru ma niewielki wpływ na jakość przeprowadzanej klasyfikacji. 
 Jeśli spojrzymy natomiast na niewielkie różnice pomiędzy kolejnymi proporcjami można zauważyć, że dla 3 pierwszych proporcji, z każdym kolejnym badaniem wyniki minimalnie się poprawiają. Odwrócenie tego trendu następuje dopiero w przypadku 4 proporcji (75/25), dla której otrzymane wyniki są najgorsze (miara recall na poziomie 0,83). Dla 5 proporcji wyniki znowu wzrosły do poziomu takiego, jak w przypadku 3 proporcji. 
+\indent W sekcji 5.3.2 wyniki są bardziej przewidywalne i sensowne. Nie następuje w tym wypadku odwrócenie trendu (jak to miało miejsce powyżej). W miarę zwiększania ilości artykułów dla części treningowej wzrasta (bądź pozostaje stała) skuteczność klasyfikacji. Zdecydowanie największy skok możemy zaobserwować przy zmianie proporcji podziału z 70/30 do 85/15. Płynie z tego wniosek, że im więcej artykułów w części treningowej w stosunku do części testowej tym skuteczniejsza jest klasyfikacja metodą $k$-NN.
 
 \subsection{Porównanie wyników klasyfikacji metody $k$-NN w zależności od wybranego podzbioru cech}
 W sekcji 5.4 przeprowadzony został eksperyment mający na celu sprawdzenie jakości klasyfikacji metodą k-NN w zależności od dobranego podzbioru cech artykułów. W tym celu również została policzona każda z miar jakości dla 5 różnych podzbiorów cech.  Analizując wyniki, które zostały zawarte w \ref{wykres:podzbiory} oraz tabelę \ref{tabela:podzbiory} widzimy, że wyniki miar jakości są bardziej zróżnicowane, niż w przypadku eksperymentów w ramach sekcji 5.3. Najlepsze wyniki zostały otrzymane dla miary accuracy oraz recall (identyczne), natomiast najgorsze w przypadku miary precision. Pondato, możemy zauważyć większe rozbieżności pomiędzy miarą precision, a pozostałymi miarami jakości (od 0.01 w przypadku zestawu 4 do nawet 0.06 w przypadku zestawu 5). Jeśli chodzi o dobór cech, to najlepsze wyniki zostały otrzymane w przypadku zestawu 2 i zestawu 4. Aby wykryć, które cechy mają najlepszy wpływ na klasyfikację, należy wyznaczyć część wspólną z obu zestawów o najlepszych wynikach: 
@@ -938,10 +1057,6 @@ Z koleji cechy o najmniejszym pozytywnym wpływie na klasyfikację prezentują s
     \item częstość słów rozpoczynających się wielką literą
 \end{itemize}
 
-
-\section{Braki w realizacji projektu 1.}
-Wymienić wg opisu Projektu 1. wszystkie niezrealizowane obowiązkowe elementy projektu, ewentualnie
-podać merytoryczne (ale nie czasowe) przyczyny tych braków. 
 
 \section*{Załączniki}
 \begin{enumerate}
