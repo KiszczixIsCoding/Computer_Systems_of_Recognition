@@ -949,7 +949,8 @@ Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$
 \end{figure}
 
 
-Gdy artykuły nie były przydzielane do zbiorów losowo, wyniki miar podobieństwa były bardziej przewidywalne i sensowne. Im większa część zbioru była częścią testową tym wyniki były dokładniejsze (bądź równe wynikom z poprzedniego podziału pomiędzy podziałem 30/70, a 45/55).
+Gdy artykuły nie były przydzielane do zbiorów losowo, wyniki miar podobieństwa były bardziej przewidywalne i sensowne. Im większa część zbioru była częścią testową tym wyniki były dokładniejsze (bądź równe wynikom z poprzedniego podziału pomiędzy podziałem 30/70, a 45/55).\\
+\indent Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
 
 \subsection{Porównanie wyników klasyfkacji metody $k$-NN dla 5 różnych podzbiorów wyekstrahowanych cech}
 Podczas eksperymentów dotyczących porównania wyników klasyfikacji metody $k$-NN dla 5 różnych podzbiorów cech, jako stałe parametry zostały przyjęte:
@@ -980,7 +981,7 @@ Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi
 \begin{table}[!htbp]
 \caption{Wyniki klasyfikacji w zależności od wybranego podzbioru cech, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
 \centering
-\label{table:podzbiory}
+\label{table:podzbiory_stale}
 \begin{tabular}{cl|c|c|c|c|c|}
 \cline{3-7}
 \multicolumn{1}{l}{}                                 &           & \multicolumn{5}{c|}{Podzbiory wyekstrahowanych cech}                                                                                                          \\ \cline{3-7} 
@@ -997,7 +998,7 @@ Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi
     \caption{Wykres zależności wyników klasyfikacji od podzbioru, gdy artykuły były przydzielane losowo do zbiorów w procesie klasyfikacji.}
     \label{rysunek:podzbiory}
 \end{figure}
-\subsubsection{Eksperymenty dla artykułów do zbiorów treningowych itestowych dobranych na stałe przy każdym procesieklasyfikacji}
+\subsubsection{Eksperymenty dla artykułów do zbiorów treningowych i testowych dobranych na stałe przy każdym procesie klasyfikacji}
 \begin{itemize}
     \item liczba artykułów do klasyfikacji: 13531 (wszystkie)
     \item podział zbioru: 60 - treningowy/ 40 - testowy    
@@ -1038,9 +1039,9 @@ Wybrane podzbiory cech w dalszej części sprawozdania będą nazywane kolejnymi
     \centering
     \includegraphics[width=14cm]{features_const_bar_chart.png}
     \caption{Wykres zależności wyników klasyfikacji w zależności od wybranego podzbioru cech, gdy artykuły były przydzielane na stałe do zbiorów w procesie klasyfikacji}
-    \label{rysunek:podzbiory}
+    \label{rysunek:podzbiory_stale}
 \end{figure}
-\indent Posdumowując tą sekcję, dla metryki Ulicznej oraz Euklidesowej przy wzięciu pod uwagę wszystkich cech otrzyzmaliśmy bardzo porównywalne wyniki, które przewyższają wartości wyników dla metryki Czebyszewa. Gdy wzięliśmy pod uwagę jedynie cechy liczbowe, wszystkie metryki osiągnęły bardzo podobne wyniki. Jeśli chodzi o miarę Accuracy to metryka Euklidesowa osiągnęła o 0,1 wyższy wynik od dwóch pozostałych metryk, co pokazuje jak bliskie sobie są wszystkie trzy miary, jeśli bierzemy pod uwagę jedynie cechy liczbowe.
+
 
 
 \clearpage
@@ -1121,7 +1122,5 @@ Dostępny w: http://archive.ics.uci.edu/ml/machine-learning-databases/reuters215
 \bibitem{javafx} Dokumentacja JavaFx 13 [przeglądany 11.04.2021] Dostępny w: https://openjfx.io/javadoc/13/ 
 \end{thebibliography}
 
-Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
-możliwe do weryfikacji i cytowane w sprawozdaniu. 
 
 \end{document}
