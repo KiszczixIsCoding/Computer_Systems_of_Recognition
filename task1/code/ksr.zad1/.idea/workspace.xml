@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../../.." value="kamil" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1qc9ZEyh40WRyZbM2cCAgmssCRm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/GUI" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="pl.ksr.pon.dao" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App (1)">
+    <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pl.ksr.pon.gui.App" />
+      <module name="GUI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.ksr.pon.gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pl.ksr.pon.zad1.App" />
+      <module name="ArticlesClassification" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.ksr.pon.zad1.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App (1)" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App (1)" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.App (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="U" />
+      <created>1617368065796</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617368065796</updated>
+      <workItem from="1617368067275" duration="7574000" />
+      <workItem from="1617448588264" duration="5713000" />
+      <workItem from="1618090758024" duration="1291000" />
+      <workItem from="1618127436291" duration="7976000" />
+      <workItem from="1618314300891" duration="10879000" />
+      <workItem from="1618508467037" duration="3019000" />
+      <workItem from="1618565530057" duration="9047000" />
+      <workItem from="1618586500746" duration="20396000" />
+      <workItem from="1618750647657" duration="5443000" />
+      <workItem from="1618796266433" duration="1272000" />
+      <workItem from="1618820778519" duration="4625000" />
+      <workItem from="1619297366130" duration="19204000" />
+      <workItem from="1619513041414" duration="1626000" />
+      <workItem from="1619860577495" duration="1890000" />
+      <workItem from="1619896087502" duration="1904000" />
+      <workItem from="1619991859842" duration="5881000" />
+      <workItem from="1620073417873" duration="658000" />
+    </task>
+    <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
+      <created>1618192891841</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1618192891843</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix stemmer">
+      <created>1618738910560</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1618738910560</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix stop list, parser excludes &quot;Blah blah blah.&quot;">
+      <created>1618743910319</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618743910319</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Test weights to features">
+      <created>1618779473597</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618779473597</updated>
+    </task>
+    <task id="LOCAL-00005" summary="StatisticsGenerator for Accuracy">
+      <created>1618790625430</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618790625431</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix null content, trigram with textfeatures connect&#10;todo: sorting in some text features, dynamically displaying accuracy">
+      <created>1618797418918</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618797418918</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix map sorting">
+      <created>1618823666747</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618823666747</updated>
+    </task>
+    <task id="LOCAL-00008" summary="changes in report">
+      <created>1619297508931</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1619297508931</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Calculate final measures and display in table">
+      <created>1619305816929</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619305816929</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="hubert" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="stemmer implemented but dont change text" />
+    <MESSAGE value="fix stemmer" />
+    <MESSAGE value="fix stop list, parser excludes &quot;Blah blah blah.&quot;" />
+    <MESSAGE value="Test weights to features" />
+    <MESSAGE value="StatisticsGenerator for Accuracy" />
+    <MESSAGE value="fix null content, trigram with textfeatures connect&#10;todo: sorting in some text features, dynamically displaying accuracy" />
+    <MESSAGE value="fix map sorting" />
+    <MESSAGE value="changes in report" />
+    <MESSAGE value="Calculate final measures and display in table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calculate final measures and display in table" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
