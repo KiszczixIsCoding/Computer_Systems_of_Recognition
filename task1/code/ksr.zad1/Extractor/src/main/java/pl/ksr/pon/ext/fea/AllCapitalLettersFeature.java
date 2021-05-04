@@ -5,11 +5,19 @@ import pl.ksr.pon.ext.NumericalFeature;
 
 
 @Getter
-public class AllCapitalLettersFeature implements NumericalFeature {
-    private int allCapitalLettersCount = 0;
+public class AllCapitalLettersFeature extends NumericalFeature {
 
-    @Override
-    public int extract(String content) {
+    public AllCapitalLettersFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
+
+    public void extract(String content) {
+        numericalFeatureValue = extractNumericalFeature(content)/ 10.0;
+    }
+
+    public int extractNumericalFeature(String content) {
+        int allCapitalLettersCount = 0;
         String[] wordsList = content.split("\\s+");
         for (String word : wordsList) {
             boolean allCapitalsFlag = true;

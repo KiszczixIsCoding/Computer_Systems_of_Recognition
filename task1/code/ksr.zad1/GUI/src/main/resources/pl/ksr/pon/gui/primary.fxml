@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -15,7 +18,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
    <children>
       <Button fx:id="loadFilesBtn" layoutX="88.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" text="Wczytaj pliki" />
-      <ChoiceBox fx:id="metricChoiceBox" layoutX="126.0" layoutY="464.0" prefHeight="25.0" prefWidth="140.0" />
+      <ChoiceBox fx:id="metricChoiceBox" layoutX="76.0" layoutY="470.0" prefHeight="25.0" prefWidth="140.0" />
       <Slider fx:id="proportionSlider" layoutX="67.0" layoutY="160.0" majorTickUnit="20.0" minorTickCount="5" prefHeight="14.0" prefWidth="157.0" showTickLabels="true" showTickMarks="true" value="50.0" />
       <Label fx:id="proportionLabel" layoutX="65.0" layoutY="132.0" text="50 - treningowa / 50 - testowa" />
       <Label layoutX="23.0" layoutY="84.0" prefHeight="32.0" prefWidth="276.0" text="Podział wczytanego zbioru na dwie części: " textAlignment="CENTER" wrapText="true">
@@ -23,19 +26,19 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <VBox fx:id="tradesBox" layoutX="314.0" layoutY="124.0" prefHeight="264.0" prefWidth="268.0">
+      <VBox fx:id="featuresBox" layoutX="314.0" layoutY="124.0" prefHeight="264.0" prefWidth="268.0">
          <children>
+            <CheckBox mnemonicParsing="false" prefHeight="34.0" prefWidth="238.0" selected="true" text="Częstość słów pisanych wielkimi literami" wrapText="true" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Ogólna liczba słów" />
+            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="236.0" selected="true" text="Częstość występowania cytatów" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="175.0" selected="true" text="Częstość występowania dat" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="176.0" selected="true" text="Format zapisu dat" />
-            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Waluty" />
-            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Zapis cyfr" />
             <CheckBox mnemonicParsing="false" prefHeight="40.0" prefWidth="214.0" selected="true" text="Częstość słów rozpoczynających się wielką literą" wrapText="true" />
-            <CheckBox mnemonicParsing="false" prefHeight="34.0" prefWidth="238.0" selected="true" text="Częstość słów pisanych wielkimi literami" wrapText="true" />
-            <CheckBox mnemonicParsing="false" prefHeight="32.0" prefWidth="239.0" selected="true" text="Jednostki w układzie SI lub imperialnym" wrapText="true" />
-            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="236.0" selected="true" text="Częstość występowania cytatów" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="231.0" selected="true" text="Słowa kluczowe" />
+            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Waluty" />
             <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="243.0" selected="true" text="Najczęściej występujące słowa" />
+            <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" selected="true" text="Zapis cyfr" />
+            <CheckBox mnemonicParsing="false" prefHeight="32.0" prefWidth="239.0" selected="true" text="Jednostki w układzie SI lub imperialnym" wrapText="true" />
          </children>
       </VBox>
       <Label layoutX="383.0" layoutY="90.0" prefHeight="20.0" prefWidth="131.0" text="Wybierz zbiór cech:" textAlignment="CENTER">
@@ -55,18 +58,23 @@
       <TextField fx:id="kNeighboursField" layoutX="67.0" layoutY="363.0" prefHeight="25.0" prefWidth="157.0" />
       <Separator layoutX="23.0" layoutY="301.0" prefHeight="11.0" prefWidth="276.0" />
       <Separator layoutX="23.0" layoutY="405.0" prefHeight="11.0" prefWidth="276.0" />
-      <Label layoutX="35.0" layoutY="423.0" prefHeight="21.0" prefWidth="236.0" text="Wybierz metrykę i/lub miarę podobieństwa:" />
-      <Label layoutX="24.0" layoutY="468.0" prefHeight="17.0" prefWidth="67.0" text="Metryka:" />
-      <Label layoutX="24.0" layoutY="484.0" prefHeight="48.0" prefWidth="87.0" text="Miara podobieństwa:" wrapText="true" />
-      <ChoiceBox fx:id="metricChoiceBox1" layoutX="126.0" layoutY="501.0" prefHeight="21.0" prefWidth="140.0" />
+      <Label layoutX="98.0" layoutY="440.0" prefHeight="21.0" prefWidth="96.0" text="Wybierz metrykę:" />
       <Separator layoutX="289.0" layoutY="67.0" orientation="VERTICAL" prefHeight="478.0" prefWidth="20.0" />
       <Separator layoutX="19.0" layoutY="536.0" prefHeight="18.0" prefWidth="580.0" />
-      <TableView fx:id="resultsTable" layoutX="642.0" layoutY="68.0" prefHeight="200.0" prefWidth="239.0" style="-fx-min-width: 250;" />
+      <TableView fx:id="resultsTable" layoutX="690.0" layoutY="79.0" prefHeight="200.0" prefWidth="239.0" style="-fx-min-width: 250;" />
       <Separator layoutX="577.0" layoutY="68.0" orientation="VERTICAL" prefHeight="468.0" prefWidth="20.0" />
       <Separator layoutX="581.0" layoutY="68.0" orientation="VERTICAL" prefHeight="468.0" prefWidth="26.0" />
       <Label layoutX="29.0" layoutY="251.0" prefHeight="21.0" prefWidth="161.0" text="Liczba wczytanych plików:" />
       <Label layoutX="29.0" layoutY="276.0" prefHeight="20.0" prefWidth="150.0" text="Artykułów do klasyfikacji:" />
       <Label fx:id="filesCountLabel" layoutX="200.0" layoutY="253.0" prefHeight="17.0" prefWidth="43.0" text="0" />
       <Label fx:id="articlesCountLabel" layoutX="200.0" layoutY="274.0" prefHeight="21.0" prefWidth="43.0" text="0" />
+      <BarChart fx:id="classificationBarChart" animated="false" layoutX="616.0" layoutY="308.0" legendSide="RIGHT" prefHeight="251.0" prefWidth="350.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
    </children>
 </Pane>

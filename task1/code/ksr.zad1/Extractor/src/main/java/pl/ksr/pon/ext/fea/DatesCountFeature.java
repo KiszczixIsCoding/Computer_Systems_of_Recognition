@@ -3,16 +3,24 @@ package pl.ksr.pon.ext.fea;
 import pl.ksr.pon.ext.NumericalFeature;
 import pl.ksr.pon.ext.dic.DateDictionary;
 
-public class DatesCountFeature implements NumericalFeature {
+public class DatesCountFeature extends NumericalFeature {
 
 
-    @Override
-    public int extract(String content) {
+    public DatesCountFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
+    public void extract(String content) {
+        numericalFeatureValue = extractNumericalFeature(content) / 10.0;
+    }
+
+    public int extractNumericalFeature(String content) {
         int datesCounter = 0;
         String[] wordsList = content.split("\\s+");
         for (String word : wordsList) {
             // 1. jesli miesiac
-            if (DateDictionary.getMonthDictionary().contains(word)) {
+            if (DateDictionary.getMonthDictionary().contains(word)
+                    || DateDictionary.getShortMonthDictionary().contains(word)) {
                 datesCounter++;
             }
             // 2. dlugosc 4, pierwsze 2 znaki to 19 lub 20 - zakladamy, że rok

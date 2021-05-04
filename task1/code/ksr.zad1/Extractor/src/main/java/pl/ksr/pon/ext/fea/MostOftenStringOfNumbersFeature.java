@@ -1,15 +1,24 @@
 package pl.ksr.pon.ext.fea;
 
 import pl.ksr.pon.ext.FeatureUtils;
+import pl.ksr.pon.ext.TextFeature;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class MostOftenStringOfNumbersFeature {
+public class MostOftenStringOfNumbersFeature extends TextFeature {
 
-    public String extract(String content) {
+    public MostOftenStringOfNumbersFeature(boolean isSelected) {
+        super(isSelected);
+    }
+
+    public void extract(String content) {
+        textFeatureValue = extractTextFeature(content);
+   }
+
+    public String extractTextFeature(String content) {
+        if (content == null) {
+            return null;
+        }
         String[] wordsList = content.split("\\s+");
         List<String> numbersList = new ArrayList<>();
         for (String word : wordsList) {

@@ -47,7 +47,9 @@ public class KeyWordsDictionary implements Dictionary {
             "Alaska",
             "Arizona",
             "Arkansas",
+            "America",
             "California",
+            "York",
             "Colorado",
             "Connecticut",
             "Delaware",
@@ -197,7 +199,8 @@ public class KeyWordsDictionary implements Dictionary {
             "Nakamura",
             "Kobayashi",
             "Yamamoto",
-            "Kato"
+            "Kato",
+            "Japan"
     );
 
     List<String> UKKeyWordsDictionary = Arrays.asList(
@@ -220,9 +223,6 @@ public class KeyWordsDictionary implements Dictionary {
             "Churchill",
             "Thatcher",
             "Callaghan",
-            "King Phillip",
-            "Smith",
-            "Jones",
             "Williams",
             "Brown",
             "Taylor",
@@ -234,33 +234,6 @@ public class KeyWordsDictionary implements Dictionary {
     );
 
     List<String> FranceKeyWordsDictionary = Arrays.asList(
-            "Auvergne",
-            "Rhône-Alpes",
-            "Burgundy",
-            "Franche-Comté",
-            "Brittany",
-            "Centre-Val de Loire",
-            "Corsica",
-            "French Guiana",
-            "Alsace",
-            "Champagne-Ardenne",
-            "Lorraine",
-            "Guadeloupe",
-            "Nord-Pas-de-Calais",
-            "Picardy",
-            "Île-de-France",
-            "Martinique",
-            "Mayotte",
-            "Lower Normandy",
-            "Upper Normandy",
-            "Aquitaine",
-            "Limousin",
-            "Poitou-Charentes",
-            "Languedoc-Roussillon",
-            "Midi-Pyrénées",
-            "Pays de la Loire",
-            "Provence-Alpes-Côte d'Azur",
-            "Réunion",
             "Paris",
             "Lyon",
             "Marseille",
