@@ -8,39 +8,24 @@
 \coursename{Komputerowe systemy rozpoznawania}
 \courseyear{2020/2021}
 
-\courseteacher{tytuł/stopień imię nazwisko}
-\coursegroup{dzień, godzina zajęć}
+\courseteacher{prof. dr hab. inż. Adam Niewiadomski}
+\coursegroup{poniedziałek, 12:00}
 
 \author{
-  \studentinfo{Autor Pierwszy}{nr albumu 1} \and
-  \studentinfo{Autor Drugi}{nr albumu 2} }
+  \studentinfo{Hubert Gawłowski}{224298} \and
+  \studentinfo{Kamil Kiszko-Zgierski}{224328} }
 
 \title{Projekt 2.  Podsumowania lingwistyczne relacyjnych baz danych}
 
 \begin{document}
 \maketitle
 
-Opis projektu ma formę artykułu naukowego lub raportu z zadania
-badawczego/doświadczalnego/obliczeniowego (wg indywidualnych potrzeb związanych np. z
-pracą inżynierską/naukową/zawodową). \\
-\indent {\bf Wybrane sekcje (rozdziały sprawozdania) są uzupełniane wg wymagań w
-opisie Projektu 2. i Harmonogramie Zajęć na WIKAMP KSR jako efekty zadań w~poszczególnych tygodniach}. 
-
 \section{Cel}
-Zwięzły (2-3 zdania) opis
-problemu badawczego/obliczeniowego, uwzględniający część badawczą i implementacyjną. \\
-\indent Zamieszczony opis (własny, nie skopiowany) zawiera
-przypisy do literatury (bibliografii) zamieszczonej na końcu raportu/sprawozdania
-zgodnie z~Polską Normą cytowania bibliografii (zob. materiały BG PŁ pt. ,,Bibliografia
-załącznikowa''). Opis własny (niekopiowany) z przypisami do literatury -- minimum
-teorii potrzebnej do zadania, konieczne ścisłe odniesienie elementów teorii do tego konkretnego zadania (zbiór
-danych, liczba zmiennych i rekordów, itp.), tak by inżynier innej specjalności zrozumiał dalszy
-opis tego konkretnego eksperymentu. \\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 08 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
-
-
+Celem zadania jest zaimplementowanie lingwistycznej agregacji, tj. przedstawienie danych liczbowych za pomocą sformułowań w języku pozornie naturalnym. Owa implementacja zostanie wykonana w technologii Java z graficznym interfejsem użytkownika oraz z wykorzystaniem systemu zarządania bazą danych o nazwie MySql, a badania zostaną przeprowadzone w oparciu o bazę danych zawierającą statystyki zawodników ligi koszykówki NBA od sezonu 1996/1997 do 2019/2020.
+\cite{nba_data}.  \\
 \section{Charakterystyka podsumowywanej bazy danych}
+Zasadnym jest przedstawienie danych liczbowych z bazy danych zawierającej statystyki koszykarzy również za pomocą zmiennych lingwistycznych, ponieważ 
+
 Krótki opis bazy danych wybranej do podsumowywania, źródło, opis treści,
 użyteczność/zastosowania. Liczba rekordów (min. $10\,000$ i koniecznie wszystkie tego
 samego typu), liczba atrybutów możliwych do rozmycia (min. $10$), czyli o stosunkowo dużej
@@ -133,6 +118,8 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 
 
 \begin{thebibliography}{99}
+\bibitem{nba_data} Baza danych zawierająca statystyki koszykarzy z ligi NBA z lat 1996-2020 [przeglądany 04.05.2021] Dostępna w:
+https://www.kaggle.com/justinas/nba-players-data
  \bibitem{niewiadomski19} A. Niewiadomski, Zbiory rozmyte typu 2. Zastosowania w reprezentowaniu informacji.  Seria „Problemy współczesnej informatyki” pod redakcją L. Rutkowskiego. Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2019.
 \bibitem{zadrozny06} S. Zadrożny, Zapytania nieprecyzyjne i lingwistyczne podsumowania baz danych, EXIT, 2006, Warszawa
 \bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
