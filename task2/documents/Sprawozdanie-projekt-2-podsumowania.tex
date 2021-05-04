@@ -20,22 +20,52 @@
 \begin{document}
 \maketitle
 
+Opis projektu ma formę artykułu naukowego lub raportu z zadania
+badawczego/doświadczalnego/obliczeniowego (wg indywidualnych potrzeb związanych np. z
+pracą inżynierską/naukową/zawodową). \\
+\indent {\bf Wybrane sekcje (rozdziały sprawozdania) są uzupełniane wg wymagań w
+opisie Projektu 2. i Harmonogramie Zajęć na WIKAMP KSR jako efekty zadań w~poszczególnych tygodniach}. 
+
 \section{Cel}
 Celem zadania jest zaimplementowanie lingwistycznej agregacji, tj. przedstawienie danych liczbowych za pomocą sformułowań w języku pozornie naturalnym. Owa implementacja zostanie wykonana w technologii Java z graficznym interfejsem użytkownika oraz z wykorzystaniem systemu zarządania bazą danych o nazwie MySql, a badania zostaną przeprowadzone w oparciu o bazę danych zawierającą statystyki zawodników ligi koszykówki NBA od sezonu 1996/1997 do 2019/2020.
 \cite{nba_data}.  \\
-\section{Charakterystyka podsumowywanej bazy danych}
-Zasadnym jest przedstawienie danych liczbowych z bazy danych zawierającej statystyki koszykarzy również za pomocą zmiennych lingwistycznych, ponieważ 
 
-Krótki opis bazy danych wybranej do podsumowywania, źródło, opis treści,
-użyteczność/zastosowania. Liczba rekordów (min. $10\,000$ i koniecznie wszystkie tego
-samego typu), liczba atrybutów możliwych do rozmycia (min. $10$), czyli o stosunkowo dużej
-liczbie możliwych wartości. Zwyczajowe wartości lingwistyczne nadawane wybranym
-atrybutom oraz dlaczego istnieje zwyczaj, zapotrzebowanie/inne powody
-,,przekałdania'' tych danych na język
-naturalny (a nie formalny) \cite{niewiadomski19, niewiadomski08}.\\
-Realizacja bazy w wybranym DBMS. Rysunek lub tabela (fragment tabeli BD).\\ 
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 08 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+
+\section{Charakterystyka podsumowywanej bazy danych}
+
+Jako bazę danych w zadaniu wykorzystaliśmy bazę danych dotyczącą informacji o zawodnikach NBA (najbrdziej prestiżowej lidze koszykarskiej na świecie) z lat 1996 - 2019. Cała baza danych składa się z 22 kolumn zawierających informacje o danych zawodnika oraz jego statystykach różnego rodzaju. Baza danych ma charakter pliku csv i zawiera 11144 rekordy. Spośród kolumn wybraliśmy te, które zawierają wartości, naszym zdaniem, najlepiej nadające się do rozmycia. Atrybuty do rozmycia dobraliśmy tak, aby zgadzały się z definicją zmiennej lingwistycznej, która prezentuje się następująco \cite{niewiadomski19}: 
+\begin{equation}
+    L=<\mathcal{L}, H(L), X, G, K>
+\end{equation}
+gdzie: \newline $\mathcal{L}$ jest nazwą zmiennej lingwistycznej L, \newline H lub H(L) jest zbiorem terminów lingwistycznych $l_1, l_2, ..., l_N, N \in \mathbf{N}$, które są wartościami L, \newline $X$ jest przestrzenią rozważań, w której określa się zbiory rozmyte $S_1, S_2,..., S_N, N \in \mathbf{N}$, reprezentujące odpowiednio terminy $l_1, l_2, ..., l_N$, \newline $G$ jest regułą gramatyczną, która generuje terminy w zbiorze $H(L)$, \newline $K$ jest regułą semantyczną, która przyporządkowuje terminom $l_i$ zbiory rozmyte $S_i$ 2 $X$, czyli $K : l_i \rightarrow S_i, S_i = \{<x,\mu_{S_i}(x)> : x \in X \}, i = 1,2,...,N$
+
+Ostatecznie spośród 21 kolumn wybraliśmy następujące:
+\begin{itemize}
+    \item Kolumny nie dające się rozmyć (zawierające informacje pozwalające zidentyfikować zawodnika):
+    \begin{itemize}
+        \item nr identyfikacyjny zawodnika
+        \item imię i nazwisko zawodnika
+        \item skrót nazwy drużyny
+        \item kraj urodzenia zawodnika
+    \end{itemize}
+    \item Kolumny dające się rozmyć:
+    \begin{itemize}
+        \item wiek zawodnika - atrybut przyjmuje wartości liczbowe całkowite od 18 do 44. Przekładając ten atrybut na język naturalny możemy użyć wartości: "junior", "młody", "w średnim wieku", "doświadczony", "stary". 
+        \item wzrost zawodnika - atrybut przyjmuje wartości liczbowe zmiennoprzecinkowe od 160,02 do 231,14. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo niski", "niski", "średniego wzrostu", "wysoki", "bardzo wysoki".
+        \item waga zawodnika - atrybut przyjmuje wartości liczbowe zmiennnoprzecinkowe od 60,33 do 163,29. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo lekki", "lekki", "o przeciętnej wadze", "ciężki", "bardzo ciężki".
+        \item numer w drafcie - oznacza, który w kolejności został wybrany zawodnik w organizowanym co roku tzw. drafcie, który polega na wybieraniu przez drużyny młodych zawodników na następny sezon. Atrybut przyjmuje wartości liczbowe całkowite od 1 do 60 oraz wartość "undrafted" - nie wybrany w drafcie. Wartość "undrafted będzie traktowana jako wartość maksymalna. Przekładając ten atrybut na język naturalny możemy użyć wartości: "Bardzo szybko", "szybko", "średnio", "późno", "bardzo późno", "niewybrano".
+        \item rozegrane gry - liczba gier zawodnika w danym sezonie. Atrybut ten przyjmuje wartości liczbowe całkowite od 1 do 85.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "średnio", "dużo", "bardzo dużo"
+        \item zdobyte punkty - średnia liczba punktów zdobytych przez zawodnika w meczach w danym sezonie. Atrybut ten przyjmuje wartości liczbowe zmiennooprzecinkowe od 0 do 36,1. Przekładając ten atrybut na język naturalny możemy użyć wartości: "niewiarygodnie mało", "mało", "dostatecznie", "dużo", "nieziemsko dużo"
+    \end{itemize}
+\end{itemize}
+Oczywiście wartości takie jak: wzrost, waga, czy wiek będą odnosiły się jedynie do koszykarzy, ponieważ np. słowo "stary" w kontekście gracza koszykówki będzie związane z zupełnie innym wiekiem, niż słowo "stary" używane na codzień w stosunku do opisu wieku ludzi. \\
+
+ W rankingu najbardziej dochodowych lig sportowych liga NBA zajmuje trzecie miejsce na świecie 
+ \footnote {https://globalsportmatters.com/business/2019/03/07/tv-is-biggest-driver-in-global\\-sport-league-revenue/}
+(wyżej w rankingu są tylko ligi NFL - hokej i MLB - baseball). W związku z dużym zainteresowaniem wokół niej zasadnym jest, aby dane liczbowe koszykarzy przedstawiać również za pomocą zmiennych lingwistycznych. \\
+ \indent Po pierwsze, jako iż owa dyscyplina jest bardzo popularna, wielu kibiców jest również zainteresowanych statystykami koszykarzy. Dla przeciętnego widza dane liczbowe mogą być jednak mało zrozumiałe. Rozwiązaniem tego problemu wydaje się wprowadzenie zmiennych lingwistycznych w celu ułatwienia interpretacji danych, co wiąże się z lepszym przyswojeniem informacji przez odbiorcę, jak również zaoszczędzeniem czasu na próbie ich zrozumienia. \\
+ \indent Po drugie, przedstawienie danych liczbowych w postaci zmiennych lingwistycznych zapewnia grupowanie rekordów. Dzięki temu, dużo łatwiejsze jest dokonanie filtracji zawodników, co skutkuje szybszym wyszukaniem graczy o podobnych parametrach fizycznych lub osiąganych statystykach.\\
+ \indent W końcu, popularność oraz statystyki przychodów klubów NBA powodują zainteresowanie wśród potencjalnych sponsorów, którzy niekoniecznie muszą być związani z koszykówką. Dane przedstawione w formie zmiennych lingwistycznych znacznie pomogłyby w analizie statystyk oraz ocenie ryzyka związanego z inwestycją w dany klub. 
 
 \section{Atrybuty i liczności obiektów wyrażone zmiennymi lingwistycznymi}
 Zmienne lingwistyczne dla wybranych 10 atrybutów z bazy danych, przedstawione w
@@ -118,11 +148,19 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 
 
 \begin{thebibliography}{99}
+<<<<<<< HEAD
 \bibitem{nba_data} Baza danych zawierająca statystyki koszykarzy z ligi NBA z lat 1996-2020 [przeglądany 04.05.2021] Dostępna w:
 https://www.kaggle.com/justinas/nba-players-data
  \bibitem{niewiadomski19} A. Niewiadomski, Zbiory rozmyte typu 2. Zastosowania w reprezentowaniu informacji.  Seria „Problemy współczesnej informatyki” pod redakcją L. Rutkowskiego. Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2019.
 \bibitem{zadrozny06} S. Zadrożny, Zapytania nieprecyzyjne i lingwistyczne podsumowania baz danych, EXIT, 2006, Warszawa
 \bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
+=======
+ \bibitem{niewiadomski19} A. Niewiadomski, Zbiory rozmyte typu 2. Zastosowania w reprezentowaniu informacji.  Seria „Problemy współczesnej informatyki” pod redakcją L. Rutkowskiego. Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2019.
+\bibitem{zadrozny06} S. Zadrożny, Zapytania nieprecyzyjne i lingwistyczne podsumowania baz danych, EXIT, 2006, Warszawa
+\bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
+\bibitem{nba_data} Baza danych zawierająca statystyki koszykarzy z ligi NBA z lat 1996-2020 [przeglądany 04.05.2021] Dostępna w:
+https://www.kaggle.com/justinas/nba-players-data
+>>>>>>> hubert
 \end{thebibliography}
 
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
