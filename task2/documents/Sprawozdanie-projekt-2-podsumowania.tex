@@ -39,24 +39,30 @@ Jako bazę danych w zadaniu wykorzystaliśmy bazę danych dotyczącą informacji
 \end{equation}
 gdzie: \newline $\mathcal{L}$ jest nazwą zmiennej lingwistycznej L, \newline H lub H(L) jest zbiorem terminów lingwistycznych $l_1, l_2, ..., l_N, N \in \mathbf{N}$, które są wartościami L, \newline $X$ jest przestrzenią rozważań, w której określa się zbiory rozmyte $S_1, S_2,..., S_N, N \in \mathbf{N}$, reprezentujące odpowiednio terminy $l_1, l_2, ..., l_N$, \newline $G$ jest regułą gramatyczną, która generuje terminy w zbiorze $H(L)$, \newline $K$ jest regułą semantyczną, która przyporządkowuje terminom $l_i$ zbiory rozmyte $S_i$ 2 $X$, czyli $K : l_i \rightarrow S_i, S_i = \{<x,\mu_{S_i}(x)> : x \in X \}, i = 1,2,...,N$
 
-Ostatecznie spośród 21 kolumn wybraliśmy następujące:
+Ostatecznie spośród 22 kolumn wybraliśmy następujące:
 \begin{itemize}
     \item Kolumny nie dające się rozmyć (zawierające informacje pozwalające zidentyfikować zawodnika):
-    \begin{itemize}
+    \begin{enumerate}
         \item nr identyfikacyjny zawodnika
         \item imię i nazwisko zawodnika
         \item skrót nazwy drużyny
         \item kraj urodzenia zawodnika
-    \end{itemize}
+    \end{enumerate}
     \item Kolumny dające się rozmyć:
-    \begin{itemize}
+    \begin{enumerate}
         \item wiek zawodnika - atrybut przyjmuje wartości liczbowe całkowite od 18 do 44. Przekładając ten atrybut na język naturalny możemy użyć wartości: "junior", "młody", "w średnim wieku", "doświadczony", "stary". 
         \item wzrost zawodnika - atrybut przyjmuje wartości liczbowe zmiennoprzecinkowe od 160,02 do 231,14. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo niski", "niski", "średniego wzrostu", "wysoki", "bardzo wysoki".
-        \item waga zawodnika - atrybut przyjmuje wartości liczbowe zmiennnoprzecinkowe od 60,33 do 163,29. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo lekki", "lekki", "o przeciętnej wadze", "ciężki", "bardzo ciężki".
-        \item numer w drafcie - oznacza, który w kolejności został wybrany zawodnik w organizowanym co roku tzw. drafcie, który polega na wybieraniu przez drużyny młodych zawodników na następny sezon. Atrybut przyjmuje wartości liczbowe całkowite od 1 do 60 oraz wartość "undrafted" - nie wybrany w drafcie. Wartość "undrafted będzie traktowana jako wartość maksymalna. Przekładając ten atrybut na język naturalny możemy użyć wartości: "Bardzo szybko", "szybko", "średnio", "późno", "bardzo późno", "niewybrano".
-        \item rozegrane gry - liczba gier zawodnika w danym sezonie. Atrybut ten przyjmuje wartości liczbowe całkowite od 1 do 85.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "średnio", "dużo", "bardzo dużo"
-        \item zdobyte punkty - średnia liczba punktów zdobytych przez zawodnika w meczach w danym sezonie. Atrybut ten przyjmuje wartości liczbowe zmiennooprzecinkowe od 0 do 36,1. Przekładając ten atrybut na język naturalny możemy użyć wartości: "niewiarygodnie mało", "mało", "dostatecznie", "dużo", "nieziemsko dużo"
-    \end{itemize}
+        \item waga zawodnika - atrybut przyjmuje wartości liczbowe zmiennoprzecinkowe od 60,33 do 163,29. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo lekki", "lekki", "o przeciętnej wadze", "ciężki", "bardzo ciężki".
+        \item numer w drafcie - oznacza, który w kolejności został wybrany zawodnik w organizowanym co roku tzw. drafcie, który polega na wybieraniu przez drużyny młodych zawodników na następny sezon. Atrybut przyjmuje wartości liczbowe całkowite od 1 do 60 oraz wartość "undrafted" - nie wybrany w drafcie. Wartość "undrafted będzie traktowana jako wartość maksymalna. Przekładając ten atrybut na język naturalny możemy użyć wartości: "Bardzo szybko", "szybko", "średnio", "późno", "bardzo późno", "nie wybrano".
+        \item rozegrane gry - liczba gier zawodnika w danym sezonie. Atrybut ten przyjmuje wartości liczbowe całkowite od 1 do 85.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "średnio", "dużo", "bardzo dużo".
+        \item zdobyte punkty - średnia liczba punktów zdobytych przez zawodnika w meczach w danym sezonie. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 36,1. Przekładając ten atrybut na język naturalny możemy użyć wartości: "niewiarygodnie mało", "mało", "dostatecznie", "dużo", "nieziemsko dużo".
+        \item liczba zbiórek - średnia liczba zbiórek zawodnika na mecz - zbiórka jest to złapanie piłki przez zawodnika po nieudanym rzucie do kosza. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 16,3. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "dostatecznie", "dużo", "bardzo dużo".
+        \item liczba asyst - średnia liczba asyst zawodnika na mecz - asysta jest to ostatnie podanie między zawodnikami tej samej drużyny, po którym zdobyty zostaje punkt. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 11,7. Podobnie jak w atrybucie wyżej, przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "dostatecznie", "dużo", "bardzo dużo".
+        \item wpływ na drużynę - jaki wpływ miał zawodnik na punkty drużyny, gdy znajdował się na parkiecie. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od -100,0 do 100,0 ze zdecydowaną większością wartości mieszczących się w przedziale $<-25,0; 25,0>$. Przekładając ten atrybut na język naturalny możemy użyć wartości:
+        "bardzo negatywny", "negatywny", "neutralny", "pozytywny", "bardzo pozytywny"
+        \item skuteczność rzutów - jak efektywnie zawodnik rzucał do kosza, czyli ile spośród jego rzutów kończyło się punktami. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 1, gdzie 0 oznacza, że żaden rzut nie kończył się punktem, a 1 - każdy rzut zawodnika kończył się punktem. Najwięcej wartości znajduje się w przedziale: <0,30; 0,67>.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "dramatycznie nieskuteczny", "nieskuteczny", "przeciętny", "skuteczny", "niesamowicie skuteczny".
+        \item procent asyst - procent punktów przy jakich asystował zawodnik, gdy znajdował się na boisku - atrybut ten mówi dużo o wpływie zawodnika na drużynę. Przyjmuje on wartości liczbowe zmiennoprzecinkowe z przedziału $<0;1>$ ze zdecydowaną większością wartości w przedziale $<0; 0,40>$. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mały", "mały", "przeciętny", "duży", "bardzo duży".
+    \end{enumerate}
 \end{itemize}
 Oczywiście wartości takie jak: wzrost, waga, czy wiek będą odnosiły się jedynie do koszykarzy, ponieważ np. słowo "stary" w kontekście gracza koszykówki będzie związane z zupełnie innym wiekiem, niż słowo "stary" używane na codzień w stosunku do opisu wieku ludzi. \\
 
@@ -148,21 +154,15 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 
 
 \begin{thebibliography}{99}
-<<<<<<< HEAD
-\bibitem{nba_data} Baza danych zawierająca statystyki koszykarzy z ligi NBA z lat 1996-2020 [przeglądany 04.05.2021] Dostępna w:
-https://www.kaggle.com/justinas/nba-players-data
- \bibitem{niewiadomski19} A. Niewiadomski, Zbiory rozmyte typu 2. Zastosowania w reprezentowaniu informacji.  Seria „Problemy współczesnej informatyki” pod redakcją L. Rutkowskiego. Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2019.
-\bibitem{zadrozny06} S. Zadrożny, Zapytania nieprecyzyjne i lingwistyczne podsumowania baz danych, EXIT, 2006, Warszawa
-\bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
-=======
  \bibitem{niewiadomski19} A. Niewiadomski, Zbiory rozmyte typu 2. Zastosowania w reprezentowaniu informacji.  Seria „Problemy współczesnej informatyki” pod redakcją L. Rutkowskiego. Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2019.
 \bibitem{zadrozny06} S. Zadrożny, Zapytania nieprecyzyjne i lingwistyczne podsumowania baz danych, EXIT, 2006, Warszawa
 \bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
 \bibitem{nba_data} Baza danych zawierająca statystyki koszykarzy z ligi NBA z lat 1996-2020 [przeglądany 04.05.2021] Dostępna w:
 https://www.kaggle.com/justinas/nba-players-data
->>>>>>> hubert
 \end{thebibliography}
 
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
 możliwe do weryfikacji i cytowane w sprawozdaniu. 
 \end{document}
+
+
