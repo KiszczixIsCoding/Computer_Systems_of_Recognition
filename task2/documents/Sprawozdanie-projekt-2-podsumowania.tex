@@ -1,6 +1,12 @@
 \documentclass{classrep}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
+\usepackage{amsmath}
+\usepackage{dirtytalk}
+\usepackage{latexsym}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{float}
 
 \studycycle{Informatyka, studia STACJONARNE, I st.}
 \coursesemester{VI}
@@ -43,25 +49,25 @@ Ostatecznie spośród 22 kolumn wybraliśmy następujące:
 \begin{itemize}
     \item Kolumny nie dające się rozmyć (zawierające informacje pozwalające zidentyfikować zawodnika):
     \begin{enumerate}
-        \item nr identyfikacyjny zawodnika
-        \item imię i nazwisko zawodnika
-        \item skrót nazwy drużyny
-        \item kraj urodzenia zawodnika
+        \item nr identyfikacyjny zawodnika (index)
+        \item imię i nazwisko zawodnika (player\_name)
+        \item skrót nazwy drużyny (team\_abbreviation)
+        \item kraj urodzenia zawodnika (country)
     \end{enumerate}
     \item Kolumny dające się rozmyć:
     \begin{enumerate}
-        \item wiek zawodnika - atrybut przyjmuje wartości liczbowe całkowite od 18 do 44. Przekładając ten atrybut na język naturalny możemy użyć wartości: "junior", "młody", "w średnim wieku", "doświadczony", "stary". 
-        \item wzrost zawodnika - atrybut przyjmuje wartości liczbowe zmiennoprzecinkowe od 160,02 do 231,14. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo niski", "niski", "średniego wzrostu", "wysoki", "bardzo wysoki".
-        \item waga zawodnika - atrybut przyjmuje wartości liczbowe zmiennoprzecinkowe od 60,33 do 163,29. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo lekki", "lekki", "o przeciętnej wadze", "ciężki", "bardzo ciężki".
-        \item numer w drafcie - oznacza, który w kolejności został wybrany zawodnik w organizowanym co roku tzw. drafcie, który polega na wybieraniu przez drużyny młodych zawodników na następny sezon. Atrybut przyjmuje wartości liczbowe całkowite od 1 do 60 oraz wartość "undrafted" - nie wybrany w drafcie. Wartość "undrafted będzie traktowana jako wartość maksymalna. Przekładając ten atrybut na język naturalny możemy użyć wartości: "Bardzo szybko", "szybko", "średnio", "późno", "bardzo późno", "nie wybrano".
-        \item rozegrane gry - liczba gier zawodnika w danym sezonie. Atrybut ten przyjmuje wartości liczbowe całkowite od 1 do 85.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "średnio", "dużo", "bardzo dużo".
-        \item zdobyte punkty - średnia liczba punktów zdobytych przez zawodnika w meczach w danym sezonie. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 36,1. Przekładając ten atrybut na język naturalny możemy użyć wartości: "niewiarygodnie mało", "mało", "dostatecznie", "dużo", "nieziemsko dużo".
-        \item liczba zbiórek - średnia liczba zbiórek zawodnika na mecz - zbiórka jest to złapanie piłki przez zawodnika po nieudanym rzucie do kosza. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 16,3. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "dostatecznie", "dużo", "bardzo dużo".
-        \item liczba asyst - średnia liczba asyst zawodnika na mecz - asysta jest to ostatnie podanie między zawodnikami tej samej drużyny, po którym zdobyty zostaje punkt. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 11,7. Podobnie jak w atrybucie wyżej, przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "dostatecznie", "dużo", "bardzo dużo".
-        \item wpływ na drużynę - jaki wpływ miał zawodnik na punkty drużyny, gdy znajdował się na parkiecie. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od -100,0 do 100,0 ze zdecydowaną większością wartości mieszczących się w przedziale $<-25,0; 25,0>$. Przekładając ten atrybut na język naturalny możemy użyć wartości:
+        \item wiek zawodnika (age) - atrybut przyjmuje wartości liczbowe całkowite od 18 do 44. Przekładając ten atrybut na język naturalny możemy użyć wartości: "junior", "młody", "w średnim wieku", "doświadczony", "stary". 
+        \item wzrost zawodnika (player\_height) - atrybut przyjmuje wartości liczbowe zmiennoprzecinkowe od 160,02 do 231,14. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo niski", "niski", "średniego wzrostu", "wysoki", "bardzo wysoki".
+        \item waga zawodnika (player\_weight) - atrybut przyjmuje wartości liczbowe zmiennoprzecinkowe od 60,33 do 163,29. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo lekki", "lekki", "o przeciętnej wadze", "ciężki", "bardzo ciężki".
+        \item numer w drafcie (draft\_number) - oznacza, który w kolejności został wybrany zawodnik w organizowanym co roku tzw. drafcie, który polega na wybieraniu przez drużyny młodych zawodników na następny sezon. Atrybut przyjmuje wartości liczbowe całkowite od 1 do 60 oraz wartość "undrafted" - nie wybrany w drafcie. Wartość "undrafted będzie traktowana jako wartość maksymalna. Przekładając ten atrybut na język naturalny możemy użyć wartości: "Bardzo szybko", "szybko", "średnio", "późno", "bardzo późno", "nie wybrano".
+        \item rozegrane gry (gp) - liczba gier zawodnika w danym sezonie. Atrybut ten przyjmuje wartości liczbowe całkowite od 1 do 85.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "średnio", "dużo", "bardzo dużo".
+        \item zdobyte punkty (pts) - średnia liczba punktów zdobytych przez zawodnika w meczach w danym sezonie. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 36,1. Przekładając ten atrybut na język naturalny możemy użyć wartości: "niewiarygodnie mało", "mało", "dostatecznie", "dużo", "nieziemsko dużo".
+        \item liczba zbiórek (reb) - średnia liczba zbiórek zawodnika na mecz - zbiórka jest to złapanie piłki przez zawodnika po nieudanym rzucie do kosza. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 16,3. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "dostatecznie", "dużo", "bardzo dużo".
+        \item liczba asyst (ast) - średnia liczba asyst zawodnika na mecz - asysta jest to ostatnie podanie między zawodnikami tej samej drużyny, po którym zdobyty zostaje punkt. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 11,7. Podobnie jak w atrybucie wyżej, przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mało", "mało", "dostatecznie", "dużo", "bardzo dużo".
+        \item wpływ na drużynę (net\_rating) - jaki wpływ miał zawodnik na punkty drużyny, gdy znajdował się na parkiecie. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od -100,0 do 100,0 ze zdecydowaną większością wartości mieszczących się w przedziale $<-25,0; 25,0>$. Przekładając ten atrybut na język naturalny możemy użyć wartości:
         "bardzo negatywny", "negatywny", "neutralny", "pozytywny", "bardzo pozytywny"
-        \item skuteczność rzutów - jak efektywnie zawodnik rzucał do kosza, czyli ile spośród jego rzutów kończyło się punktami. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 1, gdzie 0 oznacza, że żaden rzut nie kończył się punktem, a 1 - każdy rzut zawodnika kończył się punktem. Najwięcej wartości znajduje się w przedziale: <0,30; 0,67>.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "dramatycznie nieskuteczny", "nieskuteczny", "przeciętny", "skuteczny", "niesamowicie skuteczny".
-        \item procent asyst - procent punktów przy jakich asystował zawodnik, gdy znajdował się na boisku - atrybut ten mówi dużo o wpływie zawodnika na drużynę. Przyjmuje on wartości liczbowe zmiennoprzecinkowe z przedziału $<0;1>$ ze zdecydowaną większością wartości w przedziale $<0; 0,40>$. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mały", "mały", "przeciętny", "duży", "bardzo duży".
+        \item skuteczność rzutów (ts\_pct) - jak efektywnie zawodnik rzucał do kosza, czyli ile spośród jego rzutów kończyło się punktami. Atrybut ten przyjmuje wartości liczbowe zmiennoprzecinkowe od 0 do 1, gdzie 0 oznacza, że żaden rzut nie kończył się punktem, a 1 - każdy rzut zawodnika kończył się punktem. Najwięcej wartości znajduje się w przedziale: $<0,30; 0,67>$.  Przekładając ten atrybut na język naturalny możemy użyć wartości: "dramatycznie nieskuteczny", "nieskuteczny", "przeciętny", "skuteczny", "niesamowicie skuteczny".
+        \item procent asyst (ast\_pct) - procent punktów przy jakich asystował zawodnik, gdy znajdował się na boisku - atrybut ten mówi dużo o wpływie zawodnika na drużynę. Przyjmuje on wartości liczbowe zmiennoprzecinkowe z przedziału $<0;1>$ ze zdecydowaną większością wartości w przedziale $<0; 0,40>$. Przekładając ten atrybut na język naturalny możemy użyć wartości: "bardzo mały", "mały", "przeciętny", "duży", "bardzo duży".
     \end{enumerate}
 \end{itemize}
 Oczywiście wartości takie jak: wzrost, waga, czy wiek będą odnosiły się jedynie do koszykarzy, ponieważ np. słowo "stary" w kontekście gracza koszykówki będzie związane z zupełnie innym wiekiem, niż słowo "stary" używane na codzień w stosunku do opisu wieku ludzi. \\
@@ -72,6 +78,12 @@ Oczywiście wartości takie jak: wzrost, waga, czy wiek będą odnosiły się je
  \indent Po pierwsze, jako iż owa dyscyplina jest bardzo popularna, wielu kibiców jest również zainteresowanych statystykami koszykarzy. Dla przeciętnego widza dane liczbowe mogą być jednak mało zrozumiałe. Rozwiązaniem tego problemu wydaje się wprowadzenie zmiennych lingwistycznych w celu ułatwienia interpretacji danych, co wiąże się z lepszym przyswojeniem informacji przez odbiorcę, jak również zaoszczędzeniem czasu na próbie ich zrozumienia. \\
  \indent Po drugie, przedstawienie danych liczbowych w postaci zmiennych lingwistycznych zapewnia grupowanie rekordów. Dzięki temu, dużo łatwiejsze jest dokonanie filtracji zawodników, co skutkuje szybszym wyszukaniem graczy o podobnych parametrach fizycznych lub osiąganych statystykach.\\
  \indent W końcu, popularność oraz statystyki przychodów klubów NBA powodują zainteresowanie wśród potencjalnych sponsorów, którzy niekoniecznie muszą być związani z koszykówką. Dane przedstawione w formie zmiennych lingwistycznych znacznie pomogłyby w analizie statystyk oraz ocenie ryzyka związanego z inwestycją w dany klub. 
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{mysql_tables.png}
+    \caption{Nazwy kolumn (atrybutów) w sytemie zarządzania bazami danych MySQL}
+    \label{rysunek:podzbiory}
+\end{figure}
 
 \section{Atrybuty i liczności obiektów wyrażone zmiennymi lingwistycznymi}
 Zmienne lingwistyczne dla wybranych 10 atrybutów z bazy danych, przedstawione w
@@ -164,5 +176,3 @@ https://www.kaggle.com/justinas/nba-players-data
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
 możliwe do weryfikacji i cytowane w sprawozdaniu. 
 \end{document}
-
-
