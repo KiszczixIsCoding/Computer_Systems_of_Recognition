@@ -178,6 +178,241 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "waga zawodnika".}
         \label{rysunek:waga}
     \end{figure}
+    \item kolejność wyboru w drafcie
+    \begin{itemize}
+        \item błyskawicznie
+        \begin{equation}
+            \mu_{blyskawicznie}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;6) \\ -0.125x + 1.75 & dla \: x\in [6; 14] \end{matrix}\right.
+        \end{equation}
+         \item szybko
+        \begin{equation}
+            \mu_{szybko}(x) = \left\{\begin{matrix} 0.25x - 2.5 & dla \: x\in[10;14) \\ 1 & dla \: x\in [14;22) \\ -0.125x + 3.75 & dla \: x\in [22; 30] \end{matrix}\right.
+        \end{equation}
+        \item średnio
+        \begin{equation}
+            \mu_{srednio}(x) = \left\{\begin{matrix} 0.1x - 2 & dla \: x\in[20;30) \\ -0.1x + 4 & dla \: x\in [30; 40] \end{matrix}\right.
+        \end{equation}
+        \item późno
+        \begin{equation}
+            \mu_{pozno}(x) = \left\{\begin{matrix} 0.125x - 4.5 & dla \: x\in[36;44) \\ 1 & dla \: x\in [44;48) \\ -0.125x + 7 & dla \: x\in [48; 56] \end{matrix}\right.
+        \end{equation}
+        \item na koniec
+        \begin{equation}
+            \mu_{nakoniec}(x) = \left\{\begin{matrix} 0.2x - 10.2 & dla \: x\in[51;56) \\ 1 & dla \: x\in [56;60] \end{matrix}\right.
+        \end{equation}
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm]{wykres_draft.png}
+        \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "kolejność wyboru w drafcie".}
+        \label{rysunek:draft}
+    \end{figure}
+    \item rozegrane gry
+     \begin{itemize}
+        \item znikoma liczba
+        \begin{equation}
+            \mu_{znikomaliczba}(x) = \left\{\begin{matrix} 1 & dla \: x\in[1;10) \\ -0.0625x + 1.625 & dla \: x\in [10; 26] \end{matrix}\right.
+        \end{equation}
+        \item mało
+        \begin{equation}
+            \mu_{malo}(x) = \left\{\begin{matrix} 0.1x - 2 & dla \: x\in[20;30) \\ -0.1x + 4 & dla \: x\in [30; 40] \end{matrix}\right.
+        \end{equation}
+        \item średnio
+        \begin{equation}
+            \mu_{srednio}(x) = \left\{\begin{matrix} 0.0625x - 1.875 & dla \: x\in[30;46) \\ -0.0625x + 3.875 & dla \: x\in [46; 62] \end{matrix}\right.
+        \end{equation}
+        \item dużo
+        \begin{equation}
+            \mu_{duzo}(x) = \left\{\begin{matrix} 0.0625x - 3.0625 & dla \: x\in[49;65) \\ -0.0625x + 5.0625 & dla \: x\in [65; 81] \end{matrix}\right.
+        \end{equation}
+        \item maksymalnie
+        \begin{equation}
+            \mu_{maksymalnie}(x) = \left\{\begin{matrix} 0.1x - 7 & dla \: x\in[70;80) \\ 1 & dla \: x\in [80;85] \end{matrix}\right.
+        \end{equation}
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm]{wykres_gry.png}
+        \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "rozegrane gry".}
+        \label{rysunek:gry}
+    \end{figure}
+    \item zdobyte punkty
+    \begin{itemize}
+        \item mało
+        \begin{equation}
+            \mu_{malo}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;1) \\ -0.1x + 1.1 & dla \: x\in [1; 11] \end{matrix}\right.
+        \end{equation}
+         \item dostatecznie
+        \begin{equation}
+            \mu_{dostatecznie}(x) = \left\{\begin{matrix} 0.2x - 0.2 & dla \: x\in[1;6) \\ 1 & dla \: x\in [6; 10) \\ -0.125x + 2.25 & dla \: x\in [10;16] \end{matrix}\right.
+        \end{equation}
+        \item dużo
+        \begin{equation}
+            \mu_{duzo}(x) = \left\{\begin{matrix} 0.125x - 1.375 & dla \: x\in[11;19) \\ 1 & dla \: x\in [19; 36.1] \end{matrix}\right.
+        \end{equation}
+        \item bardzo mało
+        \begin{equation}
+            \mu_{bardzomalo}(x) = \mu_{malo}(x)^2
+        \end{equation}
+        \item bardzo dużo
+        \begin{equation}
+            \mu_{bardzoduzo}(x) = \mu_{duzo}(x)^2
+        \end{equation}
+    \end{itemize}
+    Oczywiście, zgodnie z regułą semantyczną termin "bardzo mało" występuje przed terminem "mało" w zmiennej lingwistycznej. Powyżej został on wymieniony później, ponieważ definiując funkcję przynależności dla terminu "bardzo mało" korzystamy z funkcji przynależności dla terminu "mało" (konkretnie podnosimy ją do kwadratu).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm]{wykres_punkty.png}
+        \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "zdobyte punkty".}
+        \label{rysunek:punkty}
+    \end{figure}
+    \item liczba zbiórek
+    \begin{itemize}
+        \item mało
+        \begin{equation}
+            \mu_{malo}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;1) \\ -0.25x + 1.25 & dla \: x\in [1; 5] \end{matrix}\right.
+        \end{equation}
+         \item dostatecznie
+        \begin{equation}
+            \mu_{dostatecznie}(x) = \left\{\begin{matrix} 0.5x - 1 & dla \: x\in[2;4) \\ 1 & dla \: x\in [4; 5) \\ -x + 6 & dla \: x\in [5;6] \end{matrix}\right.
+        \end{equation}
+        \item dużo
+        \begin{equation}
+            \mu_{duzo}(x) = \left\{\begin{matrix} 0.4x - 1.6 & dla \: x\in[4;6.5) \\ 1 & dla \: x\in [6.5; 16.3] \end{matrix}\right.
+        \end{equation}
+        \item bardzo mało
+        \begin{equation}
+            \mu_{bardzomalo}(x) = \mu_{malo}(x)^2
+        \end{equation}
+        \item bardzo dużo
+        \begin{equation}
+            \mu_{bardzoduzo}(x) = \mu_{duzo}(x)^2
+        \end{equation}
+    \end{itemize}
+    Oczywiście, zgodnie z regułą semantyczną termin "bardzo mało" występuje przed terminem "mało" w zmiennej lingwistycznej. Powyżej został on wymieniony później, ponieważ definiując funkcję przynależności dla terminu "bardzo mało" korzystamy z funkcji przynależności dla terminu "mało" (konkretnie podnosimy ją do kwadratu).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm]{wykres_zbiorki.png}
+        \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "liczba zbiórek".}
+        \label{rysunek:zbiorki}
+    \end{figure}
+    \item liczba asyst
+    \begin{itemize}
+        \item mało
+        \begin{equation}
+            \mu_{malo\_asyst}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;0.5) \\ -x + 1.5 & dla \: x\in [0.5; 1.5] \end{matrix}\right.
+        \end{equation}
+         \item dostatecznie
+        \begin{equation}
+            \mu_{dostatecznie\_asyst}(x) = \left\{\begin{matrix} x - 0.5 & dla \: x\in[0.5;1.5) \\ 1 & dla \: x\in [1.5; 2) \\ -x + 3 & dla \: x\in [2;3] \end{matrix}\right.
+        \end{equation}
+        \item dużo
+        \begin{equation}
+            \mu_{duzo\_asyst}(x) = \left\{\begin{matrix} 0.625x - 1.25 & dla \: x\in[2;3.6) \\ 1 & dla \: x\in [3.6; 11.7] \end{matrix}\right.
+        \end{equation}
+        \item bardzo mało
+        \begin{equation}
+            \mu_{bardzomalo\_asyst}(x) = \mu_{malo\_asyst}(x)^2
+        \end{equation}
+        \item bardzo dużo
+        \begin{equation}
+            \mu_{bardzoduzo\_asyst}(x) = \mu_{duzo\_asyst}(x)^2
+        \end{equation}
+    \end{itemize}
+    Oczywiście, zgodnie z regułą semantyczną termin "bardzo mało" występuje przed terminem "mało" w zmiennej lingwistycznej. Powyżej został on wymieniony później, ponieważ definiując funkcję przynależności dla terminu "bardzo mało" korzystamy z funkcji przynależności dla terminu "mało" (konkretnie podnosimy ją do kwadratu).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm]{wykres_asysty.png}
+        \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "liczba asyst".}
+        \label{rysunek:asysty}
+    \end{figure}
+    \item wpływ na drużynę
+    \begin{itemize}
+        \item fatalny
+        \begin{equation}
+            \mu_{fatalny\_wplyw}(x) = \left\{\begin{matrix} 1 & dla \: x\in[-100;-15) \\ -0.1x - 0.5 & dla \: x\in [-15; -5] \end{matrix}\right.
+        \end{equation}
+         \item negatywny
+        \begin{equation}
+            \mu_{negatywny\_wplyw}(x) = \left\{\begin{matrix} 0.125x + 1.875 & dla \: x\in[-15;-7) \\ 1 & dla \: x\in [-7;-2.5) \\ -0.4x & dla \: x\in [-2.5; 0] \end{matrix}\right.
+        \end{equation}
+        \item neutralny
+        \begin{equation}
+            \mu_{neutralny\_wplyw}(x) = \left\{\begin{matrix} 0.4x + 1 & dla \: x\in[-2.5;0) \\ -0.4x + 1 & dla \: x\in [0; 2.5] \end{matrix}\right.
+        \end{equation}
+        \item pozytywny
+        \begin{equation}
+            \mu_{pozytywny\_wplyw}(x) = \left\{\begin{matrix} 0.3125x & dla \: x\in[0;3.2) \\ 1 & dla \: x\in [3.2;7) \\ -0.15625x + 2.09375 & dla \: x\in [7; 13.4] \end{matrix}\right.
+        \end{equation}
+        \item idealny
+        \begin{equation}
+            \mu_{idealny\_wplyw}(x) = \left\{\begin{matrix} 0.125x - 0.625 & dla \: x\in[5;13) \\ 1 & dla \: x\in [13;100] \end{matrix}\right.
+        \end{equation}
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm]{wykres_wplyw.png}
+        \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "wpływ na drużynę".}
+        \label{rysunek:wplyw}
+    \end{figure}
+    \item skuteczność rzutów
+     \begin{itemize}
+        \item fatalny
+        \begin{equation}
+            \mu_{fatalny\_skutecznosc}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;.35) \\ -10x + 4.5 & dla \: x\in [0.35; 0.45] \end{matrix}\right.
+        \end{equation}
+        \item nieskuteczny
+        \begin{equation}
+            \mu_{nieskuteczny}(x) = \left\{\begin{matrix} 10x - 3 & dla \: x\in[0.3;0.4) \\ -10x + 5 & dla \: x\in [0.4; 0.5] \end{matrix}\right.
+        \end{equation}
+        \item przeciętny
+        \begin{equation}
+            \mu_{przecietny\_skutecznosc}(x) = \left\{\begin{matrix} 25x - 11.5 & dla \: x\in[0.46;0.5) \\ -25x + 13.5 & dla \: x\in [0.5; 0.54] \end{matrix}\right.
+        \end{equation}
+        \item skuteczny
+        \begin{equation}
+            \mu_{skuteczny}(x) = \left\{\begin{matrix} 25x - 13.25 & dla \: x\in[0.53;0.57) \\ -25x + 15.25 & dla \: x\in [0.57; 0.61] \end{matrix}\right.
+        \end{equation}
+        \item idealny
+        \begin{equation}
+            \mu_{idealny\_skutecznosc}(x) = \left\{\begin{matrix} 20x - 11.6 & dla \: x\in[0.58;0.63) \\ 1 & dla \: x\in [0.63;1] \end{matrix}\right.
+        \end{equation}
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=14cm]{wykres_skutecznosc.png}
+        \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "skuteczność rzutów".}
+        \label{rysunek:skutecznosc}
+    \end{figure}
+    \item procenta asyst
+    \begin{itemize}
+        \item fatalny
+        \begin{equation}
+            \mu_{fatalny\_asyst}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;0.01) \\ -25x + 1.25 & dla \: x\in [0.01; 0.05] \end{matrix}\right.
+        \end{equation}
+        \item mały
+        \begin{equation}
+            \mu_{maly\_asyst}(x) = \left\{\begin{matrix} 25x-0.25 & dla \: x\in[0.01;0.05) \\ 1 & dla \: x\in [0.05; 0.06) \\ -25x + 2.5 & dla \: x\in[0.06;0.10] \end{matrix}\right.
+        \end{equation}
+        \item przeciętny
+        \begin{equation}
+            \mu_{przecietny\_asyst}(x) = \left\{\begin{matrix} 12.5x - 0.75 & dla \: x\in[0.06;0.14) \\ 1 & dla \: x\in [0.14; 0.15) \\ -25x + 4.75 & dla \: x\in[0.15;0.19] \end{matrix}\right.
+        \end{equation}
+        \item duży
+        \begin{equation}
+            \mu_{duzy\_asyst}(x) = \left\{\begin{matrix} 20x - 3 & dla \: x\in[0.15;0.20) \\ 1 & dla \: x\in [0.20; 0.23) \\ -12.5x + 3.875 & dla \: x\in[0.23;0.31] \end{matrix}\right.
+        \end{equation}
+        \item idealny
+        \begin{equation}
+            \mu_{idealny\_asyst}(x) = \left\{\begin{matrix} 12.5x - 2.875 & dla \: x\in[0.23;0.31) \\ 1 & dla \: x\in [0.31; 1] \end{matrix}\right.
+        \end{equation}
+    \end{itemize}
+     \begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_pr_asyst.png}
+    \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "procent asyst".}
+    \label{rysunek:procent_asyst}
+\end{figure}
 \end{enumerate}
 
 Zmienne lingwistyczne dla wybranych 10 atrybutów z bazy danych, przedstawione w
