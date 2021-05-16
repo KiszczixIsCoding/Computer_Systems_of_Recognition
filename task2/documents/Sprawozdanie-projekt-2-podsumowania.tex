@@ -86,6 +86,7 @@ Oczywiście wartości takie jak: wzrost, waga, czy wiek będą odnosiły się je
 \end{figure}
 
 \section{Atrybuty i liczności obiektów wyrażone zmiennymi lingwistycznymi}
+\subsection{Zmienne lingwistyczne}
 Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzorze \ref{eqn_zmienna_lingwistyczna}. W aktualnej sekcji skupimy się dokładniej na tej definicji podając dla każdego z 11 atrybutów z sekcji 1 nazwę zmiennej lingwistycznej, zbiór terminów lingwistycznych oraz przestrzeń rozważań. Uważamy, że podając konkretny zbiór terminów lingwistycznych, jaki wykorzystamy, reguły gramatyczna oraz semantyczna będą widoczne i nie ma potrzeby podawania ich wprost. Wszak np. dla wzrostu nie podamy jako termin lingwistyczny słowa "zielony" lub "szybki" oraz wszystkie terminy we wszystkich zmiennych będą uporządkowane w sposób semantyczny (np. słowo "ciężki" nie wystąpi przed słowem "lekki", a słowo "idealny" przed "fatalny"). Poniżej przedstawiamy wykorzystane zmienne lingwistyczne wraz ze wzorami oraz wykresami:
 \begin{enumerate}
     \item wiek zawodnika - przestrzeń rozważań: liczby naturalne z przedziału $[18;44]$
@@ -420,7 +421,67 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
     \label{rysunek:procent_asyst}
 \end{figure}
 \end{enumerate}
-
+\subsection{Kwantyfikatory lingwistyczne}
+\begin{itemize}
+        \item Więcej niż 0
+        \begin{equation}
+            \mu_{wiecej\_niz\_0}(x) = \left\{\begin{matrix} -0.000667x + 1 & dla \: x\in[0;1500] \\ 0 & dla  \: x\in (1500;11144] \end{matrix}\right.
+        \end{equation}
+        \item Około 2000
+        \begin{equation}
+            \mu_{okolo\_2000}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;500) \\ 0.000667x - 0.333 & dla \: x\in[500;2000) \\ -0.000667x + 2.333& dla \: x\in [2000; 3500) \\ 0 & dla \: x\in[3500;11144] \end{matrix}\right.
+        \end{equation}
+        \item Około 4000
+        \begin{equation}
+            \mu_{okolo\_4000}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;2500) \\ 0.000667x - 1.667 & dla \: x\in[2500;4000) \\ -0.000667x + 3.667 & dla \: x\in [4000; 5500) \\ 0 & dla \: x\in[5500;11144] \end{matrix}\right.
+        \end{equation}
+        \item Około 6000
+        \begin{equation}
+            \mu_{okolo\_6000}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;4500) \\ 0.000667x - 3 & dla \: x\in[4500;6000) \\ 0.000667x + 5 & dla \: x\in [6000; 7500) \\ 0 & dla \: x\in[7500; 11144] \end{matrix}\right.
+        \end{equation}
+        \item Około 8000
+        \begin{equation}
+            \mu_{okolo\_8000}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;6500) \\ 0.000667x - 4.333 & dla \: x\in[6500;8000) \\ -0.000667x + 6.333 & dla \: x\in [8000; 9500) \\ 0 & dla \: x\in[9000; 11144] \end{matrix}\right.
+        \end{equation}
+        \item Prawie 11144
+        \begin{equation}
+            \mu_{prawie\_11144}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;8500) \\ 0.000378x - 3.215 & dla \: x\in [8500; 11144] \end{matrix}\right.
+        \end{equation}
+    \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_kwantyfikator_absolutny.png}
+    \caption{Wykres funkcji przynależności dla kwantyfikatora absolutnego.}
+    \label{rysunek:kwantyfikator_absolutny}
+\end{figure}
+\begin{itemize}
+        \item Prawie żaden
+        \begin{equation}
+            \mu_{prawie\_zaden}(x) = \begin{matrix} e ^ {-\frac{x^2}{0.01}} & dla \: x\in [0;1]  \end{matrix}.
+        \end{equation}
+        \item Około 1/4
+        \begin{equation}
+            \mu_{okolo\_1/4}(x) =  \begin{matrix} e ^ {-\frac{(x - 0.25)^2}{0.01}} & dla \: x\in [0;1]  \end{matrix}.
+        \end{equation}
+        \item Około 1/2
+        \begin{equation}
+            \mu_{okolo\_1/2}(x) = \begin{matrix} e ^ {-\frac{(x - 0.5)^2}{0.01}} & dla \: x\in [0;1]  \end{matrix}.
+        \end{equation}
+        \item Około 3/4
+        \begin{equation}
+            \mu_{okolo\_3/4}(x) = \begin{matrix} e ^ {-\frac{(x - 0.75)^2}{0.01}} & dla \: x\in [0;1]  \end{matrix}.
+        \end{equation}
+        \item Prawie wszystkie
+        \begin{equation}
+            \mu_{prawie\_wszystkie}(x) = \begin{matrix} e ^ {-\frac{(x - 1)^2}{0.01}} & dla \: x\in [0;1]  \end{matrix}.
+        \end{equation}
+    \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{wykres_kwantyfikator_relatywny.png}
+    \caption{Wykres funkcji przynależności dla kwantyfikatora relatywnego.}
+    \label{rysunek:kwantyfikator_relatywny}
+\end{figure}
 Zmienne lingwistyczne dla wybranych 10 atrybutów z bazy danych, przedstawione w
 formie wykresów funkcji przynależności i wzorów analitycznych, wymienione etykiety oraz objaśnione wszystkie
 symbole ułatwiające czytelnikowi ich zrozumienie \cite{zadrozny06}. Zbędne jest
