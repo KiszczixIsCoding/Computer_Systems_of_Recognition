@@ -33,8 +33,7 @@ pracą inżynierską/naukową/zawodową). \\
 opisie Projektu 2. i Harmonogramie Zajęć na WIKAMP KSR jako efekty zadań w~poszczególnych tygodniach}. 
 
 \section{Cel}
-Celem zadania jest zaimplementowanie lingwistycznej agregacji, tj. przedstawienie danych liczbowych za pomocą sformułowań w języku pozornie naturalnym. Owa implementacja zostanie wykonana w technologii Java z graficznym interfejsem użytkownika oraz z wykorzystaniem systemu zarządania bazą danych o nazwie MySql, a badania zostaną przeprowadzone w oparciu o bazę danych zawierającą statystyki zawodników ligi koszykówki NBA od sezonu 1996/1997 do 2019/2020.
-\cite{nba_data}.  \\
+Celem zadania jest zaimplementowanie lingwistycznej agregacji, tj. przedstawienie danych liczbowych za pomocą sformułowań w języku pozornie naturalnym, do czego posłużą nam zbiory rozmyte. Zbiory rozmyte to takie zbiory, w których funkcją charakterystyczną jest funkcja przynależności, która określa w jakim stopniu dany element przynależy do zbioru. Owa implementacja zostanie wykonana w technologii Java z graficznym interfejsem użytkownika oraz z wykorzystaniem systemu zarządania bazą danych o nazwie MySql, a badania zostaną przeprowadzone w oparciu o bazę danych zawierającą statystyki zawodników ligi koszykówki NBA od sezonu 1996/1997 do 2019/2020 \cite{nba_data}.  \\
 
 
 \section{Charakterystyka podsumowywanej bazy danych}
@@ -89,27 +88,27 @@ Oczywiście wartości takie jak: wzrost, waga, czy wiek będą odnosiły się je
 \section{Atrybuty i liczności obiektów wyrażone zmiennymi lingwistycznymi}
 Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzorze \ref{eqn_zmienna_lingwistyczna}. W aktualnej sekcji skupimy się dokładniej na tej definicji podając dla każdego z 11 atrybutów z sekcji 1 nazwę zmiennej lingwistycznej, zbiór terminów lingwistycznych oraz przestrzeń rozważań. Uważamy, że podając konkretny zbiór terminów lingwistycznych, jaki wykorzystamy, reguły gramatyczna oraz semantyczna będą widoczne i nie ma potrzeby podawania ich wprost. Wszak np. dla wzrostu nie podamy jako termin lingwistyczny słowa "zielony" lub "szybki" oraz wszystkie terminy we wszystkich zmiennych będą uporządkowane w sposób semantyczny (np. słowo "ciężki" nie wystąpi przed słowem "lekki", a słowo "idealny" przed "fatalny"). Poniżej przedstawiamy wykorzystane zmienne lingwistyczne wraz ze wzorami oraz wykresami:
 \begin{enumerate}
-    \item wiek zawodnika - przestrzeń rozważań: $[18;44]$
+    \item wiek zawodnika - przestrzeń rozważań: liczby naturalne z przedziału $[18;44]$
     \begin{itemize}
         \item junior
         \begin{equation}
-            \mu_{junior}(x) = \left\{\begin{matrix} 1 & dla \: x\in[18;20) \\ -0.25x + 6 & dla \: x\in [20; 24] \\ 0 & dla \: x\in (24;44] \end{matrix}\right.
+            \mu_{junior}(x) = \left\{\begin{matrix} 1 & dla \: x\in[18;20) \wedge x\in \mathbf{N} \\ -0.25x + 6 & dla \: x\in [20; 24] \wedge x\in \mathbf{N} \\ 0 & dla \: x\in (24;44] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
         \item młody
         \begin{equation}
-            \mu_{mlody}(x) = \left\{\begin{matrix}  0 & dla \: x\in [18;20) \\ 0.25x-5 & dla \: x\in[20;24) \\ 1 & dla \: x\in [24; 26) \\ -0.5x + 14 & dla \: x\in[26;28] \\ 0 & dla \: x\in (28;44] \end{matrix}\right.
+            \mu_{mlody}(x) = \left\{\begin{matrix}  0 & dla \: x\in ([18;20) \cup (28;44])  \wedge x\in \mathbf{N} \\ 0.25x-5 & dla \: x\in[20;24) \wedge x\in \mathbf{N} \\ 1 & dla \: x\in [24; 26) \wedge x\in \mathbf{N} \\ -0.5x + 14 & dla \: x\in[26;28] \wedge x\in \mathbf{N} \\\end{matrix}\right.
         \end{equation}
         \item w średnim wieku
         \begin{equation}
-            \mu_{w srednim wieku}(x) = \left\{\begin{matrix} 0 & dla \: x\in [18;26) \\ 0.5x - 13 & dla \: x\in[26;28) \\ 1 & dla \: x\in [28; 30) \\ -0.5x + 16 & dla \: x\in[30;32] \\ 0 & dla \: x\in (32;44]  \end{matrix}\right.
+            \mu_{w srednim wieku}(x) = \left\{\begin{matrix} 0 & dla \: x\in ([18;26) \cup (32;44] ) \wedge x\in \mathbf{N} \\ 0.5x - 13 & dla \: x\in[26;28) \wedge x\in \mathbf{N} \\ 1 & dla \: x\in [28; 30) \wedge x\in \mathbf{N} \\ -0.5x + 16 & dla \: x\in[30;32] \wedge x\in \mathbf{N}  \end{matrix}\right.
         \end{equation}
         \item doświadczony
         \begin{equation}
-            \mu_{doswiadczony}(x) = \left\{\begin{matrix}  0 & dla \: x\in [18;30) \\ 0.5x - 15 & dla \: x\in[30;32) \\ 1 & dla \: x\in [32; 34) \\ -0.5x + 18 & dla \: x\in[34;36] \\ 0 & dla \: x\in (34;44] \end{matrix}\right.
+            \mu_{doswiadczony}(x) = \left\{\begin{matrix}  0 & dla \: x\in ([18;30) \cup  (34;44] )  \wedge x\in \mathbf{N} \\ 0.5x - 15 & dla \: x\in[30;32)  \wedge x\in \mathbf{N}\\ 1 & dla \: x\in [32; 34) \wedge x\in \mathbf{N} \\ -0.5x + 18 & dla \: x\in[34;36]  \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
         \item stary
         \begin{equation}
-            \mu_{stary}(x) = \left\{\begin{matrix} 0 & dla \: x\in [18;34) \\ 0.5x - 17 & dla \: x\in[34;36) \\ 1 & dla \: x\in [36; 44] \end{matrix}\right.
+            \mu_{stary}(x) = \left\{\begin{matrix} 0 & dla \: x\in [18;34)  \wedge x\in \mathbf{N} \\ 0.5x - 17 & dla \: x\in[34;36)  \wedge x\in \mathbf{N} \\ 1 & dla \: x\in [36; 44]  \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
     \end{itemize}
      \begin{figure}[H]
@@ -118,7 +117,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
     \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "wiek zawodnika".}
     \label{rysunek:wiek}
 \end{figure}
-    \item wzrost zawodnika - przestrzeń rozważań: $[160.03;231.14]$
+    \item wzrost zawodnika - przestrzeń rozważań: liczby rzeczywiste z przedziału: $[160.03;231.14]$
     \begin{itemize}
         \item niski
         \begin{equation}
@@ -126,7 +125,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
         \item średniego wzrostu
         \begin{equation}
-            \mu_{sredniegowzrostu}(x) = \left\{\begin{matrix} 0 & dla \: x\in (160.03;185] \\ 0.1x - 18.5 & dla \: x\in[185;195) \\ -0.1x + 20.5 & dla \: x\in [195; 205] \\ 0 & dla \: x\in (205;231.14] \end{matrix}\right.
+            \mu_{sredniegowzrostu}(x) = \left\{\begin{matrix} 0 & dla \: x\in (160.03;185] \cup (205;231.14] \\ 0.1x - 18.5 & dla \: x\in[185;195) \\ -0.1x + 20.5 & dla \: x\in [195; 205] \\ \end{matrix}\right.
         \end{equation}
         \item wysoki
         \begin{equation}
@@ -148,7 +147,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "wzrost zawodnika".}
         \label{rysunek:wzrost}
     \end{figure}
-    \item waga zawodnika - przestrzeń rozważań: $[60.33;163.29]$
+    \item waga zawodnika - przestrzeń rozważań: Liczby rzeczywiste z przedziału: $[60.33;163.29]$
     \begin{itemize}
         \item lekki
         \begin{equation}
@@ -156,7 +155,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
          \item o przeciętnej wadze
         \begin{equation}
-            \mu_{oprzecietnejwadze}(x) = \left\{\begin{matrix} 0 & dla \: x\in [60.33; 90) \\ 0.1x - 9 & dla \: x\in[90;100) \\ -0.1x + 11 & dla \: x\in [100; 110] \\ 0 & dla \: x\in (110; 163.29]\end{matrix}\right.
+            \mu_{oprzecietnejwadze}(x) = \left\{\begin{matrix} 0 & dla \: x\in [60.33; 90) \cup (110; 163.29] \\ 0.1x - 9 & dla \: x\in[90;100) \\ -0.1x + 11 & dla \: x\in [100; 110] \end{matrix}\right.
         \end{equation}
         \item ciężki
         \begin{equation}
@@ -179,27 +178,27 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \label{rysunek:waga}
     \end{figure}
     
-    \item kolejność wyboru w drafcie - przestrzeń rozważań: $[0;60]$
+    \item kolejność wyboru w drafcie - przestrzeń rozważań: liczby naturalne z przedziału: $[0;60]$
     \begin{itemize}
         \item błyskawicznie
         \begin{equation}
-            \mu_{blyskawicznie}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;6) \\ -0.125x + 1.75 & dla \: x\in [6; 14] \\ 0 & dla \: x\in (14;60] \end{matrix}\right.
+            \mu_{blyskawicznie}(x) = \left\{\begin{matrix} 1 & dla \: x\in[0;6) \wedge x\in \mathbf{N} \\ -0.125x + 1.75 & dla \: x\in [6; 14] \wedge x\in \mathbf{N} \\ 0 & dla \: x\in (14;60] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
          \item szybko
         \begin{equation}
-            \mu_{szybko}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;10) \\ 0.25x - 2.5 & dla \: x\in[10;14) \\ 1 & dla \: x\in [14;22) \\ -0.125x + 3.75 & dla \: x\in [22; 30]\\ 0 & dla \: x\in (30;60] \end{matrix}\right.
+            \mu_{szybko}(x) = \left\{\begin{matrix} 0 & dla \: x\in ([0;10) \cup (30;60]) \wedge x\in \mathbf{N} \\ 0.25x - 2.5 & dla \: x\in[10;14) \wedge x\in \mathbf{N} \\ 1 & dla \: x\in [14;22) \wedge x\in \mathbf{N} \\ -0.125x + 3.75 & dla \: x\in [22; 30] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
         \item średnio
         \begin{equation}
-            \mu_{srednio\_draft}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;20) \\ 0.1x - 2 & dla \: x\in[20;30) \\ -0.1x + 4 & dla \: x\in [30; 40]\\ 0 & dla \: x\in (40;60] \end{matrix}\right.
+            \mu_{srednio\_draft}(x) = \left\{\begin{matrix} 0 & dla \: x\in ([0;20) \cup (40;60]) \wedge x\in \mathbf{N} \\ 0.1x - 2 & dla \: x\in[20;30) \wedge x\in \mathbf{N} \\ -0.1x + 4 & dla \: x\in [30; 40] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
         \item późno
         \begin{equation}
-            \mu_{pozno}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;36) \\ 0.125x - 4.5 & dla \: x\in[36;44) \\ 1 & dla \: x\in [44;48) \\ -0.125x + 7 & dla \: x\in [48; 56] \\ 0 & dla \: x\in (56;60] \end{matrix}\right.
+            \mu_{pozno}(x) = \left\{\begin{matrix} 0 & dla \: x\in ([0;36) \cup (56;60]) \wedge x\in \mathbf{N} \\ 0.125x - 4.5 & dla \: x\in[36;44) \wedge x\in \mathbf{N} \\ 1 & dla \: x\in [44;48) \wedge x\in \mathbf{N} \\ -0.125x + 7 & dla \: x\in [48; 56] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
         \item na koniec
         \begin{equation}
-            \mu_{nakoniec}(x) = \left\{\begin{matrix}  0 & dla \: x\in [0;51) \\ 0.2x - 10.2 & dla \: x\in[51;56) \\ 1 & dla \: x\in [56;60] \end{matrix}\right.
+            \mu_{nakoniec}(x) = \left\{\begin{matrix}  0 & dla \: x\in [0;51) \wedge x\in \mathbf{N} \\ 0.2x - 10.2 & dla \: x\in[51;56)\wedge x\in \mathbf{N} \\ 1 & dla \: x\in [56;60]\wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
     \end{itemize}
     \begin{figure}[H]
@@ -209,27 +208,27 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \label{rysunek:draft}
     \end{figure}
     
-    \item rozegrane gry - przestrzeń rozważań: $[1;85]$
+    \item rozegrane gry w sezonie - przestrzeń rozważań: liczby naturalne z przedziału: $[1;85]$
      \begin{itemize}
         \item znikoma liczba
         \begin{equation}
-            \mu_{znikomaliczba}(x) = \left\{\begin{matrix} 1 & dla \: x\in[1;10) \\ -0.0625x + 1.625 & dla \: x\in [10; 26] \\ 0 & dla \: x\in (26;85] \end{matrix}\right.
+            \mu_{znikomaliczba}(x) = \left\{\begin{matrix} 1 & dla \: x\in[1;10)  \wedge x\in \mathbf{N} \\ -0.0625x + 1.625 & dla \: x\in [10; 26]  \wedge x\in \mathbf{N} \\ 0 & dla \: x\in (26;85]  \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
         \item mało
         \begin{equation}
-            \mu_{malo\_gier}(x) = \left\{\begin{matrix}0 & dla \: x\in [1;20) \\ 0.1x - 2 & dla \: x\in[20;30) \\ -0.1x + 4 & dla \: x\in [30; 40] \\ 0 & dla \: x\in (40;85] \end{matrix}\right.
+            \mu_{malo\_gier}(x) = \left\{\begin{matrix}0 & dla \: x\in ([1;20) \cup (40;85]) \wedge x\in \mathbf{N} \\ 0.1x - 2 & dla \: x\in[20;30) \wedge x\in \mathbf{N} \\ -0.1x + 4 & dla \: x\in [30; 40] \wedge x\in \mathbf{N}\\ \end{matrix}\right.
         \end{equation}
         \item średnio
         \begin{equation}
-            \mu_{srednio\_gier}(x) = \left\{\begin{matrix} 0 & dla \: x\in [1;30) \\ 0.0625x - 1.875 & dla \: x\in[30;46) \\ -0.0625x + 3.875 & dla \: x\in [46; 62]\\ 0 & dla \: x\in (62;85] \end{matrix}\right.
+            \mu_{srednio\_gier}(x) = \left\{\begin{matrix} 0 & dla \: x\in ([1;30) \cup (62;85]) \wedge x\in \mathbf{N} \\ 0.0625x - 1.875 & dla \: x\in[30;46) \wedge x\in \mathbf{N} \\ -0.0625x + 3.875 & dla \: x\in [46; 62] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
         \item dużo
         \begin{equation}
-            \mu_{duzo\_gier}(x) = \left\{\begin{matrix} 0 & dla \: x\in [1;49) \\ 0.0625x - 3.0625 & dla \: x\in[49;65) \\ -0.0625x + 5.0625 & dla \: x\in [65; 81]\\ 0 & dla \: x\in (81;85] \end{matrix}\right.
+            \mu_{duzo\_gier}(x) = \left\{\begin{matrix} 0 & dla \: x\in ([1;49) \cup (81;85])  \wedge x\in \mathbf{N} \\ 0.0625x - 3.0625 & dla \: x\in[49;65) \wedge x\in \mathbf{N} \\ -0.0625x + 5.0625 & dla \: x\in [65; 81] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
-        \item maksymalnie - przestrzeń rozważań: $[18;44]$
+        \item maksymalnie
         \begin{equation}
-            \mu_{maksymalnie}(x) = \left\{\begin{matrix} 0 & dla \: x\in [1;70) \\ 0.1x - 7 & dla \: x\in[70;80) \\ 1 & dla \: x\in [80;85] \end{matrix}\right.
+            \mu_{maksymalnie}(x) = \left\{\begin{matrix} 0 & dla \: x\in [1;70) \wedge x\in \mathbf{N} \\ 0.1x - 7 & dla \: x\in[70;80) \wedge x\in \mathbf{N} \\ 1 & dla \: x\in [80;85] \wedge x\in \mathbf{N} \end{matrix}\right.
         \end{equation}
     \end{itemize}
     \begin{figure}[H]
@@ -239,7 +238,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \label{rysunek:gry}
     \end{figure}
     
-    \item zdobyte punkty - przestrzeń rozważań: $[0;36.1]$
+    \item średnia liczba zdobytych punktów na mecz - przestrzeń rozważań: liczby rzeczywiste z przedziału: $[0;36.1]$
     \begin{itemize}
         \item mało
         \begin{equation}
@@ -247,7 +246,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
          \item dostatecznie
         \begin{equation}
-            \mu_{dostatecznie\_punktow}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;1) \\ 0.2x - 0.2 & dla \: x\in[1;6) \\ 1 & dla \: x\in [6; 10) \\ -0.125x + 2.25 & dla \: x\in [10;16] \\ 0 & dla \: x\in (16;36.1] \end{matrix}\right.
+            \mu_{dostatecznie\_punktow}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;1) \cup (16;36.1]  \\ 0.2x - 0.2 & dla \: x\in[1;6) \\ 1 & dla \: x\in [6; 10) \\ -0.125x + 2.25 & dla \: x\in [10;16] \end{matrix}\right.
         \end{equation}
         \item dużo
         \begin{equation}
@@ -270,7 +269,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \label{rysunek:punkty}
     \end{figure}
     
-    \item liczba zbiórek - przestrzeń rozważań: $[0;16.3]$
+    \item średnia liczba zbiórek na mecz - przestrzeń rozważań: liczby rzeczywiste z przedziału: $[0;16.3]$
     \begin{itemize}
         \item mało
         \begin{equation}
@@ -278,7 +277,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
          \item dostatecznie
         \begin{equation}
-            \mu_{dostatecznie\_zbiorek}(x) = \left\{\begin{matrix}0 & dla \: x\in [0;2) \\ 0.5x - 1 & dla \: x\in[2;4) \\ 1 & dla \: x\in [4; 5) \\ -x + 6 & dla \: x\in [5;6]\\ 0 & dla \: x\in (6;16.3]  \end{matrix}\right.
+            \mu_{dostatecznie\_zbiorek}(x) = \left\{\begin{matrix}0 & dla \: x\in [0;2) \cup (6;16.3] \\ 0.5x - 1 & dla \: x\in[2;4) \\ 1 & dla \: x\in [4; 5) \\ -x + 6 & dla \: x\in [5;6] \end{matrix}\right.
         \end{equation}
         \item dużo
         \begin{equation}
@@ -301,7 +300,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \label{rysunek:zbiorki}
     \end{figure}
     
-    \item liczba asyst - przestrzeń rozważań: $[0;11.7]$
+    \item średnia liczba asyst na mecz - przestrzeń rozważań: liczby rzeczywiste z przedziału: $[0;11.7]$
     \begin{itemize}
         \item mało
         \begin{equation}
@@ -309,7 +308,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
          \item dostatecznie
         \begin{equation}
-            \mu_{dostatecznie\_asyst}(x) = \left\{\begin{matrix}0 & dla \: x\in [0; 0.5) \\ x - 0.5 & dla \: x\in[0.5;1.5) \\ 1 & dla \: x\in [1.5; 2) \\ -x + 3 & dla \: x\in [2;3] \\ 0 & dla \: x\in (3; 11.7] \end{matrix}\right.
+            \mu_{dostatecznie\_asyst}(x) = \left\{\begin{matrix}0 & dla \: x\in [0; 0.5) \cup (3; 11.7]\\ x - 0.5 & dla \: x\in[0.5;1.5) \\ 1 & dla \: x\in [1.5; 2) \\ -x + 3 & dla \: x\in [2;3] \end{matrix}\right.
         \end{equation}
         \item dużo
         \begin{equation}
@@ -332,7 +331,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \label{rysunek:asysty}
     \end{figure}
     
-    \item wpływ na drużynę - przestrzeń rozważań: $[-100;100]$
+    \item wpływ na drużynę - przestrzeń rozważań: liczby rzeczywiste z przedziału:  $[-100;100]$
     \begin{itemize}
         \item fatalny
         \begin{equation}
@@ -340,15 +339,15 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
          \item negatywny
         \begin{equation}
-            \mu_{negatywny\_wplyw}(x) = \left\{\begin{matrix} 0 & dla \: x\in [-100;-15) \\ 0.125x + 1.875 & dla \: x\in[-15;-7) \\ 1 & dla \: x\in [-7;-2.5) \\ -0.4x & dla \: x\in [-2.5; 0] \\ 0 & dla \: x\in (0;100] \end{matrix}\right.
+            \mu_{negatywny\_wplyw}(x) = \left\{\begin{matrix} 0 & dla \: x\in [-100;-15) \cup (0;100] \\ 0.125x + 1.875 & dla \: x\in[-15;-7) \\ 1 & dla \: x\in [-7;-2.5) \\ -0.4x & dla \: x\in [-2.5; 0]  \end{matrix}\right.
         \end{equation}
         \item neutralny
         \begin{equation}
-            \mu_{neutralny\_wplyw}(x) = \left\{\begin{matrix} 0 & dla \: x\in [-100;-2.5) \\ 0.4x + 1 & dla \: x\in[-2.5;0) \\ -0.4x + 1 & dla \: x\in [0; 2.5]\\ 0 & dla \: x\in (2.5;100] \end{matrix}\right.
+            \mu_{neutralny\_wplyw}(x) = \left\{\begin{matrix} 0 & dla \: x\in [-100;-2.5) \cup (2.5;100]  \\ 0.4x + 1 & dla \: x\in[-2.5;0) \\ -0.4x + 1 & dla \: x\in [0; 2.5] \end{matrix}\right.
         \end{equation}
         \item pozytywny
         \begin{equation}
-            \mu_{pozytywny\_wplyw}(x) = \left\{\begin{matrix} 0 & dla \: x\in [-100;0) \\ 0.3125x & dla \: x\in[0;3.2) \\ 1 & dla \: x\in [3.2;7) \\ -0.15625x + 2.09375 & dla \: x\in [7; 13.4]\\ 0 & dla \: x\in (13.4;100] \end{matrix}\right.
+            \mu_{pozytywny\_wplyw}(x) = \left\{\begin{matrix} 0 & dla \: x\in [-100;0) \cup (13.4;100] \\ 0.3125x & dla \: x\in[0;3.2) \\ 1 & dla \: x\in [3.2;7) \\ -0.15625x + 2.09375 & dla \: x\in [7; 13.4]\end{matrix}\right.
         \end{equation}
         \item idealny
         \begin{equation}
@@ -362,7 +361,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \label{rysunek:wplyw}
     \end{figure}
     
-    \item skuteczność rzutów - przestrzeń rozważań: $[0;1]$
+    \item skuteczność rzutów - przestrzeń rozważań: liczby rzeczywiste z przedziału: $[0;1]$
      \begin{itemize}
         \item fatalny
         \begin{equation}
@@ -370,15 +369,15 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
         \item nieskuteczny
         \begin{equation}
-            \mu_{nieskuteczny}(x) = \left\{\begin{matrix}0 & dla \: x\in [0;0.3) \\ 10x - 3 & dla \: x\in[0.3;0.4) \\ -10x + 5 & dla \: x\in [0.4; 0.5]\\ 0 & dla \: x\in (0.5;1] \end{matrix}\right.
+            \mu_{nieskuteczny}(x) = e^{-\frac{(x-0.4)^2}{0.003}} dla \: x \in [0;1]
         \end{equation}
         \item przeciętny
         \begin{equation}
-            \mu_{przecietny\_skutecznosc}(x) = \left\{\begin{matrix}0 & dla \: x\in [0;0.46) \\ 25x - 11.5 & dla \: x\in[0.46;0.5) \\ -25x + 13.5 & dla \: x\in [0.5; 0.54]\\ 0 & dla \: x\in (0.54;1] \end{matrix}\right.
+            \mu_{przecietny\_skutecznosc}(x) = e^{-\frac{(x-0.5)^2}{0.001}} dla \: x \in [0;1]
         \end{equation}
         \item skuteczny
         \begin{equation}
-            \mu_{skuteczny}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;0.53) \\ 25x - 13.25 & dla \: x\in[0.53;0.57) \\ -25x + 15.25 & dla \: x\in [0.57; 0.61] \\ 0 & dla \: x\in (0.61;1]\end{matrix}\right.
+            \mu_{skuteczny}(x) = e^{-\frac{(x-0.57)^2}{0.001}} dla \: x \in [0;1]
         \end{equation}
         \item idealny
         \begin{equation}
@@ -391,7 +390,7 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \caption{Wykres funkcji przynależności dla zmiennej lingwistycznej "skuteczność rzutów".}
         \label{rysunek:skutecznosc}
     \end{figure}
-    \item procent asyst - przestrzeń rozważań: $[0;1]$
+    \item procent asyst - przestrzeń rozważań: liczby rzeczywiste z przedziału: $[0;1]$
     \begin{itemize}
         \item fatalny
         \begin{equation}
@@ -399,15 +398,15 @@ Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzo
         \end{equation}
         \item mały
         \begin{equation}
-            \mu_{maly\_asyst}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;0.01) \\ 25x-0.25 & dla \: x\in[0.01;0.05) \\ 1 & dla \: x\in [0.05; 0.06) \\ -25x + 2.5 & dla \: x\in[0.06;0.10] \\ 0 & dla \: x\in (0.06;1] \end{matrix}\right.
+            \mu_{maly\_asyst}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;0.01) \cup (0.06;1] \\ 25x-0.25 & dla \: x\in[0.01;0.05) \\ 1 & dla \: x\in [0.05; 0.06) \\ -25x + 2.5 & dla \: x\in[0.06;0.10] \end{matrix}\right.
         \end{equation}
         \item przeciętny
         \begin{equation}
-            \mu_{przecietny\_asyst}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;0.06) \\ 12.5x - 0.75 & dla \: x\in[0.06;0.14) \\ 1 & dla \: x\in [0.14; 0.15) \\ -25x + 4.75 & dla \: x\in[0.15;0.19]\\ 0 & dla \: x\in (0.19;1] \end{matrix}\right.
+            \mu_{przecietny\_asyst}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;0.06) \cup (0.19;1] \\ 12.5x - 0.75 & dla \: x\in[0.06;0.14) \\ 1 & dla \: x\in [0.14; 0.15) \\ -25x + 4.75 & dla \: x\in[0.15;0.19] \end{matrix}\right.
         \end{equation}
         \item duży
         \begin{equation}
-            \mu_{duzy\_asyst}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;0.15) \\ 20x - 3 & dla \: x\in[0.15;0.20) \\ 1 & dla \: x\in [0.20; 0.23) \\ -12.5x + 3.875 & dla \: x\in[0.23;0.31] \\ 0 & dla \: x\in (0.31;1]\end{matrix}\right.
+            \mu_{duzy\_asyst}(x) = \left\{\begin{matrix} 0 & dla \: x\in [0;0.15) \cup (0.31;1] \\ 20x - 3 & dla \: x\in[0.15;0.20) \\ 1 & dla \: x\in [0.20; 0.23) \\ -12.5x + 3.875 & dla \: x\in[0.23;0.31] \end{matrix}\right.
         \end{equation}
         \item idealny
         \begin{equation}
