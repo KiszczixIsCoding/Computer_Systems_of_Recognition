@@ -38,14 +38,10 @@ Celem zadania jest zaimplementowanie lingwistycznej agregacji, tj. przedstawieni
 
 \section{Charakterystyka podsumowywanej bazy danych}
 
-Jako bazę danych w zadaniu wykorzystaliśmy bazę danych dotyczącą informacji o zawodnikach NBA (najbrdziej prestiżowej lidze koszykarskiej na świecie) z lat 1996 - 2019. Cała baza danych składa się z 22 kolumn zawierających informacje o danych zawodnika oraz jego statystykach różnego rodzaju. Baza danych ma charakter pliku csv i zawiera 11144 rekordy. Spośród kolumn wybraliśmy te, które zawierają wartości, naszym zdaniem, najlepiej nadające się do rozmycia. Atrybuty do rozmycia dobraliśmy tak, aby zgadzały się z definicją zmiennej lingwistycznej, która prezentuje się następująco \cite{niewiadomski19}: 
-\begin{equation}
-    L=<\mathcal{L}, H(L), X, G, K>
-    \label{eqn_zmienna_lingwistyczna}
-\end{equation}
-gdzie: \newline $\mathcal{L}$ jest nazwą zmiennej lingwistycznej L, \newline H lub H(L) jest zbiorem terminów lingwistycznych $l_1, l_2, ..., l_N, N \in \mathbf{N}$, które są wartościami L, \newline $X$ jest przestrzenią rozważań, w której określa się zbiory rozmyte $S_1, S_2,..., S_N, N \in \mathbf{N}$, reprezentujące odpowiednio terminy $l_1, l_2, ..., l_N$, \newline $G$ jest regułą gramatyczną, która generuje terminy w zbiorze $H(L)$, \newline $K$ jest regułą semantyczną, która przyporządkowuje terminom $l_i$ zbiory rozmyte $S_i$ 2 $X$, czyli $K : l_i \rightarrow S_i, S_i = \{<x,\mu_{S_i}(x)> : x \in X \}, i = 1,2,...,N$
+Jako bazę danych w zadaniu wykorzystaliśmy bazę danych dotyczącą informacji o zawodnikach NBA (najbrdziej prestiżowej lidze koszykarskiej na świecie) z lat 1996 - 2019. Cała baza danych składa się z 22 kolumn zawierających informacje o danych zawodnika oraz jego statystykach różnego rodzaju. Baza danych ma charakter pliku csv i zawiera 11144 rekordy. Spośród kolumn wybraliśmy te, które zawierają wartości, naszym zdaniem, najlepiej nadające się do rozmycia. Atrybuty do rozmycia dobraliśmy tak, aby zgadzały się z definicją zmiennej lingwistycznej \cite{niewiadomski19}. \\
 
-Ostatecznie spośród 22 kolumn wybraliśmy następujące:
+
+\noindent Ostatecznie spośród 22 kolumn wybraliśmy następujące:
 \begin{itemize}
     \item Kolumny zawierające informacje pozwalające zidentyfikować zawodnika (nie wykorzystywane w obliczeniach):
     \begin{enumerate}
@@ -87,7 +83,7 @@ Oczywiście wartości takie jak: wzrost, waga, czy wiek będą odnosiły się je
 
 \section{Atrybuty i liczności obiektów wyrażone zmiennymi lingwistycznymi}
 \subsection{Zmienne lingwistyczne}
-Definicja zmiennej lingwistycznej została już zaprezentowana w sekcji 1 we wzorze \ref{eqn_zmienna_lingwistyczna}. W aktualnej sekcji skupimy się dokładniej na tej definicji podając dla każdego z 11 atrybutów z sekcji 1 nazwę zmiennej lingwistycznej, zbiór terminów lingwistycznych oraz przestrzeń rozważań. Uważamy, że podając konkretny zbiór terminów lingwistycznych, jaki wykorzystamy, reguły gramatyczna oraz semantyczna będą widoczne i nie ma potrzeby podawania ich wprost. Wszak np. dla wzrostu nie podamy jako termin lingwistyczny słowa "zielony" lub "szybki" oraz wszystkie terminy we wszystkich zmiennych będą uporządkowane w sposób semantyczny (np. słowo "ciężki" nie wystąpi przed słowem "lekki", a słowo "idealny" przed "fatalny"). Poniżej przedstawiamy wykorzystane zmienne lingwistyczne wraz ze wzorami oraz wykresami:
+Definicja zmiennej lingwistycznej została już wprowadzona w sekcji 1. W bieżącej sekcji skupimy się dokładniej na tej definicji podając dla każdego z 11 atrybutów z sekcji 1 nazwę zmiennej lingwistycznej, zbiór terminów lingwistycznych oraz przestrzeń rozważań. Uważamy, że podając konkretny zbiór terminów lingwistycznych, jaki wykorzystamy, reguły gramatyczna oraz semantyczna będą widoczne i nie ma potrzeby podawania ich wprost. Wszak np. dla wzrostu nie podamy jako termin lingwistyczny słowa "zielony" lub "szybki" oraz wszystkie terminy we wszystkich zmiennych będą uporządkowane w sposób semantyczny (np. słowo "ciężki" nie wystąpi przed słowem "lekki", a słowo "idealny" przed "fatalny"). Poniżej przedstawiamy wykorzystane zmienne lingwistyczne wraz ze wzorami oraz wykresami:
 \begin{enumerate}
     \item wiek zawodnika - przestrzeń rozważań: liczby naturalne z przedziału $[18;44]$
     \begin{itemize}
