@@ -485,11 +485,38 @@ Kwantyfikatory względne wraz z wzorami oraz wykresem wyglądają następująco:
 
 \section{Narzędzia obliczeniowe: projekt (wybór, implementacja) i diagram UML pakietu obliczeń rozmytych. Diagram UML generatora podsumowań}
 \subsection{Diagram pakietu obliczeń rozmytych}
-Diagram UML i zwięzły opis pakietu obliczeń rozmytych: źródło pakietu
-(zewnętrzny/własny/hybrydowy), przypis do literatury. Krótka charakterystyka
-najważniejszych klas i podstawowych dla zadania ich metod. \\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 10 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+Jako iż podsumowania lingwistyczne opierają się na teorii zbiorów rozmytych, na potrzeby tego zadania postanowiliśmy zaimplementować własny pakiet przeznaczony do obliczeń rozmytych. Pakiet nazywa się FuzzySetCalculations i składa się z następujących elementów:
+
+{\bf FuzzySet} - klasa, która reprezentuje zbiór rozmyty. 
+Metody tej klasy zapewniają najbardziej istotne funkcjonalności dla podsumowań własności. 
+Pierwszą z nich jest metoda o nazwie getHeight(), która zwraca wysokość zbioru rozmytego, tj. maksymalną wartość jaką przyjmuje funkcja przynależności w całej przestrzeni rozważań.
+Kolejna metoda to getSupport(), której wynikiem wykonania są wszystkie te elementy zbioru rozmytego, które przynależą do zbioru rozmytego w stopniu większym niż 0. Bardzo podobną metodą jest getAlphaCount(double y), która jako argument przyjmuje wartość zbioru rozmytego. Argument ten stanowi próg dla selekcji elementów, dla których wartość funkcji przynależności jest powyżej niego. Kolejną w kolejności jest metoda getComplement(double x), której zadaniem jest zwrócenie dopełnienia zbioru rozmytego dla argumentu x, czyli liczby, którą trzeba dodać w celu uzyskania wartości 1. Następne dwie metody, czyli getAndResult(List<FuzzySet> fuzzySet, double x) i getOrResult(List<FuzzySet> fuzzySet, double x) odpowiadają za operacje sumy (OR) i iloczynu (AND) zbiorów rozmytych. Suma zbiorów rozmytych jest obliczana jako maksimum (wykorzystanie T-normy) ze wszystkich wartości zbiorów rozmytych przekazanych w argumencie dla elementu x. Iloczyn zbiorów rozmytych jest obliczany jako minimum (wykorzystanie S-normy) ze wszystkich wartości zbiorów rozmytych przekazanych w argumencie dla elementu x. Ostatnią z metod jest metoda getDegreeOfMembership(double x), która dla elementu x zwraca stopień przynależności do zbioru rozmytego (w metodzie tej następuje de facto wywołanie metody countMembership(double x) z klasy MembershipFunction. \cite{niewiadomski08}\\
+{\bf MembershipFunction} - klasa abstrakcyjna, która reprezentuje funkcje przynależności do zbioru rozmytego. Klasa ta zawiera jedną metodę abstrakcyjną o nazwie countMembership(double x). Dzięki temu, w klasach dziedziczących można zaimplementować obliczanie stopnia przynależności w zależności od tego, jakiego rodzaju funkcji przynależności checemy użyć. \cite{uml_doc} 
+Z klasy MembershipFunction dziedziczy pięć klas:
+\begin{itemize}
+    \item {\bf TrapezoidalMembershipFunction} - reprezentuje trapezoidalną funkcję przynależności. W tym celu potrzebne są 4 argumenty, które kolejno oznaczają: \\
+    x1 - początek przedziału od którego funkcja zaczyna rosnąć \\
+    x2 - koniec przedziału dla funkcji rosnącej i początek przedziału dla funkcji stałej o wartości 1 \\
+    x3 - koniec przedziału dla funkcji stałej o wartości 1 i początek przedziału dla funkcji malejącej \\
+    x4 - koniec przedziału dla funkcji malejącej 
+    \item {\bf TriangularMembershipFunction} - reprezentuje trójkątną funkcję przynależności i wykorzystuje 3 argumenty: \\
+    x1 - początek przedziału od którego funkcja zaczyna rosnąć \\
+    x2 - koniec przedziału dla funkcji rosnącej i początek przedziału dla funkcji stałej o wartości 1 \\
+    x3 - koniec przedziału dla funkcji malejącej 
+    \item {\bf ExponentialMembershipFunction} - reprezentuje wykładniczą funkcję przynależności. Jej zadaniem jest wzmocnienie/osłabienie innej funkcji przynależności (np. poprzez dodanie słowa bardzo). Argumenty, które są przez nią przyjmowane to: \\
+    exponent - wykładnik funkcji \\
+    membershipFunction - wybrana funkcja przynależności 
+    \item {\bf GaussianMembershipFunction}- reprezentuje funkcję Gaussa, jako funkcję przynależności. Parametry przez nią przyjmowane to średnia oraz wariancja, które mają bezpośredni wpływ na element, gdzie znajduje się maksimum oraz na rozłożenie funkcji w dziedzinie.
+    \item {\bf BinaryMembershipFunction} - stanowi funkcję przynależności dla zbiorów klasycznych, tj. takich w których stopień przynależności do zbioru wynosi 0 lub 1. Jedynym argumentem jest rangeSet, który to zakres określa, dla jakich elementów funkcja zwraca 1.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm, height=5cm]{fuzzy_set_calculations.png}
+    \caption{Diagram UML pakietu FuzzySetCalculations.}
+    \label{rysunek:kwantyfikator_relatywny}
+\end{figure}
+
+
 
 \subsection{Diagram UML generatora podsumowań. Krótka instrukcja użytkownika} 
 Diagram UML generatora podsumowań (warstwy obliczeniowej oraz interfejsu
@@ -555,6 +582,8 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 \bibitem{niewiadomski08} A. Niewiadomski, Methods for the Linguistic Summarization of Data: Applications of Fuzzy Sets and Their Extensions, Akademicka Oficyna Wydawnicza EXIT, Warszawa, 2008.
 \bibitem{nba_data} Baza danych zawierająca statystyki koszykarzy z ligi NBA z lat 1996-2020 [przeglądany 04.05.2021] Dostępna w:
 https://www.kaggle.com/justinas/nba-players-data
+\bibitem{uml_doc} Dokumentacja diagramów UML [przeglądana 24.05.2021] Dostępna w:
+https://www.uml-diagrams.org/
 \end{thebibliography}
 
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,
