@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/PlayerDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/PlayerDAOFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +60,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/GUI" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -127,6 +137,8 @@
       <workItem from="1620848230031" duration="4979000" />
       <workItem from="1621633190970" duration="5000" />
       <workItem from="1621633344055" duration="3309000" />
+      <workItem from="1621860556869" duration="1502000" />
+      <workItem from="1621876670264" duration="2130000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>
