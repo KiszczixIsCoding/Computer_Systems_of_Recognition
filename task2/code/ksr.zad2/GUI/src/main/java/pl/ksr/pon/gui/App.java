@@ -16,7 +16,7 @@ public class App
 {
     public static void main( String[] args ) throws IOException {
         System.out.println( "Hello World!" );
-        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO("all_seasons.csv");
+        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO(".\\all_seasons.csv");
         List<Player> players = dao.getAll();
         for (int i = 0; i < 10; i++) {
             System.out.println("Index:" + players.get(i).getIndex());
