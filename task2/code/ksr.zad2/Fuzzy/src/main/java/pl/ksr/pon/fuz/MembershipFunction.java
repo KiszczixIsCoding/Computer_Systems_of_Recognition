@@ -13,7 +13,7 @@ public abstract class MembershipFunction {
             y2 = 0;
         }
 
-        return ((y2 - y1) / x2) / (1 + x1 / x2);
+        return (y2 - y1) / (x2 - x1);
     }
 
     public double countCoefficientB(double x1, double x2, boolean is_up) {
@@ -26,7 +26,7 @@ public abstract class MembershipFunction {
             y2 = 0;
         }
 
-        return (y2 - (y1 * x2 / x1)) / (1 - x2);
+        return (x2 * y1 - x1 * y2) / (x2 - x1);
     }
 
     public double countLinearFunction(double x, double x1, double x2, boolean is_up) {
