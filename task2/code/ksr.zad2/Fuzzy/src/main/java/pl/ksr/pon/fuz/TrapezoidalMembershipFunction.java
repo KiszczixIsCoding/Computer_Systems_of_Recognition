@@ -5,6 +5,14 @@ public class TrapezoidalMembershipFunction extends MembershipFunction {
 
     @Override
     public double countMembership(double x) {
-        return 0;
+        if ((x1 <= x) && (x <= x2)) {
+            return countLinearFunction(x, x1, x2, true);
+        } else if ((x2 < x) && (x <= x3)){
+            return 1;
+        } else if ((x3 < x) && (x <= x4)){
+            return countLinearFunction(x, x3, x4, false);
+        } else {
+            return 0;
+        }
     }
 }
