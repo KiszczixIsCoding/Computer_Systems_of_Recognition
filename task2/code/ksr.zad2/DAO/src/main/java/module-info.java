@@ -1,5 +1,6 @@
 module pl.ksr.pon.dao {
-    requires static opencsv;
+    requires opencsv;
     requires static lombok;
+    requires java.sql;
     exports pl.ksr.pon.dao;
 }
