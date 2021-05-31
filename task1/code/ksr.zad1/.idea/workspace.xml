@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/DAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/PlayerDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/PlayerDAOFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/MultiSubjectPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/SingleSubjectPane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/DAO/src/main/java/pl/ksr/pon/dao/App.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/test/java/pl/ksr/pon/gui/AppTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +98,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App (1)" />
@@ -138,7 +149,8 @@
       <workItem from="1621633190970" duration="5000" />
       <workItem from="1621633344055" duration="3309000" />
       <workItem from="1621860556869" duration="1502000" />
-      <workItem from="1621876670264" duration="2130000" />
+      <workItem from="1621876670264" duration="2834000" />
+      <workItem from="1622411552603" duration="4982000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>
@@ -252,6 +264,11 @@
           <url>file://$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java</url>
           <line>39</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
