@@ -490,35 +490,75 @@ Jako iż podsumowania lingwistyczne opierają się na teorii zbiorów rozmytych,
 {\bf FuzzySet} - klasa, która reprezentuje zbiór rozmyty. 
 Metody tej klasy zapewniają najbardziej istotne funkcjonalności dla podsumowań własności. 
 Pierwszą z nich jest metoda o nazwie getHeight(), która zwraca wysokość zbioru rozmytego, tj. maksymalną wartość jaką przyjmuje funkcja przynależności w całej przestrzeni rozważań.
-Kolejna metoda to getSupport(), której wynikiem wykonania są wszystkie te elementy zbioru rozmytego, które przynależą do zbioru rozmytego w stopniu większym niż 0. Bardzo podobną metodą jest getAlphaCount(double y), która jako argument przyjmuje wartość zbioru rozmytego. Argument ten stanowi próg dla selekcji elementów, dla których wartość funkcji przynależności jest powyżej niego. Kolejną w kolejności jest metoda getComplement(double x), której zadaniem jest zwrócenie dopełnienia zbioru rozmytego dla argumentu x, czyli liczby, którą trzeba dodać w celu uzyskania wartości 1. Następne dwie metody, czyli getAndResult(List<FuzzySet> fuzzySet, double x) i getOrResult(List<FuzzySet> fuzzySet, double x) odpowiadają za operacje sumy (OR) i iloczynu (AND) zbiorów rozmytych. Suma zbiorów rozmytych jest obliczana jako maksimum (wykorzystanie T-normy) ze wszystkich wartości zbiorów rozmytych przekazanych w argumencie dla elementu x. Iloczyn zbiorów rozmytych jest obliczany jako minimum (wykorzystanie S-normy) ze wszystkich wartości zbiorów rozmytych przekazanych w argumencie dla elementu x. Ostatnią z metod jest metoda getDegreeOfMembership(double x), która dla elementu x zwraca stopień przynależności do zbioru rozmytego (w metodzie tej następuje de facto wywołanie metody countMembership(double x) z klasy MembershipFunction. \cite{niewiadomski08}\\
+Kolejna metoda to getSupport(), której wynikiem wykonania są wszystkie te elementy zbioru rozmytego, które przynależą do zbioru rozmytego w stopniu większym niż 0. Bardzo podobną metodą jest getAlphaCount(double y), która jako argument przyjmuje wartość zbioru rozmytego. Argument ten stanowi próg dla selekcji elementów, dla których wartość funkcji przynależności jest powyżej niego. Kolejną w kolejności jest metoda getComplement(double x), której zadaniem jest zwrócenie dopełnienia zbioru rozmytego dla argumentu x, czyli liczby, którą trzeba dodać w celu uzyskania wartości 1. Następne dwie metody, czyli getAndResult(List<FuzzySet> fuzzySet) i getOrResult(List<FuzzySet> fuzzySet) odpowiadają za operacje sumy (OR) i iloczynu (AND) zbiorów rozmytych (wynikiem tych operacji również jest zbiór rozmyty). Suma zbiorów rozmytych jest obliczana jako maksimum (wykorzystanie T-normy) ze wszystkich wartości zbiorów rozmytych przekazanych w argumencie dla elementu x. Iloczyn zbiorów rozmytych jest obliczany jako minimum (wykorzystanie S-normy) ze wszystkich wartości zbiorów rozmytych przekazanych w argumencie dla wszystkich elementów w przestrzeni. Następną metodą jest metoda getDegreeOfMembership(double x), która dla elementu x zwraca stopień przynależności do zbioru rozmytego (w metodzie tej następuje de facto wywołanie metody countMembership(double x) z klasy MembershipFunction.
+Kolejną metody to isConvex() oraz isConcave(), które zwracają wartość logiczną true w momencie, gdy zbiór rozmyty jest wypukły oraz wklęsły. Ostatnią z metod, którą planujemy zaimplementować jest metoda getCardinality(), dzięki której otrzymujemy moc zbioru rozmytego tj. sumę wartośći funkcji charakterystycznej z wszystkich elementów zbioru rozmytego. \cite{niewiadomski08}\\
 {\bf MembershipFunction} - klasa abstrakcyjna, która reprezentuje funkcje przynależności do zbioru rozmytego. Klasa ta zawiera jedną metodę abstrakcyjną o nazwie countMembership(double x). Dzięki temu, w klasach dziedziczących można zaimplementować obliczanie stopnia przynależności w zależności od tego, jakiego rodzaju funkcji przynależności checemy użyć. \cite{uml_doc} 
 Z klasy MembershipFunction dziedziczy pięć klas:
 \begin{itemize}
-    \item {\bf TrapezoidalMembershipFunction} - reprezentuje trapezoidalną funkcję przynależności. W tym celu potrzebne są 4 argumenty, które kolejno oznaczają: \\
+    \item {\bf TrapezoidalMembershipFunction} - reprezentuje trapezoidalną funkcję przynależności. W przypadku klasy LeftTrapezoidalMembershipFunction (funkcja malejąca) wykorzystane zostają 3 argumenty: \\
+    x1 - początek przedziału od którego funkcja przyjmuje wartość 1 \\
+    x2 - koniec przedziału dla którego funkcja przyjmuje wartość 1 i początek przedziału dla funkcji malejącej \\
+    x3 - koniec przedziału dla funkcji malejącej i początek przedziału dla funkcji malejącej \\
+    W przypadku klasy RightTrapezoidalMembershipFunction również występują 3 argumenty: \\
+    x1 - początek przedziału od którego funkcja jest rosnąca \\
+    x2 - koniec przedziału dla którego funkcja jest rosnąca i początek przedziału dla funkcji stałej o wartości 1 \\
+    x3 - koniec przedziału dla funkcji stałej o wartości równej 1 \\
+    Do funkcjonowania klasy BothSidesTrapezoidalMembershipFunction niezbędne są natomiast 4 argumenty: \\
     x1 - początek przedziału od którego funkcja zaczyna rosnąć \\
     x2 - koniec przedziału dla funkcji rosnącej i początek przedziału dla funkcji stałej o wartości 1 \\
     x3 - koniec przedziału dla funkcji stałej o wartości 1 i początek przedziału dla funkcji malejącej \\
     x4 - koniec przedziału dla funkcji malejącej 
-    \item {\bf TriangularMembershipFunction} - reprezentuje trójkątną funkcję przynależności i wykorzystuje 3 argumenty: \\
+    \item {\bf TriangularMembershipFunction} - reprezentuje trójkątną funkcję przynależności. Jako, że funkcja ta może być malejąca, rosnąca lub też składać się z obu tego rodzaju funkcji, w tym celu z klasy GaussianMembershipFunction dziedziczą trzy funkcje, które reprezentują wynienione wyżej rodzaje monotoniczności. W przypadku klasy LeftTriangularMembershipFunction (funkcja malejąca) wykorzystane zostają 3 argumenty: \\
+    x1 - początek przedziału od którego funkcja zaczyna maleć \\
+    x2 - koniec przedziału dla funkcji malejącej i początek przedziału dla funkcji stałej o wartości 1 \\
+    W przypadku klasy RightTriangularMembershipFunction również występują 2 argumenty:\\
+    x1 - początek przedziału od którego funkcja zaczyna rosnąć \\
+    x2 - koniec przedziału dla funkcji rosnącej. \\
+    Do funkcjonowania klasy BothSidesTriangularMembershipFunction niezbędne są natomiast 3 argumenty: \\
     x1 - początek przedziału od którego funkcja zaczyna rosnąć \\
     x2 - koniec przedziału dla funkcji rosnącej i początek przedziału dla funkcji stałej o wartości 1 \\
-    x3 - koniec przedziału dla funkcji malejącej 
+    x3 - koniec przedziału dla funkcji malejącej.
     \item {\bf ExponentialMembershipFunction} - reprezentuje wykładniczą funkcję przynależności. Jej zadaniem jest wzmocnienie/osłabienie innej funkcji przynależności (np. poprzez dodanie słowa bardzo). Argumenty, które są przez nią przyjmowane to: \\
     exponent - wykładnik funkcji \\
     membershipFunction - wybrana funkcja przynależności 
-    \item {\bf GaussianMembershipFunction}- reprezentuje funkcję Gaussa, jako funkcję przynależności. Parametry przez nią przyjmowane to średnia oraz wariancja, które mają bezpośredni wpływ na element, gdzie znajduje się maksimum oraz na rozłożenie funkcji w dziedzinie.
+    \item {\bf GaussianMembershipFunction}- reprezentuje funkcję Gaussa, jako funkcję przynależności. Parametry przez nią przyjmowane to średnia oraz wariancja, które mają bezpośredni wpływ na element, gdzie znajduje się maksimum oraz na rozłożenie funkcji w dziedzinie. Jako, że funkcja ta może być malejąca, rosnąca lub też składać się z obu tego rodzaju funkcji, w tym celu z klasy GaussianMembershipFunction dziedziczą trzy funkcje, które reprezentują wynienione wyżej rodzaje monotoniczności.
     \item {\bf BinaryMembershipFunction} - stanowi funkcję przynależności dla zbiorów klasycznych, tj. takich w których stopień przynależności do zbioru wynosi 0 lub 1. Jedynym argumentem jest rangeSet, który to zakres określa, dla jakich elementów funkcja zwraca 1.
 \end{itemize}
 \begin{figure}[H]
     \centering
     \includegraphics[width=14cm, height=5cm]{fuzzy_set_calculations.png}
     \caption{Diagram UML pakietu FuzzySetCalculations.}
-    \label{rysunek:UML_fuzzyset}
+    \label{rysunek:kwantyfikator_relatywny}
 \end{figure}
 
 
 
 \subsection{Diagram UML generatora podsumowań. Krótka instrukcja użytkownika} 
+
+Drugim pakietem użytym przez nas w aplikacji jest pakiet generatora podsumowań. Składa się on z następujących elementów:
+{\bf Label} - klasa reprezentująca pojedynczą etykietę. Etykieta zawiera swoją nazwę oraz pole odpowiadające za klasę FuzzySet. Dzięki temu w etykiecie mamy dostęp do metod klasy FuzzySet, w tym getDegreeOfMembership(double x), czyli stopień przynależności dla zadanego argumentu.
+
+{\bf LingusticVariable} - klasa odpowiadająca za zmienną lingwistyczną. Posiada ona swoją nazwę oraz pole rangeSet, które odpowiada za przestrzeń rozważań dla podanej zmiennej lingwistycznej. Poza tym klasa ta posiada pole typu Label, które odpowiada za wyżej wymienioną etykietę.
+
+{\bf LinguisticQuantifier} - klasa abstrakcyjna reprezentująca kwantyfikator lingwistyczny. Kwantyfikator lingwistyczny posiada etykietę. Z klasy abstrakcyjnej LingusticQuantifier dziedziczą dwie następujące klasy:
+\begin{itemize}
+    \item {\bf AbsoluteQuantifier} - kwatyfikator absolutny posiadający dodatkowo poza polami, które dziedziczy przedział rozważań.
+    \item {\bf RelativeQuantifier} - kwantyfikator względny.
+\end{itemize}
+
+{\bf Player} - klasa z modułu DAO odpowiadającego za wczytywanie danych. Klasa ta odpowiada za pojedynczego zawodnika wczytanego z bazy danych.
+
+{\bf LingusticSummariesGenerator} - klasa odpowiadająca za generowanie podsumowań, a w zasadzie pojedynczego podsumowania. Zawiera ona kwantyfikator lingwistyczny, pole typu Player, co odpowiada podmiotowi podsumowania. Klasa zawiera także pola: qualifier (kwalifikator) oraz summarizer (sumaryzator). Pierwsze z nich jest typu Label, a drugie jest Listą typu Label (jako, że sumaryzatorów może być więcej niż 1). Klasa ta pozwala także oczywiście na wygenerowanie podsumowania.
+
+{\bf QualityMeasures} - klasa zawierająca jedno pole - LinguisticSummariesGenerator. Klasa ta pozwala na obliczenie miar jakości od $T_1$ do $T_{11}$ \cite{niewiadomski19} dla wygenerowanego podsumowania.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm, height=5cm]{generator.png}
+    \caption{Diagram UML generatora podsumowań.}
+    \label{rysunek:generator}
+\end{figure}
+
 Diagram UML generatora podsumowań (warstwy obliczeniowej oraz interfejsu
 użytkownika). Krótki ilustrowany opis jak użytkownik może korzystać z aplikacji, w~szczególności
 wprowadzać parametry  podsumowań, odczytywać wyniki oraz definiować własne etykiety i
