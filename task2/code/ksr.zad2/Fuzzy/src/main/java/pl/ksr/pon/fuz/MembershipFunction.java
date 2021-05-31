@@ -1,7 +1,11 @@
 package pl.ksr.pon.fuz;
 
+
+import io.vavr.Tuple2;
+
 public abstract class MembershipFunction {
     public abstract double countMembership(double x);
+    public abstract Tuple2<Double, Double> countConstraints(double y);
 
     public double countCoefficientA(double x1, double x2, boolean is_up) {
         double y1, y2;
@@ -31,5 +35,9 @@ public abstract class MembershipFunction {
 
     public double countLinearFunction(double x, double x1, double x2, boolean is_up) {
         return countCoefficientA(x1, x2, is_up) * x + countCoefficientB(x1, x2, is_up);
+    }
+
+    public double countLinearFunctionArgument(double y, double x1, double x2, boolean is_up) {
+        return (y - countCoefficientB(x1, x2, is_up)) / countCoefficientA(x1, x2, is_up);
     }
 }
