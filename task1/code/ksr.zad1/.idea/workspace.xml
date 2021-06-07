@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/java/pl/ksr/pon/gui/PrimaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../task2/code/ksr.zad2/GUI/src/main/resources/pl/ksr/pon/gui/primary.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="e164e47d-786b-4044-a07d-b8851a712467" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +128,7 @@
       <workItem from="1621860556869" duration="1502000" />
       <workItem from="1621876670264" duration="2834000" />
       <workItem from="1622411552603" duration="4982000" />
-      <workItem from="1623058450823" duration="1102000" />
+      <workItem from="1623058450823" duration="1304000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>

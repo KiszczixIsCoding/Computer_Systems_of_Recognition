@@ -27,9 +27,14 @@ public class PrimaryController implements Initializable {
     public ComboBox<String> singleSumQualifiersComboBox;
     public ComboBox<String> singleSumSummarizersComboBox;
     public Label singleSumQuantifierLabel;
+    public ComboBox<String> singleSumFormComboBox;
+    public AnchorPane singleSelectedQualifiersPane;
+    public AnchorPane singleSelectedSummarizesPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        //------------------------quantifiers init:---------------------------------
         String[] relativeQuantifiersNames = {"Prawie żaden", "Około 1/4", "Około 1/2",
                 "Około 3/4", "Prawie wszystkie"};
         String[] absoluteQuantifiersNames = {"Więcej niż 0", "Około 2000", "Około 4000", "Około 6000",
@@ -40,6 +45,7 @@ public class PrimaryController implements Initializable {
         String[] allQuantifiersNames = new String[allQuantifiersList.size()];
         allQuantifiersNames = allQuantifiersList.toArray(allQuantifiersNames);
 
+        //-----------------------single subject summarizes quantifiers init---------------------------
         singleSumQuantifierComboBox.getItems().addAll(FXCollections.observableArrayList(allQuantifiersNames));
         EventHandler<ActionEvent> setQuantifierLabel = new EventHandler<ActionEvent>() {
             @Override
@@ -48,6 +54,20 @@ public class PrimaryController implements Initializable {
             }
         };
         singleSumQuantifierComboBox.setOnAction(setQuantifierLabel);
+
+        //-----------------single subject summarizes forms init:------------------------
+        String[] singleForms = {"Pierwsza", "Druga"};
+        singleSumFormComboBox.getItems().addAll(FXCollections.observableArrayList(singleForms));
+        EventHandler<ActionEvent> singleSubjectFormEvent = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (singleSumFormComboBox.getValue().equalsIgnoreCase("pierwsza")) {
+                    singleSumQualifiersComboBox.setDisable(true);
+                    singleSelectedQualifiersPane.getChildren().clear();
+                }
+            }
+        };
+        singleSumFormComboBox.setOnAction(singleSubjectFormEvent);
     }
 
     //nie wiem czy najbardziej optymalna opcja

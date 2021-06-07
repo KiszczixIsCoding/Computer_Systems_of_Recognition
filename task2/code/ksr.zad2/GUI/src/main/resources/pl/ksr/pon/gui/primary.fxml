@@ -18,13 +18,14 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="34.0" layoutY="34.0" text="Kwantyfikator" />
-            <Label layoutX="310.0" layoutY="34.0" text="Kwalifikator(y)" />
-            <Label layoutX="602.0" layoutY="34.0" text="Sumaryzator(y)" />
-            <ComboBox fx:id="singleSumQuantifierComboBox" layoutX="121.0" layoutY="30.0" prefWidth="150.0" />
-            <ComboBox fx:id="singleSumQualifiersComboBox" layoutX="407.0" layoutY="30.0" prefWidth="150.0" />
-            <ComboBox fx:id="singleSumSummarizersComboBox" layoutX="699.0" layoutY="30.0" prefWidth="150.0" />
-            <Button layoutX="904.0" layoutY="48.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Generuj" />
+            <Label layoutX="189.0" layoutY="34.0" text="Kwantyfikator" />
+            <Label layoutX="430.0" layoutY="34.0" text="Kwalifikator(y)" />
+            <Label layoutX="679.0" layoutY="34.0" text="Sumaryzator(y)" />
+            <ComboBox fx:id="singleSumQuantifierComboBox" layoutX="262.0" layoutY="30.0" prefWidth="150.0" />
+            <ComboBox fx:id="singleSumQualifiersComboBox" layoutX="505.0" layoutY="30.0" prefWidth="150.0" />
+            <ComboBox fx:id="singleSumFormComboBox" layoutX="25.0" layoutY="62.0" prefWidth="150.0" />
+            <ComboBox fx:id="singleSumSummarizersComboBox" layoutX="759.0" layoutY="30.0" prefWidth="150.0" />
+            <Button layoutX="924.0" layoutY="52.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Generuj" />
             <ScrollPane layoutX="15.0" layoutY="114.0" prefHeight="409.0" prefWidth="980.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
@@ -32,20 +33,21 @@
             </ScrollPane>
             <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="870.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#goToMultiSubject" prefHeight="46.0" prefWidth="108.0" text="Podsumowania Wielopodmiotowe" textOverrun="CLIP" wrapText="true" />
             <Button alignment="CENTER" contentDisplay="CENTER" layoutX="430.0" layoutY="533.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="86.0" text="Definiowanie etykiet" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
-            <Pane layoutX="107.0" layoutY="63.0" prefHeight="40.0" prefWidth="167.0">
+            <Pane layoutX="262.0" layoutY="63.0" prefHeight="40.0" prefWidth="150.0">
                <children>
-                  <Label fx:id="singleSumQuantifierLabel" layoutX="3.0" layoutY="12.0" prefHeight="17.0" prefWidth="167.0" />
+                  <Label fx:id="singleSumQuantifierLabel" layoutY="10.0" prefHeight="21.0" prefWidth="150.0" />
                </children></Pane>
-            <ScrollPane layoutX="403.0" layoutY="60.0" prefHeight="46.0" prefWidth="157.0">
+            <ScrollPane layoutX="505.0" layoutY="60.0" prefHeight="46.0" prefWidth="157.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane fx:id="singleSelectedQualifiersPane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
               </content>
             </ScrollPane>
-            <ScrollPane layoutX="695.0" layoutY="60.0" prefHeight="46.0" prefWidth="157.0">
+            <ScrollPane layoutX="755.0" layoutY="60.0" prefHeight="46.0" prefWidth="157.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="singleSelectedSummarizesPane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
                </content>
             </ScrollPane>
+            <Label layoutX="83.0" layoutY="34.0" text="Forma" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="multiPane" layoutY="35.0" prefHeight="594.0" prefWidth="1000.0" visible="false">
@@ -55,10 +57,10 @@
                   <Font name="Georgia Italic" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="195.0" layoutY="34.0" text="Kwantyfikator" />
-            <Label layoutX="443.0" layoutY="34.0" text="Kwalifikator" />
+            <Label layoutX="34.0" layoutY="34.0" text="Kwantyfikator" />
+            <Label layoutX="443.0" layoutY="34.0" text="Kwalifikator(" />
             <Label layoutX="674.0" layoutY="34.0" text="Sumaryzator(y)" />
-            <ComboBox layoutX="156.0" layoutY="58.0" prefWidth="150.0" />
+            <ComboBox layoutX="121.0" layoutY="30.0" prefWidth="150.0" />
             <ComboBox layoutX="399.0" layoutY="58.0" prefWidth="150.0" />
             <ComboBox layoutX="639.0" layoutY="58.0" prefWidth="150.0" />
             <Button layoutX="904.0" layoutY="48.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Generuj" />
