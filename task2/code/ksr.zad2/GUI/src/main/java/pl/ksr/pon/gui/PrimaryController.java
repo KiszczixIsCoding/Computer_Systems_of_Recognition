@@ -4,11 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,6 +32,17 @@ public class PrimaryController implements Initializable {
     public ComboBox<String> singleSumFormComboBox;
     public AnchorPane singleSelectedQualifiersPane;
     public AnchorPane singleSelectedSummarizesPane;
+    public Button singleGenerate;
+    public ComboBox<String> multiSumQuantifierComboBox;
+    public ComboBox<String> multiSumQualifiersComboBox1;
+    public ComboBox<String> multiSumSummarizersComboBox;
+    public ComboBox<String> multiSumFormComboBox;
+    public Button multiGenerate;
+    public Label multiSumQuantifierLabel;
+    public AnchorPane multiSelectedQualifiersPane1;
+    public ComboBox<String> multiSumQualifiersComboBox2;
+    public AnchorPane multiSelectedQualifiersPane2;
+    public AnchorPane multiSelectedSummarizersPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,19 +68,75 @@ public class PrimaryController implements Initializable {
         };
         singleSumQuantifierComboBox.setOnAction(setQuantifierLabel);
 
+        //--------------------single subject summarizes qualifiers init-----------------------------
+        singleSumQualifiersComboBox.setDisable(true);
+
         //-----------------single subject summarizes forms init:------------------------
         String[] singleForms = {"Pierwsza", "Druga"};
         singleSumFormComboBox.getItems().addAll(FXCollections.observableArrayList(singleForms));
+        singleSumFormComboBox.getSelectionModel().selectFirst();
         EventHandler<ActionEvent> singleSubjectFormEvent = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (singleSumFormComboBox.getValue().equalsIgnoreCase("pierwsza")) {
                     singleSumQualifiersComboBox.setDisable(true);
                     singleSelectedQualifiersPane.getChildren().clear();
+                } else if (singleSumFormComboBox.getValue().equalsIgnoreCase("druga")) {
+                    singleSumQualifiersComboBox.setDisable(false);
                 }
             }
         };
         singleSumFormComboBox.setOnAction(singleSubjectFormEvent);
+
+        //-----------------------multi subject summarizes quantifiers init---------------------------
+        multiSumQuantifierComboBox.getItems().addAll(FXCollections.observableArrayList(relativeQuantifiersNames));
+        EventHandler<ActionEvent> setMultiQuantifierLabel = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                multiSumQuantifierLabel.setText(multiSumQuantifierComboBox.getValue());
+            }
+        };
+        multiSumQuantifierComboBox.setOnAction(setMultiQuantifierLabel);
+
+        //--------------------multi subject summarizes qualifiers init-----------------------------
+        multiSumQualifiersComboBox1.setDisable(true);
+        multiSumQualifiersComboBox2.setDisable(true);
+
+        //-----------------multi subject summarizes forms init:------------------------
+        String[] multiForms = {"Pierwsza", "Druga", "Trzecia", "Czwarta"};
+        multiSumFormComboBox.getItems().addAll(FXCollections.observableArrayList(multiForms));
+        multiSumFormComboBox.getSelectionModel().selectFirst();
+        EventHandler<ActionEvent> multiSubjectFormEvent = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (multiSumFormComboBox.getValue().equalsIgnoreCase("pierwsza")) {
+                    multiSumQualifiersComboBox1.setDisable(true);
+                    multiSumQualifiersComboBox2.setDisable(true);
+                    multiSelectedQualifiersPane1.getChildren().clear();
+                    multiSelectedQualifiersPane2.getChildren().clear();
+                    multiSumQuantifierComboBox.setDisable(false);
+                } else if (multiSumFormComboBox.getValue().equalsIgnoreCase("druga")) {
+                    multiSumQualifiersComboBox1.setDisable(true);
+                    multiSumQualifiersComboBox2.setDisable(false);
+                    multiSelectedQualifiersPane1.getChildren().clear();
+                    multiSumQuantifierComboBox.setDisable(false);
+                } else if (multiSumFormComboBox.getValue().equalsIgnoreCase("trzecia")) {
+                    multiSumQualifiersComboBox2.setDisable(true);
+                    multiSumQualifiersComboBox1.setDisable(false);
+                    multiSelectedQualifiersPane2.getChildren().clear();
+                    multiSumQuantifierComboBox.setDisable(false);
+                } else if (multiSumFormComboBox.getValue().equalsIgnoreCase("czwarta")) {
+                    multiSumQualifiersComboBox1.setDisable(true);
+                    multiSumQualifiersComboBox2.setDisable(true);
+                    multiSelectedQualifiersPane1.getChildren().clear();
+                    multiSelectedQualifiersPane2.getChildren().clear();
+                    multiSumQuantifierComboBox.setDisable(true);
+                    multiSumQuantifierLabel.setText("");
+                }
+            }
+        };
+        multiSumFormComboBox.setOnAction(multiSubjectFormEvent);
+
     }
 
     //nie wiem czy najbardziej optymalna opcja
