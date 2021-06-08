@@ -7,9 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -25,24 +27,52 @@ public class PrimaryController implements Initializable {
     public AnchorPane singlePane;
     @FXML
     public AnchorPane multiPane;
+    @FXML
     public ComboBox<String> singleSumQuantifierComboBox;
+    @FXML
     public ComboBox<String> singleSumQualifiersComboBox;
+    @FXML
     public ComboBox<String> singleSumSummarizersComboBox;
+    @FXML
     public Label singleSumQuantifierLabel;
+    @FXML
     public ComboBox<String> singleSumFormComboBox;
-    public AnchorPane singleSelectedQualifiersPane;
-    public AnchorPane singleSelectedSummarizesPane;
+    @FXML
+    public ScrollPane singleSelectedQualifiersPane;
+    @FXML
+    public ScrollPane singleSelectedSummarizesPane;
+    @FXML
     public Button singleGenerate;
+    @FXML
     public ComboBox<String> multiSumQuantifierComboBox;
+    @FXML
     public ComboBox<String> multiSumQualifiersComboBox1;
+    @FXML
     public ComboBox<String> multiSumSummarizersComboBox;
+    @FXML
     public ComboBox<String> multiSumFormComboBox;
+    @FXML
     public Button multiGenerate;
+    @FXML
     public Label multiSumQuantifierLabel;
-    public AnchorPane multiSelectedQualifiersPane1;
+    @FXML
+    public ScrollPane multiSelectedQualifiersPane1;
+    @FXML
     public ComboBox<String> multiSumQualifiersComboBox2;
-    public AnchorPane multiSelectedQualifiersPane2;
-    public AnchorPane multiSelectedSummarizersPane;
+    @FXML
+    public ScrollPane multiSelectedQualifiersPane2;
+    @FXML
+    public ScrollPane multiSelectedSummarizersPane;
+    @FXML
+    public Button singleQualifiersClearBtn;
+    @FXML
+    public Button singleSummarizersClearBtn;
+    @FXML
+    public Button multiQualifiers1ClearBtn;
+    @FXML
+    public Button multiSummarizersClearBtn;
+    @FXML
+    public Button multiQualifiers2ClearBtn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +88,7 @@ public class PrimaryController implements Initializable {
         String[] allQuantifiersNames = new String[allQuantifiersList.size()];
         allQuantifiersNames = allQuantifiersList.toArray(allQuantifiersNames);
 
-        //-----------------------single subject summarizes quantifiers init---------------------------
+        //-----------------------single subject summaries quantifiers init---------------------------
         singleSumQuantifierComboBox.getItems().addAll(FXCollections.observableArrayList(allQuantifiersNames));
         EventHandler<ActionEvent> setQuantifierLabel = new EventHandler<ActionEvent>() {
             @Override
@@ -68,10 +98,19 @@ public class PrimaryController implements Initializable {
         };
         singleSumQuantifierComboBox.setOnAction(setQuantifierLabel);
 
-        //--------------------single subject summarizes qualifiers init-----------------------------
+        //--------------------single subject summaries qualifiers init-----------------------------
+        String[] qualifiersNames = {"test 1", "test 2"};
+        prepareComboBoxAndScrollView(qualifiersNames, singleSumQualifiersComboBox, singleSelectedQualifiersPane);
         singleSumQualifiersComboBox.setDisable(true);
+        clearScrollPane(singleSelectedQualifiersPane, singleQualifiersClearBtn);
 
-        //-----------------single subject summarizes forms init:------------------------
+
+        //----------------single subject summaries summarizes init------------------------------
+        String[] summarizersNames = {"test1", "test2"};
+        prepareComboBoxAndScrollView(summarizersNames, singleSumSummarizersComboBox, singleSelectedSummarizesPane);
+        clearScrollPane(singleSelectedSummarizesPane, singleSummarizersClearBtn);
+
+        //-----------------single subject summaries forms init:---------------------------------
         String[] singleForms = {"Pierwsza", "Druga"};
         singleSumFormComboBox.getItems().addAll(FXCollections.observableArrayList(singleForms));
         singleSumFormComboBox.getSelectionModel().selectFirst();
@@ -80,7 +119,7 @@ public class PrimaryController implements Initializable {
             public void handle(ActionEvent event) {
                 if (singleSumFormComboBox.getValue().equalsIgnoreCase("pierwsza")) {
                     singleSumQualifiersComboBox.setDisable(true);
-                    singleSelectedQualifiersPane.getChildren().clear();
+                    removeLabelsFromScroll(singleSelectedQualifiersPane);
                 } else if (singleSumFormComboBox.getValue().equalsIgnoreCase("druga")) {
                     singleSumQualifiersComboBox.setDisable(false);
                 }
@@ -88,7 +127,7 @@ public class PrimaryController implements Initializable {
         };
         singleSumFormComboBox.setOnAction(singleSubjectFormEvent);
 
-        //-----------------------multi subject summarizes quantifiers init---------------------------
+        //-----------------------multi subject summaries quantifiers init---------------------------
         multiSumQuantifierComboBox.getItems().addAll(FXCollections.observableArrayList(relativeQuantifiersNames));
         EventHandler<ActionEvent> setMultiQuantifierLabel = new EventHandler<ActionEvent>() {
             @Override
@@ -98,11 +137,19 @@ public class PrimaryController implements Initializable {
         };
         multiSumQuantifierComboBox.setOnAction(setMultiQuantifierLabel);
 
-        //--------------------multi subject summarizes qualifiers init-----------------------------
+        //--------------------multi subject summaries qualifiers init-----------------------------
+        prepareComboBoxAndScrollView(qualifiersNames,multiSumQualifiersComboBox1,multiSelectedQualifiersPane1);
+        prepareComboBoxAndScrollView(qualifiersNames,multiSumQualifiersComboBox2,multiSelectedQualifiersPane2);
         multiSumQualifiersComboBox1.setDisable(true);
         multiSumQualifiersComboBox2.setDisable(true);
+        clearScrollPane(multiSelectedQualifiersPane1, multiQualifiers1ClearBtn);
+        clearScrollPane(multiSelectedQualifiersPane2, multiQualifiers2ClearBtn);
 
-        //-----------------multi subject summarizes forms init:------------------------
+        //----------------single subject summaries summarizes init------------------------------
+        prepareComboBoxAndScrollView(summarizersNames, multiSumSummarizersComboBox, multiSelectedSummarizersPane);
+        clearScrollPane(multiSelectedSummarizersPane, multiSummarizersClearBtn);
+
+        //-----------------multi subject summaries forms init:------------------------
         String[] multiForms = {"Pierwsza", "Druga", "Trzecia", "Czwarta"};
         multiSumFormComboBox.getItems().addAll(FXCollections.observableArrayList(multiForms));
         multiSumFormComboBox.getSelectionModel().selectFirst();
@@ -112,24 +159,24 @@ public class PrimaryController implements Initializable {
                 if (multiSumFormComboBox.getValue().equalsIgnoreCase("pierwsza")) {
                     multiSumQualifiersComboBox1.setDisable(true);
                     multiSumQualifiersComboBox2.setDisable(true);
-                    multiSelectedQualifiersPane1.getChildren().clear();
-                    multiSelectedQualifiersPane2.getChildren().clear();
+                    removeLabelsFromScroll(multiSelectedQualifiersPane1);
+                    removeLabelsFromScroll(multiSelectedQualifiersPane2);
                     multiSumQuantifierComboBox.setDisable(false);
                 } else if (multiSumFormComboBox.getValue().equalsIgnoreCase("druga")) {
                     multiSumQualifiersComboBox1.setDisable(true);
                     multiSumQualifiersComboBox2.setDisable(false);
-                    multiSelectedQualifiersPane1.getChildren().clear();
+                    removeLabelsFromScroll(multiSelectedQualifiersPane1);
                     multiSumQuantifierComboBox.setDisable(false);
                 } else if (multiSumFormComboBox.getValue().equalsIgnoreCase("trzecia")) {
                     multiSumQualifiersComboBox2.setDisable(true);
                     multiSumQualifiersComboBox1.setDisable(false);
-                    multiSelectedQualifiersPane2.getChildren().clear();
+                    removeLabelsFromScroll(multiSelectedQualifiersPane2);
                     multiSumQuantifierComboBox.setDisable(false);
                 } else if (multiSumFormComboBox.getValue().equalsIgnoreCase("czwarta")) {
                     multiSumQualifiersComboBox1.setDisable(true);
                     multiSumQualifiersComboBox2.setDisable(true);
-                    multiSelectedQualifiersPane1.getChildren().clear();
-                    multiSelectedQualifiersPane2.getChildren().clear();
+                    removeLabelsFromScroll(multiSelectedQualifiersPane1);
+                    removeLabelsFromScroll(multiSelectedQualifiersPane2);
                     multiSumQuantifierComboBox.setDisable(true);
                     multiSumQuantifierLabel.setText("");
                 }
@@ -138,6 +185,38 @@ public class PrimaryController implements Initializable {
         multiSumFormComboBox.setOnAction(multiSubjectFormEvent);
 
     }
+
+    private void clearScrollPane(ScrollPane pane, Button btn) {
+        EventHandler<MouseEvent> clearBtnEvent = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                removeLabelsFromScroll(pane);
+            }
+        };
+        btn.setOnMouseClicked(clearBtnEvent);
+    }
+
+    private void removeLabelsFromScroll(ScrollPane pane) {
+        VBox root = (VBox) pane.getContent();
+        root.getChildren().clear();
+    }
+
+    private void prepareComboBoxAndScrollView(String[] names, ComboBox<String> comboBox, ScrollPane pane) {
+        comboBox.getItems().addAll(FXCollections.observableArrayList(names));
+        VBox rootForScroll = new VBox();
+        pane.setContent(rootForScroll);
+        pane.setPannable(true);
+        EventHandler<ActionEvent> addLabelEvent = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Label label = new Label();
+                label.setText(comboBox.getValue());
+                rootForScroll.getChildren().add(label);
+            }
+        };
+        comboBox.setOnAction(addLabelEvent);
+    }
+    
 
     //nie wiem czy najbardziej optymalna opcja
     public void goToMultiSubject(MouseEvent mouseEvent) {
