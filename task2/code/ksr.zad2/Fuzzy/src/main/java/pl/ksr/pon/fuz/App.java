@@ -11,7 +11,7 @@ public class App
     public static void main( String[] args )
     {
 //        System.out.println( "Hello World!" );
-        TriangularMembershipFunction function = new TriangularMembershipFunction(0.1, 0.9, 1);
+        TriangularMembershipFunction function = new BothSidesTriangularMembershipFunction(0.1, 0.9, 1);
         Tuple2<Double, Double> tuple = function.countConstraints(0.5);
         System.out.println(function.countMembership(0.99));
         System.out.println(tuple);

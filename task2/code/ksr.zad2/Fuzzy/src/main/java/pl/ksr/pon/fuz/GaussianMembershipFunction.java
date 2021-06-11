@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class GaussianMembershipFunction extends MembershipFunction {
-    private double mean, variance;
+    double mean, variance;
 
     @Override
     public double countMembership(double x) {

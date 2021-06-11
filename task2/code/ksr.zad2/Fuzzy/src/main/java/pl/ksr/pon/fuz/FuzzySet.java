@@ -1,7 +1,11 @@
 package pl.ksr.pon.fuz;
 
 import com.google.common.collect.Range;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
 public class FuzzySet {
     MembershipFunction membershipFunction;
     public Range<Double> getAlphaCut(double x) {
