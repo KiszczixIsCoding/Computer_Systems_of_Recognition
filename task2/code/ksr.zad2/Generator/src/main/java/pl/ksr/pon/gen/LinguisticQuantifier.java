@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public abstract class LinguisticQuantifier {
-    private String name;
+//    private String name;
     private Label label;
 }

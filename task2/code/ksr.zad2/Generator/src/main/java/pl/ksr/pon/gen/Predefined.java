@@ -206,4 +206,55 @@ public class Predefined {
         return variables;
     }
 
+    public static List<AbsoluteQuantifier> getAbsoluteQuantifiers() {
+        Label moreThan0Label = new Label("Więcej niż 0",
+                new FuzzySet(new LeftTriangularMembershipFunction(0.0, 1500.0)));
+        Label about2000Label = new Label("Około 2000",
+                new FuzzySet(new BothSidesTriangularMembershipFunction(500.0, 2000.0, 3500.0)));
+        Label about4000Label = new Label("Około 4000",
+                new FuzzySet(new BothSidesTriangularMembershipFunction(2500.0, 4000.0, 5500.0)));
+        Label about6000Label = new Label("Około 6000",
+                new FuzzySet(new BothSidesTriangularMembershipFunction(4500.0, 6000.0, 7500.0)));
+        Label about8000Label = new Label("Około 8000",
+                new FuzzySet(new BothSidesTriangularMembershipFunction(6500.0, 8000.0, 9500.0)));
+        Label almost11144Label = new Label("Prawie 11144",
+                new FuzzySet(new RightTriangularMembershipFunction(8500.0, 11144.0)));
+        AbsoluteQuantifier moreThan0Quantifier = new AbsoluteQuantifier(moreThan0Label,
+                Range.closed(0.0, 1500.0));
+        AbsoluteQuantifier about2000Quantifier = new AbsoluteQuantifier(about2000Label,
+                Range.closed(500.0, 3500.0));
+        AbsoluteQuantifier about4000Quantifier = new AbsoluteQuantifier(about4000Label,
+                Range.closed(2500.0, 5500.0));
+        AbsoluteQuantifier about6000Quantifier = new AbsoluteQuantifier(about6000Label,
+                Range.closed(4500.0, 7500.0));
+        AbsoluteQuantifier about8000Quantifier = new AbsoluteQuantifier(about8000Label,
+                Range.closed(6500.0, 9500.0));
+        AbsoluteQuantifier almost11144Quantifier = new AbsoluteQuantifier(almost11144Label,
+                Range.closed(8500.0, 11144.0));
+        List<AbsoluteQuantifier> absoluteQuantifiers = Arrays.asList(moreThan0Quantifier, about2000Quantifier,
+                about4000Quantifier, about6000Quantifier, about8000Quantifier, almost11144Quantifier);
+        return absoluteQuantifiers;
+    }
+
+    public static List<RelativeQuantifier> getRelativeQuantifiers() {
+        Label almostNoneLabel = new Label("Prawie żaden",
+                new FuzzySet(new GaussianMembershipFunction(0.0, 0.01)));
+        Label aboutQuarterLabel = new Label("Około 1/4",
+                new FuzzySet(new GaussianMembershipFunction(0.25, 0.01)));
+        Label aboutHalfLabel = new Label("Około 1/2",
+                new FuzzySet(new GaussianMembershipFunction(0.5, 0.01)));
+        Label aboutThreeQuartersLabel = new Label("Około 3/4",
+                new FuzzySet(new GaussianMembershipFunction(0.75, 0.01)));
+        Label almostAllLabel = new Label("Prawie wszystkie",
+                new FuzzySet(new GaussianMembershipFunction(1.0, 0.01)));
+        RelativeQuantifier almostNoneQuantifier = new RelativeQuantifier(almostNoneLabel);
+        RelativeQuantifier aboutQuarterQuantifier = new RelativeQuantifier(aboutQuarterLabel);
+        RelativeQuantifier aboutHalfQuantifier = new RelativeQuantifier(aboutHalfLabel);
+        RelativeQuantifier aboutThreeQuartersQuantifier = new RelativeQuantifier(aboutThreeQuartersLabel);
+        RelativeQuantifier almostAllQuantifier = new RelativeQuantifier(almostAllLabel);
+        List<RelativeQuantifier> relativeQuantifiers = Arrays.asList(almostNoneQuantifier, aboutQuarterQuantifier,
+                aboutHalfQuantifier, aboutThreeQuartersQuantifier, almostAllQuantifier);
+        return relativeQuantifiers;
+    }
+
 }
