@@ -129,6 +129,7 @@
       <workItem from="1621876670264" duration="2834000" />
       <workItem from="1622411552603" duration="4982000" />
       <workItem from="1623058450823" duration="1304000" />
+      <workItem from="1623407339578" duration="610000" />
     </task>
     <task id="LOCAL-00001" summary="stemmer implemented but dont change text">
       <created>1618192891841</created>
@@ -242,11 +243,6 @@
           <url>file://$PROJECT_DIR$/Classifier/src/main/java/pl/ksr/pon/cla/ChebyshevMetric.java</url>
           <line>39</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GUI/src/main/java/pl/ksr/pon/gui/App.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

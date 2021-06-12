@@ -113,10 +113,95 @@ public class Predefined {
         LinguisticVariable pointsScoredLinguisticVariable = new LinguisticVariable("średnia liczba zdobytych punktów na mecz",
                 Range.closed(0.0, 36.1),pointsScoredLabels);
 
+        //7. średnia liczba zbiórek na mecz
+        MembershipFunction fewReboundsMembership = new LeftTrapezoidalMembershipFunction(0.0, 1.0, 5.0);
+        Label veryFewReboundsLabel = new Label("bardzo mało zbiórek na mecz",
+                new FuzzySet(new ExponentialMembershipFunction(2, fewReboundsMembership)));
+        Label fewReboundsLabel = new Label("mało zbiórek na mecz",
+                new FuzzySet(fewReboundsMembership));
+        Label enoughReboundsLabel = new Label("dostateczna liczba zbiórek na mecz",
+                new FuzzySet(new BothSidesTrapezoidalMembershipFunction(2.0, 4.0, 5.0, 6.0)));
+        MembershipFunction lotOfReboundsMembership = new RightTrapezoidalMembershipFunction(4, 6.5, 16.3);
+        Label lotOfReboundsLabel = new Label("dużo zbiórek na mecz",
+                new FuzzySet(lotOfReboundsMembership));
+        Label veryLotOfReboundsLabel = new Label("bardzo dużo zbiórek na mecz",
+                new FuzzySet(new ExponentialMembershipFunction(2, lotOfReboundsMembership)));
+        List<Label> reboundsLabels = Arrays.asList(veryFewReboundsLabel, fewReboundsLabel, enoughReboundsLabel,
+                lotOfReboundsLabel, veryLotOfReboundsLabel);
+        LinguisticVariable reboundsNumberLinguisticVariable = new LinguisticVariable("średnia liczba zbiórek na mecz",
+                Range.closed(0.0, 16.3), reboundsLabels);
+
+        //8. średnia liczba asyst na mecz
+        MembershipFunction fewAssistsMembership = new LeftTrapezoidalMembershipFunction(0.0, 0.5, 1.5);
+        Label veryFewAssistsLabel = new Label("bardzo mało asyst na mecz",
+                new FuzzySet(new ExponentialMembershipFunction(2, fewAssistsMembership)));
+        Label fewAssistsLabel = new Label("mało asyst na mecz",
+                new FuzzySet(fewAssistsMembership));
+        Label enoughAssistsLabel = new Label("dostateczna liczba asyst na mecz",
+                new FuzzySet(new BothSidesTrapezoidalMembershipFunction(0.5, 1.5, 2.0, 3.0)));
+        MembershipFunction lotOfAssistsMembership = new RightTrapezoidalMembershipFunction(2, 3.6, 11.7);
+        Label lotOfAssistsLabel = new Label("dużo asyst na mecz",
+                new FuzzySet(lotOfAssistsMembership));
+        Label veryLotOfAssistsLabel = new Label("bardzo dużo asyst na mecz",
+                new FuzzySet(new ExponentialMembershipFunction(2, lotOfAssistsMembership)));
+        List<Label> assistsNumberLabels = Arrays.asList(veryFewAssistsLabel, fewAssistsLabel, enoughAssistsLabel,
+                lotOfAssistsLabel, veryLotOfAssistsLabel);
+        LinguisticVariable assistsNumberLinguisticVariable = new LinguisticVariable("średnia liczba asyst na mecz",
+                Range.closed(0.0, 11.7), assistsNumberLabels);
+
+        //9. wpływ na drużynę
+        Label fatalImpactLabel = new Label("fatalny wpływ na drużynę",
+                new FuzzySet(new LeftTrapezoidalMembershipFunction(-100.0, -15.0, -5.0)));
+        Label negativeImpactLabel = new Label("negatywny wpływ na drużynę",
+                new FuzzySet(new BothSidesTrapezoidalMembershipFunction(-15.0, -7.0, -2.5, 0.0)));
+        Label neutralImpactLabel = new Label("neutralny wpływ na drużynę",
+                new FuzzySet(new BothSidesTriangularMembershipFunction(-2.5, 0.0, 2.5)));
+        Label positiveImpactLabel = new Label("pozytywny wpływ na drużynę",
+                new FuzzySet(new BothSidesTrapezoidalMembershipFunction(0, 3.2, 7.0, 13.4)));
+        Label idealImpactLabel = new Label("idealny wpływ na drużynę",
+                new FuzzySet(new RightTrapezoidalMembershipFunction(5.0, 13.0, 100.0)));
+        List<Label> impactLabels = Arrays.asList(fatalImpactLabel, negativeImpactLabel, neutralImpactLabel,
+                positiveImpactLabel, idealImpactLabel);
+        LinguisticVariable impactLinguisticVariable = new LinguisticVariable("wpływ na drużynę",
+                Range.closed(-100.0, 100.0), impactLabels);
+
+        //10. skuteczność rzutów
+        Label fatalAccuracyLabel = new Label("fatalną skuteczność rzutów",
+                new FuzzySet(new LeftTrapezoidalMembershipFunction(0.0, 0.35, 0.45)));
+        Label ineffectiveAccuracyLabel = new Label("nieskuteczni z rzutów",
+                new FuzzySet(new GaussianMembershipFunction(0.4, 0.003)));
+        Label averageAccuracyLabel = new Label("przeciętną skuteczność rzutów",
+                new FuzzySet(new GaussianMembershipFunction(0.5, 0.001)));
+        Label effectiveAccuracyLabel = new Label("skuteczni z rzutów",
+                new FuzzySet(new GaussianMembershipFunction(0.57, 0.001)));
+        Label idealAccuracyLabel = new Label("idealną skuteczność rzutów",
+                new FuzzySet(new RightTrapezoidalMembershipFunction(0.58, 0.63, 1.0)));
+        List<Label> accuracyLabels = Arrays.asList(fatalAccuracyLabel, ineffectiveAccuracyLabel, averageAccuracyLabel,
+                effectiveAccuracyLabel, idealAccuracyLabel);
+        LinguisticVariable accuracyLinguisticVariable = new LinguisticVariable("skuteczność rzutów",
+                Range.closed(0.0, 1.0), accuracyLabels);
+
+        //11. procent asyst
+        Label fatalAssistsPercentLabel = new Label("fatalny procent asyst",
+                new FuzzySet(new LeftTrapezoidalMembershipFunction(0, 0.01, 0.05)));
+        Label smallAssistsPercentLabel = new Label("mały procent asyst",
+                new FuzzySet(new BothSidesTrapezoidalMembershipFunction(0.01, 0.05, 0.06, 0.10)));
+        Label averageAssistsPercentLabel = new Label("przeciętny procent asysyt",
+                new FuzzySet(new BothSidesTrapezoidalMembershipFunction(0.06, 0.14, 0.15, 0.19)));
+        Label bigAssistsPercentLabel = new Label("duży procent asysyt",
+                new FuzzySet(new BothSidesTrapezoidalMembershipFunction(0.15, 0.20, 0.23, 0.31)));
+        Label idealAssistsPercentLabel = new Label("idealny procent asyst",
+                new FuzzySet(new RightTrapezoidalMembershipFunction(0.23, 0.31, 1.0)));
+        List<Label> assistsPercentLabels = Arrays.asList(fatalAssistsPercentLabel, smallAssistsPercentLabel,
+                averageAssistsPercentLabel, bigAssistsPercentLabel, idealAssistsPercentLabel);
+        LinguisticVariable assistsPercentLinguisticVariable = new LinguisticVariable("procent asyst",
+                Range.closed(0.0, 1.0), assistsPercentLabels);
+
 
         List<LinguisticVariable> variables = Arrays.asList(ageLinguisticVariable, heightLinguisticVariable,
                 weightLinguisticVariable, draftPickLinguisticVariable, gamesPlayedLinguisticVariable,
-                pointsScoredLinguisticVariable);
+                pointsScoredLinguisticVariable, reboundsNumberLinguisticVariable, assistsNumberLinguisticVariable,
+                impactLinguisticVariable, accuracyLinguisticVariable, assistsPercentLinguisticVariable);
 
         return variables;
     }
