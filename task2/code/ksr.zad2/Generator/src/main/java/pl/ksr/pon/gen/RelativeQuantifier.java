@@ -2,7 +2,7 @@ package pl.ksr.pon.gen;
 
 public class RelativeQuantifier extends LinguisticQuantifier{
 
-    public RelativeQuantifier(Label label) {
+    public RelativeQuantifier(LinguisticLabel label) {
         super(label);
     }
 }

@@ -6,7 +6,7 @@ import pl.ksr.pon.fuz.FuzzySet;
 
 @Data
 @AllArgsConstructor
-public class Label {
+public class LinguisticLabel {
 
     private String name;
     private FuzzySet fuzzySet;

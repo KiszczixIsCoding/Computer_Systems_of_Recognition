@@ -11,5 +11,5 @@ import java.util.List;
 public class LinguisticVariable {
     private String name;
     Range<Double> range;
-    List<Label> labels;
+    List<LinguisticLabel> labels;
 }

@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+import pl.ksr.pon.gen.*;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -74,19 +74,40 @@ public class PrimaryController implements Initializable {
     @FXML
     public Button multiQualifiers2ClearBtn;
 
+    List<LinguisticVariable> linguisticVariables;
+    List<RelativeQuantifier> relativeQuantifiers;
+    List<AbsoluteQuantifier> absoluteQuantifiers;
+    List<String> qualifiersAndSummarizersNames;
+    List<String> relativeQuantifiersNames;
+    List<String> absoluteQuantifiersNames;
+    List<String> allQuantifiersNames;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         //------------------------quantifiers init:---------------------------------
-        String[] relativeQuantifiersNames = {"Prawie żaden", "Około 1/4", "Około 1/2",
-                "Około 3/4", "Prawie wszystkie"};
-        String[] absoluteQuantifiersNames = {"Więcej niż 0", "Około 2000", "Około 4000", "Około 6000",
-                "Około 8000", "Prawie 11144"};
-        List<String> allQuantifiersList = new ArrayList<String>(Arrays.asList(relativeQuantifiersNames));
-        allQuantifiersList.addAll(Arrays.asList(absoluteQuantifiersNames));
-        //cast List to array:
-        String[] allQuantifiersNames = new String[allQuantifiersList.size()];
-        allQuantifiersNames = allQuantifiersList.toArray(allQuantifiersNames);
+        relativeQuantifiers = Predefined.getRelativeQuantifiers();
+        absoluteQuantifiers = Predefined.getAbsoluteQuantifiers();
+        relativeQuantifiersNames = new ArrayList<>();
+        absoluteQuantifiersNames = new ArrayList<>();
+        allQuantifiersNames = new ArrayList<>();
+        for (RelativeQuantifier quantifier : relativeQuantifiers) {
+            relativeQuantifiersNames.add(quantifier.getLabel().getName());
+        }
+        for (AbsoluteQuantifier quantifier : absoluteQuantifiers) {
+            absoluteQuantifiersNames.add(quantifier.getLabel().getName());
+        }
+        allQuantifiersNames.addAll(relativeQuantifiersNames);
+        allQuantifiersNames.addAll(absoluteQuantifiersNames);
+//        String[] relativeQuantifiersNames = {"Prawie żaden", "Około 1/4", "Około 1/2",
+//                "Około 3/4", "Prawie wszystkie"};
+//        String[] absoluteQuantifiersNames = {"Więcej niż 0", "Około 2000", "Około 4000", "Około 6000",
+//                "Około 8000", "Prawie 11144"};
+//        List<String> allQuantifiersList = new ArrayList<String>(Arrays.asList(relativeQuantifiersNames));
+//        allQuantifiersList.addAll(Arrays.asList(absoluteQuantifiersNames));
+//        //cast List to array:
+//        String[] allQuantifiersNames = new String[allQuantifiersList.size()];
+//        allQuantifiersNames = allQuantifiersList.toArray(allQuantifiersNames);
 
         //-----------------------single subject summaries quantifiers init---------------------------
         singleSumQuantifierComboBox.getItems().addAll(FXCollections.observableArrayList(allQuantifiersNames));
@@ -98,16 +119,30 @@ public class PrimaryController implements Initializable {
         };
         singleSumQuantifierComboBox.setOnAction(setQuantifierLabel);
 
+        //-----------------------qualifiers and summarizers init-----------------------------------
+        linguisticVariables = Predefined.getPredefinedLinguisticVariables();
+        qualifiersAndSummarizersNames = new ArrayList<>();
+        for (LinguisticVariable variable : linguisticVariables) {
+            for (LinguisticLabel label : variable.getLabels())
+            qualifiersAndSummarizersNames.add(label.getName());
+        }
+        //cast List to array:
+//        String[] qualifiersAndSummarizersNamesArray = new String[qualifiersAndSummarizersNames.size()];
+//        qualifiersAndSummarizersNamesArray = qualifiersAndSummarizersNames.
+//                toArray(qualifiersAndSummarizersNamesArray);
+
         //--------------------single subject summaries qualifiers init-----------------------------
-        String[] qualifiersNames = {"test 1", "test 2"};
-        prepareComboBoxAndScrollView(qualifiersNames, singleSumQualifiersComboBox, singleSelectedQualifiersPane);
+//        String[] qualifiersNames = {"test 1", "test 2"};
+        prepareComboBoxAndScrollView(qualifiersAndSummarizersNames, singleSumQualifiersComboBox,
+                singleSelectedQualifiersPane);
         singleSumQualifiersComboBox.setDisable(true);
         clearScrollPane(singleSelectedQualifiersPane, singleQualifiersClearBtn);
 
 
         //----------------single subject summaries summarizes init------------------------------
-        String[] summarizersNames = {"test1", "test2"};
-        prepareComboBoxAndScrollView(summarizersNames, singleSumSummarizersComboBox, singleSelectedSummarizesPane);
+//        String[] summarizersNames = {"test1", "test2"};
+        prepareComboBoxAndScrollView(qualifiersAndSummarizersNames, singleSumSummarizersComboBox,
+                singleSelectedSummarizesPane);
         clearScrollPane(singleSelectedSummarizesPane, singleSummarizersClearBtn);
 
         //-----------------single subject summaries forms init:---------------------------------
@@ -138,15 +173,18 @@ public class PrimaryController implements Initializable {
         multiSumQuantifierComboBox.setOnAction(setMultiQuantifierLabel);
 
         //--------------------multi subject summaries qualifiers init-----------------------------
-        prepareComboBoxAndScrollView(qualifiersNames,multiSumQualifiersComboBox1,multiSelectedQualifiersPane1);
-        prepareComboBoxAndScrollView(qualifiersNames,multiSumQualifiersComboBox2,multiSelectedQualifiersPane2);
+        prepareComboBoxAndScrollView(qualifiersAndSummarizersNames,multiSumQualifiersComboBox1,
+                multiSelectedQualifiersPane1);
+        prepareComboBoxAndScrollView(qualifiersAndSummarizersNames,multiSumQualifiersComboBox2,
+                multiSelectedQualifiersPane2);
         multiSumQualifiersComboBox1.setDisable(true);
         multiSumQualifiersComboBox2.setDisable(true);
         clearScrollPane(multiSelectedQualifiersPane1, multiQualifiers1ClearBtn);
         clearScrollPane(multiSelectedQualifiersPane2, multiQualifiers2ClearBtn);
 
         //----------------single subject summaries summarizes init------------------------------
-        prepareComboBoxAndScrollView(summarizersNames, multiSumSummarizersComboBox, multiSelectedSummarizersPane);
+        prepareComboBoxAndScrollView(qualifiersAndSummarizersNames, multiSumSummarizersComboBox,
+                multiSelectedSummarizersPane);
         clearScrollPane(multiSelectedSummarizersPane, multiSummarizersClearBtn);
 
         //-----------------multi subject summaries forms init:------------------------
@@ -201,7 +239,7 @@ public class PrimaryController implements Initializable {
         root.getChildren().clear();
     }
 
-    private void prepareComboBoxAndScrollView(String[] names, ComboBox<String> comboBox, ScrollPane pane) {
+    private void prepareComboBoxAndScrollView(List<String> names, ComboBox<String> comboBox, ScrollPane pane) {
         comboBox.getItems().addAll(FXCollections.observableArrayList(names));
         VBox rootForScroll = new VBox();
         pane.setContent(rootForScroll);

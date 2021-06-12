@@ -5,8 +5,8 @@ import pl.ksr.pon.dao.Player;
 import java.util.List;
 
 public class LinguisticSummariesGenerator {
-    List<Label> qualifiers;
-    List<Label> summarizers;
+    List<LinguisticLabel> qualifiers;
+    List<LinguisticLabel> summarizers;
     LinguisticQuantifier linguisticQuantifier; // in multi subject, form 4 quantifier is null
     List<Player> datasetElements;
 
