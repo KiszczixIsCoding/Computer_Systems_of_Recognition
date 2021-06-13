@@ -50,7 +50,7 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countLengthOfASummary() {
-        return null;
+        return 2.0 * Math.pow(0.5, summarizers.size());
     }
 
     private Double countDegreeOfQuantifierImprecision() {
@@ -62,7 +62,16 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfQualifierImprecision() {
-        return null;
+        if (qualifiers.size() == 0) {
+            return null;
+        } else {
+            double product = 1.0;
+            for (LinguisticLabel qualifier : qualifiers) {
+                product *= qualifier.getFuzzySet().getDegreeOfFuzziness(datasetElements);
+            }
+            double root = Math.round(Math.pow(product, 1.0 / qualifiers.size()));
+            return 1 - root;
+        }
     }
 
     private Double countDegreeOfQualifierCardinality() {
@@ -70,7 +79,11 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countLengthOfAQualifier() {
-        return null;
+        if (qualifiers.size() == 0) {
+            return null;
+        } else {
+            return 2.0 * Math.pow(0.5, qualifiers.size());
+        }
     }
 
 }
