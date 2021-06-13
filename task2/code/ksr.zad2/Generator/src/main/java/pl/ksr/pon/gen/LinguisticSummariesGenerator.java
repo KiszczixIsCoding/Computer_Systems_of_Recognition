@@ -2,6 +2,7 @@ package pl.ksr.pon.gen;
 
 import pl.ksr.pon.dao.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LinguisticSummariesGenerator {
@@ -20,7 +21,12 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfImprecision() {
-        return null;
+        double product = 1;
+        for (LinguisticLabel summarizer : summarizers) {
+            product = product * summarizer.getFuzzySet().getDegreeOfFuzziness(datasetElements);
+        }
+        double product_root = Math.pow(product, summarizers.size());
+        return 1 - product_root;
     }
 
     private Double countDegreeOfCovering() {
@@ -28,7 +34,19 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfAppropriateness() {
-        return null;
+        List<Double> parameters_r = new ArrayList<>();
+
+        for (LinguisticLabel summarizer : summarizers) {
+            int sum = 0;
+            sum += summarizer.getFuzzySet().getSupport(datasetElements).size();
+            parameters_r.add((double)sum / datasetElements.size());
+        }
+
+        double product = 1;
+        for (double parameter_r : parameters_r) {
+            product = product * (parameter_r - countDegreeOfCovering());
+        }
+        return Math.abs(product);
     }
 
     private Double countLengthOfASummary() {
