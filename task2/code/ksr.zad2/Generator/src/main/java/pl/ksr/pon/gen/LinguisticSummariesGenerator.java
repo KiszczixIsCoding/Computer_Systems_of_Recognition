@@ -23,7 +23,7 @@ public class LinguisticSummariesGenerator {
 //        for (int i = 1; i < summarizers.size(); i++) {
 //            summarizersProduct.add(Math.min(tmpSummarizer.getFuzzySet().getMembershipFunction().));
 //        }
-
+        return null;
     }
 
     private Double countDegreeOfImprecision() {
@@ -70,13 +70,13 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfQuantifierRelativeCardinality() {
-        return 1 - linguisticQuantifier.getLabel().getFuzzySet().getRelativeCardinality(datasetElements);
+        return 1 - linguisticQuantifier.getLabel().getFuzzySet().getRelativeCardinality();
     }
 
     private Double countDegreeOfSummarizerRelativeCardinality() {
         double product = 1;
         for (LinguisticLabel summarizer : summarizers) {
-            product = product * summarizer.getFuzzySet().getRelativeCardinality(datasetElements);
+            product = product * summarizer.getFuzzySet().getRelativeCardinality();
         }
         double product_root = Math.pow(product, 1d / summarizers.size());
         return 1 - product_root;
@@ -98,7 +98,7 @@ public class LinguisticSummariesGenerator {
     private Double countDegreeOfQualifierRelativeCardinality() {
         double product = 1;
         for (LinguisticLabel qualifier : qualifiers) {
-            product = product * qualifier.getFuzzySet().getRelativeCardinality(datasetElements);
+            product = product * qualifier.getFuzzySet().getRelativeCardinality();
         }
         double product_root = Math.pow(product, 1d / qualifiers.size());
         return 1 - product_root;

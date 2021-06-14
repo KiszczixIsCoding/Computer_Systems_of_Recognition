@@ -2,8 +2,10 @@ package pl.ksr.pon.dao;
 
 import lombok.Data;
 import com.opencsv.bean.CsvBindByName;
+import lombok.Getter;
 
 @Data
+@Getter
 public class Player {
 
     @CsvBindByName(column = "id")

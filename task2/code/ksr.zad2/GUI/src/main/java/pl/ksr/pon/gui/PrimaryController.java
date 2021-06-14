@@ -120,7 +120,7 @@ public class PrimaryController implements Initializable {
         singleSumQuantifierComboBox.setOnAction(setQuantifierLabel);
 
         //-----------------------qualifiers and summarizers init-----------------------------------
-        linguisticVariables = Predefined.getPredefinedLinguisticVariables();
+//        linguisticVariables = Predefined.getPredefinedLinguisticVariables();
         qualifiersAndSummarizersNames = new ArrayList<>();
         for (LinguisticVariable variable : linguisticVariables) {
             for (LinguisticLabel label : variable.getLabels())
