@@ -1,9 +1,11 @@
 package pl.ksr.pon.gui;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -12,8 +14,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import pl.ksr.pon.dao.DAO;
+import pl.ksr.pon.dao.Player;
+import pl.ksr.pon.dao.PlayerDAOFactory;
 import pl.ksr.pon.gen.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,6 +91,15 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO("..\\all_seasons.csv");
+        List<Player> players = new ArrayList<>();
+        try {
+            players = dao.getAll();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         //------------------------quantifiers init:---------------------------------
         relativeQuantifiers = Predefined.getRelativeQuantifiers();
         absoluteQuantifiers = Predefined.getAbsoluteQuantifiers();
@@ -120,7 +135,7 @@ public class PrimaryController implements Initializable {
         singleSumQuantifierComboBox.setOnAction(setQuantifierLabel);
 
         //-----------------------qualifiers and summarizers init-----------------------------------
-//        linguisticVariables = Predefined.getPredefinedLinguisticVariables();
+        linguisticVariables = Predefined.getPredefinedLinguisticVariables(players);
         qualifiersAndSummarizersNames = new ArrayList<>();
         for (LinguisticVariable variable : linguisticVariables) {
             for (LinguisticLabel label : variable.getLabels())
@@ -222,6 +237,28 @@ public class PrimaryController implements Initializable {
         };
         multiSumFormComboBox.setOnAction(multiSubjectFormEvent);
 
+        //--------------single Subject Table init---------------------------
+//        String quantifierText = singleSumQuantifierLabel.getText();
+//        String qualifiersText = "";
+//        String summarizersText = "";
+//        VBox singleQualifiersRoot = (VBox) singleSelectedQualifiersPane.getContent();
+//        if (singleQualifiersRoot.getChildren().size() > 0) {
+//            for (Node label : singleQualifiersRoot.getChildren()) {
+//                Label converterLabel = (Label) label;
+//                qualifiersText += converterLabel.getText() + ", ";
+//            }
+//        }
+//
+//        VBox singleSummarizersRoot = (VBox) singleSelectedSummarizesPane.getContent();
+//        for (Node label : singleSummarizersRoot.getChildren()) {
+//            Label convertedLabel = (Label) label;
+//            summarizersText += convertedLabel.getText() + ", ";
+//        }
+//
+//
+//        String summaryText = quantifierText + " zawodników będących " + qualifiersText +
+//                " jest " + summarizersText;
+
     }
 
     private void clearScrollPane(ScrollPane pane, Button btn) {
@@ -268,5 +305,28 @@ public class PrimaryController implements Initializable {
     }
 
 
+    public void generateSingleSubjectSummary(ActionEvent actionEvent) {
+        String quantifierText = singleSumQuantifierLabel.getText();
+        String qualifiersText = "";
+        String summarizersText = "";
+        VBox singleQualifiersRoot = (VBox) singleSelectedQualifiersPane.getContent();
+        if (singleQualifiersRoot.getChildren().size() > 0) {
+            for (Node label : singleQualifiersRoot.getChildren()) {
+                Label converterLabel = (Label) label;
+                qualifiersText += converterLabel.getText() + ", ";
+            }
+        }
+
+        VBox singleSummarizersRoot = (VBox) singleSelectedSummarizesPane.getContent();
+        for (Node label : singleSummarizersRoot.getChildren()) {
+            Label convertedLabel = (Label) label;
+            summarizersText += convertedLabel.getText() + ", ";
+        }
+
+
+        String summaryText = quantifierText + " zawodników będących " + qualifiersText +
+                " jest " + summarizersText;
+        var i = 9;
+    }
 }
 

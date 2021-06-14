@@ -14,8 +14,22 @@ public class LinguisticSummariesGenerator {
     LinguisticQuantifier linguisticQuantifier; // in multi subject, form 4 quantifier is null
     List<Player> datasetElements;
 
-    public String generateSummary() {
-        String summary = null;
+    public LinguisticSummary generateSummary(String text) {
+        LinguisticSummary summary;
+        summary = new LinguisticSummary();
+        summary.setText(text);
+        summary.setT1(countDegreeOfTruth());
+        summary.setT2(countDegreeOfImprecision());
+        summary.setT3(countDegreeOfCovering());
+        summary.setT4(countDegreeOfAppropriateness());
+        summary.setT5(countLengthOfASummary());
+        summary.setT6(countDegreeOfQuantifierImprecision());
+        summary.setT7(countDegreeOfQuantifierRelativeCardinality());
+        summary.setT8(countDegreeOfSummarizerRelativeCardinality());
+        summary.setT9(countDegreeOfQualifierImprecision());
+        summary.setT10(countDegreeOfQualifierRelativeCardinality());
+        summary.setT11(countLengthOfAQualifier());
+        summary.setAverage(countDegreeOfImprecision());
         return summary;
     }
 

@@ -26,10 +26,29 @@
             <ComboBox fx:id="singleSumQualifiersComboBox" layoutX="505.0" layoutY="30.0" prefWidth="150.0" />
             <ComboBox fx:id="singleSumFormComboBox" layoutX="25.0" layoutY="62.0" prefWidth="150.0" />
             <ComboBox fx:id="singleSumSummarizersComboBox" layoutX="759.0" layoutY="30.0" prefWidth="150.0" />
-            <Button fx:id="singleGenerate" layoutX="924.0" layoutY="52.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Generuj" />
+            <Button fx:id="singleGenerate" layoutX="924.0" layoutY="52.0" mnemonicParsing="false" onAction="#generateSingleSubjectSummary" prefHeight="46.0" prefWidth="62.0" text="Generuj" />
             <ScrollPane layoutX="15.0" layoutY="150.0" prefHeight="374.0" prefWidth="980.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="suummariesTable" prefHeight="374.0" prefWidth="980.0">
+                          <columns>
+                            <TableColumn prefWidth="370.0" text="tekst" />
+                            <TableColumn minWidth="0.0" prefWidth="51.40002445014063" text="T1" />
+                              <TableColumn prefWidth="50.0" text="T2" />
+                              <TableColumn prefWidth="50.0" text="T3" />
+                              <TableColumn prefWidth="50.0" text="T4" />
+                              <TableColumn prefWidth="50.0" text="T5" />
+                              <TableColumn prefWidth="50.0" text="T6" />
+                              <TableColumn prefWidth="50.0" text="T7" />
+                              <TableColumn prefWidth="50.0" text="T8" />
+                              <TableColumn prefWidth="50.0" text="T9" />
+                              <TableColumn prefWidth="50.0" text="T10" />
+                              <TableColumn prefWidth="50.0" text="T11" />
+                              <TableColumn prefWidth="50.0" text="średnia" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </ScrollPane>
             <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="870.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#goToMultiSubject" prefHeight="46.0" prefWidth="108.0" text="Podsumowania Wielopodmiotowe" textOverrun="CLIP" wrapText="true" />
