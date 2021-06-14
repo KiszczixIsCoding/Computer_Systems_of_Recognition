@@ -1,10 +1,13 @@
 package pl.ksr.pon.gen;
 
+import lombok.AllArgsConstructor;
 import pl.ksr.pon.dao.Player;
+import pl.ksr.pon.fuz.FuzzySet;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 public class LinguisticSummariesGenerator {
     List<LinguisticLabel> qualifiers;
     List<LinguisticLabel> summarizers;
@@ -16,14 +19,54 @@ public class LinguisticSummariesGenerator {
         return summary;
     }
 
-    private Double countDegreeOfTruth() {
+    public Double countDegreeOfTruth() {
         // summarizers product
-//        List<Double> summarizersProduct = new ArrayList<>();
-//        LinguisticLabel tmpSummarizer = summarizers.get(0);
-//        for (int i = 1; i < summarizers.size(); i++) {
-//            summarizersProduct.add(Math.min(tmpSummarizer.getFuzzySet().getMembershipFunction().));
-//        }
-        return null;
+        FuzzySet firstSummarizer = summarizers.get(0).getFuzzySet();
+        List<FuzzySet> otherSummarizers = new ArrayList<>();
+        for (LinguisticLabel summarizer : summarizers) {
+            otherSummarizers.add(summarizer.getFuzzySet());
+        }
+        List<Double> summarizersProduct = firstSummarizer.getProductValues(datasetElements, otherSummarizers);
+
+        List<Double> qualifiersProduct = new ArrayList<>();
+
+        List<Double> finalProduct = new ArrayList<>();
+
+        if (qualifiers.size() != 0) {
+            FuzzySet firstQualifier = qualifiers.get(0).getFuzzySet();
+            List<FuzzySet> otherQualifiers = new ArrayList<>();
+            for (LinguisticLabel qualifier : qualifiers) {
+                otherQualifiers.add(qualifier.getFuzzySet());
+            }
+            qualifiersProduct = firstQualifier.getProductValues(datasetElements, otherQualifiers);
+            for (int i = 0; i < summarizersProduct.size(); i++) {
+                finalProduct.add(Math.min(summarizersProduct.get(i), qualifiersProduct.get(i)));
+            }
+        }
+        if (linguisticQuantifier instanceof AbsoluteQuantifier) {
+            if (qualifiers.size() != 0) {
+                return linguisticQuantifier.
+                        getLabel().
+                        getFuzzySet().
+                        getMembershipFunction().
+                        //cardinality
+                        countMembership(finalProduct.stream().mapToDouble(Double::doubleValue).sum());
+            }
+        }
+        if (qualifiers.size() == 0) {
+            return linguisticQuantifier.
+                    getLabel().
+                    getFuzzySet().
+                    getMembershipFunction().
+                    countMembership(summarizersProduct.stream().mapToDouble(Double::doubleValue).sum()) /
+                    datasetElements.size();
+        }
+        return linguisticQuantifier
+                .getLabel()
+                .getFuzzySet()
+                .getMembershipFunction().countMembership(finalProduct.stream().mapToDouble(Double::doubleValue).sum()
+                        / qualifiersProduct.stream().mapToDouble(Double::doubleValue).sum());
+
     }
 
     private Double countDegreeOfImprecision() {
@@ -45,8 +88,8 @@ public class LinguisticSummariesGenerator {
         for (LinguisticLabel summarizer : summarizers) {
             int sum = 0;
             for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
-            sum += summarizer.getFuzzySet().getMembershipFunction().countMembership(player.getAge());
-            parameters_r.add((double)sum / datasetElements.size());
+                sum += summarizer.getFuzzySet().getMembershipFunction().countMembership(player.getAge());
+            parameters_r.add((double) sum / datasetElements.size());
         }
 
         double product = 1;

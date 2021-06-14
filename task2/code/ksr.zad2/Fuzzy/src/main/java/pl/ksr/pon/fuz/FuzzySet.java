@@ -53,6 +53,7 @@ public class FuzzySet {
         } else {
             elements = new ArrayList<>();
         }
+        this.type = type;
     }
 
     public Range<Double> getAlphaCut(double x) {
@@ -73,11 +74,99 @@ public class FuzzySet {
 
 
     public double getDegreeOfFuzziness(List<Player> datasetElements) {
-        return (double)getSupport(datasetElements).size() / datasetElements.size();
+        return (double) getSupport(datasetElements).size() / datasetElements.size();
     }
 
     public List<Double> getProductValues(List<Player> datasetElements, List<FuzzySet> otherFuzzySets) {
-        return null;
+
+        List<Double> product = new ArrayList<>();
+        for (Player player : datasetElements) {
+            if (type.equals("age")) {
+                product.add(membershipFunction.countMembership(player.getAge()));
+            } else if (type.equals("height")) {
+                product.add(membershipFunction.countMembership(player.getHeight()));
+
+            } else if (type.equals("weight")) {
+                product.add(membershipFunction.countMembership(player.getWeight()));
+
+            } else if (type.equals("draftNumber")) {
+                product.add(membershipFunction.countMembership(convertDraftNumberToDouble(player.getDraftNumber())));
+
+            } else if (type.equals("gamesPlayed")) {
+                product.add(membershipFunction.countMembership(player.getGamesPlayed()));
+
+            } else if (type.equals("averagePoints")) {
+                product.add(membershipFunction.countMembership(player.getAveragePoints()));
+
+            } else if (type.equals("averageRebounds")) {
+                product.add(membershipFunction.countMembership(player.getAverageRebounds()));
+
+            } else if (type.equals("averageAssists")) {
+                product.add(membershipFunction.countMembership(player.getAverageAssists()));
+
+            } else if (type.equals("teamImpact")) {
+                product.add(membershipFunction.countMembership(player.getTeamImpact()));
+
+            } else if (type.equals("throwAccuracy")) {
+                product.add(membershipFunction.countMembership(player.getThrowAccuracy()));
+
+            } else if (type.equals("assistsPercent")) {
+                product.add(membershipFunction.countMembership(Double.parseDouble(player.getAssistsPercent())));
+            }
+        }
+
+        if (otherFuzzySets.size() == 1) {
+            return product;
+        }
+
+        for (FuzzySet fuzzySet : otherFuzzySets) {
+            //reject first fuzzySet
+            for (int i = 1; i < product.size(); i++) {
+                if (fuzzySet.getType().equals("age")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAge())));
+                } else if (fuzzySet.getType().equals("height")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getHeight())));
+                } else if (fuzzySet.getType().equals("weight")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getWeight())));
+                } else if (fuzzySet.getType().equals("draftNumber")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(
+                                    convertDraftNumberToDouble(datasetElements.get(i).getDraftNumber()))));
+                } else if (fuzzySet.getType().equals("gamesPlayed")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getGamesPlayed())));
+                } else if (fuzzySet.getType().equals("averagePoints")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAveragePoints())));
+                } else if (fuzzySet.getType().equals("averageRebounds")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAverageRebounds())));
+                } else if (fuzzySet.getType().equals("averageAssists")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAverageAssists())));
+                } else if (fuzzySet.getType().equals("teamImpact")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getTeamImpact())));
+                } else if (fuzzySet.getType().equals("throwAccuracy")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getThrowAccuracy())));
+                } else if (fuzzySet.getType().equals("assistsPercent")) {
+                    product.set(i, Math.min(product.get(i),
+                            fuzzySet.membershipFunction.countMembership(Double.parseDouble(
+                                    datasetElements.get(i).getAssistsPercent()))));
+                }
+            }
+        }
+        return product;
+    }
+
+    private Double convertDraftNumberToDouble(String draftNumber) {
+        if (draftNumber.equalsIgnoreCase("undrafted")) {
+            return 60d;
+        } else return Double.parseDouble(draftNumber);
     }
 
     public double getCardinality() {
