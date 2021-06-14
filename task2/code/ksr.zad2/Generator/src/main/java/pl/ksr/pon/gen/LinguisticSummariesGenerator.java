@@ -79,7 +79,51 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfCovering() {
-        return null;
+        FuzzySet firstSummarizer = summarizers.get(0).getFuzzySet();
+        List<FuzzySet> otherSummarizers = new ArrayList<>();
+        for (LinguisticLabel summarizer : summarizers) {
+            otherSummarizers.add(summarizer.getFuzzySet());
+        }
+        List<Double> summarizersProduct = firstSummarizer.getProductValues(datasetElements, otherSummarizers);
+        int sumCounter = 0;
+        for (Double sumProduct : summarizersProduct) {
+            if (sumProduct > 0) {
+                sumCounter++;
+            }
+        }
+
+        List<Double> qualifiersProduct = new ArrayList<>();
+        List<Double> finalProduct = new ArrayList<>();
+
+        if (qualifiers.size() != 0) {
+            FuzzySet firstQualifier = qualifiers.get(0).getFuzzySet();
+            List<FuzzySet> otherQualifiers = new ArrayList<>();
+            for (LinguisticLabel qualifier : qualifiers) {
+                otherQualifiers.add(qualifier.getFuzzySet());
+            }
+            qualifiersProduct = firstQualifier.getProductValues(datasetElements, otherQualifiers);
+            for (int i = 0; i < summarizersProduct.size(); i++) {
+                finalProduct.add(Math.min(summarizersProduct.get(i), qualifiersProduct.get(i)));
+            }
+            int counter = 0;
+            for (Double finProduct : finalProduct) {
+                if (finProduct > 0) {
+                    counter ++;
+                }
+            }
+            int qualifiersCounter = 0;
+            for (Double qualProduct : qualifiersProduct) {
+                if (qualProduct > 0) {
+                    qualifiersCounter++;
+                }
+            }
+            //nosniki
+            return counter * 1.0 / qualifiersCounter;
+            //qualifiers == 0
+        } else {
+            return sumCounter *1.0 / datasetElements.size();
+        }
+
     }
 
     private Double countDegreeOfAppropriateness() {
