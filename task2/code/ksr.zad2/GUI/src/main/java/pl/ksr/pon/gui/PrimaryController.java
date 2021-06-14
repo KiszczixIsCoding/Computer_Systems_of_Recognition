@@ -6,10 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
@@ -79,6 +77,34 @@ public class PrimaryController implements Initializable {
     public Button multiSummarizersClearBtn;
     @FXML
     public Button multiQualifiers2ClearBtn;
+    @FXML
+    public TableView<LinguisticSummary> summariesTable;
+    @FXML
+    public TableColumn<LinguisticSummary, String> textCol;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t1Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t3Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t4Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t2Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t5Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t6Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t7Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t8Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t9Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t10Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> t11Col;
+    @FXML
+    public TableColumn<LinguisticSummary, Double> averageCol;
 
     List<LinguisticVariable> linguisticVariables;
     List<RelativeQuantifier> relativeQuantifiers;
@@ -87,12 +113,15 @@ public class PrimaryController implements Initializable {
     List<String> relativeQuantifiersNames;
     List<String> absoluteQuantifiersNames;
     List<String> allQuantifiersNames;
+    List<Player> players = new ArrayList<>();
+    ObservableList<LinguisticSummary> summariesToTable = FXCollections.observableArrayList();
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO("..\\all_seasons.csv");
-        List<Player> players = new ArrayList<>();
         try {
             players = dao.getAll();
         } catch (IOException e) {
@@ -238,26 +267,20 @@ public class PrimaryController implements Initializable {
         multiSumFormComboBox.setOnAction(multiSubjectFormEvent);
 
         //--------------single Subject Table init---------------------------
-//        String quantifierText = singleSumQuantifierLabel.getText();
-//        String qualifiersText = "";
-//        String summarizersText = "";
-//        VBox singleQualifiersRoot = (VBox) singleSelectedQualifiersPane.getContent();
-//        if (singleQualifiersRoot.getChildren().size() > 0) {
-//            for (Node label : singleQualifiersRoot.getChildren()) {
-//                Label converterLabel = (Label) label;
-//                qualifiersText += converterLabel.getText() + ", ";
-//            }
-//        }
-//
-//        VBox singleSummarizersRoot = (VBox) singleSelectedSummarizesPane.getContent();
-//        for (Node label : singleSummarizersRoot.getChildren()) {
-//            Label convertedLabel = (Label) label;
-//            summarizersText += convertedLabel.getText() + ", ";
-//        }
-//
-//
-//        String summaryText = quantifierText + " zawodników będących " + qualifiersText +
-//                " jest " + summarizersText;
+        textCol.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, String>("text"));
+        t1Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t1"));
+        t2Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t2"));
+        t3Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t3"));
+        t4Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t4"));
+        t5Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t5"));
+        t6Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t6"));
+        t7Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t7"));
+        t8Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t8"));
+        t9Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t9"));
+        t10Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t10"));
+        t11Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t11"));
+        averageCol.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("average"));
+        summariesTable.setItems(summariesToTable);
 
     }
 
@@ -305,15 +328,35 @@ public class PrimaryController implements Initializable {
     }
 
 
-    public void generateSingleSubjectSummary(ActionEvent actionEvent) {
+    public LinguisticSummary generateSingleSubjectSummary(ActionEvent actionEvent) {
         String quantifierText = singleSumQuantifierLabel.getText();
         String qualifiersText = "";
         String summarizersText = "";
+        LinguisticQuantifier quantifier = null;
+        List<LinguisticLabel> qualifiers = new ArrayList<>();
+        List<LinguisticLabel> summarizers = new ArrayList<>();
+
+        List<LinguisticQuantifier> allQuantifiers = new ArrayList<>();
+        allQuantifiers.addAll(relativeQuantifiers);
+        allQuantifiers.addAll(absoluteQuantifiers);
+        for (LinguisticQuantifier linguisticQuantifier : allQuantifiers) {
+            if (linguisticQuantifier.getLabel().getName().equals(quantifierText)) {
+                quantifier = linguisticQuantifier;
+            }
+        }
+
         VBox singleQualifiersRoot = (VBox) singleSelectedQualifiersPane.getContent();
         if (singleQualifiersRoot.getChildren().size() > 0) {
             for (Node label : singleQualifiersRoot.getChildren()) {
-                Label converterLabel = (Label) label;
-                qualifiersText += converterLabel.getText() + ", ";
+                Label convertedLabel = (Label) label;
+                qualifiersText += convertedLabel.getText() + ", ";
+                for (LinguisticVariable variable : linguisticVariables) {
+                    for (LinguisticLabel linguisticLabel : variable.getLabels()) {
+                        if (linguisticLabel.getName().equals(convertedLabel.getText()));
+                        qualifiers.add(linguisticLabel);
+                        break;
+                    }
+                }
             }
         }
 
@@ -321,12 +364,26 @@ public class PrimaryController implements Initializable {
         for (Node label : singleSummarizersRoot.getChildren()) {
             Label convertedLabel = (Label) label;
             summarizersText += convertedLabel.getText() + ", ";
+            for (LinguisticVariable variable : linguisticVariables) {
+                for (LinguisticLabel linguisticLabel : variable.getLabels()) {
+                    if (linguisticLabel.getName().equals(convertedLabel.getText())) {
+                        summarizers.add(linguisticLabel);
+                        break;
+                    }
+                }
+            }
         }
 
 
         String summaryText = quantifierText + " zawodników będących " + qualifiersText +
                 " jest " + summarizersText;
-        var i = 9;
+
+
+        LinguisticSummariesGenerator generator = new LinguisticSummariesGenerator(qualifiers, summarizers, quantifier, players);
+        LinguisticSummary finalSummary = generator.generateSummary(summaryText);
+        summariesToTable.add(finalSummary);
+        return finalSummary;
+
     }
 }
 
