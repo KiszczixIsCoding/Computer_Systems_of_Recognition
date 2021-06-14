@@ -2,6 +2,7 @@ package pl.ksr.pon.gui;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleExpression;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.value.ChangeListener;
@@ -28,6 +29,7 @@ import pl.ksr.pon.gen.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class PrimaryController implements Initializable {
@@ -143,8 +145,7 @@ public class PrimaryController implements Initializable {
             weights.add(new SimpleDoubleProperty(0.09));
         }
         weights.add(new SimpleDoubleProperty(0.1));
-        DoubleProperty property = new SimpleDoubleProperty();
-
+        List<Double> weights_double = weights.stream().map(DoubleExpression::getValue).collect(Collectors.toList());
 
         Bindings.bindBidirectional(textField1.textProperty(), weights.get(0), converter);
         Bindings.bindBidirectional(textField2.textProperty(), weights.get(1), converter);
