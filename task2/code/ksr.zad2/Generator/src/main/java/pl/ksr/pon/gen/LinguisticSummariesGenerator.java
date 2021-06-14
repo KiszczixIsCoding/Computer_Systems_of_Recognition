@@ -54,23 +54,46 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfQuantifierImprecision() {
-        return null;
+//        if (linguisticQuantifier instanceof  AbsoluteQuantifier) {
+//            return 1 - linguisticQuantifier.getLabel().getFuzzySet().getSupport(datasetElements).size();
+//        } else {
+//            return 1 -
+//        }
     }
 
     private Double countDegreeOfQuantifierCardinality() {
         return null;
     }
 
-    private Double countDegreeOfQualifierImprecision() {
-        return null;
+    private Double countDegreeOfSummarizerRelativeCardinality() {
+        double product = 1;
+        for (LinguisticLabel summarizer : summarizers) {
+            product = product * summarizer.getFuzzySet().getRelativeCardinality(datasetElements);
+        }
+        double product_root = Math.pow(product, 1d / summarizers.size());
+        return 1 - product_root;
     }
 
-    private Double countDegreeOfQualifierCardinality() {
-        return null;
+    private Double countDegreeOfQualifierImprecision() {
+        double product = 1;
+        for (LinguisticLabel qualifier : qualifiers) {
+            product = product * qualifier.getFuzzySet().getDegreeOfFuzziness(datasetElements)
+        }
+        double product_root = Math.pow(product, qualifiers.size());
+        return 1 - product_root;
+    }
+
+    private Double countDegreeOfQualifierRelativeCardinality() {
+        double product = 1;
+        for (LinguisticLabel qualifier : qualifiers) {
+            product = product * qualifier.getFuzzySet().getRelativeCardinality(datasetElements);
+        }
+        double product_root = Math.pow(product, 1d / qualifiers.size());
+        return 1 - product_root;
     }
 
     private Double countLengthOfAQualifier() {
-        return null;
+        return 2 * Math.pow(0.5, qualifiers.size());
     }
 
 }
