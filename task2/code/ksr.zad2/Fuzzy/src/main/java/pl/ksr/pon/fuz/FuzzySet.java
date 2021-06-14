@@ -45,12 +45,7 @@ public class FuzzySet {
     }
 
     public double getRelativeCardinality(List<Player> datasetElements) {
-        double sum = 0;
-        for (Player player : datasetElements) {
-            sum += membershipFunction.countMembership(player.getAge());
-        }
-        return sum / datasetElements.size();
+        return getCardinality(datasetElements) / datasetElements.size();
     }
-
 
 }
