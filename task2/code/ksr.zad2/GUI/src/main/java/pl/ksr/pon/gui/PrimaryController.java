@@ -1,5 +1,11 @@
 package pl.ksr.pon.gui;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 import pl.ksr.pon.dao.DAO;
 import pl.ksr.pon.dao.Player;
 import pl.ksr.pon.dao.PlayerDAOFactory;
@@ -19,10 +27,7 @@ import pl.ksr.pon.gen.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class PrimaryController implements Initializable {
@@ -105,6 +110,10 @@ public class PrimaryController implements Initializable {
     public TableColumn<LinguisticSummary, Double> t11Col;
     @FXML
     public TableColumn<LinguisticSummary, Double> averageCol;
+    @FXML
+    public TextField textField1, textField2, textField3, textField4,
+                     textField5, textField6, textField7, textField8,
+                     textField9, textField10, textField11;
 
     List<LinguisticVariable> linguisticVariables;
     List<RelativeQuantifier> relativeQuantifiers;
@@ -115,19 +124,39 @@ public class PrimaryController implements Initializable {
     List<String> allQuantifiersNames;
     List<Player> players = new ArrayList<>();
     ObservableList<LinguisticSummary> summariesToTable = FXCollections.observableArrayList();
-
+    List<TextField> textFields = new ArrayList<>();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO("..\\all_seasons.csv");
+        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO(".\\all_seasons.csv");
         try {
             players = dao.getAll();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        StringConverter<Number> converter = new NumberStringConverter();
+        List<DoubleProperty> weights = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            weights.add(new SimpleDoubleProperty(0.09));
+        }
+        weights.add(new SimpleDoubleProperty(0.1));
+        DoubleProperty property = new SimpleDoubleProperty();
+
+
+        Bindings.bindBidirectional(textField1.textProperty(), weights.get(0), converter);
+        Bindings.bindBidirectional(textField2.textProperty(), weights.get(1), converter);
+        Bindings.bindBidirectional(textField3.textProperty(), weights.get(2), converter);
+        Bindings.bindBidirectional(textField4.textProperty(), weights.get(3), converter);
+        Bindings.bindBidirectional(textField5.textProperty(), weights.get(4), converter);
+        Bindings.bindBidirectional(textField6.textProperty(), weights.get(5), converter);
+        Bindings.bindBidirectional(textField7.textProperty(), weights.get(6), converter);
+        Bindings.bindBidirectional(textField8.textProperty(), weights.get(7), converter);
+        Bindings.bindBidirectional(textField9.textProperty(), weights.get(8), converter);
+        Bindings.bindBidirectional(textField10.textProperty(), weights.get(9), converter);
+        Bindings.bindBidirectional(textField11.textProperty(), weights.get(10), converter);
 
         //------------------------quantifiers init:---------------------------------
         relativeQuantifiers = Predefined.getRelativeQuantifiers();
