@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class FuzzySet {
-    MembershipFunction membershipFunction;;
+    MembershipFunction membershipFunction;
+    String type;
 
     public FuzzySet(MembershipFunction membershipFunction) {
         this.membershipFunction = membershipFunction;
@@ -34,6 +36,33 @@ public class FuzzySet {
 
     public double getDegreeOfFuzziness(List<Player> datasetElements) {
         return (double)getSupport(datasetElements).size() / datasetElements.size();
+    }
+
+    public List<Double> getProductValues(List<Player> datasetElements, List<FuzzySet> otherFuzzySets) {
+        if (type.equals("age")) {
+
+        } else if (type.equals("height")) {
+
+        } else if (type.equals("weight")) {
+
+        } else if (type.equals("draftNumber")) {
+
+        } else if (type.equals("gamesPlayed")) {
+
+        } else if (type.equals("averagePoints")) {
+
+        } else if (type.equals("averageRebounds")) {
+
+        } else if (type.equals("averageAssists")) {
+
+        } else if (type.equals("teamImpact")) {
+
+        } else if (type.equals("throwAccuracy")) {
+
+        } else if (type.equals("assistsPercent")) {
+
+        }
+
     }
 
     public double getCardinality(List<Player> datasetElements) {

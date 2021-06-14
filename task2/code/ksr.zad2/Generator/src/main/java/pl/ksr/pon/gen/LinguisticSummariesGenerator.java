@@ -17,7 +17,13 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfTruth() {
-        return null;
+        // summarizers product
+//        List<Double> summarizersProduct = new ArrayList<>();
+//        LinguisticLabel tmpSummarizer = summarizers.get(0);
+//        for (int i = 1; i < summarizers.size(); i++) {
+//            summarizersProduct.add(Math.min(tmpSummarizer.getFuzzySet().getMembershipFunction().));
+//        }
+
     }
 
     private Double countDegreeOfImprecision() {
