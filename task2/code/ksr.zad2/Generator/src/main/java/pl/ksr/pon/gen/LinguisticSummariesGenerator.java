@@ -38,7 +38,8 @@ public class LinguisticSummariesGenerator {
 
         for (LinguisticLabel summarizer : summarizers) {
             int sum = 0;
-            sum += summarizer.getFuzzySet().getSupport(datasetElements).size();
+            for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
+            sum += summarizer.getFuzzySet().getMembershipFunction().countMembership(player.getAge());
             parameters_r.add((double)sum / datasetElements.size());
         }
 
@@ -54,11 +55,25 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfQuantifierImprecision() {
+//        if (linguisticQuantifier instanceof  AbsoluteQuantifier) {
+//            return 1 - linguisticQuantifier.getLabel().getFuzzySet().getSupport(datasetElements).size();
+//        } else {
+//            return 1 -
+//        }
         return null;
     }
 
-    private Double countDegreeOfQuantifierCardinality() {
-        return null;
+    private Double countDegreeOfQuantifierRelativeCardinality() {
+        return 1 - linguisticQuantifier.getLabel().getFuzzySet().getRelativeCardinality(datasetElements);
+    }
+
+    private Double countDegreeOfSummarizerRelativeCardinality() {
+        double product = 1;
+        for (LinguisticLabel summarizer : summarizers) {
+            product = product * summarizer.getFuzzySet().getRelativeCardinality(datasetElements);
+        }
+        double product_root = Math.pow(product, 1d / summarizers.size());
+        return 1 - product_root;
     }
 
     private Double countDegreeOfQualifierImprecision() {
@@ -74,8 +89,13 @@ public class LinguisticSummariesGenerator {
         }
     }
 
-    private Double countDegreeOfQualifierCardinality() {
-        return null;
+    private Double countDegreeOfQualifierRelativeCardinality() {
+        double product = 1;
+        for (LinguisticLabel qualifier : qualifiers) {
+            product = product * qualifier.getFuzzySet().getRelativeCardinality(datasetElements);
+        }
+        double product_root = Math.pow(product, 1d / qualifiers.size());
+        return 1 - product_root;
     }
 
     private Double countLengthOfAQualifier() {

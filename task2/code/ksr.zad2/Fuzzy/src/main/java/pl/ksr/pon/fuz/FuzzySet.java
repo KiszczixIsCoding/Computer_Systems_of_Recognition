@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 public class FuzzySet {
     MembershipFunction membershipFunction;;
 
@@ -26,11 +25,27 @@ public class FuzzySet {
     public List<Player> getSupport(List<Player> datasetElements) {
         List<Player> supportList = new ArrayList<>();
         for (Player player : datasetElements) {
-            if (player.getAge())
+            if (membershipFunction.countMembership(player.getAge()) > 0) {
+                supportList.add(player);
+            }
         }
     }
+
 
     public double getDegreeOfFuzziness(List<Player> datasetElements) {
         return (double)getSupport(datasetElements).size() / datasetElements.size();
     }
+
+    public double getCardinality(List<Player> datasetElements) {
+        double sum = 0;
+        for (Player player : datasetElements) {
+            sum += membershipFunction.countMembership(player.getAge());
+        }
+        return sum;
+    }
+
+    public double getRelativeCardinality(List<Player> datasetElements) {
+        return getCardinality(datasetElements) / datasetElements.size();
+    }
+
 }
