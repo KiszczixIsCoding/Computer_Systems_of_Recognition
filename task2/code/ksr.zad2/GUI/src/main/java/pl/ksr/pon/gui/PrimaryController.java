@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 import pl.ksr.pon.dao.DAO;
@@ -84,6 +86,8 @@ public class PrimaryController implements Initializable {
     public Button multiSummarizersClearBtn;
     @FXML
     public Button multiQualifiers2ClearBtn;
+    @FXML
+    public Button editQuantifier, editQualifier, editSummarizer;
     @FXML
     public TableView<LinguisticSummary> summariesTable;
     @FXML
@@ -297,30 +301,36 @@ public class PrimaryController implements Initializable {
         multiSumFormComboBox.setOnAction(multiSubjectFormEvent);
 
         //--------------single Subject Table init---------------------------
-        textCol.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, String>("text"));
-        t1Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t1"));
-        t2Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t2"));
-        t3Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t3"));
-        t4Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t4"));
-        t5Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t5"));
-        t6Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t6"));
-        t7Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t7"));
-        t8Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t8"));
-        t9Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t9"));
-        t10Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t10"));
-        t11Col.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("t11"));
-        averageCol.setCellValueFactory(new PropertyValueFactory<LinguisticSummary, Double>("average"));
+        textCol.setCellValueFactory(new PropertyValueFactory<>("text"));
+        t1Col.setCellValueFactory(new PropertyValueFactory<>("t1"));
+        t2Col.setCellValueFactory(new PropertyValueFactory<>("t2"));
+        t3Col.setCellValueFactory(new PropertyValueFactory<>("t3"));
+        t4Col.setCellValueFactory(new PropertyValueFactory<>("t4"));
+        t5Col.setCellValueFactory(new PropertyValueFactory<>("t5"));
+        t6Col.setCellValueFactory(new PropertyValueFactory<>("t6"));
+        t7Col.setCellValueFactory(new PropertyValueFactory<>("t7"));
+        t8Col.setCellValueFactory(new PropertyValueFactory<>("t8"));
+        t9Col.setCellValueFactory(new PropertyValueFactory<>("t9"));
+        t10Col.setCellValueFactory(new PropertyValueFactory<>("t10"));
+        t11Col.setCellValueFactory(new PropertyValueFactory<>("t11"));
+        averageCol.setCellValueFactory(new PropertyValueFactory<>("average"));
         summariesTable.setItems(summariesToTable);
+
+        //-------- Open window for summarizers edition -----------------------------------
+        EventHandler<MouseEvent> openWindowEvt = e -> {
+            try {
+                openNewWindow("edit_summarizers");
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
+        };
+
+        editSummarizer.setOnMouseClicked(openWindowEvt);
 
     }
 
     private void clearScrollPane(ScrollPane pane, Button btn) {
-        EventHandler<MouseEvent> clearBtnEvent = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                removeLabelsFromScroll(pane);
-            }
-        };
+        EventHandler<MouseEvent> clearBtnEvent = event -> removeLabelsFromScroll(pane);
         btn.setOnMouseClicked(clearBtnEvent);
     }
 
@@ -412,8 +422,13 @@ public class PrimaryController implements Initializable {
         LinguisticSummariesGenerator generator = new LinguisticSummariesGenerator(qualifiers, summarizers, quantifier, players);
         LinguisticSummary finalSummary = generator.generateSummary(summaryText);
         summariesToTable.add(finalSummary);
+        System.out.println(finalSummary);
         return finalSummary;
 
+    }
+
+    public void openNewWindow(String filename) throws IOException {
+        App.openNewStage(filename);
     }
 }
 

@@ -33,6 +33,13 @@ public class App extends Application {
         stage.show();
     }
 
+    public static void openNewStage(String fileFxml) throws IOException {
+        Scene newScene = new Scene(loadFXML(fileFxml), 500, 500);
+        Stage newStage = new Stage();
+        newStage.setScene(newScene);
+        newStage.show();
+    }
+
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }

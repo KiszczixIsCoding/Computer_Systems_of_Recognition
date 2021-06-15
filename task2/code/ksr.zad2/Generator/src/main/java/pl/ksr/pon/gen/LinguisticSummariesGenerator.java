@@ -206,11 +206,7 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countLengthOfAQualifier() {
-        if (qualifiers.size() == 0) {
-            return null;
-        } else {
-            return 2.0 * Math.pow(0.5, qualifiers.size());
-        }
+        return 2.0 * Math.pow(0.5, qualifiers.size());
     }
 
 
