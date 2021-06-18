@@ -61,7 +61,7 @@ public class Predefined {
 
         //4. kolejność wyboru w drafcie
         LinguisticLabel instantlyLabel = new LinguisticLabel("błyskawicznie wybrani w drafcie",
-                new FuzzySet(new RightTrapezoidalMembershipFunction(0.0, 6.0, 14.0), players,"draftNumber"));
+                new FuzzySet(new LeftTrapezoidalMembershipFunction(0.0, 6.0, 14.0), players,"draftNumber"));
         LinguisticLabel quickLabel = new LinguisticLabel("szybko wybrani w drafcie",
                 new FuzzySet(new BothSidesTrapezoidalMembershipFunction(10.0, 14.0, 22.0, 30.0), players,"draftNumber"));
         LinguisticLabel middlePickLabel = new LinguisticLabel("normalnie wybrani w drafcie",
@@ -71,7 +71,7 @@ public class Predefined {
         // tu dodałem jako ostateczną wartość 200, bo widziałem że w bazie danych jakieś pojedyncze wartości
         // przekaraczały 60 (w sprawku mamy 60)
         LinguisticLabel inTheEndLabel = new LinguisticLabel("wybrani na końcu w drafcie",
-                new FuzzySet(new LeftTrapezoidalMembershipFunction(51.0, 56.0, 200.0), players,"draftNumber"));
+                new FuzzySet(new RightTrapezoidalMembershipFunction(51.0, 56.0, 200.0), players,"draftNumber"));
         List<LinguisticLabel> draftPickLabels = Arrays.asList(instantlyLabel, quickLabel, middlePickLabel, lateLabel, inTheEndLabel);
         //Range teoretycznie powinny być w tym przypadku Integer ale jeśli będziemy szli po zawodnikach to nie powinno to przeszkadzać
         LinguisticVariable draftPickLinguisticVariable = new LinguisticVariable("kolejność wyboru w drafcie",
