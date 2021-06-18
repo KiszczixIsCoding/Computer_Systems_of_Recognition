@@ -136,7 +136,7 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO(".\\all_seasons.csv");
+        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO("..\\all_seasons.csv");
         try {
             players = dao.getAll();
         } catch (IOException e) {
@@ -392,9 +392,10 @@ public class PrimaryController implements Initializable {
                 qualifiersText += convertedLabel.getText() + ", ";
                 for (LinguisticVariable variable : linguisticVariables) {
                     for (LinguisticLabel linguisticLabel : variable.getLabels()) {
-                        if (linguisticLabel.getName().equals(convertedLabel.getText()));
-                        qualifiers.add(linguisticLabel);
-                        break;
+                        if (linguisticLabel.getName().equals(convertedLabel.getText())) {
+                            qualifiers.add(linguisticLabel);
+                            break;
+                        }
                     }
                 }
             }
