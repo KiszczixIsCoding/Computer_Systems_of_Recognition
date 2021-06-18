@@ -110,7 +110,7 @@ public class FuzzySet {
             } else if (type.equals("throwAccuracy")) {
                 product.add(membershipFunction.countMembership(player.getThrowAccuracy()));
 
-            } else if (type.equals("assistsPercent")) {
+            } else if (type.equals("percentAssists")) {
                 product.add(membershipFunction.countMembership(Double.parseDouble(player.getAssistsPercent())));
             }
         }
@@ -119,44 +119,44 @@ public class FuzzySet {
             return product;
         }
 
-        for (FuzzySet fuzzySet : otherFuzzySets) {
-            //reject first fuzzySet
-            for (int i = 1; i < product.size(); i++) {
-                if (fuzzySet.getType().equals("age")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAge())));
-                } else if (fuzzySet.getType().equals("height")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getHeight())));
-                } else if (fuzzySet.getType().equals("weight")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getWeight())));
-                } else if (fuzzySet.getType().equals("draftNumber")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(
-                                    convertDraftNumberToDouble(datasetElements.get(i).getDraftNumber()))));
-                } else if (fuzzySet.getType().equals("gamesPlayed")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getGamesPlayed())));
-                } else if (fuzzySet.getType().equals("averagePoints")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAveragePoints())));
-                } else if (fuzzySet.getType().equals("averageRebounds")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAverageRebounds())));
-                } else if (fuzzySet.getType().equals("averageAssists")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getAverageAssists())));
-                } else if (fuzzySet.getType().equals("teamImpact")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getTeamImpact())));
-                } else if (fuzzySet.getType().equals("throwAccuracy")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(datasetElements.get(i).getThrowAccuracy())));
-                } else if (fuzzySet.getType().equals("assistsPercent")) {
-                    product.set(i, Math.min(product.get(i),
-                            fuzzySet.membershipFunction.countMembership(Double.parseDouble(
-                                    datasetElements.get(i).getAssistsPercent()))));
+        //reject first fuzzySet
+        for (int i = 1; i < otherFuzzySets.size(); i++) {
+            for (int j = 0; j < product.size(); j++) {
+                if (otherFuzzySets.get(i).getType().equals("age")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getAge())));
+                } else if (otherFuzzySets.get(i).getType().equals("height")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getHeight())));
+                } else if (otherFuzzySets.get(i).getType().equals("weight")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getWeight())));
+                } else if (otherFuzzySets.get(i).getType().equals("draftNumber")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(
+                                    convertDraftNumberToDouble(datasetElements.get(j).getDraftNumber()))));
+                } else if (otherFuzzySets.get(i).getType().equals("gamesPlayed")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getGamesPlayed())));
+                } else if (otherFuzzySets.get(i).getType().equals("averagePoints")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getAveragePoints())));
+                } else if (otherFuzzySets.get(i).getType().equals("averageRebounds")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getAverageRebounds())));
+                } else if (otherFuzzySets.get(i).getType().equals("averageAssists")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getAverageAssists())));
+                } else if (otherFuzzySets.get(i).getType().equals("teamImpact")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getTeamImpact())));
+                } else if (otherFuzzySets.get(i).getType().equals("throwAccuracy")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(datasetElements.get(j).getThrowAccuracy())));
+                } else if (otherFuzzySets.get(i).getType().equals("percentAssists")) {
+                    product.set(j, Math.min(product.get(j),
+                            otherFuzzySets.get(i).membershipFunction.countMembership(Double.parseDouble(
+                                    datasetElements.get(j).getAssistsPercent()))));
                 }
             }
         }

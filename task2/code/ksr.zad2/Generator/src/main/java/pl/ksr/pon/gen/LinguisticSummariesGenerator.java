@@ -6,9 +6,11 @@ import pl.ksr.pon.fuz.FuzzySet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.RecursiveTask;
 
 @AllArgsConstructor
 public class LinguisticSummariesGenerator {
+    private static final double ACCURACY = 0.0001;
     List<LinguisticLabel> qualifiers;
     List<LinguisticLabel> summarizers;
     LinguisticQuantifier linguisticQuantifier; // in multi subject, form 4 quantifier is null
@@ -59,28 +61,54 @@ public class LinguisticSummariesGenerator {
         }
         if (linguisticQuantifier instanceof AbsoluteQuantifier) {
             if (qualifiers.size() != 0) {
-                return linguisticQuantifier.
+                double valueToReturn = linguisticQuantifier.
                         getLabel().
                         getFuzzySet().
                         getMembershipFunction().
                         //cardinality
                         countMembership(finalProduct.stream().mapToDouble(Double::doubleValue).sum());
+                if (valueToReturn < ACCURACY) {
+                    return 0d;
+                } else {
+                    return valueToReturn;
+                }
+            } else {
+                double valueToReturn = linguisticQuantifier.
+                        getLabel().
+                        getFuzzySet().
+                        getMembershipFunction().
+                        //cardinality
+                        countMembership(summarizersProduct.stream().mapToDouble(Double::doubleValue).sum());
+                if (valueToReturn < ACCURACY) {
+                    return 0d;
+                } else {
+                    return valueToReturn;
+                }
             }
         }
         if (qualifiers.size() == 0) {
-            return linguisticQuantifier.
+            double valueToReturn = linguisticQuantifier.
                     getLabel().
                     getFuzzySet().
                     getMembershipFunction().
-                    countMembership(summarizersProduct.stream().mapToDouble(Double::doubleValue).sum()) /
-                    datasetElements.size();
+                    countMembership(summarizersProduct.stream().mapToDouble(Double::doubleValue).sum()
+                            / datasetElements.size());
+            if (valueToReturn < ACCURACY) {
+                return 0d;
+            } else {
+                return valueToReturn;
+            }
         }
-        return linguisticQuantifier
+        double valueToReturn = linguisticQuantifier
                 .getLabel()
                 .getFuzzySet()
                 .getMembershipFunction().countMembership(finalProduct.stream().mapToDouble(Double::doubleValue).sum()
                         / qualifiersProduct.stream().mapToDouble(Double::doubleValue).sum());
-
+        if (valueToReturn < ACCURACY) {
+            return 0d;
+        } else {
+            return valueToReturn;
+        }
     }
 
     private Double countDegreeOfImprecision() {
@@ -122,7 +150,7 @@ public class LinguisticSummariesGenerator {
             int counter = 0;
             for (Double finProduct : finalProduct) {
                 if (finProduct > 0) {
-                    counter ++;
+                    counter++;
                 }
             }
             int qualifiersCounter = 0;
@@ -135,7 +163,7 @@ public class LinguisticSummariesGenerator {
             return counter * 1.0 / qualifiersCounter;
             //qualifiers == 0
         } else {
-            return sumCounter *1.0 / datasetElements.size();
+            return sumCounter * 1.0 / datasetElements.size();
         }
 
     }

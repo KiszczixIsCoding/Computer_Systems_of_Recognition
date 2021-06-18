@@ -136,7 +136,7 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO("..\\all_seasons.csv");
+        DAO<Player> dao = new PlayerDAOFactory().getPlayerDAO("all_seasons.csv");
         try {
             players = dao.getAll();
         } catch (IOException e) {
