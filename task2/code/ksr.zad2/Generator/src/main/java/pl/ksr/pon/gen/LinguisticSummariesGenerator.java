@@ -10,7 +10,7 @@ import java.util.concurrent.RecursiveTask;
 
 @AllArgsConstructor
 public class LinguisticSummariesGenerator {
-    private static final double ACCURACY = 0.0001;
+    private static final double ACCURACY = 0.001;
     List<LinguisticLabel> qualifiers;
     List<LinguisticLabel> summarizers;
     LinguisticQuantifier linguisticQuantifier; // in multi subject, form 4 quantifier is null

@@ -25,16 +25,14 @@ public class FuzzySet {
         } else if (type.equals("weight")) {
             elements = playersDataset.stream().map(Player::getWeight).collect(Collectors.toList());
         } else if (type.equals("draftNumber")) {
+            elements = new ArrayList<>();
             List<String> elements_str = playersDataset.stream().map(Player::getDraftNumber)
                     .collect(Collectors.toList());
-
-            elements_str = elements_str.stream().map(o -> o.equals("Undrafted") ? "60" : o).collect(Collectors.toList());
-//            for (String str : elements_str) {
-//                elements.add(Double.parseDouble(str));
-//            }
-
+            for (String str : elements_str) {
+                elements.add(convertDraftNumberToDouble(str));
+            }
         } else if (type.equals("gamesPlayed")) {
-            elements = new ArrayList<>();
+            elements = playersDataset.stream().map(Player::getGamesPlayed).collect(Collectors.toList());
         } else if (type.equals("averagePoints")) {
             elements = playersDataset.stream().map(Player::getAveragePoints).collect(Collectors.toList());
         } else if (type.equals("averageRebounds")) {
@@ -46,10 +44,11 @@ public class FuzzySet {
         } else if (type.equals("throwAccuracy")) {
             elements = playersDataset.stream().map(Player::getThrowAccuracy).collect(Collectors.toList());
         } else if (type.equals("percentAssists")) {
+            elements = new ArrayList<>();
             List<String> elements_str = playersDataset.stream().map(Player::getAssistsPercent).collect(Collectors.toList());
-//            for (String str : elements_str) {
-//                elements.add(Double.parseDouble(str));
-//            }
+            for (String str : elements_str) {
+                elements.add(Double.parseDouble(str));
+            }
         } else {
             elements = new ArrayList<>();
         }
