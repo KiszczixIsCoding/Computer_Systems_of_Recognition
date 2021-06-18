@@ -233,8 +233,11 @@ public class PrimaryController implements Initializable {
                 if (singleSumFormComboBox.getValue().equalsIgnoreCase("pierwsza")) {
                     singleSumQualifiersComboBox.setDisable(true);
                     removeLabelsFromScroll(singleSelectedQualifiersPane);
+                    singleSumQuantifierComboBox.getItems().addAll(FXCollections.observableArrayList(absoluteQuantifiersNames));
                 } else if (singleSumFormComboBox.getValue().equalsIgnoreCase("druga")) {
                     singleSumQualifiersComboBox.setDisable(false);
+                    singleSumQuantifierComboBox.getItems().clear();
+                    singleSumQuantifierComboBox.getItems().addAll(FXCollections.observableArrayList(relativeQuantifiersNames));
                 }
             }
         };
