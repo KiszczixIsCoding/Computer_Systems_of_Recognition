@@ -120,6 +120,7 @@ public class LinguisticSummariesGenerator {
         return 1 - product_root;
     }
 
+    // todo: mozna przekształcic zeby wykorzystywal getSupport();
     private Double countDegreeOfCovering() {
         FuzzySet firstSummarizer = summarizers.get(0).getFuzzySet();
         List<FuzzySet> otherSummarizers = new ArrayList<>();
