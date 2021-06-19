@@ -6,6 +6,7 @@ import pl.ksr.pon.fuz.FuzzySet;
 
 import java.util.ArrayList;
 import java.util.List;
+import io.vavr.Tuple2;
 import java.util.concurrent.RecursiveTask;
 
 @AllArgsConstructor
@@ -198,12 +199,29 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfQuantifierImprecision() {
-//        if (linguisticQuantifier instanceof  AbsoluteQuantifier) {
-//            return 1 - linguisticQuantifier.getLabel().getFuzzySet().getSupport(datasetElements).size();
-//        } else {
-//            return 1 -
-//        }
-        return null;
+        if (linguisticQuantifier instanceof  AbsoluteQuantifier) {
+            Tuple2<Double, Double> tuple =
+                    linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction().countConstraints(0);
+            // zwracamy długosc, gdzie wykres jest "nad" zerem
+            if (tuple._2 != 0) {
+                return 1 - (tuple._2 - tuple._1) / datasetElements.size();
+            } else {
+                //jesli druga z wartości w krotce jest "0" tzn. ze tylko w jednym miejscu wykres przecina sie z zerem,
+                // a wiec mamy albo poczatkowy wykres albo koncowy, sprawdzamy wartosc chwile po przecięciu się osi z zerem,
+                // jeśli jest != 0 to wykres rosnacy, a wiec wykres z prawej strony, jesli jest 0 to wykres malejacy,
+                // a wiec z lewej strony
+                if (linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction().countMembership(tuple._1 + 1) == 0) {
+                    return 1 - tuple._1 / datasetElements.size();
+                } else {
+                    return 1 - (datasetElements.size() - tuple._1) / datasetElements.size();
+                }
+            }
+        } else {
+            Tuple2<Double, Double> tuple =
+                    linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction().countConstraints(0);
+            var i = 7;
+            return null;
+        }
     }
 
     private Double countDegreeOfQuantifierRelativeCardinality() {

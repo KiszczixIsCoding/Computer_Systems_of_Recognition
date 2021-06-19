@@ -4,4 +4,5 @@ module pl.ksr.pon.gen {
     requires lombok;
     requires com.google.common;
     requires pl.ksr.pon.dao;
+    requires io.vavr;
 }
