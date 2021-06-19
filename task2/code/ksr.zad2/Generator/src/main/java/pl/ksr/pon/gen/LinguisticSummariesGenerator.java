@@ -173,16 +173,23 @@ public class LinguisticSummariesGenerator {
         List<Double> parameters_r = new ArrayList<>();
 
         for (LinguisticLabel summarizer : summarizers) {
-            int sum = 0;
-            for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
-                sum += summarizer.getFuzzySet().getMembershipFunction().countMembership(player.getAge());
+            int sum;
+//            for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
+//                sum += summarizer.getFuzzySet().getMembershipFunction().countMembership(player.getAge());
+            // wg mnie zgodnie ze wzorami 8.51, 8.52 ze str. 158 z ang książki nasza suma to będzie po prostu liczba
+            // elementow nalezacych do nosnika, bo wzor 8.52 mowi, że g_ij przyjmuje 1 jesli funkcja przynaleznosci
+            // jest >0 - czyli wychodziloby ze to nosnik
+            sum = summarizer.getFuzzySet().getSupport(datasetElements).size();
             parameters_r.add((double) sum / datasetElements.size());
         }
 
         double product = 1;
         for (double parameter_r : parameters_r) {
-            product = product * (parameter_r - countDegreeOfCovering());
+//            product = product * (parameter_r - countDegreeOfCovering());
+            // a tu wg mnie najpierw mnożymy, a koncowy wynik mnozenia odejmujemy
+            product *= parameter_r;
         }
+        product -= countDegreeOfCovering();
         return Math.abs(product);
     }
 
