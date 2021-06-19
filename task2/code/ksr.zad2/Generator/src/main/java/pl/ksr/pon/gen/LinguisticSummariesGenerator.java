@@ -116,7 +116,7 @@ public class LinguisticSummariesGenerator {
         for (LinguisticLabel summarizer : summarizers) {
             product = product * summarizer.getFuzzySet().getDegreeOfFuzziness(datasetElements);
         }
-        double product_root = Math.pow(product, summarizers.size());
+        double product_root = Math.pow(product, (double) 1 / summarizers.size());
         return 1 - product_root;
     }
 

@@ -63,10 +63,12 @@ public class FuzzySet {
 
     public List<Player> getSupport(List<Player> datasetElements) {
         List<Player> supportList = new ArrayList<>();
+        int iterator = 0;
         for (Player player : datasetElements) {
-            if (membershipFunction.countMembership(player.getAge()) > 0) {
+            if (membershipFunction.countMembership(elements.get(iterator)) > 0) {
                 supportList.add(player);
             }
+            iterator++;
         }
         return supportList;
     }
