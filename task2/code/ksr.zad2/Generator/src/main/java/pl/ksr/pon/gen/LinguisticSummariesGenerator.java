@@ -6,7 +6,11 @@ import pl.ksr.pon.fuz.FuzzySet;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import io.vavr.Tuple2;
+import pl.ksr.pon.fuz.TrapezoidalMembershipFunction;
+import pl.ksr.pon.fuz.TriangularMembershipFunction;
+
 import java.util.concurrent.RecursiveTask;
 
 @AllArgsConstructor
@@ -67,7 +71,7 @@ public class LinguisticSummariesGenerator {
                         getFuzzySet().
                         getMembershipFunction().
                         //cardinality
-                        countMembership(finalProduct.stream().mapToDouble(Double::doubleValue).sum());
+                                countMembership(finalProduct.stream().mapToDouble(Double::doubleValue).sum());
                 if (valueToReturn < ACCURACY) {
                     return 0d;
                 } else {
@@ -79,7 +83,7 @@ public class LinguisticSummariesGenerator {
                         getFuzzySet().
                         getMembershipFunction().
                         //cardinality
-                        countMembership(summarizersProduct.stream().mapToDouble(Double::doubleValue).sum());
+                                countMembership(summarizersProduct.stream().mapToDouble(Double::doubleValue).sum());
                 if (valueToReturn < ACCURACY) {
                     return 0d;
                 } else {
@@ -199,7 +203,8 @@ public class LinguisticSummariesGenerator {
     }
 
     private Double countDegreeOfQuantifierImprecision() {
-        if (linguisticQuantifier instanceof  AbsoluteQuantifier) {
+        if (linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction() instanceof TrapezoidalMembershipFunction ||
+                linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction() instanceof TriangularMembershipFunction) {
             Tuple2<Double, Double> tuple =
                     linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction().countConstraints(0);
             // zwracamy długosc, gdzie wykres jest "nad" zerem
@@ -216,11 +221,9 @@ public class LinguisticSummariesGenerator {
                     return 1 - (datasetElements.size() - tuple._1) / datasetElements.size();
                 }
             }
+            // Jesli gaussowska no to chyba zawsze będzie 0, skoro ona dązy do nieskończoności
         } else {
-            Tuple2<Double, Double> tuple =
-                    linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction().countConstraints(0);
-            var i = 7;
-            return null;
+            return 0.0;
         }
     }
 
