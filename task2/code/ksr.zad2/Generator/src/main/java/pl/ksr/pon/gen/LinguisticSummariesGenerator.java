@@ -269,17 +269,25 @@ public class LinguisticSummariesGenerator {
 
     //T10
     private Double countDegreeOfQualifierRelativeCardinality() {
-        double product = 1;
-        for (LinguisticLabel qualifier : qualifiers) {
-            product = product * qualifier.getFuzzySet().getRelativeCardinality();
+        if (qualifiers.size() == 0) {
+            return null;
+        } else {
+            double product = 1;
+            for (LinguisticLabel qualifier : qualifiers) {
+                product = product * qualifier.getFuzzySet().getRelativeCardinality();
+            }
+            double product_root = Math.pow(product, 1d / qualifiers.size());
+            return 1 - product_root;
         }
-        double product_root = Math.pow(product, 1d / qualifiers.size());
-        return 1 - product_root;
     }
 
     //T11
     private Double countLengthOfAQualifier() {
-        return 2.0 * Math.pow(0.5, qualifiers.size());
+        if (qualifiers.size() == 0) {
+            return null;
+        } else {
+            return 2.0 * Math.pow(0.5, qualifiers.size());
+        }
     }
 
 
