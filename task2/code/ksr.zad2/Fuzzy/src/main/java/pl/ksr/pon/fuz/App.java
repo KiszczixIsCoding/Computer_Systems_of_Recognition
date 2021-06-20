@@ -15,7 +15,7 @@ public class App
         Tuple2<Double, Double> tuple = function.countConstraints(0.5);
         System.out.println(function.countMembership(0.99));
         System.out.println(tuple);
-        GaussianMembershipFunction func = new GaussianMembershipFunction(0.4, 0.1);
+        GaussianMembershipFunction func = new GaussianMembershipFunction(0.4, 0.1,0,1);
         System.out.println(func.countX(0.7));
     }
 }

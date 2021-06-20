@@ -6,6 +6,7 @@ public class BothSidesTrapezoidalMembershipFunction extends TrapezoidalMembershi
 
     private double x4;
 
+
     public BothSidesTrapezoidalMembershipFunction(double x1, double x2, double x3, double x4) {
         super(x1, x2, x3);
         this.x4 = x4;
@@ -29,5 +30,9 @@ public class BothSidesTrapezoidalMembershipFunction extends TrapezoidalMembershi
         double t1 = countLinearFunctionArgument(y, x1, x2, true);
         double t2 = countLinearFunctionArgument(y, x3, x4, false);
         return new Tuple2<>(t1, t2);
+    }
+
+    public Double getArea() {
+        return (((x4 - x1) + (x3 - x2))) / 2.0;
     }
 }

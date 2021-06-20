@@ -17,4 +17,11 @@ public class ExponentialMembershipFunction extends MembershipFunction {
     public Tuple2<Double, Double> countConstraints(double y) {
         return null;
     }
+
+    // na ten moment null jako że nam nie będzie potrzebne
+    @Override
+    public Double getArea() {
+        return null;
+    }
+
 }

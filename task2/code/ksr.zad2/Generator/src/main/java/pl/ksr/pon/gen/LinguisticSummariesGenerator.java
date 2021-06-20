@@ -40,6 +40,7 @@ public class LinguisticSummariesGenerator {
         return summary;
     }
 
+    //T1
     public Double countDegreeOfTruth() {
         // summarizers product
         FuzzySet firstSummarizer = summarizers.get(0).getFuzzySet();
@@ -116,6 +117,7 @@ public class LinguisticSummariesGenerator {
         }
     }
 
+    //T2
     private Double countDegreeOfImprecision() {
         double product = 1;
         for (LinguisticLabel summarizer : summarizers) {
@@ -125,6 +127,7 @@ public class LinguisticSummariesGenerator {
         return 1 - product_root;
     }
 
+    //T3
     // todo: mozna przekształcic zeby wykorzystywal getSupport();
     private Double countDegreeOfCovering() {
         FuzzySet firstSummarizer = summarizers.get(0).getFuzzySet();
@@ -174,6 +177,7 @@ public class LinguisticSummariesGenerator {
 
     }
 
+    //T4
     private Double countDegreeOfAppropriateness() {
         List<Double> parameters_r = new ArrayList<>();
 
@@ -198,10 +202,12 @@ public class LinguisticSummariesGenerator {
         return Math.abs(product);
     }
 
+    //T5
     private Double countLengthOfASummary() {
         return 2.0 * Math.pow(0.5, summarizers.size());
     }
 
+    //T6
     private Double countDegreeOfQuantifierImprecision() {
         if (linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction() instanceof TrapezoidalMembershipFunction ||
                 linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction() instanceof TriangularMembershipFunction) {
@@ -227,10 +233,17 @@ public class LinguisticSummariesGenerator {
         }
     }
 
+    //T7
     private Double countDegreeOfQuantifierRelativeCardinality() {
-        return 1 - linguisticQuantifier.getLabel().getFuzzySet().getRelativeCardinality();
+        if (linguisticQuantifier instanceof AbsoluteQuantifier) {
+            return 1 - linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction().getArea() /
+                    datasetElements.size();
+        } else {
+            return 1 - linguisticQuantifier.getLabel().getFuzzySet().getMembershipFunction().getArea();
+        }
     }
 
+    //T8
     private Double countDegreeOfSummarizerRelativeCardinality() {
         double product = 1;
         for (LinguisticLabel summarizer : summarizers) {
@@ -240,6 +253,7 @@ public class LinguisticSummariesGenerator {
         return 1 - product_root;
     }
 
+    //T9
     private Double countDegreeOfQualifierImprecision() {
         if (qualifiers.size() == 0) {
             return null;
@@ -253,6 +267,7 @@ public class LinguisticSummariesGenerator {
         }
     }
 
+    //T10
     private Double countDegreeOfQualifierRelativeCardinality() {
         double product = 1;
         for (LinguisticLabel qualifier : qualifiers) {
@@ -262,6 +277,7 @@ public class LinguisticSummariesGenerator {
         return 1 - product_root;
     }
 
+    //T11
     private Double countLengthOfAQualifier() {
         return 2.0 * Math.pow(0.5, qualifiers.size());
     }

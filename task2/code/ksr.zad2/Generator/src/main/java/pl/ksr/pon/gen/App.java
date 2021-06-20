@@ -40,7 +40,7 @@ public class App
         LinguisticLabel middleHeightLabel = new LinguisticLabel("średniego wzrostu",
                 new FuzzySet(new BothSidesTriangularMembershipFunction(185.0, 195.0, 205.0),players, "height"));
         LinguisticLabel almostAllLabel = new LinguisticLabel("Prawie wszystkie",
-                new FuzzySet(new GaussianMembershipFunction(1.0, 0.01),players, ""));
+                new FuzzySet(new GaussianMembershipFunction(1.0, 0.01,0,1),players, ""));
         RelativeQuantifier almostAllQuantifier = new RelativeQuantifier(almostAllLabel);
 
         ArrayList<LinguisticLabel> qualifiers = new ArrayList<>( Arrays.asList(middleAgedLabel));

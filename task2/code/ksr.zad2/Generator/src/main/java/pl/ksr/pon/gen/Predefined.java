@@ -168,11 +168,11 @@ public class Predefined {
         LinguisticLabel fatalAccuracyLabel = new LinguisticLabel("fatalną skuteczność rzutów",
                 new FuzzySet(new LeftTrapezoidalMembershipFunction(0.0, 0.35, 0.45), players,"throwAccuracy"));
         LinguisticLabel ineffectiveAccuracyLabel = new LinguisticLabel("nieskuteczni z rzutów",
-                new FuzzySet(new GaussianMembershipFunction(0.4, 0.003), players,"throwAccuracy"));
+                new FuzzySet(new GaussianMembershipFunction(0.4, 0.003,0,1), players,"throwAccuracy"));
         LinguisticLabel averageAccuracyLabel = new LinguisticLabel("przeciętną skuteczność rzutów",
-                new FuzzySet(new GaussianMembershipFunction(0.5, 0.001), players,"throwAccuracy"));
+                new FuzzySet(new GaussianMembershipFunction(0.5, 0.001,0,1), players,"throwAccuracy"));
         LinguisticLabel effectiveAccuracyLabel = new LinguisticLabel("skuteczni z rzutów",
-                new FuzzySet(new GaussianMembershipFunction(0.57, 0.001), players,"throwAccuracy"));
+                new FuzzySet(new GaussianMembershipFunction(0.57, 0.001,0,1), players,"throwAccuracy"));
         LinguisticLabel idealAccuracyLabel = new LinguisticLabel("idealną skuteczność rzutów",
                 new FuzzySet(new RightTrapezoidalMembershipFunction(0.58, 0.63, 1.0), players,"throwAccuracy"));
         List<LinguisticLabel> accuracyLabels = Arrays.asList(fatalAccuracyLabel, ineffectiveAccuracyLabel, averageAccuracyLabel,
@@ -237,15 +237,15 @@ public class Predefined {
 
     public static List<RelativeQuantifier> getRelativeQuantifiers() {
         LinguisticLabel almostNoneLabel = new LinguisticLabel("Prawie żaden",
-                new FuzzySet(new GaussianMembershipFunction(0.0, 0.01), null,""));
+                new FuzzySet(new GaussianMembershipFunction(0.0, 0.01,0,1), null,""));
         LinguisticLabel aboutQuarterLabel = new LinguisticLabel("Około 1/4",
-                new FuzzySet(new GaussianMembershipFunction(0.25, 0.01), null,""));
+                new FuzzySet(new GaussianMembershipFunction(0.25, 0.01,0,1), null,""));
         LinguisticLabel aboutHalfLabel = new LinguisticLabel("Około 1/2",
-                new FuzzySet(new GaussianMembershipFunction(0.5, 0.01), null,""));
+                new FuzzySet(new GaussianMembershipFunction(0.5, 0.01,0,1), null,""));
         LinguisticLabel aboutThreeQuartersLabel = new LinguisticLabel("Około 3/4",
-                new FuzzySet(new GaussianMembershipFunction(0.75, 0.01), null,""));
+                new FuzzySet(new GaussianMembershipFunction(0.75, 0.01,0,1), null,""));
         LinguisticLabel almostAllLabel = new LinguisticLabel("Prawie wszystkie",
-                new FuzzySet(new GaussianMembershipFunction(1.0, 0.01), null,""));
+                new FuzzySet(new GaussianMembershipFunction(1.0, 0.01,0,1), null,""));
         RelativeQuantifier almostNoneQuantifier = new RelativeQuantifier(almostNoneLabel);
         RelativeQuantifier aboutQuarterQuantifier = new RelativeQuantifier(aboutQuarterLabel);
         RelativeQuantifier aboutHalfQuantifier = new RelativeQuantifier(aboutHalfLabel);

@@ -28,4 +28,10 @@ public class BothSidesTriangularMembershipFunction extends TriangularMembershipF
         double t2 = countLinearFunctionArgument(y, x2, x3, false);
         return new Tuple2<>(t1, t2);
     }
+
+    @Override
+    public Double getArea() {
+        return ((x3 - x1)) / 2.0;
+    }
+
 }
