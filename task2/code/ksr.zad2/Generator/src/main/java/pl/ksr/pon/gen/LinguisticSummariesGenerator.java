@@ -262,7 +262,7 @@ public class LinguisticSummariesGenerator {
             for (LinguisticLabel qualifier : qualifiers) {
                 product *= qualifier.getFuzzySet().getDegreeOfFuzziness(datasetElements);
             }
-            double root = Math.round(Math.pow(product, 1.0 / qualifiers.size()));
+            double root = Math.pow(product, 1.0 / qualifiers.size());
             return 1 - root;
         }
     }
