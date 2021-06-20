@@ -20,6 +20,7 @@ import java.util.List;
 public class App extends Application {
     private static Scene scene;
     private static Stage stage;
+    private static FXMLLoader fxmlLoader;
 
     public static Stage getStage() {
         return stage;
@@ -27,16 +28,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        scene = new Scene(loadFXML("primary"), 1000, 630);
+        scene = new Scene(loadFXML("primary"), 1000, 680);
         App.stage = stage;
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void openNewStage(String fileFxml) throws IOException {
-        Scene newScene = new Scene(loadFXML(fileFxml), 500, 500);
+    public static void openNewStage(String fileFxml, String kindOfLabel) throws IOException {
+        Scene newScene = new Scene(loadFXML(fileFxml), 450, 420);
         Stage newStage = new Stage();
         newStage.setScene(newScene);
+        EditSummarizerController summarizerController = fxmlLoader.getController();
+        summarizerController.initData(kindOfLabel);
         newStage.show();
     }
 
@@ -45,7 +48,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+        fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

@@ -317,15 +317,35 @@ public class PrimaryController implements Initializable {
         summariesTable.setItems(summariesToTable);
 
         //-------- Open window for summarizers edition -----------------------------------
-        EventHandler<MouseEvent> openWindowEvt = e -> {
+        EventHandler<MouseEvent> openSumWindowEvt = e -> {
             try {
-                openNewWindow("edit_summarizers");
+                openNewWindow("edit_window", "Sumaryzator");
             } catch(IOException ex) {
                 ex.printStackTrace();
             }
         };
 
-        editSummarizer.setOnMouseClicked(openWindowEvt);
+        editSummarizer.setOnMouseClicked(openSumWindowEvt);
+
+        EventHandler<MouseEvent> openQualifiersWindowEvt = e -> {
+            try {
+                openNewWindow("edit_window", "Kwalifikator");
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
+        };
+
+        editQualifier.setOnMouseClicked(openQualifiersWindowEvt);
+
+        EventHandler<MouseEvent> openQuantifierWindowEvt = e -> {
+            try {
+                openNewWindow("edit_window", "Kwantyfikator");
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
+        };
+
+        editQuantifier.setOnMouseClicked(openQuantifierWindowEvt);
 
     }
 
@@ -419,7 +439,8 @@ public class PrimaryController implements Initializable {
                 " jest " + summarizersText;
 
 
-        LinguisticSummariesGenerator generator = new LinguisticSummariesGenerator(qualifiers, summarizers, quantifier, players);
+        LinguisticSummariesGenerator generator = new LinguisticSummariesGenerator(
+                qualifiers, summarizers, quantifier, players);
         LinguisticSummary finalSummary = generator.generateSummary(summaryText);
         summariesToTable.add(finalSummary);
         System.out.println(finalSummary);
@@ -427,8 +448,28 @@ public class PrimaryController implements Initializable {
 
     }
 
-    public void openNewWindow(String filename) throws IOException {
-        App.openNewStage(filename);
+    public LinguisticSummary generateMultiSubjectSummary() {
+        List<Player> easternPlayers = players.stream().filter(player -> Clubs.getEasternClubs()
+                .contains(player.getTeam())).collect(Collectors.toList());
+
+        List<Player> westernPlayers = players.stream().filter(player -> Clubs.getWesternClubs()
+                .contains(player.getTeam())).collect(Collectors.toList());
+
+
+        String summaryText = " zawodników z konferencji wschodniej w porównaniu do zawodników z konferencji zachodniej jest/ma" + qualifiersText +
+                " jest ";
+
+        MultisubjectLinguisticSummariesGenerator generator = new MultisubjectLinguisticSummariesGenerator(
+                qualifiers, summarizers, quantifier, Arrays.asList(easternPlayers, westernPlayers));
+
+        LinguisticSummary finalSummary = generator.generateSummary();
+
+        summariesToTable.add(finalSummary);
+        System.out.println(finalSummary);
+        return finalSummary;
+    }
+    public void openNewWindow(String filename, String kindOfLabel) throws IOException {
+        App.openNewStage(filename, kindOfLabel);
     }
 }
 
