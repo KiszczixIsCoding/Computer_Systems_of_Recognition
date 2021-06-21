@@ -10,24 +10,35 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class MultisubjectLinguisticSummariesGenerator {
-    LinguisticLabel qualifier;
+    List<LinguisticLabel> qualifiers;
     List<LinguisticLabel> summarizers;
     RelativeQuantifier relativeQuantifier;
     List<List<Player>> groupedPlayersList;
 
-    public LinguisticSummary generateSummary() {
-        LinguisticSummary summary = new LinguisticSummary();
+    public MultisubjectLinguisticSummary generateSummary(String text, int form) {
+        MultisubjectLinguisticSummary summary = new MultisubjectLinguisticSummary();
+
+        summary.setText(text);
+        if (form == 0) {
+            summary.setDegreeOfTruth(countFirstDegreeOfTruth());
+        } else if (form == 1) {
+            summary.setDegreeOfTruth(countSecondDegreeOfTruth());
+        } else if (form == 2) {
+            summary.setDegreeOfTruth(countThirdDegreeOfTruth());
+        } else {
+            summary.setDegreeOfTruth(countForthDegreeOfTruth());
+        }
         return summary;
     }
 
     public double countFirstDegreeOfTruth() {
-        List<Double> sigmaCount1, sigmaCount2, qualifierCount2;
+        List<Double> sigmaCount1, sigmaCount2;
         double sigmaSum1 = 0;
         double sigmaSum2 = 0;
 
         sigmaCount1 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(0),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
-        sigmaCount2 = summarizers.get(1).getFuzzySet().getProductValues(groupedPlayersList.get(1),
+        sigmaCount2 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(1),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
 
@@ -55,11 +66,12 @@ public class MultisubjectLinguisticSummariesGenerator {
 
         sigmaCount1 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(0),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
-        sigmaCount2 = summarizers.get(1).getFuzzySet().getProductValues(groupedPlayersList.get(1),
+        sigmaCount2 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(1),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
-        qualifierCount2 = qualifier.getFuzzySet().getProductValues(groupedPlayersList.get(1),
-                Collections.singletonList(qualifier.getFuzzySet()));
+        System.out.println(qualifiers.size());
+        qualifierCount2 = qualifiers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(1),
+                qualifiers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
         for (double fuzzyMembership : sigmaCount1) {
             sigmaSum1 += fuzzyMembership;
@@ -91,8 +103,8 @@ public class MultisubjectLinguisticSummariesGenerator {
         sigmaCount2 = summarizers.get(1).getFuzzySet().getProductValues(groupedPlayersList.get(1),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
-        qualifierCount1 = qualifier.getFuzzySet().getProductValues(groupedPlayersList.get(0),
-                Collections.singletonList(qualifier.getFuzzySet()));
+        qualifierCount1 = qualifiers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(0),
+                qualifiers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
         for (int i = 0; i < sigmaCount1.size(); i++) {
             if (sigmaCount1.get(i) > qualifierCount1.get(i)) {
