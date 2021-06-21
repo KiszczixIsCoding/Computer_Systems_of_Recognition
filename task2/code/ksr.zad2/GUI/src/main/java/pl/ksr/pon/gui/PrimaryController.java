@@ -131,7 +131,8 @@ public class PrimaryController implements Initializable {
     List<Player> players = new ArrayList<>();
     ObservableList<LinguisticSummary> summariesToTable = FXCollections.observableArrayList();
     List<TextField> textFields = new ArrayList<>();
-
+    List<Double> weights_double;
+    List<DoubleProperty> weights;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -144,12 +145,12 @@ public class PrimaryController implements Initializable {
         }
 
         StringConverter<Number> converter = new NumberStringConverter();
-        List<DoubleProperty> weights = new ArrayList<>();
+        weights = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             weights.add(new SimpleDoubleProperty(0.09));
         }
         weights.add(new SimpleDoubleProperty(0.1));
-        List<Double> weights_double = weights.stream().map(DoubleExpression::getValue).collect(Collectors.toList());
+        weights_double = weights.stream().map(DoubleExpression::getValue).collect(Collectors.toList());
 
         Bindings.bindBidirectional(textField1.textProperty(), weights.get(0), converter);
         Bindings.bindBidirectional(textField2.textProperty(), weights.get(1), converter);
@@ -417,14 +418,20 @@ public class PrimaryController implements Initializable {
                 }
             }
         }
+        String summaryText = "";
 
-
-        String summaryText = quantifierText + " zawodników będących " + qualifiersText +
-                " jest " + summarizersText;
-
+        if (singleSumFormComboBox.getValue().equalsIgnoreCase("pierwsza")) {
+            summaryText = quantifierText + " zawodników " +
+                    " jest " + summarizersText;
+        } else {
+            summaryText = quantifierText + " zawodników będących " + qualifiersText +
+                    " jest " + summarizersText;
+        }
 
         LinguisticSummariesGenerator generator = new LinguisticSummariesGenerator(qualifiers, summarizers, quantifier, players);
         LinguisticSummary finalSummary = generator.generateSummary(summaryText);
+        weights_double = weights.stream().map(DoubleExpression::getValue).collect(Collectors.toList());
+        finalSummary.setAverage(Utils.roundDouble(finalSummary.countWeightedAverage(weights_double),2));
         summariesToTable.add(finalSummary);
         System.out.println(finalSummary);
         return finalSummary;

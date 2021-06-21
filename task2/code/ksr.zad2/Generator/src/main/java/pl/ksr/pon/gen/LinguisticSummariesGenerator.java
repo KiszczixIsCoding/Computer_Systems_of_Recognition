@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import pl.ksr.pon.dao.Player;
 import pl.ksr.pon.fuz.FuzzySet;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ import pl.ksr.pon.fuz.TrapezoidalMembershipFunction;
 import pl.ksr.pon.fuz.TriangularMembershipFunction;
 
 import java.util.concurrent.RecursiveTask;
+
+import static pl.ksr.pon.gen.Utils.roundDouble;
 
 @AllArgsConstructor
 public class LinguisticSummariesGenerator {
@@ -25,18 +29,17 @@ public class LinguisticSummariesGenerator {
         LinguisticSummary summary;
         summary = new LinguisticSummary();
         summary.setText(text);
-        summary.setT1(countDegreeOfTruth());
-        summary.setT2(countDegreeOfImprecision());
-        summary.setT3(countDegreeOfCovering());
-        summary.setT4(countDegreeOfAppropriateness());
-        summary.setT5(countLengthOfASummary());
-        summary.setT6(countDegreeOfQuantifierImprecision());
-        summary.setT7(countDegreeOfQuantifierRelativeCardinality());
-        summary.setT8(countDegreeOfSummarizerRelativeCardinality());
-        summary.setT9(countDegreeOfQualifierImprecision());
-        summary.setT10(countDegreeOfQualifierRelativeCardinality());
-        summary.setT11(countLengthOfAQualifier());
-        summary.setAverage(countDegreeOfImprecision());
+        summary.setT1(roundDouble(countDegreeOfTruth(),2));
+        summary.setT2(roundDouble(countDegreeOfImprecision(),2));
+        summary.setT3(roundDouble(countDegreeOfCovering(),2));
+        summary.setT4(roundDouble(countDegreeOfAppropriateness(),2));
+        summary.setT5(roundDouble(countLengthOfASummary(),2));
+        summary.setT6(roundDouble(countDegreeOfQuantifierImprecision(),2));
+        summary.setT7(roundDouble(countDegreeOfQuantifierRelativeCardinality(),2));
+        summary.setT8(roundDouble(countDegreeOfSummarizerRelativeCardinality(),2));
+        summary.setT9(roundDouble(countDegreeOfQualifierImprecision(),2));
+        summary.setT10(roundDouble(countDegreeOfQualifierRelativeCardinality(),2));
+        summary.setT11(roundDouble(countLengthOfAQualifier(),2));
         return summary;
     }
 
@@ -182,8 +185,8 @@ public class LinguisticSummariesGenerator {
         List<Double> parameters_r = new ArrayList<>();
 
         for (LinguisticLabel summarizer : summarizers) {
-            int sum;
-//            for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
+            int sum = 0;
+            for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
 //                sum += summarizer.getFuzzySet().getMembershipFunction().countMembership(player.getAge());
             // wg mnie zgodnie ze wzorami 8.51, 8.52 ze str. 158 z ang książki nasza suma to będzie po prostu liczba
             // elementow nalezacych do nosnika, bo wzor 8.52 mowi, że g_ij przyjmuje 1 jesli funkcja przynaleznosci
@@ -199,7 +202,12 @@ public class LinguisticSummariesGenerator {
             product *= parameter_r;
         }
         product -= countDegreeOfCovering();
-        return Math.abs(product);
+        double valueToReturn = Math.abs(product);
+        if (valueToReturn < ACCURACY) {
+            return 0d;
+        } else {
+            return valueToReturn;
+        }
     }
 
     //T5
@@ -256,7 +264,7 @@ public class LinguisticSummariesGenerator {
     //T9
     private Double countDegreeOfQualifierImprecision() {
         if (qualifiers.size() == 0) {
-            return null;
+            return 0.0;
         } else {
             double product = 1.0;
             for (LinguisticLabel qualifier : qualifiers) {
@@ -270,7 +278,7 @@ public class LinguisticSummariesGenerator {
     //T10
     private Double countDegreeOfQualifierRelativeCardinality() {
         if (qualifiers.size() == 0) {
-            return null;
+            return 0.0;
         } else {
             double product = 1;
             for (LinguisticLabel qualifier : qualifiers) {
@@ -284,11 +292,10 @@ public class LinguisticSummariesGenerator {
     //T11
     private Double countLengthOfAQualifier() {
         if (qualifiers.size() == 0) {
-            return null;
+            return 1.0;
         } else {
             return 2.0 * Math.pow(0.5, qualifiers.size());
         }
     }
-
 
 }
