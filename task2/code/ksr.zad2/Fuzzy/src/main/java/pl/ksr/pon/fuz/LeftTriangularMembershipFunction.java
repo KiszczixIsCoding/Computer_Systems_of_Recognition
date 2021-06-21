@@ -23,4 +23,9 @@ public class LeftTriangularMembershipFunction extends TriangularMembershipFuncti
         double t2 = 0;
         return new Tuple2<>(t1, t2);
     }
+
+    @Override
+    public Double getArea() {
+        return (x2 - x1) / 2.0;
+    }
 }

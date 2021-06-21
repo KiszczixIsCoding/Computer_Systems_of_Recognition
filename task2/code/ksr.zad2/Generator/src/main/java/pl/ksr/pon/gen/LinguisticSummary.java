@@ -20,7 +20,7 @@ public class LinguisticSummary {
     private Double t11;
     private Double average;
 
-    private Double countWeightedAverage(List<Double> weights) {
+    public Double countWeightedAverage(List<Double> weights) {
         double sum = 0;
         sum += weights.get(0) * t1 + weights.get(1) * t2 + weights.get(2) * t3 + weights.get(3) * t4 +
                 weights.get(4) * t5 + weights.get(5) * t6 + weights.get(6) * t7 + weights.get(7) * t8 +

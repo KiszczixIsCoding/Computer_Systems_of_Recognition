@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.PrimaryController">
    <children>
       <Label layoutX="304.0" layoutY="14.0" text="Podsumowania lingwistyczne bazy danych">
          <font>
@@ -26,32 +27,31 @@
             <ComboBox fx:id="singleSumQualifiersComboBox" layoutX="505.0" layoutY="70.0" prefWidth="150.0" />
             <ComboBox fx:id="singleSumFormComboBox" layoutX="24.0" layoutY="70.0" prefWidth="150.0" />
             <ComboBox fx:id="singleSumSummarizersComboBox" layoutX="753.0" layoutY="70.0" prefWidth="150.0" />
-            <Button fx:id="singleGenerate" layoutX="589.0" layoutY="568.0" mnemonicParsing="false" onAction="#generateSingleSubjectSummary" prefHeight="46.0" prefWidth="166.0" text="Generuj" />
-            <ScrollPane layoutX="9.0" layoutY="329.0" prefHeight="230.0" prefWidth="986.0">
+            <Button fx:id="singleGenerate" layoutX="586.0" layoutY="687.0" mnemonicParsing="false" onAction="#generateSingleSubjectSummary" prefHeight="46.0" prefWidth="166.0" text="Generuj" />
+            <ScrollPane layoutX="9.0" layoutY="329.0" prefHeight="358.0" prefWidth="1024.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="summariesTable" layoutX="-6.0" prefHeight="375.0" prefWidth="986.0">
+                        <TableView fx:id="summariesTable" layoutX="2.0" prefHeight="352.0" prefWidth="1016.0">
                           <columns>
-                            <TableColumn fx:id="textCol" prefWidth="369.6000307202339" text="tekst" />
-                            <TableColumn fx:id="t1Col" minWidth="0.0" prefWidth="52.79998779296875" text="T1" />
-                              <TableColumn fx:id="t2Col" prefWidth="50.0" text="T2" />
-                              <TableColumn fx:id="t3Col" prefWidth="50.0" text="T3" />
-                              <TableColumn fx:id="t4Col" prefWidth="50.0" text="T4" />
-                              <TableColumn fx:id="t5Col" prefWidth="50.0" text="T5" />
-                              <TableColumn fx:id="t6Col" prefWidth="50.0" text="T6" />
-                              <TableColumn fx:id="t7Col" prefWidth="50.39996337890625" text="T7" />
-                              <TableColumn fx:id="t8Col" prefWidth="50.39996337890625" text="T8" />
-                              <TableColumn fx:id="t9Col" prefWidth="50.0" text="T9" />
-                              <TableColumn fx:id="t10Col" prefWidth="50.0" text="T10" />
-                              <TableColumn fx:id="t11Col" prefWidth="50.0" text="T11" />
-                              <TableColumn fx:id="averageCol" prefWidth="50.0" text="średnia" />
+                            <TableColumn fx:id="textCol" prefWidth="520.2000288963318" text="tekst" />
+                            <TableColumn fx:id="t1Col" minWidth="0.0" prefWidth="40.0" text="T1" />
+                              <TableColumn fx:id="t2Col" prefWidth="40.0" text="T2" />
+                              <TableColumn fx:id="t3Col" prefWidth="40.0" text="T3" />
+                              <TableColumn fx:id="t4Col" prefWidth="40.0" text="T4" />
+                              <TableColumn fx:id="t5Col" prefWidth="40.0" text="T5" />
+                              <TableColumn fx:id="t6Col" prefWidth="40.0" text="T6" />
+                              <TableColumn fx:id="t7Col" prefWidth="40.0" text="T7" />
+                              <TableColumn fx:id="t8Col" prefWidth="40.0" text="T8" />
+                              <TableColumn fx:id="t9Col" prefWidth="40.0" text="T9" />
+                              <TableColumn fx:id="t10Col" minWidth="7.4000244140625" prefWidth="40.0" text="T10" />
+                              <TableColumn fx:id="t11Col" prefWidth="40.0" text="T11" />
+                              <TableColumn fx:id="averageCol" prefWidth="57.0" text="średnia" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
               </content>
             </ScrollPane>
-            <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="856.0" layoutY="566.0" mnemonicParsing="false" onMouseClicked="#goToMultiSubject" prefHeight="54.0" prefWidth="129.0" text="Podsumowania Wielopodmiotowe" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
             <Pane layoutX="252.0" layoutY="103.0" prefHeight="54.0" prefWidth="150.0">
                <children>
                   <Label fx:id="singleSumQuantifierLabel" layoutX="44.0" layoutY="14.0" prefHeight="21.0" prefWidth="62.0">
@@ -142,6 +142,7 @@
             <Button fx:id="editQualifier" alignment="CENTER" layoutX="655.0" layoutY="70.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="55.0" text="Edytuj" textAlignment="CENTER" />
             <Button fx:id="editSummarizer" alignment="CENTER" layoutX="903.0" layoutY="70.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="55.0" text="Edytuj" textAlignment="CENTER" />
             <Button fx:id="editQuantifier" alignment="CENTER" layoutX="375.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="Edytuj" textAlignment="CENTER" />
+            <Button alignment="CENTER" contentDisplay="BOTTOM" layoutX="866.0" layoutY="691.0" mnemonicParsing="false" onMouseClicked="#goToMultiSubject" prefHeight="54.0" prefWidth="129.0" text="Podsumowania Wielopodmiotowe" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="multiPane" layoutY="35.0" prefHeight="594.0" prefWidth="1000.0" visible="false">

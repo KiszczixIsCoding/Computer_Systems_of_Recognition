@@ -33,7 +33,7 @@ public class Player {
     private String draftNumber;
 
     @CsvBindByName(column = "gp")
-    private Integer gamesPlayed;
+    private Double gamesPlayed;
 
     @CsvBindByName(column = "pts")
     private Double averagePoints;

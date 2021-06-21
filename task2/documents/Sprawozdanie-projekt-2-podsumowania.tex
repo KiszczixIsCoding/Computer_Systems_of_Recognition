@@ -552,19 +552,53 @@ Drugim pakietem użytym przez nas w aplikacji jest pakiet generatora podsumowań
     \label{rysunek:generator}
 \end{figure}
 
-Diagram UML generatora podsumowań (warstwy obliczeniowej oraz interfejsu
-użytkownika). Krótki ilustrowany opis jak użytkownik może korzystać z aplikacji, w~szczególności
-wprowadzać parametry  podsumowań, odczytywać wyniki oraz definiować własne etykiety i
-kwantyfikatory. Wersja JRE i inne wymogi niezbędne do uruchomienia aplikacji przez użytkownika na własnym komputerze. \\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 11 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+Po włączeniu aplikacji ukazuje nam się następujący ekran z podsumowaniami jednopodmiotowymi:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=14cm]{gui.png}
+    \caption{Interfejs użytkownika po włączeniu aplikacji}
+    \label{rysunek:gui}
+\end{figure}
+Na powyższym ekranie możemy wybrać odpowiednie interesujące nas wartości z rozwijalnych list. W przypadku wybrania formy pierwszej zablokowany jest wybór kwalifikatora (jako że w formie pierwszej podsumowań jednopododmiotowych nie występują kwalifikatory), a do wyboru mamy wszystkie kwantyfikatory (zarówno absolutne, jak i względne). W przypadku formy drugiej możemy wybrać kwalifikatory, a do wyboru w przypadku kwantyfikatorów są tylko kwantyfikatory względne. Zarówno w przypadku kwalifikatorów i sumaryzatorów możemy wybrać więcej niż jedną etykietę, które to będą połączone spójnikiem "i". Przyciski "Wyczyść zaznaczenie" czyszczą nam listę wybranych sumaryzatorów i kwalifikatorów. Po naciśnięciu przycisku "Edytuj" zostajemy przeniesieni do okna umożliwiającego edycje i definiowanie nowych etykiet. Poniżej okna z etykietami od T1 do T11 oznaczają wagi dla poszczególnych miar, które zostaną użyte przy liczeniu miary podsumowania optymalnego. Przycisk "Generuj" generuje nam podsumowanie, które to pojawia się w przewijalnej tabeli. W tabeli możliwe jest sortowanie po konkretnej mierze. Kolumna z etykietą "średnia" oznacza miarę podsumowania optymalnego. Przycisk "Podsumowania Wielopodmiotowe" przenosi nas do okna z podsumowaniami wielopodmiotowymi.Tam, analogicznie to podsumowań jednopodmiotowych przy wybraniu formy podsumowania zostają zablokowane/odblokowane poszczególne możliwości wyboru kwalifikatrów/sumaryzatorów. Cała reszta również jest analogiczna do podsumowań jednopodmiotowych, poza wagami. Dla podsumowań wielopodmiotowych liczymy jedynie jedną miarę, zatem nie ma możliwości przypisywania wag.
+\\
+Aplikacja została napisana przy użyciu Java 11 \cite{java_doc}, Apache Maven \cite{maven_doc}, oraz JavaFX 13 \cite{javafx_doc}. Aby uruchomić aplikację należy załadować projekt mavenowy, a następnie wykonać polecenie mvn install. Możemy to zrobić z konsoli, bądź wykorzystując do tego IDE (np. IntelliJ i pasek rozwijalny po prawej stronie). Kolejnym krokiem jest uruchomienie wtyczki javafx, bądź exec, poprzez przejście do folderu z modułem GUI i wykonanie polecenia mvn javafx:run, bądź mvn exec:java. Możemy to zrobić także przy użyciu IDE. Spowoduje to wyświetlenie interfejsu użytkownika i umożliwi korzystanie z aplikacji.
 
 \section{ Jednopodmiotowe podsumowania lingwistyczne. Miary jakości, podsumowanie optymalne}
-Wyniki kolejnych eksperymentów wg punktów 2.-4. opisu projektu 2.  Listy podsumowań
-jednopodmiotowych i tabele/rankingi podsumowań dla danych atrybutów obowiązkowe i dokładnie opisane w ,,captions'' (tytułach), konieczny opis kolumn i wierszy tabel. Dla każdego podsumowania podane miary jakości oraz miara jakości podsumowania
-optymalnego.\\
-\noindent {\bf Sekcja uzupełniona jako efekt zadania Tydzień 11 wg Harmonogramu Zajęć
-na WIKAMP KSR.}
+
+We wszystkich przedstawionych poniżej eksperymentach kolumna z nazwą "średnia" oznacza miarę jakości podsumowania optymalnego.
+
+\subsection{Jednopodmiotowe podsumowania lingwistyczne w formie pierwszej}
+
+Dla jednopodmiotowych podsumowań lingwistycznych w formie pierwszej przeprowadziliśmy dwa eksperymenty, w każdym z nich przyjmując inne wagi. Wyniki dla eksperymentu nr 1 prezentują się następująco:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 14cm]{eksperyment1.png}
+    \caption{Wyniki eksperymentu nr 1 dla jednopodmiotowych podsumowań lingwistycznych w formie pierwszej}
+    \label{rysunek:forma_pierwsza_eksperyment_1}
+\end{figure}
+
+Podsumowanie "Około 2000 zawodników jest w wieku juniorskim" osiągnęło najwyższą wartość miary jakości podsumowania optymalnego porównując z innymi podsumowaniami wygenerowanymi w tym eksperymencie. Wyniosła ona 0.59. Warto zauważyć, że w tym wypadku dodając kolejny sumaryzator jakość podsumowania maleje ("Około 1/4 zawodników jest średniego wzrostu" znajduje się na liście na pozycji drugiej, "Około 1/4 zawodników jest w wieku juniorskim" na pozycji 10, natomiast podsumowanie "Około 1/4 zawodników jest w wieku juniorskim, średniego wzrostu" dopiero na pozycji 13. Najwyższą wartość miary T1 osiągnęło podsumowanie "Około 1/4 zawodników jest średniego wzrostu", jednak biorąc pod uwagę miarę podsumowania optymalnego podsumowanie to znajduje się na 2 miejscu. Warto zwrócić uwagę na miarę T6, która lekko zakłamuje nam obraz. Dla kwantyfikatora względnego miara ta w każdym przypadku pokazuje 0. Wynika to z tego, że ten typ kwantyfikatorów wyraża się w tym wypadku funkcją Gaussowską, która to dąży do zera (jednak wartości 0 nie przyjmuje)
+\\
+W kolejnym eksperymencie zmodyfikowaliśmy nieco wagi średnich, a jego wyniki prezentują się następująco: 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 14cm]{eksperyment2.png}
+    \caption{Wyniki eksperymentu nr 2 dla jednopodmiotowych podsumowań lingwistycznych w formie pierwszej}
+    \label{rysunek:forma_pierwsza_eksperyment_2}
+\end{figure}
+W tym eksperymencie zmieniliśmy wagi, w sczególności zwiększając wagę dla miary T1 oraz zmniejszając wagę dla miary T6. Najlepszym podsumowaniem w tym eksperymencie okazało się "Prawie żaden zawodnik jest błyskawicznie wybrany w drafcie i ma ma mało rozegranych gier w sezonie [0.76]". Jest to jak najbardziej logiczne, ponieważ kluby wybierają zawodników w drafcie szybko, aby ci stanowili o sile ich drużyny. Podsumowanie to osiągnęło wartość T1 aż na poziomie 0.98. Jak widzimy, przy takim dobraniu wag jak powyżej byliśmy w stanie zminimalizować negatywny wpływ funkcji gaussowskiej na ostateczny wynik miary jakości podsumowania optymalnego. Zarówno w tym jak i w poprzednim eksperymencie przyjęliśmy wagi dla T9, T10 i T11 na 0, ponieważ miary te dotyczą kwalifikatorów, których w formie pierwszej podsumowań jednopodmiotowych nie ma.
+\subsection{Jednopodmiotowe podsumowania lingwistyczne w formie drugiej}
+
+Dla formy drugiej jednopodmiotowych podsumowań lingwistycznych przeprowadziliśmy 1 eksperyment, którego wyniki przedstawiają się następująco:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 14cm]{eksperyment3.png}
+    \caption{Wyniki eksperymentu nr 1 dla jednopodmiotowych podsumowań lingwistycznych w formie drugiej}
+    \label{rysunek:forma_druga_eksperyment_1}
+\end{figure}
+
+Tym razem wagi rozłożyliśmy równomiernie. Najlepszym podsumowaniem sortując po mierze podsumowania optymalnego okazało się "Prawie żaden zawodnik mający bardzo dużo zbiórek na mecz, jest bardzo niskiego wzrostu [0.66]" Podsumowanie to osiągnęło wartość miary T1 (stopień prawdziwości) aż 0,99. Stopień prawdziwości 0,99 osiągnęło także podsumowanie "Około 1/4 zawodników mających bardzo mało zdobytych punktów na mecz, jest w średnim wieku [0.60]". Końcowa miara dla tego podsumowania wyniosła 0.60. Wysoką wartość miary podsumowania optymalnego (0.65) uzyskało także podsumowanie "Około 1/2 zawodników będących bardzo ciężkiej wagi, ma dużo zbiórek na mecz.
 
 
 
@@ -586,6 +620,13 @@ na WIKAMP KSR.}
 
 
 \section{Dyskusja, wnioski}
+\subsection{Jednopodmiotowe podsumowania lingwistyczne w formie pierwszej}
+
+W mierze T6, w której pod uwagę bierzemy nośnik kwantyfikatora niezwykle ważny jest typ funkcji przynależności dla kwantyfikatora. Dla funkcji Gaussowskiej miara ta zawsze przyjmowała będzie wartość 0, ponieważ wykres funkcji Gaussa na całej przestrzeni rozważań nie przyjmuje wartości 0. Łącząc sumaryzatory, których połączenie wydaje nam się logiczne i które wydają się w jakiś sposób skorelowane ze sobą(jak np. "błyskawicznie wybrany w drafcie" i "mało rozegranych gier w sezonie") otrzymujemy podsumowania o bardzo wysokiej mierze T1, a więc stopniu prawdziwości. Warto zauważyć, że dla tego samego kwantyfikatora zmieniając tylko sumaryzatory, bądź dla tych samych sumaryzatorów zmieniając tylko kwantyfikatory tylko niektóre z miar zmieniają swoje wartości. Oznacza to po prostu, że część miar zależy tylko i wyłącznie od sumaryzatora/kwantyfikatora, nie łącząc tych dwóch zbiorów rozmytych ze sobą, stąd tak ważna jest analiza wszystkich miar przy wyciąganiu wniosków.
+
+\subsection{Jednopodmiotowe podsumowania lingwistyczne w formie drugiej}
+Z podsumowań jednopodmiotowych w formie drugiej płynie więcej wniosków dotyczących zbioru danych zawodników koszykówki. Możemy bowiem wywnioskować chociażby, że zawodnicy bardzo niskiego wzrostu nie przewodzą w statystykach jeśli chodzi o zbiórki. Natomiast zawodnicy ważący bardzo dużo często zaliczają dużo zbiórek na mecz. Poza tym możemy wywnioskować, że około połowy zawodników wybranych szybko w drafcie są aktualnie w młodym wieku. Możemy z tego zdania wysnuć wniosek, że zawodnicy wybrani w drafcie szybko początkowe lata grają w NBA, jednak potem ze różnych względów odchodzą z najbardziej prestiżowej ligi koszykówki świata. Jeśli chodzi oo wnioski dotyczące miar płynące z tej części eksperymentów to zdecydowanie było w nich widać, że im więcej nie powiązanych ze sobą kwalifikatorów/sumaryzatorów użyjemy tym podsumowanie jest gorszej jakości. Można także zauważyć, że miara T7 jest podobna dla wszystkich podsumowań. Świadczy to o tym, że kwantyfikatory są równomiernie rozłożone - ich pola pod wykresami są podobne. Zauważamy także, że miary T9, T10 i T11, czyli miary zależące od kwalifikatorów przyjmują w większości przypadków duże wartości. Świadczy to o tym, że kwalifikatory w formie drugiej podsumowań jednopodmiotowych zostały dobrane odpowiednio.\\
+
 Dokładne interpretacje uzyskanych wyników w zależności od parametrów klasyfikacji
 opisanych w punktach 3.-4 opisu Projektu 2. 
 Szczególnie istotne są wnioski o charakterze uniwersalnym, istotne dla podobnych zadań. 
@@ -617,6 +658,9 @@ podać merytoryczne (ale nie czasowe) przyczyny tych braków.
 https://www.kaggle.com/justinas/nba-players-data
 \bibitem{uml_doc} Dokumentacja diagramów UML [przeglądana 24.05.2021] Dostępna w:
 https://www.uml-diagrams.org/
+\bibitem{java_doc} Dokumentacja Java 11 [przeglądana 03.06.2021] Dostępna w: https://docs.oracle.com/en/java/javase/11/
+\bibitem{maven_doc} Dokumentacja Maven [przeglądana 03.06.2021] Dostępna w: https://maven.apache.org/guides/
+\bibitem{javafx_doc} Dokumentacja JavaFx 13 [przeglądana 03.06.2021] Dostępna w: https://openjfx.io/javadoc/13/
 \end{thebibliography}
 
 Literatura zawiera wyłącznie źródła recenzowane i/lub o potwierdzonej wiarygodności,

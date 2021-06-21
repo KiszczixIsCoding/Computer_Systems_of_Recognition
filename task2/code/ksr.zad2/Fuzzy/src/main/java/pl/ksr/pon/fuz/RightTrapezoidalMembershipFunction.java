@@ -24,4 +24,9 @@ public class RightTrapezoidalMembershipFunction extends TrapezoidalMembershipFun
         double t2 = 0; // jako ze tu będzie jedna wartosc to do drugiej przypisuje 0
         return new Tuple2<>(t1, t2);
     }
+
+    @Override
+    public Double getArea() {
+        return ((x3 - x1) + (x3 - x2)) / 2.0;
+    }
 }
