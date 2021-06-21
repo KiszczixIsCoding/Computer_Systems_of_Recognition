@@ -177,6 +177,12 @@ public class FuzzySet {
         return sum;
     }
 
+    public double getInclusion(List<Player> datasetElements, List<FuzzySet> otherFuzzySets) {
+        List<Double> inclusions = new ArrayList<>();
+//        for (int i = 0; i < )
+        return 0;
+    }
+
     public double getRelativeCardinality() {
         return getCardinality() / elements.size();
     }

@@ -85,15 +85,15 @@ public class EditSummarizerController implements Initializable {
 
         EventHandler<MouseEvent> clickEvt = mouseEvent -> {
             int selectedIndex = membershipChoice.getSelectionModel().getSelectedIndex();
-            if (selectedIndex == 0) {
-                selectedMembershipFunction = new GaussianMembershipFunction();
-            } else if (selectedIndex == 1) {
-
-                selectedMembershipFunction = new LeftTriangularMembershipFunction();
-            } else if (selectedIndex == 2) {
-                selectedMembershipFunction = new LeftTrapezoidalMembershipFunction() {
-                }
-            }
+//            if (selectedIndex == 0) {
+//                selectedMembershipFunction = new GaussianMembershipFunction();
+//            } else if (selectedIndex == 1) {
+//
+//                selectedMembershipFunction = new LeftTriangularMembershipFunction();
+//            } else if (selectedIndex == 2) {
+//                selectedMembershipFunction = new LeftTrapezoidalMembershipFunction() {
+//                }
+//            }
         };
 
         addBtn.setOnMouseClicked(clickEvt);

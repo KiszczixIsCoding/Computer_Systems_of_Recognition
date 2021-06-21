@@ -346,7 +346,6 @@ public class PrimaryController implements Initializable {
         };
 
         editQuantifier.setOnMouseClicked(openQuantifierWindowEvt);
-
     }
 
     private void clearScrollPane(ScrollPane pane, Button btn) {
@@ -380,15 +379,20 @@ public class PrimaryController implements Initializable {
     public void goToMultiSubject(MouseEvent mouseEvent) {
         singlePane.setVisible(false);
         multiPane.setVisible(true);
+
+        EventHandler<MouseEvent> generateEvt = mouseEvent1 -> generateMultiSubjectSummary();
+        singleGenerate.setOnMouseClicked(generateEvt);
     }
 
     public void goToSingleSubject(MouseEvent mouseEvent) {
         multiPane.setVisible(false);
         singlePane.setVisible(true);
+        EventHandler<MouseEvent> generateEvt = mouseEvent1 -> generateSingleSubjectSummary();
+        singleGenerate.setOnMouseClicked(generateEvt);
     }
 
 
-    public LinguisticSummary generateSingleSubjectSummary(ActionEvent actionEvent) {
+    public LinguisticSummary generateSingleSubjectSummary() {
         String quantifierText = singleSumQuantifierLabel.getText();
         String qualifiersText = "";
         String summarizersText = "";
@@ -449,18 +453,45 @@ public class PrimaryController implements Initializable {
     }
 
     public LinguisticSummary generateMultiSubjectSummary() {
+        System.out.println("ABCDE");
+        int form = singleSumFormComboBox.getSelectionModel().getSelectedIndex();
+        String summaryText = "";
+        if (form == 0) {
+
+        } else if (form == 1) {
+
+        } else if (form == 2) {
+
+        } else {
+
+        }
+
+        List<LinguisticLabel> summarizers = new ArrayList<>();
+
         List<Player> easternPlayers = players.stream().filter(player -> Clubs.getEasternClubs()
                 .contains(player.getTeam())).collect(Collectors.toList());
 
         List<Player> westernPlayers = players.stream().filter(player -> Clubs.getWesternClubs()
                 .contains(player.getTeam())).collect(Collectors.toList());
 
+        VBox singleSummarizersRoot = (VBox) singleSelectedSummarizesPane.getContent();
+        for (Node label : singleSummarizersRoot.getChildren()) {
+            Label convertedLabel = (Label) label;
+            for (LinguisticVariable variable : linguisticVariables) {
+                for (LinguisticLabel linguisticLabel : variable.getLabels()) {
+                    if (linguisticLabel.getName().equals(convertedLabel.getText())) {
+                        summarizers.add(linguisticLabel);
+                        break;
+                    }
+                }
+            }
+        }
 
-        String summaryText = " zawodników z konferencji wschodniej w porównaniu do zawodników z konferencji zachodniej jest/ma" + qualifiersText +
-                " jest ";
+//        String summaryText = " zawodników z konferencji wschodniej w porównaniu do zawodników z konferencji zachodniej jest/ma" + qualifiersText +
+//                " jest ";
 
         MultisubjectLinguisticSummariesGenerator generator = new MultisubjectLinguisticSummariesGenerator(
-                qualifiers, summarizers, quantifier, Arrays.asList(easternPlayers, westernPlayers));
+                null, summarizers, null, Arrays.asList(easternPlayers, westernPlayers));
 
         LinguisticSummary finalSummary = generator.generateSummary();
 
@@ -468,6 +499,7 @@ public class PrimaryController implements Initializable {
         System.out.println(finalSummary);
         return finalSummary;
     }
+
     public void openNewWindow(String filename, String kindOfLabel) throws IOException {
         App.openNewStage(filename, kindOfLabel);
     }
