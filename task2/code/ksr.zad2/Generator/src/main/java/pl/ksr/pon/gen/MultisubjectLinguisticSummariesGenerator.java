@@ -69,7 +69,7 @@ public class MultisubjectLinguisticSummariesGenerator {
         sigmaCount2 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(1),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
-        System.out.println(qualifiers.size());
+
         qualifierCount2 = qualifiers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(1),
                 qualifiers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
@@ -100,7 +100,7 @@ public class MultisubjectLinguisticSummariesGenerator {
 
         sigmaCount1 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(0),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
-        sigmaCount2 = summarizers.get(1).getFuzzySet().getProductValues(groupedPlayersList.get(1),
+        sigmaCount2 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(1),
                 summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
 
         qualifierCount1 = qualifiers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(0),
@@ -127,6 +127,13 @@ public class MultisubjectLinguisticSummariesGenerator {
     }
 
     public double countForthDegreeOfTruth() {
-        return 0;
+        List<Double> summarizer1, summarizer2;
+
+        summarizer1 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(0),
+                summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
+        summarizer2 = summarizers.get(0).getFuzzySet().getProductValues(groupedPlayersList.get(1),
+                summarizers.stream().map(LinguisticLabel::getFuzzySet).collect(Collectors.toList()));
+
+        return 1 - summarizers.get(0).getFuzzySet().getInclusion(summarizer1, summarizer2);
     }
 }

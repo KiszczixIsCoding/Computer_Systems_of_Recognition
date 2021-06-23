@@ -87,9 +87,17 @@ public class PrimaryController implements Initializable {
     @FXML
     public Button multiQualifiers2ClearBtn;
     @FXML
-    public Button editQuantifier, editQualifier, editSummarizer;
+    public Button switchSubjectsBtn;
+    @FXML
+    public Button editQuantifier, editSummarizer;
+    @FXML
+    public Button editQualifier;
+    @FXML
+    public Label subjectLabel1, subjectLabel2;
     @FXML
     public TableView<LinguisticSummary> summariesTable;
+    @FXML
+    public TableView<MultisubjectLinguisticSummary> multiSummariesTable;
     @FXML
     public TableColumn<LinguisticSummary, String> textCol;
     @FXML
@@ -117,6 +125,10 @@ public class PrimaryController implements Initializable {
     @FXML
     public TableColumn<LinguisticSummary, Double> averageCol;
     @FXML
+    public TableColumn<MultisubjectLinguisticSummary, String> multiTextCol;
+    @FXML
+    public TableColumn<MultisubjectLinguisticSummary, Double> multiMetricCol;
+
     public TextField textField1, textField2, textField3, textField4,
                      textField5, textField6, textField7, textField8,
                      textField9, textField10, textField11;
@@ -130,9 +142,13 @@ public class PrimaryController implements Initializable {
     List<String> allQuantifiersNames;
     List<Player> players = new ArrayList<>();
     ObservableList<LinguisticSummary> summariesToTable = FXCollections.observableArrayList();
+    ObservableList<MultisubjectLinguisticSummary> multiSummariesToTable = FXCollections.observableArrayList();
     List<TextField> textFields = new ArrayList<>();
     List<Double> weights_double;
     List<DoubleProperty> weights;
+    List<List<Player>> subjects = new ArrayList<>();
+    boolean subjectsFlag = true;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -320,6 +336,11 @@ public class PrimaryController implements Initializable {
         averageCol.setCellValueFactory(new PropertyValueFactory<>("average"));
         summariesTable.setItems(summariesToTable);
 
+        //-----------multi Subject Table init----------------------------------
+        multiTextCol.setCellValueFactory(new PropertyValueFactory<>("text"));
+        multiMetricCol.setCellValueFactory(new PropertyValueFactory<>("degreeOfTruth"));
+        multiSummariesTable.setItems(multiSummariesToTable);
+
         //-------- Open window for summarizers edition -----------------------------------
         EventHandler<MouseEvent> openSumWindowEvt = e -> {
             try {
@@ -352,6 +373,31 @@ public class PrimaryController implements Initializable {
         editQuantifier.setOnMouseClicked(openQuantifierWindowEvt);
         singleGenerate.setOnMouseClicked(mouseEvent1 -> generateSingleSubjectSummary());
         multiGenerate.setOnMouseClicked(mouseEvent1 -> generateMultiSubjectSummary());
+
+
+        //----------------- Change subjects ---------------------
+        List<Player> easternPlayers = players.stream().filter(player -> Clubs.getEasternClubs()
+                .contains(player.getTeam())).collect(Collectors.toList());
+
+        List<Player> westernPlayers = players.stream().filter(player -> Clubs.getWesternClubs()
+                .contains(player.getTeam())).collect(Collectors.toList());
+
+        subjects.addAll(Arrays.asList(easternPlayers, westernPlayers));
+        switchSubjectsBtn.setOnMouseClicked(mouseEvent -> {
+            subjects.clear();
+            if (subjectsFlag) {
+                subjectsFlag = false;
+                subjects.addAll(Arrays.asList(westernPlayers, easternPlayers));
+                subjectLabel1.setText("Konferencja zachodnia");
+                subjectLabel2.setText("Konferencja wschodnia");
+
+            } else {
+                subjectsFlag = true;
+                subjects.addAll(Arrays.asList(easternPlayers, westernPlayers));
+                subjectLabel1.setText("Konferencja wschodnia");
+                subjectLabel2.setText("Konferencja zachodnia");
+            }
+        });
     }
 
     private void clearScrollPane(ScrollPane pane, Button btn) {
@@ -477,11 +523,7 @@ public class PrimaryController implements Initializable {
             }
         }
 
-        List<Player> easternPlayers = players.stream().filter(player -> Clubs.getEasternClubs()
-                .contains(player.getTeam())).collect(Collectors.toList());
 
-        List<Player> westernPlayers = players.stream().filter(player -> Clubs.getWesternClubs()
-                .contains(player.getTeam())).collect(Collectors.toList());
 
         VBox multiSummarizersRoot = (VBox) multiSelectedSummarizersPane.getContent();
         for (Node label : multiSummarizersRoot.getChildren()) {
@@ -527,23 +569,10 @@ public class PrimaryController implements Initializable {
             }
         }
 
-
+        System.out.println(summarizers.size());
         MultisubjectLinguisticSummariesGenerator generator = new MultisubjectLinguisticSummariesGenerator(
-                qualifiers, summarizers, quantifier, Arrays.asList(easternPlayers, westernPlayers));
+                qualifiers, summarizers, quantifier, subjects);
 
-        for (int i = 0; i < summarizers.size(); i++) {
-            summarizersText.append(summarizers.get(i).getName());
-            if (i != summarizers.size() - 1) {
-                summarizersText.append(", ");
-            }
-        }
-
-        for (int i = 0; i < summarizers.size(); i++) {
-            summarizersText.append(summarizers.get(i).getName());
-            if (i != summarizers.size() - 1) {
-                summarizersText.append(", ");
-            }
-        }
 
         if (form == 0) {
             summaryText = quantifier.getLabel().getName() + " zawodników z konferencji wschodniej w porównaniu " +
@@ -562,6 +591,7 @@ public class PrimaryController implements Initializable {
         MultisubjectLinguisticSummary finalSummary = generator.generateSummary(summaryText, form);
         System.out.println(finalSummary);
 
+        multiSummariesToTable.add(finalSummary);
         return null;
     }
 
