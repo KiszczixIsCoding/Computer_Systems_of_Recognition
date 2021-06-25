@@ -178,10 +178,34 @@ public class FuzzySet {
         return sum;
     }
 
-    public double getInclusion(List<Player> datasetElements, List<FuzzySet> otherFuzzySets) {
+    public double getInclusion(List<Double> firstSubjectSet, List<Double> secondSubjectSet) {
+        int size1 = firstSubjectSet.size();
+        int size2 = secondSubjectSet.size();
         List<Double> inclusions = new ArrayList<>();
-//        for (int i = 0; i < )
-        return 0;
+
+        if (size1 > size2) {
+            for (int i = 0; i < size1; i++) {
+                if (i < size2) {
+                    inclusions.add(1 - firstSubjectSet.get(1) + firstSubjectSet.get(1) * secondSubjectSet.get(i));
+                } else {
+                    inclusions.add(1 - firstSubjectSet.get(i));
+                }
+            }
+        } else {
+            for (int i = 0; i < size2; i++) {
+                if (i < size1) {
+                    inclusions.add(1 - firstSubjectSet.get(i) + firstSubjectSet.get(i) * secondSubjectSet.get(i));
+                } else {
+                    inclusions.add(1d);
+                }
+            }
+        }
+
+        double sum = 0;
+        for (double inclusion : inclusions) {
+            sum += inclusion;
+        }
+        return sum / inclusions.size();
     }
 
     public double getRelativeCardinality() {
