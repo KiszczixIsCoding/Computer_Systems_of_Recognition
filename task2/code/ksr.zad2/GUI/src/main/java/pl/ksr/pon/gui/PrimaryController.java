@@ -546,9 +546,10 @@ public class PrimaryController implements Initializable {
                 qualifiersText.append(convertedLabel.getText()).append(", ");
                 for (LinguisticVariable variable : linguisticVariables) {
                     for (LinguisticLabel linguisticLabel : variable.getLabels()) {
-                        if (linguisticLabel.getName().equals(convertedLabel.getText()));
-                        qualifiers.add(linguisticLabel);
-                        break;
+                        if (linguisticLabel.getName().equals(convertedLabel.getText())) {
+                            qualifiers.add(linguisticLabel);
+                            break;
+                        }
                     }
                 }
             }
@@ -561,9 +562,10 @@ public class PrimaryController implements Initializable {
                 qualifiersText.append(convertedLabel.getText()).append(", ");
                 for (LinguisticVariable variable : linguisticVariables) {
                     for (LinguisticLabel linguisticLabel : variable.getLabels()) {
-                        if (linguisticLabel.getName().equals(convertedLabel.getText()));
-                        qualifiers.add(linguisticLabel);
-                        break;
+                        if (linguisticLabel.getName().equals(convertedLabel.getText())) {
+                            qualifiers.add(linguisticLabel);
+                            break;
+                        }
                     }
                 }
             }

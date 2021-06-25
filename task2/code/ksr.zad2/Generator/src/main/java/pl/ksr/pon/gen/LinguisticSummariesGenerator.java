@@ -186,7 +186,7 @@ public class LinguisticSummariesGenerator {
 
         for (LinguisticLabel summarizer : summarizers) {
             int sum = 0;
-            for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
+//            for (Player player : summarizer.getFuzzySet().getSupport(datasetElements))
 //                sum += summarizer.getFuzzySet().getMembershipFunction().countMembership(player.getAge());
             // wg mnie zgodnie ze wzorami 8.51, 8.52 ze str. 158 z ang książki nasza suma to będzie po prostu liczba
             // elementow nalezacych do nosnika, bo wzor 8.52 mowi, że g_ij przyjmuje 1 jesli funkcja przynaleznosci
