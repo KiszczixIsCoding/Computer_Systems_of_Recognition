@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.ksr.pon.gen.Utils.roundDouble;
+
 @AllArgsConstructor
 public class MultisubjectLinguisticSummariesGenerator {
     List<LinguisticLabel> qualifiers;
@@ -20,13 +22,13 @@ public class MultisubjectLinguisticSummariesGenerator {
 
         summary.setText(text);
         if (form == 0) {
-            summary.setDegreeOfTruth(countFirstDegreeOfTruth());
+            summary.setDegreeOfTruth(roundDouble(countFirstDegreeOfTruth(),2));
         } else if (form == 1) {
-            summary.setDegreeOfTruth(countSecondDegreeOfTruth());
+            summary.setDegreeOfTruth(roundDouble(countSecondDegreeOfTruth(),2));
         } else if (form == 2) {
-            summary.setDegreeOfTruth(countThirdDegreeOfTruth());
+            summary.setDegreeOfTruth(roundDouble(countThirdDegreeOfTruth(),2));
         } else {
-            summary.setDegreeOfTruth(countForthDegreeOfTruth());
+            summary.setDegreeOfTruth(roundDouble(countForthDegreeOfTruth(),2));
         }
         return summary;
     }
