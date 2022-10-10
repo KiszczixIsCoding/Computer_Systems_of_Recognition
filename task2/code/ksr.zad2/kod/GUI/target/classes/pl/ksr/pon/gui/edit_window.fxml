@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="382.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.ksr.pon.gui.EditSummarizerController">
+   <children>
+      <ChoiceBox fx:id="membershipChoice" layoutX="183.0" layoutY="124.0" prefHeight="25.0" prefWidth="149.0">
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </ChoiceBox>
+      <Label layoutX="34.0" layoutY="128.0" text="Funkcja przynależności:" />
+      <TextField fx:id="nameField" layoutX="184.0" layoutY="83.0" />
+      <Label layoutX="73.0" layoutY="87.0" prefHeight="17.0" prefWidth="84.0" text="Nazwa etykiety:" />
+      <Button fx:id="addBtn" layoutX="124.0" layoutY="365.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="134.0" text="Dodaj etykietę" />
+      <Label layoutX="96.0" layoutY="120.0" />
+      <TextField fx:id="firstArgField" layoutX="184.0" layoutY="170.0" prefHeight="26.0" prefWidth="149.0" />
+      <TextField fx:id="secondArgField" layoutX="184.0" layoutY="216.0" prefHeight="26.0" prefWidth="149.0" />
+      <TextField fx:id="thirdArgField" layoutX="183.0" layoutY="258.0" prefHeight="26.0" prefWidth="149.0" />
+      <TextField fx:id="forthArgField" layoutX="184.0" layoutY="308.0" prefHeight="26.0" prefWidth="149.0" />
+      <Label fx:id="firstArgLabel" layoutX="122.0" layoutY="175.0" text="Label" />
+      <Label fx:id="secondArgLabel" layoutX="122.0" layoutY="221.0" text="Label" />
+      <Label fx:id="thirdArgLabel" layoutX="122.0" layoutY="263.0" text="Label" />
+      <Label fx:id="forthArgLabel" layoutX="122.0" layoutY="313.0" text="Label" />
+      <Label fx:id="kindOfLabel" layoutX="177.0" layoutY="21.0" text="labdd" />
+   </children>
+</Pane>

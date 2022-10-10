@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Annotation profile for LinguisticSummarization" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" />
+        </processorPath>
+        <module name="GUI" />
+        <module name="DAO" />
+        <module name="Fuzzy" />
+        <module name="Generator" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DAO" target="11" />
+      <module name="Fuzzy" target="11" />
+      <module name="Generator" target="11" />
+      <module name="GUI" target="11" />
+      <module name="ksr.zad2" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
